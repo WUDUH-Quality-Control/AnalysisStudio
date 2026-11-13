@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DataCodex</title>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DataCodex</title><style id="dc-boot">html.dc-boot body{visibility:hidden!important}html.dc-boot{background:#F4F5F8}html.dc-boot.dc-dark{background:#0B0E14}html.dc-boot::after{content:"";position:fixed;left:50%;top:50%;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;border:3px solid rgba(47,92,232,.18);border-top-color:#2F5CE8;opacity:0;animation:dcboot-in .2s .35s forwards,dcboot-spin .8s linear infinite}@keyframes dcboot-in{to{opacity:1}}@keyframes dcboot-spin{to{transform:rotate(360deg)}}html.dc-reveal body{animation:dcboot-fade .22s ease-out}@keyframes dcboot-fade{from{opacity:0}to{opacity:1}}@media (prefers-reduced-motion:reduce){html.dc-reveal body{animation:none}}</style><script id="dc-boot-script">(function(){var d=document.documentElement;d.classList.add("dc-boot");try{if(localStorage.getItem("dc-theme")==="dark")d.classList.add("dc-dark")}catch(e){}window.__dcBootFailsafe=setTimeout(function(){d.classList.remove("dc-boot")},8000)})();</script>
 <style>
 :root{color-scheme:dark;--bg:#0b1329;--surface:#131f3a;--panel:#0e1930;--border:rgba(56,189,248,.2);--accent:#2563eb;--cyan:#38bdf8;--text:#f8fafc;--muted:#a3b2c8;--grid:rgba(56,189,248,.08);--good:#6ee7b7;--warn:#fbbf24}body.light{color-scheme:light;--bg:#f0f4f9;--surface:#fff;--panel:#f5f8fc;--border:rgba(37,99,235,.15);--accent:#1d4ed8;--cyan:#0284c7;--text:#0f172a;--muted:#52647b;--grid:rgba(37,99,235,.06);--good:#047857;--warn:#92400e}*{box-sizing:border-box}body{margin:0;font:14px/1.55 system-ui,-apple-system,Segoe UI,sans-serif;color:var(--text);background:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),var(--bg);background-size:20px 20px}button,input,select,textarea{font:inherit}button{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);padding:10px 15px;border-radius:7px;cursor:pointer}button:hover{border-color:var(--cyan);background:var(--panel)}button:disabled{opacity:.45;cursor:not-allowed}button.primary{background:var(--accent);border-color:var(--accent);color:white}button.small{padding:6px 9px;font-size:12px}svg.icon{width:19px;height:19px;flex:none;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}input,select,textarea{color:var(--text);background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:10px;max-width:100%;min-width:0}input[type=range]{padding:0}label{display:grid;gap:6px;color:var(--muted);font-size:12px}label input,label select,label textarea{color:var(--text);font-size:14px}*:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}header{padding:22px 4%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:var(--bg)}.brand{display:flex;gap:12px;align-items:center;font-size:23px;font-weight:700;letter-spacing:-1px}.brandmark{background:var(--accent);padding:10px;border-radius:9px;display:flex;color:#fff}.brand small{display:block;font:10px/1.7 ui-monospace,monospace;letter-spacing:2px;color:var(--muted)}.header-actions{display:flex;gap:10px;align-items:center}.private{font-size:12px;color:var(--muted);display:flex;gap:7px;align-items:center}main{max-width:1500px;padding:28px 4% 60px;margin:auto}.eyebrow{font:11px ui-monospace,monospace;letter-spacing:2px;color:var(--cyan);text-transform:uppercase}h1{font-size:32px;line-height:1.2;letter-spacing:-1px;margin:10px 0}h2{font-size:18px;margin:0 0 12px;display:flex;align-items:center;gap:8px}h3{margin:0;font-size:15px}p{margin:7px 0;color:var(--muted)}.stepper{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:9px;overflow:hidden;margin:25px 0 32px}.stepper button{border:0;border-radius:0;display:flex;flex-direction:column;align-items:flex-start;padding:14px 12px;gap:8px;background:var(--panel);font-size:12px}.stepper button.active{background:var(--surface);box-shadow:inset 0 -3px var(--cyan);color:var(--cyan)}.step-num{display:flex;align-items:center;gap:8px;font:11px ui-monospace,monospace;color:var(--muted)}.topline{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:22px}.badge{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);padding:3px 8px;border-radius:4px;color:var(--cyan);font:11px ui-monospace,monospace}.badge.good{color:var(--good)}.panel{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:22px;min-width:0}.two{display:grid;grid-template-columns:minmax(0,2fr) minmax(240px,1fr);gap:20px}.stack{display:grid;gap:16px}.dropzone{border:1px dashed var(--cyan);background:var(--panel);border-radius:8px;min-height:260px;display:flex;align-items:center;justify-content:center;text-align:center;padding:30px;transition:.15s}.dropzone.over{background:rgba(56,189,248,.12);box-shadow:inset 0 0 0 2px var(--cyan)}.drop-icon{width:54px;height:54px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;border:1px solid var(--border);color:var(--cyan);border-radius:10px}.drop-icon .icon{width:27px;height:27px}.dropzone h2{display:block;font-size:21px}.filelist{display:grid;gap:10px;margin-top:20px}.filecard{display:flex;gap:12px;align-items:flex-start;background:var(--panel);border:1px solid var(--border);border-radius:7px;padding:14px}.filecard .details{flex:1;min-width:0}.filecard strong{overflow-wrap:anywhere}.filecard p{font-size:12px}.meta{display:flex;gap:12px;flex-wrap:wrap;font:11px ui-monospace,monospace;color:var(--muted)}.guide{counter-reset:guide}.guide p{display:flex;gap:12px;margin:18px 0}.guide p:before{counter-increment:guide;content:'0' counter(guide);font:12px ui-monospace,monospace;color:var(--cyan)}.footer{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:24px;padding-top:20px;border-top:1px solid var(--border)}.status{font-size:12px;color:var(--muted)}.family-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}.chips{display:flex;flex-wrap:wrap;gap:7px;margin:15px 0}.chip{background:var(--panel);border:1px solid var(--border);padding:5px 9px;font:12px ui-monospace,monospace;border-radius:4px}.toolbar{display:flex;gap:12px;align-items:end;flex-wrap:wrap;margin-bottom:18px}.toolbar label{flex:1;min-width:150px}.scroll{overflow:auto;max-height:450px;border:1px solid var(--border);border-radius:6px}table{border-collapse:collapse;width:100%;font-size:12px;text-align:left}th,td{padding:10px 13px;border-bottom:1px solid var(--border);white-space:nowrap;max-width:350px;overflow:hidden;text-overflow:ellipsis}th{position:sticky;top:0;background:var(--panel);color:var(--muted);font-weight:500;z-index:1}td.changed{background:rgba(56,189,248,.1);color:var(--cyan)}.preview{display:grid;grid-template-columns:1fr 1fr;gap:16px}.preview h3{margin-bottom:10px}.muted{color:var(--muted)}.statline{display:flex;gap:18px;flex-wrap:wrap;margin:16px 0}.statline strong{display:block;font-size:24px;font-weight:600;color:var(--text)}.statline span{font-size:12px;color:var(--muted)}.studio-wrap{overflow:auto;border:1px solid var(--border);border-radius:9px}.studio{position:relative;min-width:950px;min-height:580px;background:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),var(--panel);background-size:20px 20px}.wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}.wire{fill:none;stroke:var(--cyan);stroke-width:2;filter:drop-shadow(0 0 3px var(--cyan))}.node{position:absolute;width:245px;border:1px solid var(--border);background:var(--surface);border-radius:8px;box-shadow:0 8px 24px #0002}.node-head{display:flex;gap:8px;align-items:center;cursor:grab;padding:13px;border-bottom:1px solid var(--border);touch-action:none}.node-head strong{flex:1;overflow-wrap:anywhere}.terminal{display:flex;justify-content:space-between;align-items:center;padding:7px 12px;border-bottom:1px solid var(--border)}.terminal:last-child{border:0}.terminal button{padding:5px;min-height:30px;color:var(--cyan);touch-action:none}.terminal button.selected{background:var(--accent);color:white}.terminal span{overflow-wrap:anywhere;font-size:12px}.insight-list{margin-top:16px;display:grid;gap:10px}.insight-item{display:flex;gap:12px;align-items:center}.insight-item input{width:230px}.insight-item p{flex:1;font-size:12px}.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}.metric{border-top:1px solid var(--border);padding:12px 0}.metric p{font-size:12px}.warning{color:var(--warn);display:flex;align-items:center;gap:7px}.builder{display:grid;grid-template-columns:180px minmax(0,1fr) 230px;gap:16px}.palette button{width:100%;justify-content:flex-start;margin-bottom:8px;cursor:grab}.reportcanvas{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;align-content:start;min-height:550px;padding:18px;background:var(--panel);border:1px dashed var(--border);border-radius:8px}.reportblock{grid-column:span 6;min-width:0;position:relative;border:1px solid var(--border);background:var(--surface);border-radius:6px;padding:16px;min-height:170px;overflow:hidden}.reportblock.selected{outline:2px solid var(--cyan)}.blockhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;gap:6px;cursor:grab}.blockhead h3{display:flex;align-items:center;gap:7px;overflow-wrap:anywhere}.block-actions{display:flex;gap:3px}.block-actions button{padding:4px}.resize{position:absolute;right:2px;bottom:2px;cursor:nwse-resize;color:var(--muted);touch-action:none;width:24px;height:24px}.kpi{font-size:34px;letter-spacing:-1px;font-weight:600;color:var(--cyan)}.chart{width:100%;height:190px;overflow:visible}.chart text{fill:var(--muted);font:10px system-ui}.chart .axis{stroke:var(--border);fill:none}.chart-summary{font-size:11px}.settings label{margin-bottom:12px}.settings .empty{font-size:12px}.emptycanvas{grid-column:1/-1;align-self:center;text-align:center;padding:70px 10px;color:var(--muted)}.emptycanvas .icon{width:32px;height:32px}.rich{min-height:80px;white-space:pre-wrap}.rich[contenteditable]{outline:1px dashed var(--border);padding:8px}.export-options{display:grid;grid-template-columns:1fr 1fr;gap:20px}.export-options .icon.big{width:35px;height:35px;color:var(--cyan)}.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--cyan);padding:12px 20px;border-radius:7px;box-shadow:0 5px 30px #0005;z-index:10;max-width:90vw}.hidden{display:none!important}.skip{position:absolute;left:10px;top:-60px;z-index:20}.skip:focus{top:10px}a{color:var(--cyan)}@media(max-width:1050px){.builder{grid-template-columns:160px minmax(0,1fr)}.settings{grid-column:1/-1}.two{grid-template-columns:1fr}.stepper{overflow:auto;grid-template-columns:repeat(7,minmax(115px,1fr))}}@media(max-width:600px){header{padding:15px}.private{display:none}main{padding:22px 15px}.topline{flex-direction:column}h1{font-size:27px}.preview,.export-options{grid-template-columns:1fr}.builder{display:flex;flex-direction:column}.palette{display:flex;flex-wrap:wrap;gap:6px}.palette h2{width:100%}.palette button{width:auto}.reportblock{grid-column:1/-1!important}.insight-item{flex-wrap:wrap}.footer{align-items:flex-start}.panel{padding:16px}input,select,textarea{font-size:16px!important}.brand small{font-size:9px}}@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}@media print{header,.stepper,.footer,.palette,.settings,.block-actions,.resize{display:none!important}body{background:white;color:#111}.reportcanvas{display:block}.reportblock{break-inside:avoid;margin-bottom:15px}}
 </style><style id="refinement">:root{--bg:#101c21;--surface:#18292e;--panel:#122227;--border:#31454b;--accent:#bf6040;--cyan:#ead4aa;--text:#f4f0e7;--muted:#b2c0c0;--grid:transparent;--good:#a9c8b0;--warn:#efbf78}body.light{--bg:#f3f0e8;--surface:#fffdf7;--panel:#ebe8df;--border:#d8d4c9;--accent:#a84428;--cyan:#6f5038;--text:#233c40;--muted:#596b69;--grid:transparent;--good:#386344;--warn:#8d4c17}body{background:var(--bg);font-family:Arial,sans-serif}header{padding:23px 5%;background:transparent}.brand{font-family:Georgia,serif;font-size:30px;font-weight:400;letter-spacing:-1.5px}.brandmark{border-radius:50%;background:var(--cyan);color:var(--bg);transform:rotate(-12deg)}.brand small{font:9px Arial,sans-serif;letter-spacing:3px;margin-top:4px}main{padding:32px 5% 55px;max-width:1600px}.stepper{border-radius:0;background:transparent;border:0;border-bottom:1px solid var(--border);gap:12px;margin:0 0 44px}.stepper button{background:transparent;padding:12px 0 18px;flex-direction:row;align-items:center;font-size:11px;gap:8px}.stepper button.active{background:transparent;box-shadow:inset 0 -2px var(--cyan)}.step-num{font-size:10px}.step-num .icon{width:14px;height:14px}.eyebrow{font:10px Arial,sans-serif;letter-spacing:2.5px;color:var(--muted)}h1{font:normal clamp(38px,4.4vw,68px)/1.03 Georgia,serif;letter-spacing:-2px;max-width:800px;margin:18px 0}h2{font-size:16px;font-weight:500}.topline{margin-bottom:36px}.topline p{max-width:660px;font-size:15px;line-height:1.7}.panel{border-radius:3px;padding:25px}.two{grid-template-columns:minmax(0,1.65fr) minmax(280px,1fr);gap:28px}.dropzone{min-height:310px;border:1px solid var(--border);border-radius:2px;background:var(--panel);position:relative;overflow:hidden}.dropzone:before,.dropzone:after{content:'';position:absolute;pointer-events:none;border:1px solid var(--border);border-radius:50%;width:290px;height:290px;right:-130px;top:-150px}.dropzone:after{width:360px;height:360px;right:-160px;top:-185px}.drop-icon{border-radius:50%;width:65px;height:65px}.dropzone h2{font:28px Georgia,serif}.guide p{margin:23px 0}.badge{border-radius:0;font:10px Arial,sans-serif;letter-spacing:.7px}button{border-radius:3px;font-weight:500}button.primary{background:var(--accent);border-color:var(--accent)}input,select,textarea{border-radius:3px}.artnote{padding:25px 0;border-top:1px solid var(--border);display:flex;align-items:center;gap:20px}.artnote svg{width:105px;height:85px;flex:none}.artnote p{font:italic 21px/1.4 Georgia,serif;color:var(--text)}.studio{background:radial-gradient(var(--border) 1px,transparent 1px),var(--panel);background-size:24px 24px}.node{border-radius:4px}.wire{stroke:var(--cyan);filter:none}.node-head{background:var(--surface)}.insight-config{margin-top:18px;border-top:3px solid var(--accent)}.config-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin:18px 0}.field-list{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:20px 0}.field-row{display:flex;align-items:center;gap:8px;margin:8px 0}.field-row label{display:flex;align-items:center;flex:1;font-size:13px;color:var(--text)}.field-row input[type=text]{width:48%;font-size:12px;padding:7px}.match-count{font:42px Georgia,serif;color:var(--cyan)}.result-meta{display:flex;gap:28px;align-items:center;margin:15px 0}.result-meta p{font-size:12px}.result-preview{max-height:260px}.builder{grid-template-columns:180px minmax(0,1fr) 260px}.reportcanvas{background:#eeeae1;border:0;color:#253d40;gap:16px;min-height:620px}.reportblock{--surface:#fffdf7;--text:#253d40;--muted:#5d6d6b;--border:#d9d6cd;--panel:#f3f0e8;--cyan:#9e4d31;color:var(--text);border-radius:3px;background:var(--surface)}.reportblock .kpi{font:46px Georgia,serif}.reportblock .blockhead h3{font-size:15px}.reportblock .rich{color:inherit}.palette{padding:15px}.palette button{font-size:12px;padding:10px;justify-content:flex-start}.palette button .icon:last-child{margin-left:auto}.settings{padding:18px;max-height:1000px;overflow:auto}.settings label{font-size:11px}.settings .row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.settings .row label{min-width:0}.email-preview{background:#fff;color:#243b3d;padding:24px;overflow:auto;border-radius:3px;margin-top:20px}.email-preview table{white-space:normal}.email-preview td,.email-preview th{position:static;white-space:normal;max-width:none}.email-preview p{color:inherit}.font-controls{display:flex;align-items:end;gap:12px;flex-wrap:wrap;margin-bottom:18px}.font-controls label{min-width:160px;flex:1}.shape-demo{height:100%;min-height:80px;display:flex;align-items:center;justify-content:center;text-align:center;font:24px Georgia,serif;padding:15px}.quote-mark{font:65px Georgia,serif;line-height:.7;color:inherit}.copy-manual{width:100%;min-height:180px}.email-preview button{display:none}@media(max-width:1150px){.builder{grid-template-columns:160px minmax(0,1fr)}.settings{grid-column:1/-1;max-height:none}}@media(max-width:700px){.two,.config-grid,.field-list{grid-template-columns:1fr}.builder{display:flex;flex-direction:column}.stepper{gap:14px;grid-template-columns:repeat(7,minmax(130px,1fr));margin-bottom:28px}.palette{display:flex;flex-wrap:wrap}.palette button{width:auto}.topline h1{letter-spacing:-1px}main{padding:23px 18px}.panel{padding:18px}.reportcanvas{padding:12px}.font-controls{display:grid;grid-template-columns:1fr}.field-row input[type=text]{width:45%}.result-meta{flex-wrap:wrap;gap:12px}.header-actions .private{display:none}.brand{font-size:25px}}
@@ -1786,7 +1786,7 @@ html body .dc-empty-slot #add-insight{min-height:42px;padding:0 18px;border-radi
 html body .dc-empty-slot #add-insight .icon{width:17px;height:17px}
 
 /* ===== DataCodex sheet canvas (Build Excel step) ===== */
-#excel-step-host.dcx-host>.embedded-excel{display:none!important}
+html.dcx-ready #excel-step-host>.embedded-excel,#excel-step-host.dcx-host>.embedded-excel{display:none!important}
 body.excel-step-mode #content details.option-reference{display:none!important}
 .dcx-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 html body .dcx{--dcx-h:clamp(560px,calc(100vh - 210px),1000px);display:flex;flex-direction:column;height:var(--dcx-h);background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl,18px);box-shadow:var(--shadow-sm);overflow:hidden;font-family:var(--font-ui);color:var(--ink);position:relative;isolation:isolate}
@@ -2011,6 +2011,174 @@ html body .dcx-ghost{position:fixed;left:0;top:0;z-index:10001;width:250px;margi
  .dcx-info{display:none}
 }
 @media (prefers-reduced-motion:reduce){.dcx-menu{animation:none}.dcx.dcx-flash canvas{animation:none}}
+
+/* ===== DataCodex projects: hub, sidebar card, Finish report step, run dialog ===== */
+.dcp-i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.dc-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.dcp-badge{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 9px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2);font-size:11.5px;font-weight:600;white-space:nowrap}
+.dcp-badge .dcp-i{width:13px;height:13px}
+.dcp-badge.is-sealed{background:color-mix(in srgb,var(--success,#16a34a) 12%,var(--surface));border-color:color-mix(in srgb,var(--success,#16a34a) 30%,transparent);color:color-mix(in srgb,var(--success,#16a34a) 80%,var(--ink))}
+
+/* sidebar project card */
+.dcp-card-rail{margin:0 0 14px;padding:10px;border:1px solid var(--line);border-radius:16px;background:var(--surface);box-shadow:var(--shadow-xs)}
+.dcp-card-rail[hidden]{display:none}
+html body .dcp-card-rail .dcp-proj{display:flex;align-items:center;gap:10px;width:100%;min-height:0;padding:4px;border:0;border-radius:10px;background:none;box-shadow:none;text-align:left;color:var(--ink);cursor:pointer}
+html body .dcp-card-rail .dcp-proj:hover:not(:disabled){background:var(--surface-2)}
+.dcp-proj-ic{display:grid;place-items:center;width:34px;height:34px;flex:none;border-radius:10px;background:var(--brand-50);color:var(--brand)}
+.dcp-proj-t{display:flex;flex-direction:column;min-width:0;flex:1}
+.dcp-proj-t b{font-size:14px;font-weight:650;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dcp-proj-t small{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dcp-swap{color:var(--muted)}
+.dcp-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:8px 4px 0}
+html body .dcp-meta .dc-link{font-size:12px;padding:0;min-height:0}
+.dcp-status{display:flex;gap:7px;align-items:flex-start;margin:8px 4px 0!important;font-size:11.8px!important;line-height:1.45;color:var(--muted)!important}
+.dcp-status i{flex:none;width:7px;height:7px;margin-top:5px;border-radius:50%;background:var(--success,#16a34a)}
+.dcp-status.is-warn i{background:var(--warn,#d97706)}
+.dcp-keep{margin:8px 4px 2px;font-size:12px}
+html body .dc-rail .dc-autosave{display:none}
+
+/* finish step in the rail */
+html body .dc-rail .stepper:has(.dc-finish-step) button.dc-last:not(.dc-finish-step)::after{display:block!important}
+html body .dc-rail .stepper button.dc-finish-step::after{display:none!important}
+body.dc-finish-mode .dc-rail .stepper button.active:not(.dc-finish-step){background:transparent!important;box-shadow:none!important}
+body.dc-finish-mode .dc-rail .stepper button.active:not(.dc-finish-step) .dc-dot{background:var(--brand-50)!important;color:var(--brand-ink)!important;box-shadow:none!important;border-color:transparent!important}
+body.dc-finish-mode .dc-rail .stepper button.active:not(.dc-finish-step)::after{background:var(--brand)!important;opacity:.55}
+
+/* finish mode hides the engine page */
+body.dc-finish-mode main>:not(.dcp-finish):not(.footer){display:none!important}
+body.dc-finish-mode main>.footer{display:none!important}
+.dcp-finish[hidden]{display:none}
+.dcp-finish{display:flex;flex-direction:column;gap:18px;animation:dcp-in .25s var(--ease,ease-out)}
+@keyframes dcp-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.dcp-fhead h1{margin:6px 0 6px;font:700 var(--fs-3xl,30px)/1.15 var(--font-display,var(--font-ui));letter-spacing:-.03em;color:var(--ink)}
+.dcp-fhead p{margin:0;max-width:760px;font-size:15px;line-height:1.6;color:var(--ink-2)}
+.dcp-fhead .dc-kicker{font-size:12px;font-weight:600;color:var(--brand);text-transform:uppercase;letter-spacing:.06em}
+.dcp-fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.dcp-card{padding:18px 20px;border:1px solid var(--line);border-radius:var(--r-xl,18px);background:var(--surface);box-shadow:var(--shadow-sm)}
+html body .dcp-card h2{display:flex;align-items:center;gap:8px;margin:0 0 12px;font:650 15px/1.3 var(--font-ui);color:var(--ink);letter-spacing:-.01em}
+.dcp-card h2 .dcp-i{color:var(--brand)}
+.dcp-expect-list,.dcp-checks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.dcp-expect-list li{padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2);display:flex;flex-direction:column;gap:3px}
+.dcp-expect-list b{font-size:13.5px}
+.dcp-expect-list small{font-size:12px;color:var(--muted)}
+.dcp-cols{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.dcp-cols i{font-style:normal;font-size:11px;padding:2px 7px;border-radius:6px;background:var(--surface);border:1px solid var(--line);color:var(--ink-2)}
+.dcp-checks li{display:flex;gap:10px;align-items:flex-start}
+.dcp-checks li div{display:flex;flex-direction:column;gap:2px}
+.dcp-checks b{font-size:13.5px}
+.dcp-checks small{font-size:12.2px;color:var(--muted);line-height:1.45}
+.dcp-tick{display:grid;place-items:center;width:24px;height:24px;flex:none;border-radius:8px;background:var(--surface-2);color:var(--muted)}
+.dcp-tick .dcp-i{width:14px;height:14px}
+.is-ok>.dcp-tick{background:color-mix(in srgb,var(--success,#16a34a) 14%,transparent);color:var(--success,#16a34a)}
+.is-todo>.dcp-tick{background:color-mix(in srgb,var(--warn,#d97706) 14%,transparent);color:var(--warn,#d97706)}
+.dcp-factions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+html body .dcp-factions button{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:0 16px;border-radius:12px;font-size:14px}
+html body .dcp-factions button.dcp-ghost{background:transparent;border-color:transparent;box-shadow:none;color:var(--muted)}
+html body .dcp-factions button.dcp-ghost:hover:not(:disabled){color:var(--ink);background:var(--surface-2)}
+.dcp-ran{display:flex;gap:12px;padding:14px 16px;border-radius:14px;border:1px solid color-mix(in srgb,var(--success,#16a34a) 30%,transparent);background:color-mix(in srgb,var(--success,#16a34a) 8%,var(--surface))}
+.dcp-ran>.dcp-i{color:var(--success,#16a34a);width:20px;height:20px;margin-top:1px}
+.dcp-ran div{display:flex;flex-direction:column;gap:3px}
+.dcp-ran b{font-size:14px}
+.dcp-ran small{font-size:12.5px;color:var(--ink-2)}
+.dcp-ran small.is-warn{color:var(--warn,#b45309)}
+html body .dc-finish-next{display:inline-flex;align-items:center;gap:8px}
+html body .dc-finish-next[hidden]{display:none!important}
+
+/* project hub */
+html body dialog.dc-hub{width:min(980px,calc(100vw - 32px));max-height:calc(100vh - 40px);padding:0;border-radius:24px;overflow:auto}
+html body dialog.dc-hub::backdrop{background:color-mix(in srgb,var(--canvas) 70%,rgba(15,23,42,.55));backdrop-filter:blur(6px)}
+.dc-hub-in{padding:26px 28px 28px}
+.dc-hub-loading{display:flex;align-items:center;justify-content:center;gap:12px;min-height:220px;color:var(--muted);font-size:14px}
+html body .dc-hub .dc-hub-head{height:auto!important;min-height:0!important;flex-wrap:nowrap;display:flex!important;align-items:flex-start!important;justify-content:flex-start!important;gap:14px;margin:0 0 20px!important;padding:0!important;border:0!important;background:none!important;text-align:left;position:static!important}
+.dc-hub-head>div:not(.dc-hub-logo){flex:1;min-width:0}
+.dc-hub-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;flex:1;min-height:160px;padding:22px;border:1px dashed var(--line-strong);border-radius:18px;text-align:center;color:var(--muted);font-size:13px;line-height:1.5}
+.dc-hub-empty .dcp-i{width:26px;height:26px;color:var(--subtle,var(--muted))}
+.dc-hub-empty b{color:var(--ink);font-size:14px}
+.dc-hub label>span{display:flex;gap:6px;align-items:baseline}
+.dc-hub-logo{display:grid;place-items:center;width:48px;height:48px;flex:none;border-radius:14px;background:var(--brand-grad);color:#fff;box-shadow:0 8px 20px -8px rgba(63,94,242,.6)}
+.dc-hub-logo .dcp-i{width:24px;height:24px}
+html body dialog.dc-hub h2{margin:2px 0 4px}
+html body dialog.dc-hub .dc-hub-head p{margin:0;max-width:620px}
+html body .dc-hub-x{margin-left:auto;width:34px;height:34px;min-height:0;padding:0;display:grid;place-items:center;border-radius:10px;background:transparent;border:0;box-shadow:none;color:var(--muted)}
+.dc-hub-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:18px}
+.dc-hub-new,.dc-hub-side>div{padding:18px;border:1px solid var(--line);border-radius:18px;background:var(--surface-2)}
+.dc-hub-side{display:flex;flex-direction:column;gap:14px}
+html body dialog.dc-hub h3{display:flex;align-items:center;gap:8px;margin:0 0 12px;font-size:14.5px}
+.dc-hub h3 .dcp-i{color:var(--brand)}
+.dc-hub form{display:flex;flex-direction:column;gap:12px;padding:0!important}
+.dc-hub label{display:flex;flex-direction:column;gap:6px}
+.dc-hub label small{font-weight:500;color:var(--muted)}
+html body .dc-hub input{width:100%;box-sizing:border-box}
+.dc-hub-note{display:flex;gap:8px;align-items:flex-start;margin:2px 0 0!important;padding:10px 12px;border-radius:12px;background:var(--surface);border:1px dashed var(--line-strong);font-size:12.6px!important;line-height:1.5}
+.dc-hub-note .dcp-i{color:var(--brand);margin-top:2px}
+html body .dc-hub form button.primary{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:0 18px}
+.dc-hub-lastcard{display:flex;align-items:center;gap:14px;justify-content:space-between;padding:14px;border-radius:14px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow-xs)}
+.dc-hub-lastcard>div{display:flex;flex-direction:column;gap:3px;min-width:0}
+.dc-hub-lastcard b{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dc-hub-lastcard small{font-size:12.5px;color:var(--muted)}
+.dc-hub-st{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:6px;font-size:12px;color:var(--muted)}
+html body .dc-hub-lastcard button{flex:none;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.dc-hub-recent ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;max-height:260px;overflow:auto}
+.dc-hub-recent li{display:flex;align-items:center;gap:4px}
+html body .dc-hub-item{flex:1;min-width:0;display:flex;align-items:center;justify-content:flex-start!important;gap:10px;min-height:0;padding:8px 10px;border-radius:12px;border:1px solid transparent;background:transparent;box-shadow:none;text-align:left;color:var(--ink)}
+html body .dc-hub-item:hover:not(:disabled){background:var(--surface);border-color:var(--line)}
+.dc-hub-item>span:last-child{display:flex;flex-direction:column;min-width:0}
+.dc-hub-item b{font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dc-hub-item small{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dc-hub-item .dcp-proj-ic{width:30px;height:30px;border-radius:9px}
+html body .dcp-x{width:30px;height:30px;min-height:0;padding:0;display:grid;place-items:center;flex:none;border-radius:9px;border:0;background:transparent;box-shadow:none;color:var(--muted)}
+html body .dcp-x:hover:not(:disabled){background:color-mix(in srgb,var(--danger) 10%,transparent);color:var(--danger)}
+html body .dc-hub-file{align-self:flex-start;display:inline-flex;align-items:center;gap:8px}
+
+/* run dialog */
+html body dialog.dcp-run{width:min(760px,calc(100vw - 32px))}
+.dcp-run-form{display:flex;flex-direction:column;gap:16px}
+.dcp-run-head h2{margin:10px 0 6px!important}
+.dcp-run-head p{margin:0!important}
+html body dialog.dcp-run h3{margin:0 0 8px;font-size:13.5px}
+.dcp-expect ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.dcp-expect li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2)}
+.dcp-expect li div{display:flex;flex-direction:column;gap:2px;min-width:0}
+.dcp-expect li b{font-size:13.5px}
+.dcp-expect li small{font-size:11.8px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dcp-expect li em{font-style:normal;font-size:12px;color:var(--muted);max-width:220px;text-align:right}
+.dcp-expect li.is-ok em{color:var(--success,#16a34a);font-weight:600}
+.dcp-drop{display:flex;flex-direction:column;align-items:center;gap:4px;padding:22px;border:2px dashed var(--line-strong);border-radius:16px;background:var(--surface-2);cursor:pointer;text-align:center;transition:border-color .15s,background .15s}
+.dcp-drop:hover,.dcp-drop:focus-visible,.dcp-drop.is-over{border-color:var(--brand);background:var(--brand-50);outline:none}
+.dcp-drop .dcp-i{width:26px;height:26px;color:var(--brand)}
+.dcp-drop b{font-size:14px}
+.dcp-drop span{font-size:12.5px;color:var(--muted);font-weight:500}
+.dcp-map{display:flex;flex-direction:column;gap:8px}
+.dcp-map-row{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.dcp-map-file{display:flex;gap:10px;align-items:center;min-width:0}
+.dcp-map-file>.dcp-i{color:var(--muted)}
+.dcp-map-file div{display:flex;flex-direction:column;min-width:0}
+.dcp-map-file b{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dcp-map-file small{font-size:11.8px;color:var(--muted)}
+.dcp-arrow{color:var(--muted)}
+.dcp-map-to{display:flex;flex-direction:column;gap:3px!important;min-width:0;font-weight:500!important}
+.dcp-map-to small{font-size:11.5px;color:var(--muted)}
+.dcp-map-to small.is-good{color:var(--success,#16a34a)}
+.dcp-map-to small.is-warn{color:var(--warn,#b45309)}
+html body dialog.dcp-run .dc-dlg-foot{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}
+html body dialog.dcp-run .dc-dlg-foot button{display:inline-flex;align-items:center;gap:8px}
+html body dialog.dcp-rename form{display:flex;flex-direction:column;gap:12px}
+html body dialog.dcp-rename label{display:flex;flex-direction:column;gap:6px}
+html body dialog.dcp-rename .dc-dlg-foot{display:flex;justify-content:flex-end;gap:10px}
+
+@media (max-width:760px){
+ .dc-hub-grid{grid-template-columns:1fr}
+ .dc-hub-side{order:-1}
+ .dc-hub-side:has(.dc-hub-empty) .dc-hub-empty{display:none}
+ .dc-hub-logo{width:40px;height:40px}
+ .dc-hub-in{padding:20px 18px}
+ .dc-hub-lastcard{flex-direction:column;align-items:stretch}
+ .dcp-map-row{grid-template-columns:minmax(0,1fr) auto}
+ .dcp-arrow{display:none}
+ .dcp-expect li{grid-template-columns:auto minmax(0,1fr)}
+ .dcp-expect li em{grid-column:2;text-align:left;max-width:none}
+ .dcp-card-rail{display:none}
+}
 </style><script id="datacodex-redesign-script">/* DataCodex redesign layer: a simpler, step-by-step shell over the existing engine. */
 (function(){
 'use strict';
@@ -2307,7 +2475,7 @@ const rail=document.createElement('aside');rail.className='dc-rail';rail.setAttr
 rail.innerHTML='<div class="dc-meter" aria-live="polite"><div class="dc-meter-top"><span class="dc-rail-label">Your progress</span><span class="dc-meter-count"></span></div><div class="dc-meter-track"><i></i></div></div>';
 rail.append(stepper);
 rail.insertAdjacentHTML('beforeend',`<button type="button" class="dc-link dc-rail-steps" data-dc-settings>${svg('gear')}Choose which steps you use</button>`);
-rail.insertAdjacentHTML('beforeend',`<div class="dc-rail-note">${svg('shield')}<span>Your files never leave this device. Use <b>Save project</b> to keep a copy you can move or share.</span></div>`);
+rail.insertAdjacentHTML('beforeend',`<div class="dc-rail-note">${svg('shield')}<span>Your files never leave this device. Projects are saved to a file you choose and kept in this browser.</span></div>`);
 app.append(rail,main);
 const head=document.createElement('section');head.className='dc-stephead';
 const how=document.createElement('details');how.className='dc-how';
@@ -2341,7 +2509,7 @@ function stepButtons(){
   b.innerHTML=`<span class="dc-dot">${done?svg('check'):locked?svg('lock'):num}</span><span class="dc-step-text"><strong>${st.name}</strong><small>${st.sub}</small></span>`;
   b.title=locked?'Finish the earlier steps first':`Step ${num}: ${st.name}`;
  });
- try{const list=onSteps(),pos=Math.max(0,list.indexOf(cur)),pct=list.length>1?pos/(list.length-1)*100:100;const c=q('.dc-meter-count',rail);if(c)c.textContent=`Step ${pos+1} of ${list.length}`;const bar=q('.dc-meter-track i',rail);if(bar)bar.style.width=Math.max(6,pct)+'%'}catch(e){}
+ try{const list=onSteps(),pos=Math.max(0,list.indexOf(cur)),pct=list.length>1?pos/(list.length-1)*100:100;const fin=document.body.classList.contains('dc-finish-mode'),tot=list.length+(window.dcProj?1:0),at=fin?tot:pos+1,pc=tot>1?(at-1)/(tot-1)*100:100;const c=q('.dc-meter-count',rail);if(c)c.textContent=`Step ${at} of ${tot}`;const bar=q('.dc-meter-track i',rail);if(bar)bar.style.width=Math.max(6,pc)+'%'}catch(e){}
  const act=q('button.active',stepper);if(act&&stepButtons.last!==cur&&(stepButtons.last=cur,true)&&stepper.scrollWidth>stepper.clientWidth+4){const r=rail;r.scrollLeft=Math.max(0,act.offsetLeft-r.clientWidth/2+act.offsetWidth/2)}
 }
 const CHECKS={0:[()=>S.files.length>0],3:[()=>S.insights.length>0,()=>S.insights.length>0&&!unnamed().length,()=>derivedFamilies().length>0]};
@@ -2351,7 +2519,7 @@ function stepHeader(){
  how.hidden=!settings.tips;
  if(head.dataset.dc!==key){
   head.dataset.dc=key;const list=onSteps(),n=Math.max(1,visNum(i));
-  head.innerHTML=`<div class="dc-kicker"><span>Step ${n} of ${list.length}</span><span class="dc-bar" aria-hidden="true">${list.map(j=>`<i class="${j<i?'done':j===i?'now':''}"></i>`).join('')}</span><button type="button" class="dc-link dc-steps-link" data-dc-settings>${svg('gear')}Choose steps</button></div><h1>${st.title}</h1><p>${st.lead}</p>`;
+  head.innerHTML=`<div class="dc-kicker"><span>Step ${n} of ${list.length+(window.dcProj?1:0)}</span><span class="dc-bar" aria-hidden="true">${list.map(j=>`<i class="${j<i?'done':j===i?'now':''}"></i>`).join('')}</span><button type="button" class="dc-link dc-steps-link" data-dc-settings>${svg('gear')}Choose steps</button></div><h1>${st.title}</h1><p>${st.lead}</p>`;
   let more='';try{const l=workflowLessons[i];if(l)more=`<details class="dc-more"><summary>More detail and an example</summary><p>${l[1]}</p><p class="dc-example">${l[2]}</p></details>`}catch(e){}
   how.innerHTML=`<summary><span>${svg('bulb')}How this step works</span><span class="dc-how-toggle"></span></summary><ol class="dc-how-list">${st.how.map((t,n)=>`<li class="${ok[n]?'dc-ok':''}"><span class="dc-n">${ok[n]?svg('check'):n+1}</span><span>${t}</span></li>`).join('')}</ol><div class="dc-how-foot">${more}<span class="dc-keys"><kbd>Alt</kbd>+<kbd>→</kbd> next step · <kbd>Ctrl</kbd>+<kbd>S</kbd> save project</span><button type="button" class="dc-link" data-dc-guide>${svg('help')}Open the full guide</button></div>`;
   const g=q('[data-dc-guide]',how);if(g)g.onclick=()=>{try{openWorkflowGuide()}catch(e){q('#workflow-help-button')?.click()}};
@@ -2369,6 +2537,7 @@ function footer(){
   if(hint.textContent!==why)hint.textContent=why;hint.hidden=!why;
  }
  if(back){back.hidden=i===0}
+ try{window.dcProj&&window.dcProj.footer(i,next)}catch(e){}
  document.title=`DataCodex · ${STEPS[i].name}`;
 }
 function relabel(el,text,num){
@@ -2858,6 +3027,7 @@ window.dcOpenProject=async f=>{busy.show('Opening your project…',true);try{awa
 /* Save project: build the file in slices, then download it. */
 document.addEventListener('click',e=>{
  if(!e.target.closest?.('#save-project'))return;e.preventDefault();e.stopImmediatePropagation();
+ if(window.dcProj){window.dcProj.manualSave();return}
  if(saveFile.running)return;saveFile();
 },true);
 async function saveFile(){
@@ -2867,49 +3037,10 @@ async function saveFile(){
  finally{saveFile.running=false;if(big)busy.hide()}
 }
 
-/* ---------- Autosave in this browser (IndexedDB), with restore ---------- */
-const autosave=(()=>{
- const KEY='last',enabled=()=>store.get('dc-autosave')!=='off';let db=null,timer=0,pending=null,status=null;
- const open=()=>db||(db=new Promise((res,rej)=>{try{const r=indexedDB.open('datacodex',1);r.onupgradeneeded=()=>r.result.createObjectStore('kv');r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)}catch(e){rej(e)}}));
- const tx=async(mode,fn)=>{const d=await open();return new Promise((res,rej)=>{const t=d.transaction('kv',mode),st=t.objectStore('kv'),rq=fn(st);t.oncomplete=()=>res(rq?.result);t.onerror=()=>rej(t.error)})};
- const time=d=>new Date(d).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});
- function setStatus(t){if(status)status.textContent=t}
- async function save(){
-  timer=0;if(!enabled())return;let hasData=false;try{hasData=S.files.length>0}catch(e){}if(!hasData)return;
-  if(running){again=true;return}running=true;
-  try{const meta={savedAt:Date.now(),files:S.files.length,insights:S.insights.length,stage:S.stage};const blob=await serializer.build();
-   try{await tx('readwrite',st=>st.put({meta,blob},KEY))}catch(err){const json=await blob.text();await tx('readwrite',st=>st.put({meta,json},KEY))}
-   setStatus('Saved in this browser at '+time(meta.savedAt))}
-  catch(e){setStatus('Could not save in this browser');console.warn('DataCodex autosave:',e)}
-  finally{running=false;if(again){again=false;schedule()}}
- }
- let running=false,again=false;
- function schedule(){if(!enabled())return;clearTimeout(timer);timer=setTimeout(()=>{(window.requestIdleCallback||setTimeout)(save,{timeout:3000})},2500)}
- async function clear(){try{await tx('readwrite',st=>st.delete(KEY))}catch(e){}}
- async function load(){try{return await tx('readonly',st=>st.get(KEY))}catch(e){return null}}
- const box=document.createElement('div');box.className='dc-autosave';
- box.innerHTML=`<label class="dc-switch"><input type="checkbox" ${enabled()?'checked':''}><span>Remember my work in this browser</span></label><small></small>`;
- q('.dc-rail-note')?.after(box);status=box.querySelector('small');
- setStatus(enabled()?'Your work is saved here as you go.':'Off. Use Save project to keep a copy.');
- box.querySelector('input').onchange=e=>{store.set('dc-autosave',e.target.checked?'on':'off');if(e.target.checked){setStatus('On. Saving as you go.');save()}else{clear();setStatus('Off. Nothing is kept in this browser.')}};
- document.addEventListener('input',schedule,true);document.addEventListener('change',schedule,true);
- document.addEventListener('pointerup',e=>{if(e.target.closest?.('#studio,.inline-page-scroller,.embedded-excel'))schedule()},true);
- document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'&&timer){clearTimeout(timer);save()}});
- window.addEventListener('pagehide',()=>{if(timer){clearTimeout(timer);save()}});
- /* Offer to restore the last session */
- const banner=document.createElement('section');banner.className='dc-restore';banner.hidden=true;content.before(banner);
- if(enabled())load().then(rec=>{
-  let empty=true;try{empty=!S.files.length}catch(e){}
-  if(!rec||!(rec.json||rec.blob)||!empty)return;const m=rec.meta||{};
-  banner.innerHTML=`<div>${svg('open')}<div><strong>Pick up where you left off?</strong><p>Your last session was saved ${new Date(m.savedAt).toLocaleString([],{dateStyle:'medium',timeStyle:'short'})}: ${m.files||0} ${m.files===1?'file':'files'}, ${m.insights||0} ${m.insights===1?'insight':'insights'}.</p></div></div><div class="dc-restore-actions"><button type="button" class="primary" data-dc-restore>Restore my work</button><button type="button" data-dc-fresh>Start fresh</button></div>`;
-  banner.hidden=false;
-  q('[data-dc-restore]',banner).onclick=async()=>{banner.hidden=true;busy.show('Restoring your work…',true);await nextFrame();try{const text=rec.blob?await rec.blob.text():rec.json;const doc=await parseProjectText(text);await nextFrame();loadProjectObject(doc);store.set('dc-theme',document.body.classList.contains('light')?'light':'dark');syncThemeButton()}catch(e){try{notice('Could not restore: '+e.message)}catch(_){}}finally{busy.hide()}};
-  q('[data-dc-fresh]',banner).onclick=()=>{banner.hidden=true;clear()};
- });
- const hideBanner=()=>{try{if(S.files.length)banner.hidden=true}catch(e){}};
- return {schedule:()=>{schedule();hideBanner()},save,clear};
-})();
+/* ---------- Saving is handled by the project module (dc-project.js) ---------- */
+const autosave={schedule(){try{window.dcProj&&window.dcProj.schedule()}catch(e){}},save(){return window.dcProj&&window.dcProj.flush()},clear(){}};
 window.dcAutosave=()=>autosave.schedule();
+window.dcCore={busy,serializer,parseProjectText,nextFrame,yieldTask,svg,ICON,store,q,qa,stage,STEPS,onSteps,visNum,nextOn,totalRows,BIG,esc:typeof esc==='function'?esc:(t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])))};
 
 /* ---------- Keyboard shortcuts ---------- */
 document.addEventListener('keydown',e=>{
@@ -2931,6 +3062,7 @@ decorate();lastStage=stage();
 (function(){
 'use strict';
 if(typeof paintExtractionCanvas!=='function'||typeof extractionDialog==='undefined')return;
+document.documentElement.classList.add('dcx-ready');
 const q=(s,r=document)=>r.querySelector(s),qa=(s,r=document)=>[...r.querySelectorAll(s)];
 const MAXR=1048576,MAXC=16384,HH=26,ZMIN=.1,ZMAX=3;
 const h=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -3763,6 +3895,477 @@ function mount(){
  host.classList.add('dcx-host');if(root.parentElement!==host)host.prepend(root);
  invalidate();refresh();
 }
+/* Reveal the page only once the redesign is fully applied (no flash of the old look). */
+(function reveal(){const d=document.documentElement;if(!d.classList.contains('dc-boot'))return;let done=false;
+ const show=()=>{if(done)return;done=true;clearTimeout(window.__dcBootFailsafe);requestAnimationFrame(()=>{d.classList.remove('dc-boot');d.classList.add('dc-reveal');setTimeout(()=>d.classList.remove('dc-reveal'),300)})};
+ try{(document.fonts&&document.fonts.ready?Promise.race([document.fonts.ready,new Promise(r=>setTimeout(r,1200))]):Promise.resolve()).then(show,show)}catch(e){show()}})();
 window.dcSheet={refresh:()=>{invalidate();refresh()},view:()=>view(),select:(r,c)=>setCell(r,c),insertTable,sel:()=>sel,undo,fit};
+})();
+
+/* DataCodex projects: create a project first, save it to a file at every step, reopen the last project,
+   and finish (seal) a report so it can be rebuilt from new client data. */
+(function(){
+'use strict';
+const C=window.dcCore;if(!C)return;
+const {busy,serializer,parseProjectText,nextFrame,svg,store,q,qa,esc}=C;
+const FS=typeof window.showSaveFilePicker==='function';
+const VER=1;
+const now=()=>Date.now();
+const when=t=>t?new Date(t).toLocaleString([],{dateStyle:'medium',timeStyle:'short'}):'';
+const clock=t=>new Date(t).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});
+const say=m=>{try{notice(m)}catch(e){}};
+const newId=()=>'p'+now().toString(36)+Math.random().toString(36).slice(2,7);
+const slug=n=>String(n||'project').trim().replace(/[\\\/:*?"<>|]+/g,'').replace(/\s+/g,' ').slice(0,80)||'project';
+const isDerived=f=>String(f?.key||'').startsWith('dc-derived:');
+const STEP_NAME=i=>C.STEPS[i]?.name||'';
+const I={
+ folder:'M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z',plus:'M12 5v14M5 12h14',file:'M6 3h9l4 4v14H6zM14 3v5h5',
+ seal:'M12 3l2.4 1.8 3 .2.9 2.8 2.2 2-1 2.8.2 3-2.7 1.4-1.6 2.6-3-.4L12 21l-2.4-1.8-3-.2-.9-2.8-2.2-2 1-2.8-.2-3 2.7-1.4 1.6-2.6 3 .4zM8.5 12l2.5 2.5 4.5-5',
+ swap:'M7 4 3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7',x:'M6 6l12 12M18 6 6 18',upload:'M12 16V4M7 9l5-5 5 5M5 20h14',check:'m5 12 4 4L19 6',
+ save:'M5 3h11l3 3v15H5zM8 3v6h7V3M8 21v-7h8v7',clock:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 2',edit:'M4 20h4L19 9l-4-4L4 16zM14 6l4 4',
+ play:'M7 4v16l13-8z',warn:'M12 4 2 20h20zM12 10v4M12 17h.01',db:'M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zM4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3',
+ download:'M12 4v11M7 10l5 5 5-5M5 20h14',lock:'M6 10h12v11H6zm3 0V6a3 3 0 0 1 6 0v4',unlock:'M6 10h12v11H6zm3 0V6a3 3 0 0 1 5.8-1'
+};
+const ic=(n,c='')=>`<svg class="icon dcp-i ${c}" viewBox="0 0 24 24" aria-hidden="true"><path d="${I[n]}"/></svg>`;
+
+/* ---------- Storage (IndexedDB: datacodex/kv) ---------- */
+const idb=(()=>{let p=null;
+ const open=()=>p||(p=new Promise((res,rej)=>{try{const r=indexedDB.open('datacodex',1);r.onupgradeneeded=()=>r.result.createObjectStore('kv');r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)}catch(e){rej(e)}}));
+ const tx=async(mode,fn)=>{const d=await open();return new Promise((res,rej)=>{const t=d.transaction('kv',mode),st=t.objectStore('kv'),rq=fn(st);t.oncomplete=()=>res(rq?.result);t.onerror=()=>rej(t.error);t.onabort=()=>rej(t.error)})};
+ return{get:k=>tx('readonly',s=>s.get(k)).catch(()=>null),put:(k,v)=>tx('readwrite',s=>s.put(v,k)),del:k=>tx('readwrite',s=>s.delete(k)).catch(()=>{})};
+})();
+const keepCopy=()=>store.get('dc-autosave')!=='off';
+async function listProjects(){const l=await idb.get('projects');return Array.isArray(l)?l:[]}
+async function upsertList(meta){const l=(await listProjects()).filter(x=>x.id!==meta.id);l.unshift(meta);l.sort((a,b)=>(b.opened||0)-(a.opened||0));await idb.put('projects',l.slice(0,50))}
+async function removeFromList(id){const l=(await listProjects()).filter(x=>x.id!==id);await idb.put('projects',l);await idb.del('proj:'+id);await idb.del('handle:'+id);if((await idb.get('lastId'))===id)await idb.del('lastId')}
+
+/* ---------- The current project ---------- */
+let P=null,handle=null,perm='none',pristine=null,quietRestore=false;
+const state={localAt:0,fileAt:0,dirtyFile:false,saving:false,again:false,timer:0,error:''};
+function blankMeta(name,client){return{v:VER,id:newId(),name:String(name||'Untitled project').trim().slice(0,80),client:String(client||'').trim().slice(0,80),created:now(),updated:now(),ops:[],sealed:null,runs:[]}}
+function cleanMeta(m,fallbackName){
+ if(!m||typeof m!=='object')return blankMeta(fallbackName||'Untitled project');
+ const out=blankMeta(m.name||fallbackName,m.client);
+ if(typeof m.id==='string'&&/^[\w-]{3,40}$/.test(m.id))out.id=m.id;
+ out.created=+m.created||now();out.updated=+m.updated||now();
+ out.ops=Array.isArray(m.ops)?m.ops.filter(o=>o&&typeof o==='object'&&['clean','restore','dates'].includes(o.t)).slice(0,2000):[];
+ out.sealed=m.sealed&&Array.isArray(m.sealed.expect)?{at:+m.sealed.at||now(),expect:m.sealed.expect.filter(e=>e&&typeof e.family==='string'&&Array.isArray(e.headers)).map(e=>({family:e.family,name:String(e.name||''),headers:e.headers.map(String),baseLen:Math.max(1,Math.min(e.headers.length,+e.baseLen||e.headers.length)),rows:+e.rows||0,inputs:Array.isArray(e.inputs)?e.inputs.filter(Boolean).map(i=>({name:String(i.name||''),keys:String(i.keys||''),headers:Array.isArray(i.headers)?i.headers.map(String):[]})):[]}))}:null;
+ out.runs=Array.isArray(m.runs)?m.runs.slice(-20):[];
+ return out;
+}
+function listMeta(){let files=0,insights=0,stage=0;try{files=S.files.length;insights=S.insights.length;stage=S.stage}catch(e){}
+ return{id:P.id,name:P.name,client:P.client,created:P.created,updated:P.updated,opened:P.opened||now(),sealed:!!P.sealed,stage,files,insights,fileName:handle?.name||P.fileName||'',hasCopy:keepCopy()}}
+
+/* Project info travels inside the project file. */
+const baseSaveProject=saveProject;
+saveProject=function(){const d=baseSaveProject.apply(this,arguments);if(P){P.updated=now();d.datacodex={...P,fileName:handle?.name||P.fileName||''}}return d};
+const baseLoad=loadProjectObject;
+let pendingAdopt=null;
+loadProjectObject=function(doc){
+ const meta=doc&&doc.datacodex,before=P;
+ if(doc&&typeof doc==='object')doc.theme=document.body.classList.contains('light')?'light':'dark';
+ const r=baseLoad.apply(this,arguments);
+ const opts=pendingAdopt||{};pendingAdopt=null;
+ adopt(cleanMeta(meta,opts.fallbackName),{handle:opts.handle===undefined?(meta&&before&&meta.id===before.id?handle:null):opts.handle,offerRun:opts.offerRun!==false,fresh:opts.fresh});
+ return r;
+};
+const baseNotice=notice;
+notice=function(m){if(quietRestore&&/^Project restored/.test(String(m)))return;return baseNotice.apply(this,arguments)};
+
+async function adopt(meta,{handle:h=null,offerRun=true,fresh=false}={}){
+ P=meta;P.opened=now();handle=h||null;perm=handle?await permission(handle,false):'none';
+ state.dirtyFile=!!handle&&perm==='granted';state.error='';
+ try{window.dcSheet?.undo&&(window.dcSheet.undo.past.length=0,window.dcSheet.undo.future.length=0)}catch(e){}
+ if(handle)idb.put('handle:'+P.id,handle).catch(()=>{});else idb.del('handle:'+P.id);
+ await idb.put('lastId',P.id).catch(()=>{});
+ hub.close();exitFinish(false);paintCard();refreshSteps();
+ await saveLocal(true);if(handle&&perm==='granted')saveToFile('open');
+ if(P.sealed&&offerRun&&!fresh)setTimeout(()=>openRun([]),250);
+}
+async function permission(h,ask){try{const o={mode:'readwrite'};let p=await h.queryPermission(o);if(p!=='granted'&&ask)p=await h.requestPermission(o);return p}catch(e){return 'denied'}}
+
+/* ---------- Saving: browser copy as you go, file at every step ---------- */
+function schedule(){if(!P)return;clearTimeout(state.timer);state.timer=setTimeout(()=>{(window.requestIdleCallback||setTimeout)(()=>saveLocal(),{timeout:3000})},2000);state.dirtyFile=true}
+async function saveLocal(force){
+ if(!P)return;clearTimeout(state.timer);state.timer=0;
+ if(state.saving){state.again=true;return}state.saving=true;
+ try{
+  let meta=listMeta();
+  if(keepCopy()){const blob=await serializer.build();meta=listMeta();try{await idb.put('proj:'+P.id,{meta,blob})}catch(err){await idb.put('proj:'+P.id,{meta,json:await blob.text()})}state.localAt=now()}
+  else await idb.del('proj:'+P.id);
+  await upsertList(meta);
+ }catch(e){console.warn('DataCodex save:',e);state.error='Could not save in this browser'}
+ finally{state.saving=false;paintStatus();if(state.again){state.again=false;schedule()}}
+}
+let fileBusy=false,fileAgain=false;
+async function saveToFile(reason){
+ if(!P||!handle)return false;
+ if(fileBusy){fileAgain=true;return false}
+ if(perm!=='granted'){perm=await permission(handle,false);if(perm!=='granted'){paintStatus();return false}}
+ fileBusy=true;const big=C.totalRows()>=C.BIG&&reason==='manual';if(big)busy.show('Saving your project file… You can keep working.',true,true);
+ try{const blob=await serializer.build();const w=await handle.createWritable();await w.write(blob);await w.close();state.fileAt=now();state.dirtyFile=false;state.error='';P.fileName=handle.name;return true}
+ catch(e){console.warn('DataCodex file save:',e);state.error=e?.name==='NotAllowedError'?'':'Could not write the project file';if(e?.name==='NotAllowedError')perm='prompt';return false}
+ finally{fileBusy=false;if(big)busy.hide();paintStatus();if(fileAgain){fileAgain=false;saveToFile(reason)}}
+}
+async function pickFile(suggest){
+ try{const h=await window.showSaveFilePicker({suggestedName:slug(suggest)+'.datacodex.json',types:[{description:'DataCodex project',accept:{'application/json':['.json']}}]});return h}
+ catch(e){if(e?.name!=='AbortError')console.warn('DataCodex picker:',e);return null}
+}
+async function manualSave(){
+ if(!P){openHub();return}
+ if(FS){
+  if(handle&&perm!=='granted')perm=await permission(handle,true);
+  if(!handle){const h=await pickFile(P.name);if(!h){say('Not saved to a file. Your work is still kept in this browser.');return}handle=h;perm='granted';idb.put('handle:'+P.id,handle).catch(()=>{})}
+  await saveLocal(true);const ok=await saveToFile('manual');
+  if(ok)say(`Saved everything to ${handle.name}.`);else if(perm!=='granted')say('DataCodex needs permission to save to that file.');
+  return;
+ }
+ await saveLocal(true);
+ const big=C.totalRows()>=C.BIG;if(big)busy.show('Preparing your project file… You can keep working.',true,true);
+ try{const blob=await serializer.build();download(blob,slug(P.name)+'.datacodex.json');state.fileAt=now();state.dirtyFile=false;paintStatus()}
+ catch(e){say('Could not save the project: '+e.message)}finally{if(big)busy.hide()}
+}
+async function flush(){await saveLocal(true);if(handle&&state.dirtyFile)await saveToFile('flush')}
+setInterval(()=>{if(P&&handle&&perm==='granted'&&state.dirtyFile&&document.visibilityState==='visible')saveToFile('timer')},90000);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'&&P){saveLocal(true);if(handle&&perm==='granted'&&state.dirtyFile)saveToFile('hide')}});
+addEventListener('pagehide',()=>{if(P&&state.timer)saveLocal(true)});
+document.addEventListener('input',e=>{if(!e.target.closest?.('.dc-hub,.dcp-run'))schedule()},true);
+document.addEventListener('change',e=>{if(!e.target.closest?.('.dc-hub,.dcp-run'))schedule()},true);
+document.addEventListener('pointerup',e=>{if(e.target.closest?.('#studio,.inline-page-scroller,.embedded-excel,.dcx'))schedule()},true);
+/* Save to the file every time the step changes. */
+let seenStage=null;
+function onRender(){
+ if(!P)return;let st=0;try{st=S.stage}catch(e){}
+ if(seenStage!==null&&st!==seenStage){saveLocal(true).then(()=>{if(handle)saveToFile('step')})}
+ seenStage=st;
+}
+
+/* ---------- Recording cleaning steps so a finished report can repeat them on new data ---------- */
+const famById=id=>S.families.find(f=>f.id===id);
+document.addEventListener('click',e=>{
+ if(!P)return;const t=e.target;
+ if(t.closest?.('#apply-clean')){
+  const f=famById(S.clean.family),col=+S.clean.column;if(!f||!(col>=0&&col<f.headers.length))return;
+  const cfg=JSON.parse(JSON.stringify(S.clean)),hl=f.headers.length,colName=f.headers[col];
+  if(['clean-left','clean-right'].includes(cfg.op)&&!cfg.marker)return;
+  setTimeout(()=>{const g=famById(f.id);if(!g)return;
+   if(cfg.newColumn){if(g.headers.length===hl+1)P.ops.push({t:'clean',family:f.id,column:col,colName,cfg,newName:g.headers[hl],at:now()})}
+   else P.ops.push({t:'clean',family:f.id,column:col,colName,cfg,at:now()});
+   schedule()},0);
+ }
+ else if(t.closest?.('#restore')){const fid=S.clean.family;if(famById(fid)){P.ops.push({t:'restore',family:fid,at:now()});schedule()}}
+ else if(t.closest?.('#apply-all-dates')){
+  let plan=[];try{plan=dateNormalizationPlan.filter(x=>x.selected).map(x=>({family:x.family,column:x.column,order:x.order}))}catch(err){return}
+  const dlg=t.closest('dialog'),addNew=!!dlg?.querySelector('#bulk-date-new')?.checked,lens=new Map(S.families.map(f=>[f.id,f.headers.length]));if(!plan.length)return;
+  setTimeout(()=>{if(dlg?.open)return;const added=new Map();
+   for(const it of plan){const f=famById(it.family);if(!f)continue;let newName=null;if(addNew){const k=added.get(f.id)||0;newName=f.headers[lens.get(f.id)+k]||null;added.set(f.id,k+1);if(!newName)continue}
+    P.ops.push({t:'dates',family:it.family,column:it.column,colName:f.headers[it.column],order:it.order,newName,at:now()})}
+   schedule()},0);
+ }
+},true);
+function replay(f,ops,warn){
+ for(const op of ops){
+  try{
+   if(op.t==='restore'){f.rows=f.original.map(r=>[...r]);continue}
+   const col=op.column;if(!(col>=0&&col<f.headers.length)){warn.push(`${f.name}: a cleaning step on “${op.colName||'a column'}” was skipped.`);continue}
+   const vals=op.t==='clean'?f.rows.map(r=>transform(r[col],op.cfg)):f.rows.map(r=>normalizedDateText(r[col],op.order,true));
+   if(op.newName){f.headers=[...f.headers,op.newName];f.keys=[...f.keys,normalize(op.newName)];f.rows.forEach((r,i)=>r.push(String(vals[i]??'')));f.original.forEach(r=>r.push(r[col]))}
+   else f.rows.forEach((r,i)=>{r[col]=String(vals[i]??'')});
+  }catch(e){warn.push(`${f.name}: a cleaning step could not be repeated (${e.message}).`)}
+ }
+}
+
+/* ---------- Finish report (seal) ---------- */
+function liveOps(fid){return P.ops.filter(o=>o.family===fid)}
+function addedCount(f){return liveOps(f.id).filter(o=>o.newName&&f.headers.includes(o.newName)).length}
+function expectation(){
+ return S.families.filter(f=>!isDerived(f)).map(f=>({family:f.id,name:f.name,headers:[...f.headers],baseLen:Math.max(1,f.headers.length-addedCount(f)),rows:f.rows.length,
+  inputs:f.files.map(id=>S.files.find(x=>x.id===id)).filter(Boolean).map(s=>({name:s.name,keys:[...s.keys].sort().join('\u001f'),headers:[...s.headers]}))}));
+}
+function readiness(){
+ const fams=S.families.filter(f=>!isDerived(f)),named=S.insights.filter(n=>String(n.name||'').trim()).length;
+ let items=0;try{items=(S.extractionSheets||[]).reduce((n,s)=>n+(s.items?.length||0),0)}catch(e){}
+ let blocks=0;try{blocks=(S.blocks||[]).length}catch(e){}
+ return{fams,insights:S.insights.length,named,items,blocks,ops:P.ops.filter(o=>fams.some(f=>f.id===o.family)).length};
+}
+async function seal(){
+ if(!P)return;const r=readiness();if(!r.fams.length){say('Add your data before finishing the report.');return}
+ P.ops=P.ops.filter(o=>r.fams.some(f=>f.id===o.family));
+ P.sealed={at:now(),expect:expectation()};
+ await saveLocal(true);if(handle)await saveToFile('seal');
+ paintCard();paintFinish();say('Report finished and sealed. Next time, open the project and drop in the new client files.');
+}
+function unseal(){if(!P?.sealed)return;P.sealed=null;schedule();paintCard();paintFinish();say('The report is open for editing again. Finish it again when you are done.')}
+
+/* ---------- Run a finished report on new client data ---------- */
+const runDlg=document.createElement('dialog');runDlg.className='dc-dialog dcp-run';document.body.append(runDlg);
+let runTables=[];
+function score(exp,t){
+ const want=new Set(exp.headers.slice(0,exp.baseLen).map(normalize)),have=new Set(t.keys);
+ const sig=[...t.keys].sort().join('\u001f');if(exp.inputs.some(i=>i.keys===sig))return{score:1,exact:true,missing:[]};
+ let hit=0;for(const k of want)if(have.has(k))hit++;
+ const missing=exp.headers.slice(0,exp.baseLen).filter(h=>!have.has(normalize(h)));
+ return{score:want.size?hit/Math.max(want.size,have.size*.85):0,exact:false,missing};
+}
+function autoMatch(){
+ const exp=P.sealed.expect;
+ for(const t of runTables){if(t.manual)continue;let best=null;for(const e of exp){const s=score(e,t);if(s.score>=.5&&(!best||s.score>best.s.score))best={e,s}}t.target=best?best.e.family:''}
+}
+async function readFiles(files){
+ const out=[];
+ for(const file of files){
+  try{
+   if(/\.xlsx$/i.test(file.name)){const sheets=await dcParse('xlsx',new Uint8Array(await file.arrayBuffer()),file.name);for(const {name,data} of sheets){try{out.push(readWorkspaceTable(data,file.name.replace(/\.xlsx$/i,'')+' · '+name,file.size))}catch(e){say(file.name+' / '+name+': '+e.message)}}}
+   else if(/\.(csv|txt)$/i.test(file.name)){const parsed=await dcParse('csv',new Uint8Array(await file.arrayBuffer()),file.name);out.push(readWorkspaceTable(parsed[0].data,file.name,file.size))}
+   else say(file.name+': choose an Excel .xlsx or CSV .csv file.');
+  }catch(e){say(file.name+': '+e.message)}
+ }
+ return out;
+}
+function openRun(files){
+ if(!P?.sealed)return;runTables=[];paintRun();if(!runDlg.open)runDlg.showModal();
+ if(files&&files.length)addRunFiles(files);
+}
+async function addRunFiles(files){const t=await readFiles([...files]);runTables.push(...t);autoMatch();paintRun()}
+function paintRun(){
+ const exp=P.sealed.expect,byFam=new Map(exp.map(e=>[e.family,runTables.filter(t=>t.target===e.family)]));
+ const ready=runTables.some(t=>t.target);
+ runDlg.innerHTML=`<form method="dialog" class="dcp-run-form">
+  <div class="dcp-run-head"><span class="dcp-badge is-sealed">${ic('seal')}Finished report</span><h2>Run “${esc(P.name)}” on new data</h2><p>Drop in this period’s client files. DataCodex matches each file to the data this report expects, repeats your cleaning, and rebuilds every insight, the Excel workbook and the email.</p></div>
+  <div class="dcp-expect"><h3>This report expects</h3><ul>${exp.map(e=>{const got=byFam.get(e.family)||[];return `<li class="${got.length?'is-ok':''}"><span class="dcp-tick">${got.length?ic('check'):ic('db')}</span><div><b>${esc(e.name)}</b><small>${e.baseLen} columns: ${esc(e.headers.slice(0,Math.min(5,e.baseLen)).join(', '))}${e.baseLen>5?'…':''}</small><small class="dcp-was">Last time: ${(e.inputs.map(i=>i.name).join(', ')||'—')} · ${(+e.rows||0).toLocaleString()} rows</small></div><em>${got.length?got.map(t=>esc(t.name)).join(', '):'No new file yet — keeps the saved data'}</em></li>`}).join('')}</ul></div>
+  <label class="dcp-drop" tabindex="0">${ic('upload')}<b>Drop the new files here</b><span>or click to choose CSV or Excel files</span><input type="file" multiple accept=".csv,.xlsx,.txt" hidden></label>
+  ${runTables.length?`<div class="dcp-map"><h3>Files you added</h3>${runTables.map((t,i)=>{const e=exp.find(x=>x.family===t.target),s=e?score(e,t):null;return `<div class="dcp-map-row"><div class="dcp-map-file">${ic('file')}<div><b>${esc(t.name)}</b><small>${t.rows.length.toLocaleString()} rows · ${t.headers.length} columns</small></div></div><span class="dcp-arrow">→</span><label class="dcp-map-to"><span class="dc-sr">Use as</span><select data-map="${i}"><option value="">Don’t use this file</option>${exp.map(x=>`<option value="${esc(x.family)}" ${x.family===t.target?'selected':''}>${esc(x.name)}</option>`).join('')}</select><small class="${!e?'':s.exact||!s.missing.length?'is-good':'is-warn'}">${!e?'Not matched':s.exact||!s.missing.length?'All columns match':`Missing: ${esc(s.missing.slice(0,4).join(', '))}${s.missing.length>4?'…':''} (left blank)`}</small></label><button type="button" class="dcp-x" data-drop-file="${i}" aria-label="Remove ${esc(t.name)}">${ic('x')}</button></div>`}).join('')}</div>`:''}
+  <div class="dc-dlg-foot"><button type="button" data-run-cancel>Not now — view the saved report</button><button type="button" class="primary" data-run-go ${ready?'':'disabled'}>${ic('play')}Rebuild the report</button></div></form>`;
+ const drop=q('.dcp-drop',runDlg),inp=q('input[type=file]',drop);
+ inp.onchange=()=>{if(inp.files.length)addRunFiles(inp.files)};
+ drop.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();inp.click()}};
+ drop.ondragover=e=>{e.preventDefault();drop.classList.add('is-over')};drop.ondragleave=()=>drop.classList.remove('is-over');
+ drop.ondrop=e=>{e.preventDefault();drop.classList.remove('is-over');if(e.dataTransfer.files.length)addRunFiles(e.dataTransfer.files)};
+ qa('[data-map]',runDlg).forEach(s=>s.onchange=()=>{const t=runTables[+s.dataset.map];t.target=s.value;t.manual=true;paintRun()});
+ qa('[data-drop-file]',runDlg).forEach(b=>b.onclick=()=>{runTables.splice(+b.dataset.dropFile,1);paintRun()});
+ q('[data-run-cancel]',runDlg).onclick=()=>runDlg.close();
+ q('[data-run-go]',runDlg).onclick=runReport;
+}
+async function runReport(){
+ const exp=P.sealed.expect,warn=[],summary=[];
+ runDlg.close();busy.show('Rebuilding your report with the new data…',true);await nextFrame();
+ try{
+  for(const e of exp){
+   const tables=runTables.filter(t=>t.target===e.family),f=famById(e.family);if(!tables.length||!f)continue;
+   const base=e.headers.slice(0,e.baseLen),keys=base.map(normalize);
+   S.files=S.files.filter(x=>!f.files.includes(x.id));
+   for(const t of tables)S.files.push(t);
+   f.files=tables.map(t=>t.id);f.headers=[...base];f.keys=[...keys];
+   const rows=[];for(const t of tables){const map=keys.map(k=>t.keys.indexOf(k));for(const r of t.rows)rows.push(map.map(c=>c<0?'':r[c]))}
+   f.rows=rows;f.original=rows.map(r=>[...r]);
+   replay(f,liveOps(f.id),warn);
+   if(f.headers.join('\u001f')!==e.headers.join('\u001f'))warn.push(`${f.name}: the columns came out different from the finished report. Check it on the Clean data step.`);
+   summary.push({name:f.name,rows:rows.length,was:e.rows,files:tables.map(t=>t.name)});
+   await nextFrame();
+  }
+  try{for(const f of S.families){const r=trackedFamilies.get(f);if(r&&r.touch)r.touch()}}catch(e){}
+  P.runs.push({at:now(),sources:summary});
+  S.unlocked=Math.max(S.unlocked||0,6);
+  render();go(6);
+  lastRun={summary,warn};
+  await saveLocal(true);if(handle)await saveToFile('run');
+  enterFinish();
+  say(`Report rebuilt from ${summary.reduce((n,s)=>n+s.files.length,0)} new file${summary.length===1?'':'s'}.`);
+ }catch(e){say('Could not rebuild the report: '+e.message);console.error(e)}
+ finally{busy.hide()}
+}
+let lastRun=null;
+/* While a report is finished, new files dropped on the Add files step go through the matcher. */
+document.addEventListener('change',e=>{if(P?.sealed&&e.target.matches?.('#files')&&e.target.files?.length){e.stopImmediatePropagation();const fl=[...e.target.files];e.target.value='';openRun(fl)}},true);
+document.addEventListener('drop',e=>{if(!P?.sealed||(S.stage||0)!==0||!e.dataTransfer?.files?.length||e.target.closest?.('.dcp-drop,.dc-hub,.dcx'))return;e.preventDefault();e.stopImmediatePropagation();openRun([...e.dataTransfer.files])},true);
+
+/* ---------- Finish step page ---------- */
+const finishPage=document.createElement('section');finishPage.className='dcp-finish';finishPage.hidden=true;
+const finishBtn=document.createElement('button');finishBtn.type='button';finishBtn.className='dc-finish-step';
+function ensureStepButton(){
+ const st=q('#stepper');if(!st)return;if(finishBtn.parentElement!==st||st.lastElementChild!==finishBtn)st.append(finishBtn);
+ const fin=document.body.classList.contains('dc-finish-mode'),locked=!P||!(S.files?.length);
+ const n=C.onSteps().length+1;
+ finishBtn.disabled=locked;finishBtn.classList.toggle('active',fin);finishBtn.classList.toggle('dc-locked',locked);finishBtn.classList.toggle('dc-done',!!P?.sealed&&!fin);
+ const key=[fin,locked,!!P?.sealed,n].join('|');if(finishBtn.dataset.k===key)return;finishBtn.dataset.k=key;
+ finishBtn.innerHTML=`<span class="dc-dot">${P?.sealed&&!fin?svg('check'):locked?svg('lock'):n}</span><span class="dc-step-text"><strong>Finish report</strong><small>${P?.sealed?'Sealed · ready to rerun':'Seal it for next time'}</small></span>`;
+ finishBtn.title=locked?'Add your data first':'Step '+n+': Finish report';
+}
+finishBtn.addEventListener('click',()=>{if(!finishBtn.disabled)enterFinish()});
+document.addEventListener('click',e=>{const b=e.target.closest?.('#stepper [data-stage]');if(b&&document.body.classList.contains('dc-finish-mode'))exitFinish(true)},true);
+function enterFinish(){
+ if(!P)return;const main=q('main');if(finishPage.parentElement!==main)main.prepend(finishPage);
+ document.body.classList.add('dc-finish-mode');finishPage.hidden=false;paintFinish();refreshSteps();
+ document.title='DataCodex · Finish report';requestAnimationFrame(()=>window.scrollTo({top:0}));
+ saveLocal(true).then(()=>{if(handle)saveToFile('step')});
+}
+function exitFinish(rerender){if(!document.body.classList.contains('dc-finish-mode'))return;document.body.classList.remove('dc-finish-mode');finishPage.hidden=true;if(rerender)refreshSteps()}
+function paintFinish(){
+ if(finishPage.hidden||!P)return;const r=readiness(),sealed=P.sealed;
+ const exp=sealed?sealed.expect:expectation();
+ const row=(ok,title,text)=>`<li class="${ok?'is-ok':'is-todo'}"><span class="dcp-tick">${ok?ic('check'):ic('warn')}</span><div><b>${title}</b><small>${text}</small></div></li>`;
+ const run=lastRun?`<div class="dcp-ran">${ic('check')}<div><b>Rebuilt with new data</b>${lastRun.summary.map(s=>`<small>${esc(s.name)}: ${s.rows.toLocaleString()} rows (was ${(+s.was||0).toLocaleString()}) from ${esc(s.files.join(', '))}</small>`).join('')}${lastRun.warn.map(w=>`<small class="is-warn">${esc(w)}</small>`).join('')}</div></div>`:'';
+ finishPage.innerHTML=`
+ <div class="dcp-fhead"><div class="dc-kicker"><span>Step ${C.onSteps().length+1} of ${C.onSteps().length+1}</span></div><h1>${sealed?'Your report is finished':'Finish report'}</h1>
+  <p>${sealed?`Sealed ${esc(when(sealed.at))}. When new client data arrives, open this project and drop the files in. DataCodex matches them and rebuilds everything.`:'Seal this project as a reusable report. DataCodex records the data it expects and the cleaning you did, so next time it can match new client files and rebuild the insights, workbook and email automatically.'}</p></div>
+ ${run}
+ <div class="dcp-fgrid">
+  <section class="dcp-card"><h2>${ic('db')}Data this report expects</h2><ul class="dcp-expect-list">${exp.map(e=>`<li><b>${esc(e.name)}</b><small>${e.baseLen} columns · ${(+e.rows||0).toLocaleString()} rows${e.inputs.length?` · from ${esc(e.inputs.map(i=>i.name).join(', '))}`:''}</small><span class="dcp-cols">${e.headers.slice(0,e.baseLen).slice(0,8).map(h=>`<i>${esc(h)}</i>`).join('')}${e.baseLen>8?`<i>+${e.baseLen-8}</i>`:''}</span></li>`).join('')||'<li><small>No data yet.</small></li>'}</ul></section>
+  <section class="dcp-card"><h2>${ic('check')}What gets rebuilt</h2><ul class="dcp-checks">
+   ${row(r.ops>0,`${r.ops} cleaning ${r.ops===1?'step':'steps'} recorded`,r.ops?'Repeated in the same order on the new data.':'No cleaning recorded. That is fine if the data needs none. Manual edits to single cells are not repeated.')}
+   ${row(r.insights>0&&r.named===r.insights,`${r.insights} ${r.insights===1?'insight':'insights'}`,r.insights?'Matches, filters and summaries recalculate from the new data.':'Add at least one insight on the Find insights step.')}
+   ${row(r.items>0,`${r.items} ${r.items===1?'item':'items'} in the Excel workbook`,r.items?'Tables and numbers refill with the new rows.':'Optional: lay out a workbook on the Build Excel step.')}
+   ${row(r.blocks>0,`${r.blocks} email ${r.blocks===1?'block':'blocks'}`,r.blocks?'The email report updates with the new figures.':'Optional: compose an email on the Write email step.')}
+  </ul></section>
+ </div>
+ <div class="dcp-factions">
+  ${sealed?`<button type="button" class="primary" data-f="run">${ic('upload')}Run with new data</button><button type="button" data-f="excel">${ic('download')}Download Excel</button><button type="button" data-f="save">${ic('save')}Save project</button><button type="button" class="dcp-ghost" data-f="unseal">${ic('unlock')}Edit the report again</button>`
+  :`<button type="button" class="primary" data-f="seal">${ic('seal')}Finish and seal the report</button><button type="button" data-f="save">${ic('save')}Save project</button>`}
+  <button type="button" class="dcp-ghost" data-f="back">← Back to Export</button>
+ </div>`;
+ qa('[data-f]',finishPage).forEach(b=>b.onclick=()=>{const a=b.dataset.f;
+  if(a==='seal')seal();if(a==='unseal')unseal();if(a==='run')openRun([]);if(a==='save')manualSave();
+  if(a==='excel'){try{downloadExtraction()}catch(e){say(e.message)}}
+  if(a==='back'){exitFinish(true);try{go(6)}catch(e){}}});
+}
+function footer(i,next){
+ let b=q('.dc-finish-next');
+ if(!P||C.nextOn(i)!==undefined){if(b)b.hidden=true;return}
+ if(!b&&next){b=document.createElement('button');b.type='button';b.className='primary dc-finish-next';b.onclick=enterFinish;next.after(b)}
+ if(!b)return;const label=`<span>Continue to Finish report</span><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>`;if(b.dataset.k!=='1'){b.innerHTML=label;b.dataset.k='1'}
+ b.hidden=false;if(next)next.hidden=true;
+}
+function refreshSteps(){try{const h=q('.dc-stephead');if(h)h.dataset.dc='';qa('#stepper [data-stage]').forEach(b=>b.dataset.dc='');render()}catch(e){}ensureStepButton()}
+new MutationObserver(()=>queueMicrotask(ensureStepButton)).observe(q('#stepper')||document.body,{childList:true});
+
+/* ---------- Project card in the sidebar + header buttons ---------- */
+const card=document.createElement('div');card.className='dcp-card-rail';
+function paintCard(){
+ const rail=q('.dc-rail');if(!rail)return;if(card.parentElement!==rail)rail.prepend(card);
+ if(!P){card.hidden=true;return}card.hidden=false;
+ card.innerHTML=`<button type="button" class="dcp-proj" data-dcp="hub" title="Switch project or create a new one"><span class="dcp-proj-ic">${ic('folder')}</span><span class="dcp-proj-t"><b>${esc(P.name)}</b><small>${P.client?esc(P.client):'No client set'}</small></span>${ic('swap','dcp-swap')}</button>
+ <div class="dcp-meta">${P.sealed?`<span class="dcp-badge is-sealed">${ic('seal')}Finished report</span>`:`<span class="dcp-badge">${ic('edit')}In progress</span>`}<button type="button" class="dc-link" data-dcp="rename">Rename</button></div>
+ <p class="dcp-status" aria-live="polite"></p>
+ <label class="dc-switch dcp-keep"><input type="checkbox" ${keepCopy()?'checked':''} data-dcp="keep"><span>Keep a copy in this browser</span></label>`;
+ paintStatus();
+}
+function paintStatus(){
+ const el=q('.dcp-status',card);if(!el||!P)return;let t='',cls='';
+ if(state.error){t=state.error;cls='is-warn'}
+ else if(handle&&perm==='granted')t=state.fileAt?`Saved to ${handle.name} · ${clock(state.fileAt)}`:`Saving to ${handle.name}`;
+ else if(handle){t=`Click Save project to keep saving to ${handle.name}`;cls='is-warn'}
+ else if(FS){t=state.localAt?`Kept in this browser · ${clock(state.localAt)}. Click Save project to choose a file.`:'Click Save project to choose where the file goes.';cls='is-warn'}
+ else t=state.localAt?`Kept in this browser · ${clock(state.localAt)}. Save project downloads the file.`:'Save project downloads the file.';
+ el.className='dcp-status '+cls;el.innerHTML=`<i></i>${esc(t)}`;
+}
+card.addEventListener('click',e=>{const a=e.target.closest('[data-dcp]')?.dataset.dcp;if(a==='hub')openHub();if(a==='rename')openRename()});
+card.addEventListener('change',e=>{if(e.target.dataset.dcp==='keep'){store.set('dc-autosave',e.target.checked?'on':'off');saveLocal(true)}});
+document.addEventListener('click',e=>{if(e.target.closest?.('#load-project')){e.preventDefault();e.stopImmediatePropagation();openHub()}},true);
+function headerLabels(){const l=q('#load-project');if(l&&l.dataset.dcp!=='1'){l.dataset.dcp='1';l.innerHTML=svg('open')+'<span>Projects</span>';l.title='Open, switch or create a project'}}
+
+/* ---------- Rename ---------- */
+const renDlg=document.createElement('dialog');renDlg.className='dc-dialog dcp-rename';document.body.append(renDlg);
+function openRename(){
+ if(!P)return;renDlg.innerHTML=`<form method="dialog"><h2>Project details</h2><p>The name is used for the project file and in your recent projects.</p><label><span>Project name</span><input name="n" required maxlength="80" value="${esc(P.name)}"></label><label><span>Client <small>(optional)</small></span><input name="c" maxlength="80" value="${esc(P.client)}"></label><div class="dc-dlg-foot"><button type="button" data-x>Cancel</button><button class="primary" type="submit">Save</button></div></form>`;
+ const f=q('form',renDlg);q('[data-x]',renDlg).onclick=()=>renDlg.close();
+ f.onsubmit=e=>{e.preventDefault();const n=f.n.value.trim();if(!n)return;P.name=n.slice(0,80);P.client=f.c.value.trim().slice(0,80);renDlg.close();paintCard();schedule()};
+ renDlg.showModal();f.n.select();
+}
+
+/* ---------- Project hub: create, continue, open ---------- */
+const hubEl=document.createElement('dialog');hubEl.className='dc-dialog dc-hub';document.body.append(hubEl);
+hubEl.addEventListener('cancel',e=>{if(!P)e.preventDefault()});
+const handles=new Map();
+const hub={close(){if(hubEl.open)hubEl.close()}};
+async function openHub(){
+ const list=await listProjects(),lastId=await idb.get('lastId'),legacy=list.length?null:await idb.get('last');
+ for(const m of list){if(!handles.has(m.id)){const h=await idb.get('handle:'+m.id);if(h)handles.set(m.id,h)}}
+ const last=list.find(m=>m.id===lastId&&(!P||m.id!==P.id))||(!P?list[0]:null);
+ const others=list.filter(m=>m!==last&&(!P||m.id!==P.id));
+ const status=m=>`${m.sealed?`<span class="dcp-badge is-sealed">${ic('seal')}Finished</span>`:`<span class="dcp-badge">Step ${(+m.stage||0)+1}: ${esc(STEP_NAME(+m.stage||0))}</span>`}<span>${m.files||0} ${m.files===1?'file':'files'} · ${m.insights||0} ${m.insights===1?'insight':'insights'}</span>`;
+ hubEl.innerHTML=`<div class="dc-hub-in">
+  <header class="dc-hub-head"><div class="dc-hub-logo">${ic('folder')}</div><div><h2>${P?'Your projects':'Welcome to DataCodex'}</h2><p>${P?`You are working on <b>${esc(P.name)}</b>. Switch to another project or start a new one.`:'Everything you do lives in a project. Create one to begin, or pick up where you left off.'}</p></div>${P?`<button type="button" class="dc-hub-x" data-h="close" aria-label="Close">${ic('x')}</button>`:''}</header>
+  <div class="dc-hub-grid">
+   <section class="dc-hub-new"><h3>${ic('plus')}Create a new project</h3>
+    <form data-h="create"><label><span>Project name</span><input name="n" required maxlength="80" placeholder="For example, Acme monthly SMS report" autocomplete="off"></label>
+    <label><span>Client <small>(optional)</small></span><input name="c" maxlength="80" placeholder="For example, Acme Ltd" autocomplete="off"></label>
+    <p class="dc-hub-note">${FS?`${ic('save')}Next you’ll choose where to keep the project file. DataCodex saves it there at every step, and you can save by hand any time.`:`${ic('save')}This browser can’t save files automatically, so DataCodex keeps your work here as you go. Use <b>Save project</b> to download the file.`}</p>
+    <button class="primary" type="submit">${ic('plus')}Create project</button></form>
+   </section>
+   <section class="dc-hub-side">
+    ${last?`<div class="dc-hub-last"><h3>${ic('clock')}Continue where you left off</h3><div class="dc-hub-lastcard"><div><b>${esc(last.name)}</b><small>${last.client?esc(last.client)+' · ':''}saved ${esc(when(last.updated))}</small><div class="dc-hub-st">${status(last)}</div></div><button type="button" class="primary" data-open="${esc(last.id)}">${last.sealed?ic('play'):ic('folder')}${last.sealed?'Open and run':'Open project'}</button></div></div>`:''}
+    ${legacy&&(legacy.blob||legacy.json)?`<div class="dc-hub-last"><h3>${ic('clock')}Unsaved work from before</h3><div class="dc-hub-lastcard"><div><b>Previous session</b><small>saved ${esc(when(legacy.meta?.savedAt))} · ${legacy.meta?.files||0} files</small></div><button type="button" class="primary" data-legacy>Recover it as a project</button></div></div>`:''}
+    ${others.length?`<div class="dc-hub-recent"><h3>Recent projects</h3><ul>${others.map(m=>`<li><button type="button" class="dc-hub-item" data-open="${esc(m.id)}"><span class="dcp-proj-ic">${m.sealed?ic('seal'):ic('folder')}</span><span><b>${esc(m.name)}</b><small>${m.client?esc(m.client)+' · ':''}${esc(when(m.updated))}${m.sealed?' · Finished':''}</small></span></button><button type="button" class="dcp-x" data-forget="${esc(m.id)}" title="Remove from this list (the project file is not deleted)" aria-label="Remove ${esc(m.name)} from the list">${ic('x')}</button></li>`).join('')}</ul></div>`:''}
+    ${!last&&!others.length&&!(legacy&&(legacy.blob||legacy.json))?`<div class="dc-hub-empty">${ic('folder')}<b>No projects yet</b><span>Projects you create show up here, so you can pick up where you left off next time.</span></div>`:''}
+    <button type="button" class="dc-hub-file" data-h="file">${ic('file')}Open a project file…</button>
+   </section>
+  </div></div>`;
+ const form=q('[data-h="create"]',hubEl);
+ form.onsubmit=e=>{e.preventDefault();createProject(form.n.value,form.c.value)};
+ q('[data-h="close"]',hubEl)?.addEventListener('click',()=>hubEl.close());
+ q('[data-h="file"]',hubEl).onclick=openFile;
+ q('[data-legacy]',hubEl)?.addEventListener('click',()=>recoverLegacy(legacy));
+ qa('[data-open]',hubEl).forEach(b=>b.onclick=()=>openStored(b.dataset.open));
+ qa('[data-forget]',hubEl).forEach(b=>b.onclick=async()=>{await removeFromList(b.dataset.forget);handles.delete(b.dataset.forget);openHub()});
+ if(!hubEl.open)hubEl.showModal();
+ if(!P)setTimeout(()=>form.n.focus(),30);
+}
+async function beforeSwitch(){if(P){await saveLocal(true);if(handle&&perm==='granted'&&state.dirtyFile)await saveToFile('switch')}}
+async function createProject(name,client){
+ name=String(name||'').trim();if(!name){say('Give the project a name.');return}
+ let h=null;if(FS)h=await pickFile(name);
+ await beforeSwitch();
+ const meta=blankMeta(name,client);
+ const hasData=(()=>{try{return S.files.length||S.insights.length||S.families.length}catch(e){return 0}})();
+ if((P||hasData)&&pristine){quietRestore=true;try{pendingAdopt={handle:h,offerRun:false,fresh:true};const doc=JSON.parse(pristine);doc.datacodex=meta;loadProjectObject(doc)}finally{quietRestore=false}}
+ else await adopt(meta,{handle:h,fresh:true});
+ try{go(0)}catch(e){}
+ say(h?`Project “${meta.name}” created. It saves to ${h.name} at every step.`:`Project “${meta.name}” created.${FS?' Click Save project when you want to choose a file.':''}`);
+}
+async function openStored(id){
+ const h=handles.get(id);let p='none';
+ if(h)p=await permission(h,true);
+ await beforeSwitch();
+ busy.show('Opening your project…',true);
+ try{
+  await nextFrame();const rec=await idb.get('proj:'+id);let doc=null;
+  if(rec&&(rec.blob||rec.json)){const text=rec.blob?await rec.blob.text():rec.json;doc=await parseProjectText(text)}
+  if(h&&p==='granted'){try{const file=await h.getFile();if(!doc||file.lastModified>(rec?.meta?.updated||0)+2000){doc=await parseProjectText(await file.text())}}catch(e){console.warn(e)}}
+  if(!doc){busy.hide();say('This project has no copy in this browser. Choose its project file.');openFile();return}
+  if(!doc.datacodex){const m=(await listProjects()).find(x=>x.id===id);doc.datacodex={...(m||{}),id}}
+  await nextFrame();quietRestore=true;pendingAdopt={handle:h&&p==='granted'?h:(h||null)};
+  try{loadProjectObject(doc)}finally{quietRestore=false}
+  if(h&&p!=='granted')say('Opened from this browser. Click Save project to keep saving to the file.');
+  else say(`Opened “${P.name}”.`);
+ }catch(e){say('Could not open the project: '+e.message)}finally{busy.hide()}
+}
+async function openFile(){
+ if(typeof window.showOpenFilePicker==='function'){
+  let h=null;try{[h]=await window.showOpenFilePicker({types:[{description:'DataCodex project',accept:{'application/json':['.json','.datacodex']}}]})}catch(e){if(e?.name!=='AbortError')console.warn(e);return}
+  const p=await permission(h,true);await beforeSwitch();
+  const file=await h.getFile();pendingAdopt={handle:p==='granted'?h:null,fallbackName:file.name.replace(/\.datacodex\.json$|\.json$/i,'')};
+  try{await window.dcOpenProject(file)}catch(e){pendingAdopt=null;say('Could not open the project: '+e.message)}
+  return;
+ }
+ await beforeSwitch();pendingAdopt={handle:null,fallbackName:''};q('#project-file')?.click();
+}
+document.addEventListener('change',e=>{if(e.target.matches?.('#project-file')&&e.target.files?.[0]&&!pendingAdopt)pendingAdopt={handle:null,fallbackName:e.target.files[0].name.replace(/\.datacodex\.json$|\.json$/i,'')}},true);
+async function recoverLegacy(rec){
+ busy.show('Recovering your work…',true);
+ try{await nextFrame();const text=rec.blob?await rec.blob.text():rec.json;const doc=await parseProjectText(text);doc.datacodex=blankMeta('Recovered work');quietRestore=true;pendingAdopt={handle:null};try{loadProjectObject(doc)}finally{quietRestore=false}await idb.del('last');say('Recovered your earlier work as “Recovered work”. Rename it from the sidebar.')}
+ catch(e){say('Could not recover: '+e.message)}finally{busy.hide()}
+}
+
+/* ---------- Boot ---------- */
+const baseRenderP=render;
+render=function(){const r=baseRenderP.apply(this,arguments);try{onRender();ensureStepButton();headerLabels();if(document.body.classList.contains('dc-finish-mode'))paintFinish()}catch(e){console.warn(e)}return r};
+try{pristine=JSON.stringify(baseSaveProject())}catch(e){pristine=null}
+window.dcProj={schedule,flush,manualSave,footer,openHub,enterFinish,openRun,seal,current:()=>P,
+ quickCreate:async(name='Test project',client='')=>{await adopt(blankMeta(name,client),{fresh:true});return P},
+ _setHandle:async h=>{handle=h;perm=h?await permission(h,false):'none';paintStatus()},_state:state};
+headerLabels();paintCard();ensureStepButton();
+if(!P&&typeof window.__dcTestProject==='string')adopt(blankMeta(window.__dcTestProject),{fresh:true});
+else if(!P){hubEl.innerHTML='<div class="dc-hub-in dc-hub-loading"><span class="dc-spin" aria-hidden="true"></span>Loading your projects…</div>';try{hubEl.showModal()}catch(e){}}
+(async()=>{try{if(!P&&typeof window.__dcTestProject!=='string')await openHub()}catch(e){console.warn('DataCodex projects:',e)}})();
 })();
 </script></body></html>
