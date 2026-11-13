@@ -119,7 +119,7 @@ if(S.stage===1)$$('[data-family-name]').forEach(el=>el.onchange=()=>{family(el.d
 if(S.stage===2){$('#clean-family').onchange=e=>{S.clean.family=e.target.value;S.clean.column='0';S.page=0;render()};$('#clean-column').onchange=e=>{S.clean.column=e.target.value;render()};$('#clean-op').onchange=e=>{S.clean.op=e.target.value;render()};if($('#prefix')){$('#prefix').oninput=e=>{S.clean.pattern=e.target.value;refreshPreview()};$('#suffix').oninput=e=>{S.clean.suffix=e.target.value;refreshPreview()}}$('#apply-clean').onclick=()=>{const f=family(S.clean.family),col=+S.clean.column;f.rows.forEach(r=>r[col]=transform(r[col]));render();notice('Cleaning applied across the whole family.')};$('#restore').onclick=()=>{const f=family(S.clean.family);f.rows=f.original.map(r=>[...r]);render();notice('Original values restored.')};$('#page-prev').onclick=()=>{S.page--;render()};$('#page-next').onclick=()=>{S.page++;render()};bindCells()}
 if(S.stage===3){$('#add-insight').onclick=()=>{S.insights.push({id:uid(),name:`Insight ${S.insights.length+1}`});render()};$('#connect-select').onclick=()=>makeConnection(JSON.parse($('#from').value),JSON.parse($('#to').value));$$('[data-connection-name]').forEach(el=>el.onchange=()=>{S.connections.find(c=>c.id===el.dataset.connectionName).name=el.value.trim()||'Connected insight';render()});$$('[data-delete-connection]').forEach(b=>b.onclick=()=>{S.connections=S.connections.filter(c=>c.id!==b.dataset.deleteConnection);render()});$$('[data-endpoint]').forEach(el=>{el.onpointerdown=e=>{if(e.button!==0)return;const a=JSON.parse(el.dataset.endpoint);const rect=$('#studio').getBoundingClientRect();dragWire={a,b:{x:e.clientX-rect.x,y:e.clientY-rect.y},startX:e.clientX,startY:e.clientY,moved:false};e.preventDefault()};el.onclick=()=>{const a=JSON.parse(el.dataset.endpoint);if(picked){makeConnection(picked,a);picked=null}else{picked=a;el.classList.add('selected');notice('Select a second terminal to connect.')}}});$$('[data-node-handle]').forEach(el=>el.onpointerdown=e=>{const id=el.dataset.nodeHandle;nodeDrag={id,x:e.clientX,y:e.clientY,start:{...S.positions[id]}};el.setPointerCapture(e.pointerId);e.preventDefault()});requestAnimationFrame(drawWires)}
 if(S.stage===5){$('#report-title').oninput=e=>S.reportTitle=e.target.value;$('#starter').onclick=()=>{if(S.blocks.length){notice('Your report already has blocks. Add more from the library.');return}['kpi','bar','insight','table'].forEach(type=>addBlock(type))};$$('[data-add-block]').forEach(el=>{el.onclick=()=>addBlock(el.dataset.addBlock);el.ondragstart=e=>e.dataTransfer.setData('text/plain','add:'+el.dataset.addBlock)});$('#reportcanvas').ondragover=e=>e.preventDefault();$('#reportcanvas').ondrop=e=>{e.preventDefault();const data=e.dataTransfer.getData('text/plain');if(data.startsWith('add:'))addBlock(data.slice(4));else if(data.startsWith('move:')){const id=data.slice(5),target=e.target.closest('[data-block]');if(target&&target.dataset.block!==id){const from=S.blocks.findIndex(b=>b.id===id),to=S.blocks.findIndex(b=>b.id===target.dataset.block);S.blocks.splice(to,0,S.blocks.splice(from,1)[0]);render()}}};$$('[data-reorder]').forEach(el=>el.ondragstart=e=>e.dataTransfer.setData('text/plain','move:'+el.dataset.reorder));$$('[data-block]').forEach(el=>{el.onclick=e=>{if(e.target.closest('button,input,select,[contenteditable]'))return;S.selected=el.dataset.block;$$('[data-block]').forEach(x=>x.classList.toggle('selected',x===el));$('#settings').innerHTML=settingsHTML();bindSettings()};const rich=el.querySelector('[contenteditable]');if(rich){rich.onfocus=()=>{if(S.selected!==el.dataset.block){S.selected=el.dataset.block;$('#settings').innerHTML=settingsHTML();bindSettings()}};rich.oninput=()=>S.blocks.find(b=>b.id===el.dataset.block).text=safeRich(rich.innerHTML)}});$$('[data-delete-block]').forEach(el=>el.onclick=()=>{S.blocks=S.blocks.filter(b=>b.id!==el.dataset.deleteBlock);render()});for(const dir of ['up','down'])$$(`[data-${dir}]`).forEach(el=>el.onclick=()=>{const i=S.blocks.findIndex(b=>b.id===el.dataset[dir]),j=i+(dir==='up'?-1:1);if(j>=0&&j<S.blocks.length){[S.blocks[i],S.blocks[j]]=[S.blocks[j],S.blocks[i]];render()}});$$('[data-resize]').forEach(el=>el.onpointerdown=e=>{e.preventDefault();e.stopPropagation();const b=S.blocks.find(b=>b.id===el.dataset.resize);resizeDrag={b,x:e.clientX,y:e.clientY,span:b.span,height:b.height,unit:$('#reportcanvas').clientWidth/12};el.setPointerCapture(e.pointerId)});$$('[data-table-prev]').forEach(el=>el.onclick=()=>{const b=S.blocks.find(b=>b.id===el.dataset.tablePrev);b.page=Math.max(0,b.page-1);render()});$$('[data-table-next]').forEach(el=>el.onclick=()=>{const b=S.blocks.find(b=>b.id===el.dataset.tableNext);b.page++;render()});bindSettings()}
-if(S.stage===6){$('#export-xlsx').onclick=()=>{try{const data=XLSX.write(workbook(),{bookType:'xlsx',type:'array'});download(new Blob([data],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),'DataCodex.xlsx')}catch(e){notice('Excel download failed: '+e.message)}};$('#export-html').onclick=()=>download(new Blob([exportedReport()],{type:'text/html'}),'DataCodex-report.html')}}
+if(S.stage===6){$('#export-xlsx').onclick=()=>{try{const data=XLSX.write(workbook(),{bookType:'xlsx',type:'array'});download(new Blob([data],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),(window.dcExcelName?window.dcExcelName():'DataCodex.xlsx'))}catch(e){notice('Excel download failed: '+e.message)}};$('#export-html').onclick=()=>download(new Blob([exportedReport()],{type:'text/html'}),(window.dcExcelName?window.dcExcelName().replace(/\.xlsx$/,'.html'):'DataCodex-report.html'))}}
 function bindSettings(){$$('[data-setting]').forEach(el=>el.onchange=()=>{const b=S.blocks.find(x=>x.id===S.selected),key=el.dataset.setting;let value=el.value;if(['column','span','height'].includes(key))value=+value;if(key==='height')value=Math.max(150,Math.min(1200,value||150));b[key]=value;if(key==='family'){b.column=0;b.page=0}render()});$$('[data-format]').forEach(el=>{el.onmousedown=e=>e.preventDefault();el.onclick=()=>{document.execCommand(el.dataset.format);const rich=$(`[data-block="${S.selected}"] .rich`);if(rich)S.blocks.find(b=>b.id===S.selected).text=safeRich(rich.innerHTML)}})}
 document.addEventListener('pointermove',e=>{if(dragWire){const r=$('#studio').getBoundingClientRect();dragWire.b={x:e.clientX-r.x,y:e.clientY-r.y};dragWire.moved=Math.hypot(e.clientX-dragWire.startX,e.clientY-dragWire.startY)>5;drawWires()}if(nodeDrag){const r=$('#studio'),p=S.positions[nodeDrag.id];p.x=Math.max(0,Math.min(r.clientWidth-245,nodeDrag.start.x+e.clientX-nodeDrag.x));p.y=Math.max(0,nodeDrag.start.y+e.clientY-nodeDrag.y);const el=$(`[data-node="${nodeDrag.id}"]`);el.style.left=p.x+'px';el.style.top=p.y+'px';r.style.minHeight=Math.max(580,p.y+el.offsetHeight+30)+'px';drawWires()}if(resizeDrag){const d=resizeDrag;d.b.span=Math.max(3,Math.min(12,Math.round(d.span+(e.clientX-d.x)/d.unit)));d.b.height=Math.max(150,Math.min(1200,d.height+e.clientY-d.y));const el=$(`[data-block="${d.b.id}"]`);el.style.gridColumn='span '+d.b.span;el.style.minHeight=d.b.height+'px'}});
 document.addEventListener('pointerup',e=>{if(dragWire){const d=dragWire;dragWire=null;if(d.moved){const el=document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-endpoint]');if(el)makeConnection(d.a,JSON.parse(el.dataset.endpoint));drawWires()}}nodeDrag=null;if(resizeDrag){resizeDrag=null;render()}});document.addEventListener('pointercancel',()=>{dragWire=nodeDrag=resizeDrag=null;drawWires()});document.addEventListener('keydown',e=>{if(e.key==='Escape'){picked=null;dragWire=null;$$('[data-endpoint]').forEach(el=>el.classList.remove('selected'));drawWires()}});window.addEventListener('resize',drawWires);
@@ -171,7 +171,7 @@ async function emailFragment(){const blocks=[];for(const b of S.blocks.slice().s
 exportedReport=async()=>`<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(S.reportTitle||'DataCodex email')}</title></head><body style="margin:0;padding:20px;background:#fff">${await emailFragment()}</body></html>`;
 exportView=()=>title('Ready for someone’s inbox.','Extract only your matched insights. Copy a static, formatted report directly into an email.')+`<div class="export-options"><section class="panel"><h2>${icon('table')}Matched Excel sheets</h2><div class="match-count">${directConnections().length}</div><p>One worksheet per insight. Selected columns and matching row pairs only — your original CSV tables are excluded.</p><button class="primary" id="export-xlsx">${icon('download')}Extract matched Excel</button></section><section class="panel"><h2>${icon('text')}Email-ready composition</h2><p>Inline formatting, static chart images, and complete tables. No buttons, scripts, or pagination.</p><div class="toolbar" style="margin-top:20px"><button class="primary" id="copy-email">${icon('layers')}Copy formatted email</button><button id="export-html">${icon('download')}Save email HTML</button></div><p class="status">Paste into an email editor with formatting enabled. Email clients may simplify corners and spacing; chart images are copied as PNGs.</p></section></div><section class="panel" style="margin-top:20px"><h2>${icon('eye')}Email preview</h2><button class="small" id="select-email">${icon('text')}Select preview for manual copying</button><div class="email-preview" id="email-preview" aria-label="Email preview"><p>Rendering your composition…</p></div><div id="copy-feedback" role="status"></div></section>`;
 bindSettings=()=>{$$('[data-setting]').forEach(el=>el.onchange=()=>{const b=S.blocks.find(b=>b.id===S.selected),key=el.dataset.setting;let val=el.value;const limits={column:[0,Math.max(0,family(b.family).headers.length-1)],span:[3,12],height:[150,1200],fontSize:[10,64],titleSize:[10,64],radius:[0,100],border:[0,8]};if(limits[key])val=Math.max(limits[key][0],Math.min(limits[key][1],Number(val)||limits[key][0]));b[key]=val;if(key==='family'){b.column=0;b.page=0;b.insight=val.slice(5)}render()});$$('[data-format]').forEach(el=>{el.onmousedown=e=>e.preventDefault();el.onclick=()=>{document.execCommand(el.dataset.format);const rich=$(`[data-block="${S.selected}"] .rich`);if(rich)S.blocks.find(b=>b.id===S.selected).text=safeRich(rich.innerHTML)}})};
-bindView=()=>{originalBindView();if(S.stage===3){$$('[data-merge-card]').forEach(card=>{const c=S.connections.find(c=>c.id===card.dataset.mergeCard),cfg=initMerge(c);card.querySelectorAll('[data-match-column]').forEach(el=>el.onchange=()=>{c[el.dataset.matchColumn].column=+el.value;render()});card.querySelector('[data-match-mode]').onchange=e=>{cfg.mode=e.target.value;render()};const tolerance=card.querySelector('[data-tolerance]');if(tolerance)tolerance.onchange=e=>{cfg.tolerance=Math.min(10080,Math.max(0,Number(e.target.value)||0));render()};card.querySelectorAll('[data-output-field]').forEach(el=>el.onchange=()=>{cfg.fields[+el.dataset.outputField].show=el.checked;render()});card.querySelectorAll('[data-output-label]').forEach(el=>el.onchange=()=>{cfg.fields[+el.dataset.outputLabel].label=el.value.trim();render()})})}if(S.stage===5){$$('[data-email-setting]').forEach(el=>el.onchange=()=>{const k=el.dataset.emailSetting;const old=S.email[k];S.email[k]=['size','titleSize'].includes(k)?Math.min(k==='size'?32:64,Math.max(k==='size'?10:18,+el.value||14)):el.value;if(k==='size')S.blocks.forEach(b=>{if(b.fontSize===old)b.fontSize=S.email.size});if(k==='font')S.blocks.forEach(b=>{if(b.font===old)b.font=el.value});if(k==='accent')S.blocks.forEach(b=>{if(b.accent===old)b.accent=el.value});render()});$('#reportcanvas').style.fontFamily=S.email.font;$('#reportcanvas').style.background=S.email.background;$('#starter').onclick=()=>{if(S.blocks.length){notice('Add blocks from the library to extend your composition.');return}['shape-banner','kpi','bar','table','shape-quote'].forEach(addBlock)}}if(S.stage===6){$('#export-html').onclick=async()=>{try{download(new Blob([await exportedReport()],{type:'text/html'}),'DataCodex-email.html')}catch(e){notice(e.message)}};const preview=$('#email-preview');emailFragment().then(html=>{if(preview.isConnected&&preview.dataset.previewMode!=='editable')preview.innerHTML=html}).catch(e=>{if(preview.isConnected)preview.textContent=e.message});$('#select-email').onclick=()=>{const range=document.createRange();range.selectNodeContents(preview);const selection=getSelection();selection.removeAllRanges();selection.addRange(range);$('#copy-feedback').textContent='Preview selected. Press Ctrl+C, then paste into your email.'};$('#copy-email').onclick=async()=>{const button=$('#copy-email');button.disabled=true;try{const html=await emailFragment(),d=document.createElement('div');d.innerHTML=html;if(navigator.clipboard?.write&&window.ClipboardItem){await navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([d.textContent],{type:'text/plain'})})]);$('#copy-feedback').textContent='Formatted email copied. Paste it into your email editor.'}else{preview.innerHTML=html;const range=document.createRange();range.selectNodeContents(preview);getSelection().removeAllRanges();getSelection().addRange(range);if(document.execCommand('copy'))$('#copy-feedback').textContent='Formatted email copied.';else throw Error('Clipboard access is unavailable. Select the preview and press Ctrl+C.')}}catch(e){$('#copy-feedback').textContent='Automatic copying was unavailable. Use Select preview, then press Ctrl+C to copy with formatting.'}finally{button.disabled=false}}}};
+bindView=()=>{originalBindView();if(S.stage===3){$$('[data-merge-card]').forEach(card=>{const c=S.connections.find(c=>c.id===card.dataset.mergeCard),cfg=initMerge(c);card.querySelectorAll('[data-match-column]').forEach(el=>el.onchange=()=>{c[el.dataset.matchColumn].column=+el.value;render()});card.querySelector('[data-match-mode]').onchange=e=>{cfg.mode=e.target.value;render()};const tolerance=card.querySelector('[data-tolerance]');if(tolerance)tolerance.onchange=e=>{cfg.tolerance=Math.min(10080,Math.max(0,Number(e.target.value)||0));render()};card.querySelectorAll('[data-output-field]').forEach(el=>el.onchange=()=>{cfg.fields[+el.dataset.outputField].show=el.checked;render()});card.querySelectorAll('[data-output-label]').forEach(el=>el.onchange=()=>{cfg.fields[+el.dataset.outputLabel].label=el.value.trim();render()})})}if(S.stage===5){$$('[data-email-setting]').forEach(el=>el.onchange=()=>{const k=el.dataset.emailSetting;const old=S.email[k];S.email[k]=['size','titleSize'].includes(k)?Math.min(k==='size'?32:64,Math.max(k==='size'?10:18,+el.value||14)):el.value;if(k==='size')S.blocks.forEach(b=>{if(b.fontSize===old)b.fontSize=S.email.size});if(k==='font')S.blocks.forEach(b=>{if(b.font===old)b.font=el.value});if(k==='accent')S.blocks.forEach(b=>{if(b.accent===old)b.accent=el.value});render()});$('#reportcanvas').style.fontFamily=S.email.font;$('#reportcanvas').style.background=S.email.background;$('#starter').onclick=()=>{if(S.blocks.length){notice('Add blocks from the library to extend your composition.');return}['shape-banner','kpi','bar','table','shape-quote'].forEach(addBlock)}}if(S.stage===6){$('#export-html').onclick=async()=>{try{download(new Blob([await exportedReport()],{type:'text/html'}),(window.dcExcelName?window.dcExcelName().replace(/\.xlsx$/,'.html'):'DataCodex-email.html'))}catch(e){notice(e.message)}};const preview=$('#email-preview');emailFragment().then(html=>{if(preview.isConnected&&preview.dataset.previewMode!=='editable')preview.innerHTML=html}).catch(e=>{if(preview.isConnected)preview.textContent=e.message});$('#select-email').onclick=()=>{const range=document.createRange();range.selectNodeContents(preview);const selection=getSelection();selection.removeAllRanges();selection.addRange(range);$('#copy-feedback').textContent='Preview selected. Press Ctrl+C, then paste into your email.'};$('#copy-email').onclick=async()=>{const button=$('#copy-email');button.disabled=true;try{const html=await emailFragment(),d=document.createElement('div');d.innerHTML=html;if(navigator.clipboard?.write&&window.ClipboardItem){await navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([d.textContent],{type:'text/plain'})})]);$('#copy-feedback').textContent='Formatted email copied. Paste it into your email editor.'}else{preview.innerHTML=html;const range=document.createRange();range.selectNodeContents(preview);getSelection().removeAllRanges();getSelection().addRange(range);if(document.execCommand('copy'))$('#copy-feedback').textContent='Formatted email copied.';else throw Error('Clipboard access is unavailable. Select the preview and press Ctrl+C.')}}catch(e){$('#copy-feedback').textContent='Automatic copying was unavailable. Use Select preview, then press Ctrl+C to copy with formatting.'}finally{button.disabled=false}}}};
 render=()=>{S.blocks=S.blocks.filter(b=>b.type==='text'||b.type.startsWith('shape-')||resultSets().some(f=>f.id===b.family));for(const b of S.blocks){const f=resultSets().find(f=>f.id===b.family);if(f&&f.headers.length){b.column=Math.min(b.column,f.headers.length-1);b.page=Math.min(b.page||0,Math.max(0,Math.ceil(f.rows.length/5)-1))}}originalRender();if(S.stage>=3)$('#status').textContent=`${directConnections().length} extracted insights · ${resultSets().reduce((n,f)=>n+f.rows.length,0).toLocaleString()} merged rows`;};
 const composeChart=chartSVG;chartSVG=b=>composeChart(b).replace(/#38bdf8/g,b.accent||S.email.accent).replace(/#2563eb/g,'#658d83').replace(/#6ee7b7/g,'#c8b996').replace(/#a78bfa/g,'#b7826c');
 const composeAdd=addBlock,composeContent=blockContent;
@@ -607,7 +607,7 @@ function openExtractionItem(type,id){const sheet=selectedExtractionSheet(),exist
 function paintExtractionItem(){const d=extractionDraft,f=metricSource(d.source);extractionItemDialog.innerHTML=`<div class="dialog-head"><h2>Place ${d.type==='metric'?'a number or percentage':d.type==='table'?'an outcome table':'text'}</h2><button data-item-cancel>Cancel</button></div><div class="config-grid"><label>Label<input data-extract-setting="label" value="${esc(d.label)}"></label><label>Cell (for example B4)<input data-extract-address value="${XLSX.utils.encode_cell(d)}"></label></div>${d.type==='metric'?metricEditor(d.metric,0,{mode:'metrics'}):d.type==='text'?`<label>Text<input data-extract-setting="text" value="${esc(d.text)}"></label>`:`<label>Source result<select data-extract-setting="source">${sourceOptions(d.source)}</select></label><div class="extraction-columns">${(f?.headers||[]).map((h,c)=>`<label class="checkline"><input type="checkbox" data-extract-column="${c}" ${d.columns.includes(c)?'checked':''}>${esc(h)}</label>`).join('')}</div><label>Row limit (0 = all matching rows)<input type="number" min="0" max="1000000" data-extract-setting="limit" value="${d.limit}"></label>`}<p data-item-error class="warning" role="status"></p><div class="toolbar"><button class="primary" data-item-save>Place on worksheet</button><button data-item-delete>Remove item</button></div>`;extractionItemDialog.querySelector('[data-item-cancel]').onclick=()=>extractionItemDialog.close();extractionItemDialog.querySelectorAll('[data-extract-setting]').forEach(el=>el.onchange=()=>{d[el.dataset.extractSetting]=el.type==='number'?+el.value:el.value;if(el.dataset.extractSetting==='source'){d.columns=[];paintExtractionItem()}});extractionItemDialog.querySelector('[data-extract-address]').onchange=e=>{if(!/^[A-Z]{1,3}[1-9]\d{0,6}$/i.test(e.target.value)){e.target.setCustomValidity('Enter an Excel cell such as B4.');return}const cell=XLSX.utils.decode_cell(e.target.value.toUpperCase());if(cell.r>1048575||cell.c>16383){e.target.setCustomValidity('Cell is outside Excel worksheet limits.');return}e.target.setCustomValidity('');Object.assign(d,cell)};extractionItemDialog.querySelectorAll('[data-extract-column]').forEach(el=>el.onchange=()=>{d.columns=el.checked?[...d.columns,+el.dataset.extractColumn].sort((a,b)=>a-b):d.columns.filter(c=>c!==+el.dataset.extractColumn)});
  if(d.type==='metric'){extractionItemDialog.querySelector('[data-remove-metric]')?.remove();for(const[attr,target]of [['metric',d.metric],['denominator',d.metric.denominator]])extractionItemDialog.querySelectorAll('[data-'+attr+'-setting]').forEach(el=>el.onchange=()=>{const key=el.dataset[attr+'Setting'];target[key]=key==='relative'?el.checked:['column','groupColumn'].includes(key)?+el.value:el.value;if(key==='source'){target.column=0;target.groupColumn=0}paintExtractionItem()})}extractionItemDialog.querySelector('[data-item-delete]').onclick=()=>{const s=selectedExtractionSheet();s.items=s.items.filter(i=>i.id!==d.id);extractionItemDialog.close();paintExtractionCanvas()};extractionItemDialog.querySelector('[data-item-save]').onclick=()=>{if(!extractionItemDialog.querySelector('[data-extract-address]').reportValidity())return;const s=selectedExtractionSheet(),items=s.items;try{extractionItemCells(d);s.items=[...items.filter(i=>i.id!==d.id),d];extractionMap(s);extractionItemDialog.close();paintExtractionCanvas()}catch(e){s.items=items;extractionItemDialog.querySelector('[data-item-error]').textContent=e.message}}}
 const workbookBeforeExtraction=workbook;workbook=()=>{if(!S.extractionSheets.length)return workbookBeforeExtraction();const wb=XLSX.utils.book_new(),used=new Set();const append=(sheet,name)=>{const base=name.replace(/[\\/?*\[\]:]/g,' ').replace(/^'+|'+$/g,'').slice(0,31)||'Outcomes';let clean=base,i=2;while(used.has(clean.toLowerCase()))clean=base.slice(0,26)+' ('+i+++')';used.add(clean.toLowerCase());XLSX.utils.book_append_sheet(wb,sheet,clean)};for(const sheet of S.extractionSheets){if(!sheet.items.length)throw Error('Add an outcome to '+sheet.name+' before extracting.');const map=extractionMap(sheet),ws={};let maxR=0,maxC=0;for(const[key,entry]of map){const[r,c]=key.split(':').map(Number),v=entry.value;ws[XLSX.utils.encode_cell({r,c})]={t:typeof v==='number'?'n':'s',v};if(entry.item.type==='metric'&&entry.item.metric.relative&&!entry.heading&&typeof v==='number'){ws[XLSX.utils.encode_cell({r,c})].v=v/100;ws[XLSX.utils.encode_cell({r,c})].z='0.00%'}maxR=Math.max(maxR,r);maxC=Math.max(maxC,c)}ws['!ref']=XLSX.utils.encode_range({s:{r:0,c:0},e:{r:maxR,c:maxC}});ws['!cols']=Array.from({length:maxC+1},()=>({wch:24}));append(ws,sheet.name)}if(S.includeInsightSheets){const details=workbookBeforeExtraction();details.SheetNames.forEach(name=>append(details.Sheets[name],name))}return wb};
-function downloadExtraction(){try{const wb=workbook();download(new Blob([XLSX.write(wb,{bookType:'xlsx',type:'array'})],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),'DataCodex-outcomes.xlsx')}catch(e){notice(e.message)}}
+function downloadExtraction(){try{const wb=workbook();download(new Blob([XLSX.write(wb,{bookType:'xlsx',type:'array'})],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),(window.dcExcelName?window.dcExcelName():'DataCodex-outcomes.xlsx'))}catch(e){notice(e.message)}}
 const viewBeforeExtraction=exportView;exportView=()=>{let html=viewBeforeExtraction();if(S.extractionSheets.length){html=html.replace('<div class="match-count">'+resultSets().length+'</div>','<div class="match-count">'+S.extractionSheets.length+'</div>');html=html.replace('One worksheet per matched insight or summary. Summary sheets contain calculated variables and group comparisons; raw tables stay in the workspace.','Your custom worksheet layouts contain only the outcomes you placed. Additional insight detail sheets are included only when you enable them.')}html=html.replace('Insight & summary sheets','Your Excel outcomes').replace('Extract workbook','Extract Excel');return html.replace('<div class="export-options">',`<section class="panel extraction-entry"><h2>Excel extraction canvas</h2><p>Arrange named numbers, percentages, text and selected outcome tables at exact worksheet cells.</p><button class="primary" data-open-extraction>Open extraction canvas</button><span class="status"> ${S.extractionSheets.length} custom worksheets · ${S.extractionSheets.reduce((sum,s)=>sum+s.items.length,0)} placed outcomes</span></section><div class="export-options">`)};
 const canvasBeforePipeline=connectView;connectView=()=>canvasBeforePipeline().replace('<button id="add-insight">','<button data-open-extraction>Excel extraction canvas</button><button data-new-filter>+ Filter result</button><button id="add-insight">');
 const menuBeforePipeline=openBlueprintMenu;openBlueprintMenu=(x,y,id=null)=>{menuBeforePipeline(x,y,id);const close=blueprintMenu.querySelector('[data-blueprint-menu-close]'),button=document.createElement('button');button.textContent='Open Excel extraction canvas';button.setAttribute('role','menuitem');button.onclick=()=>{hideBlueprintMenu();openExtractionCanvas()};blueprintMenu.insertBefore(button,close);const c=sheetRecipe(id),n=filterNodes().find(n=>n.id===id);if(c||n){const filter=document.createElement('button');filter.textContent='Add filter to this result';filter.onclick=()=>{hideBlueprintMenu();addFilterInsight('join:'+(c?.id||n.id))};blueprintMenu.insertBefore(filter,close)}};
@@ -651,7 +651,7 @@ render();
 const workbookBeforeVisual=workbook;workbook=()=>{const wb=workbookBeforeVisual();for(const [i,sheet]of S.extractionSheets.entries()){const ws=wb.Sheets[wb.SheetNames[i]],appearance=visualSheetStyle(sheet);if(appearance.paper!=='#ffffff'){const range=XLSX.utils.decode_range(ws['!ref']);for(let r=0;r<=Math.max(19,range.e.r);r++)for(let c=0;c<=Math.max(11,range.e.c);c++){const address=XLSX.utils.encode_cell({r,c});if(!ws[address])ws[address]={t:'s',v:''}}ws['!ref']=XLSX.utils.encode_range({s:{r:0,c:0},e:{r:Math.max(19,range.e.r),c:Math.max(11,range.e.c)}})}ws['!cols']=Array.from({length:Math.max(12,XLSX.utils.decode_range(ws['!ref']).e.c+1)},()=>({wch:appearance.columnWidth}));ws['!merges']=sheet.items.filter(item=>item.type==='text'&&item.span>1).map(item=>({s:{r:item.r,c:item.c},e:{r:item.r,c:item.c+item.span-1}}));const table=sheet.items.find(item=>item.type==='table');if(table){const rows=extractionItemCells(table).length;ws['!autofilter']={ref:XLSX.utils.encode_range({s:{r:table.r,c:table.c},e:{r:table.r+rows-1,c:table.c+table.columns.length-1}})}}}return wb};
 function visualWorkbookBytes(wb){const fonts=[],fills=[{xml:'<fill><patternFill patternType="none"/></fill>'},{xml:'<fill><patternFill patternType="gray125"/></fill>'}],borders=[],formats=[],xfs=[],styleIds=new Map(),fontIds=new Map(),fillIds=new Map(),borderIds=new Map(),formatIds=new Map(),stylesBySheet=[];const rgb=v=>'FF'+v.slice(1).toUpperCase(),attr=v=>esc(v);function styleId(style,heading,banded,format='General'){const fill=heading?style.header:banded?style.stripe:style.body,color=heading?style.headerText:style.text,key=JSON.stringify([style,heading,banded,format]);if(styleIds.has(key))return styleIds.get(key);const fontKey=JSON.stringify([style.font,style.size,color,heading]);if(!fontIds.has(fontKey)){fontIds.set(fontKey,fonts.length);fonts.push('<font>'+(heading?'<b/>':'')+'<sz val="'+style.size+'"/><color rgb="'+rgb(color)+'"/><name val="'+attr(style.font)+'"/></font>')}if(!fillIds.has(fill)){fillIds.set(fill,fills.length);fills.push({xml:'<fill><patternFill patternType="solid"><fgColor rgb="'+rgb(fill)+'"/><bgColor indexed="64"/></patternFill></fill>'})}if(!borderIds.has(style.border)){borderIds.set(style.border,borders.length);borders.push('<border>'+['left','right','top','bottom'].map(side=>'<'+side+' style="hair"><color rgb="'+rgb(style.border)+'"/></'+side+'>').join('')+'<diagonal/></border>')}let numFmt=0;if(format!=='General'){if(!formatIds.has(format)){formatIds.set(format,164+formats.length);formats.push('<numFmt numFmtId="'+(164+formats.length)+'" formatCode="'+attr(format)+'"/>')}numFmt=formatIds.get(format)}const id=xfs.length;xfs.push('<xf numFmtId="'+numFmt+'" fontId="'+fontIds.get(fontKey)+'" fillId="'+fillIds.get(fill)+'" borderId="'+borderIds.get(style.border)+'" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyNumberFormat="1" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>');styleIds.set(key,id);return id}styleId(workbookThemes.navy,false,false);
  wb.SheetNames.forEach((name,i)=>{const ws=wb.Sheets[name],sheet=S.extractionSheets[i],map=sheet?extractionMap(sheet):null,ids={};for(const address of Object.keys(ws)){if(address.startsWith('!'))continue;const pos=XLSX.utils.decode_cell(address),entry=map?.get(pos.r+':'+pos.c),style=entry?visualStyle(entry.item):sheet?{...workbookThemes.navy,body:visualSheetStyle(sheet).paper,stripe:visualSheetStyle(sheet).paper}:workbookThemes.navy,heading=entry?entry.heading:!sheet&&pos.r===0,banded=entry?style.banded&&!heading&&(pos.r-entry.item.r)%2===0:!sheet&&pos.r%2===0;const row=sheet?.rowColors?.[pos.r],effective=row?{...style,header:row.fill,headerText:row.text,body:row.fill,text:row.text,stripe:row.fill}:style;ids[address]=styleId(effective,heading,banded,ws[address].z||'General')}stylesBySheet.push(ids)});const xmlStyles='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><numFmts count="'+formats.length+'">'+formats.join('')+'</numFmts><fonts count="'+fonts.length+'">'+fonts.join('')+'</fonts><fills count="'+fills.length+'">'+fills.map(f=>f.xml).join('')+'</fills><borders count="'+borders.length+'">'+borders.join('')+'</borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="'+xfs.length+'">'+xfs.join('')+'</cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>';const bytes=XLSX.write(wb,{bookType:'xlsx',type:'array'}),zip=XLSX.CFB.read(new Uint8Array(bytes),{type:'array'}),encode=s=>new TextEncoder().encode(s);XLSX.CFB.utils.cfb_add(zip,'/xl/styles.xml',encode(xmlStyles));wb.SheetNames.forEach((name,i)=>{const path='/xl/worksheets/sheet'+(i+1)+'.xml',entry=XLSX.CFB.find(zip,path);if(!entry)throw Error('Could not format the workbook.');let xml=new TextDecoder().decode(new Uint8Array(entry.content));xml=xml.replace(/<c\b([^>]*)>/g,(all,attrs)=>{const ref=attrs.match(/\br="([^"]+)"/);return '<c'+attrs.replace(/\s+s="[^"]*"/,'')+' s="'+(stylesBySheet[i][ref?.[1]]||0)+'">'});const sheet=S.extractionSheets[i],height=sheet?visualSheetStyle(sheet).rowHeight*.75:22;xml=xml.replace(/<sheetFormatPr[^>]*\/>/,'').replace('</sheetViews>','</sheetViews><sheetFormatPr defaultRowHeight="'+height+'"/>');if(sheet){const table=sheet.items.find(item=>item.type==='table');if(table&&table.r<20)xml=xml.replace(/<sheetViews>[\s\S]*?<\/sheetViews>/,'<sheetViews><sheetView workbookViewId="0"><pane ySplit="'+(table.r+1)+'" topLeftCell="A'+(table.r+2)+'" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews>')}XLSX.CFB.utils.cfb_add(zip,path,encode(xml))});return XLSX.CFB.write(zip,{type:'array',fileType:'zip'})}
-downloadExtraction=()=>{try{const bytes=visualWorkbookBytes(workbook());download(new Blob([bytes],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),'DataCodex-report.xlsx')}catch(e){notice(e.message)}};
+downloadExtraction=()=>{try{const bytes=visualWorkbookBytes(workbook());download(new Blob([bytes],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),(window.dcExcelName?window.dcExcelName():'DataCodex-report.xlsx'))}catch(e){notice(e.message)}};
 render();
 // Drag complete report items; only positions change, never their source data.
 let workbookDrag=null,workbookDragFrame=0,workbookDragPoint=null;
@@ -2182,6 +2182,151 @@ html body dialog.dcp-rename .dc-dlg-foot{display:flex;justify-content:flex-end;g
 
 /* Task Governance is not offered anywhere in the guided flow */
 html body :is(.guided-governance-entry,[data-guided-governance],[data-governance],[data-blueprint-governance]){display:none!important}
+
+/* ===== Combine two tables (Check tables step) ===== */
+.dc-cmb{display:flex;flex-direction:column;gap:14px;margin:6px 0 16px}
+.dc-cmb-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.dc-cmb-stat{display:flex;flex-direction:column;gap:2px;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.dc-cmb-stat b{font:700 22px/1.1 var(--font-display,var(--font-ui));letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
+.dc-cmb-stat span{font-size:12px;color:var(--muted)}
+.dc-cmb-stat.is-good b{color:var(--success,#16a34a)}
+.dc-cmb-stat.is-low b{color:var(--warn,#d97706)}
+.dc-cmb-warn{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:14px;border:1px solid color-mix(in srgb,var(--warn,#d97706) 35%,transparent);background:color-mix(in srgb,var(--warn,#d97706) 9%,var(--surface));font-size:13px;line-height:1.55;color:var(--ink-2)}
+.dc-cmb-warn .icon{flex:none;width:18px;height:18px;margin-top:1px;color:var(--warn,#d97706)}
+.dc-cmb-warn b{color:var(--ink)}
+.dc-cmb-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.dc-cmb-group{display:flex;flex-direction:column;min-width:0;border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
+.dc-cmb-group header{display:flex!important;align-items:center;gap:8px;padding:10px 12px!important;border-bottom:1px solid var(--line);background:var(--surface-2);margin:0!important;height:auto!important;min-height:0!important;position:static!important}
+.dc-cmb-dot{width:8px;height:8px;border-radius:50%;flex:none;background:var(--muted)}
+.dc-cmb-group.is-shared .dc-cmb-dot{background:var(--success,#16a34a)}
+.dc-cmb-group.is-a .dc-cmb-dot{background:var(--brand)}
+.dc-cmb-group.is-b .dc-cmb-dot{background:var(--violet,#7c3aed)}
+.dc-cmb-title{flex:1;min-width:0;font-size:12.5px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dc-cmb-group header em{font-style:normal;font-size:11.5px;font-weight:600;padding:1px 8px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--muted);font-variant-numeric:tabular-nums}
+.dc-cmb-chips{display:flex;flex-wrap:wrap;align-content:flex-start;gap:5px;padding:10px 12px;max-height:168px;overflow:auto}
+.dc-cmb-chips i{font-style:normal;font-size:11.5px;line-height:1.3;padding:3px 8px;border-radius:7px;background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dc-cmb-group.is-shared .dc-cmb-chips i{background:color-mix(in srgb,var(--success,#16a34a) 10%,var(--surface));border-color:color-mix(in srgb,var(--success,#16a34a) 28%,transparent)}
+.dc-cmb-chips i.is-range{border-style:dashed;color:var(--muted)}
+.dc-cmb-chips i small{font-size:10.5px;color:var(--subtle,var(--muted))}
+.dc-cmb-none{font-size:12px;color:var(--muted)}
+html body .dc-cmb-note{margin:0!important;font-size:12.5px!important;line-height:1.55;color:var(--muted)!important}
+html body .dc-cmb-note b{color:var(--ink-2)}
+html body .dc-combine .filecard .details p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@media (max-width:900px){.dc-cmb-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.dc-cmb-cols{grid-template-columns:1fr}}
+html body .dc-advanced .dc-advanced-body>section.panel{border:0!important;box-shadow:none!important;padding:0!important;margin:0!important;background:none!important;border-radius:0!important}
+html body .dc-combine .dc-advanced-body>section.panel>p:first-of-type{margin-top:0!important;color:var(--muted)!important;font-size:13px!important}
+
+/* Guided hints use the app palette in both themes */
+html body .guided-inline-help{background:var(--brand-50)!important;border-left:3px solid var(--brand)!important;color:var(--ink-2)!important;border-radius:0 12px 12px 0;margin:0 0 4px!important}
+
+/* ===== DataCodex email builder: data panel, drag and drop, templates ===== */
+.dce-i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+html body #content .builder.dce-builder{display:grid!important;grid-template-columns:304px minmax(0,1fr)!important;gap:16px!important;align-items:start}
+html body #content .builder.dce-builder>.dce-panel{grid-column:1;grid-row:1/span 3}
+html body #content .builder.dce-builder>.canvas-viewport{grid-column:2;min-width:0}
+#content .toolbar #starter,#content .toolbar #report-insights{display:none!important}
+html body .dce-tpl-btn{display:inline-flex!important;align-items:center;gap:8px}
+
+/* panel */
+.dce-panel{position:sticky;top:76px;display:flex;flex-direction:column;max-height:calc(100vh - 100px);min-height:420px;border:1px solid var(--line);border-radius:var(--r-xl,18px);background:var(--surface);box-shadow:var(--shadow-sm);overflow:hidden}
+.dce-tabs{display:flex;gap:2px;margin:10px 10px 0;padding:3px;border-radius:11px;background:var(--surface-2)}
+html body .dce-tabs button{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:0;height:32px;padding:0;border:0;border-radius:8px;background:transparent;box-shadow:none;font-size:13px;font-weight:600;color:var(--muted)}
+html body .dce-tabs button[aria-selected=true]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow-xs)}
+html body .dce-tabs button:hover:not(:disabled):not([aria-selected=true]){background:transparent;color:var(--ink)}
+.dce-body{flex:1;min-height:0;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px;overscroll-behavior:contain}
+.dce-body[hidden]{display:none}
+.dce-body>*{flex-shrink:0}
+html body .dce-lead{margin:0 2px 2px!important;font-size:12.3px!important;line-height:1.5;color:var(--muted)!important}
+.dce-search{display:flex;align-items:center;gap:7px;height:34px;padding:0 10px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2);color:var(--muted)}
+.dce-search:focus-within{border-color:var(--brand);background:var(--surface)}
+html body .dce-search input{flex:1;min-width:0;height:30px!important;min-height:0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;font-size:12.5px!important}
+.dce-src{border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
+.dce-src>summary{display:flex;align-items:center;gap:10px;padding:10px 12px;cursor:pointer;list-style:none}
+.dce-src>summary::-webkit-details-marker{display:none}
+.dce-src>summary:hover{background:var(--surface-2)}
+.dce-src[open]>summary{border-bottom:1px solid var(--line);background:var(--surface-2)}
+.dce-chev{width:14px;height:14px;color:var(--muted);transition:transform .15s}
+.dce-src[open] .dce-chev{transform:rotate(90deg)}
+.dce-kind{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;flex:none;background:var(--brand-50);color:var(--brand)}
+.dce-kind .dce-i{width:15px;height:15px}
+.dce-kind.k-match{background:var(--violet-50,#f1ecff);color:var(--violet,#7c3aed)}
+.dce-kind.k-filter{background:color-mix(in srgb,var(--warn,#d97706) 14%,transparent);color:var(--warn,#d97706)}
+.dce-kind.k-sum{background:color-mix(in srgb,var(--success,#16a34a) 14%,transparent);color:var(--success,#16a34a)}
+.dce-src-t{flex:1;min-width:0;display:flex;flex-direction:column}
+.dce-src-t b{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--ink)}
+.dce-src-t small{font-size:11px;color:var(--muted)}
+.dce-vals{display:flex;flex-direction:column;gap:8px;padding:10px}
+.dce-main{display:flex;flex-direction:column;gap:6px}
+html body .dce-val{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:0;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--surface);box-shadow:none;cursor:grab;touch-action:none;user-select:none;text-align:left;color:var(--ink)}
+html body .dce-val:hover:not(:disabled){border-color:color-mix(in srgb,var(--brand) 50%,var(--line));background:var(--brand-50);box-shadow:var(--shadow-xs)}
+html body .dce-val:active{cursor:grabbing}
+.dce-val-l{font-size:12px;color:var(--ink-2);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dce-val b{font-size:13px;font-weight:700;color:var(--brand-ink,var(--brand));font-variant-numeric:tabular-nums;white-space:nowrap}
+html body .dce-val.is-main{padding:10px 12px}
+html body .dce-val.is-main b{font-size:17px}
+html body .dce-val.is-sm{width:auto;padding:4px 8px;gap:6px;border-radius:8px}
+html body .dce-val.is-sm .dce-val-l{font-size:11px;color:var(--muted)}
+html body .dce-val.is-sm b{font-size:12px}
+html body .dce-tablechip{display:flex;align-items:center;gap:8px;width:100%;min-height:0;padding:8px 10px;border:1px dashed var(--line-strong);border-radius:10px;background:var(--surface-2);box-shadow:none;cursor:grab;touch-action:none;user-select:none;font-size:12.5px;font-weight:600;color:var(--ink-2)}
+html body .dce-tablechip small{margin-left:auto;font-weight:500;color:var(--muted)}
+html body .dce-tablechip:hover:not(:disabled){border-color:var(--brand);color:var(--brand);background:var(--brand-50)}
+.dce-fields-h{display:flex;align-items:center;gap:6px;margin:4px 2px 0;font-size:10.5px;font-weight:650;letter-spacing:.07em;text-transform:uppercase;color:var(--subtle,var(--muted))}
+.dce-fields-h small{font-size:10px;padding:0 6px;border-radius:999px;background:var(--surface-2);letter-spacing:0}
+.dce-fields{display:flex;flex-direction:column;gap:6px}
+.dce-field{display:flex;flex-direction:column;gap:4px;padding:8px;border-radius:10px;background:var(--surface-2)}
+.dce-field-n{font-size:12px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dce-field-v{display:flex;flex-wrap:wrap;gap:4px}
+.dce-none{margin:6px 2px!important;font-size:12.3px!important;color:var(--muted)!important;line-height:1.5}
+/* Elements tab hosts the original text and shape tools */
+html body .dce-els>.dce-engine-aside{position:static!important;width:auto!important;max-height:none!important;margin:0!important;padding:4px 2px!important;border:0!important;box-shadow:none!important;background:none!important}
+
+/* drag feedback */
+.dce-ghost{position:fixed;left:0;top:0;z-index:10001;display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:12px;background:var(--surface);border:1px solid var(--brand);box-shadow:var(--shadow-lg);pointer-events:none;font:600 12.5px/1.2 var(--font-ui);color:var(--ink)}
+.dce-ghost b{color:var(--brand);font-variant-numeric:tabular-nums}
+.dce-ghost .dce-i{color:var(--brand)}
+.dce-ghost::after{content:attr(data-hint);position:absolute;left:0;top:100%;margin-top:6px;white-space:nowrap;padding:3px 8px;border-radius:7px;background:var(--ink);color:var(--surface);font-size:11px;font-weight:500;opacity:0}
+.dce-ghost.has-target::after{opacity:1}
+body.dce-dragging,body.dce-dragging *{cursor:grabbing!important;user-select:none!important}
+#reportcanvas .float-block.dce-drop-on{outline:3px solid var(--brand)!important;outline-offset:2px;box-shadow:0 0 0 8px color-mix(in srgb,var(--brand) 18%,transparent)!important}
+#reportcanvas.dce-drop-on{outline:3px dashed color-mix(in srgb,var(--brand) 60%,transparent);outline-offset:-3px}
+
+/* templates */
+html body dialog.dce-tpl{width:min(940px,calc(100vw - 32px));padding:0}
+.dce-tpl-in{padding:24px 26px 26px}
+.dce-tpl-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:18px}
+.dce-tpl-head>div{flex:1}
+html body dialog.dce-tpl h2{margin:0 0 4px}
+html body dialog.dce-tpl .dce-tpl-head p{margin:0}
+html body .dce-x{width:34px;height:34px;min-height:0;padding:0;display:grid;place-items:center;border:0;border-radius:10px;background:transparent;box-shadow:none;color:var(--muted)}
+.dce-tpl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+html body .dce-tpl-card{display:flex;flex-direction:column;align-items:stretch;gap:6px;min-height:0;padding:12px;border:1px solid var(--line);border-radius:16px;background:var(--surface);box-shadow:none;text-align:left;color:var(--ink)}
+html body .dce-tpl-card:hover:not(:disabled){border-color:var(--brand);box-shadow:var(--shadow-md);transform:translateY(-1px);background:var(--surface)}
+html body .dce-tpl-card.is-on{border-color:var(--brand);box-shadow:0 0 0 3px color-mix(in srgb,var(--brand) 25%,transparent)}
+.dce-tpl-card b{font-size:14px;margin-top:4px}
+.dce-tpl-card small{font-size:12.3px;line-height:1.45;color:var(--muted);font-weight:450}
+.dce-thumb{display:flex;flex-direction:column;gap:5px;height:128px;padding:10px;border-radius:11px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden}
+.dce-thumb em{margin:auto;font-style:normal;font-size:12px;color:var(--subtle,var(--muted))}
+.dce-thumb i{display:flex;gap:5px;flex:none}
+.dce-thumb .t-band{height:30px;border-radius:5px;background:#0e3764}
+.dce-thumb .t-slim{height:18px;border-radius:5px;background:#0e3764}
+.dce-thumb .t-lines{height:22px;border-radius:4px;background:repeating-linear-gradient(to bottom,color-mix(in srgb,var(--ink) 16%,transparent) 0 3px,transparent 3px 7px);opacity:.8}
+.dce-thumb .t-table{height:26px;border-radius:4px;border:1px solid var(--line-strong);background:repeating-linear-gradient(to bottom,var(--surface) 0 6px,color-mix(in srgb,var(--ink) 7%,transparent) 6px 7px)}
+.dce-thumb .t-list{flex-direction:column;gap:3px;height:28px;background:repeating-linear-gradient(to bottom,transparent 0 2px,color-mix(in srgb,var(--brand) 40%,transparent) 2px 4px,transparent 4px 8px) left/6px 100% no-repeat,repeating-linear-gradient(to bottom,transparent 0 2px,color-mix(in srgb,var(--ink) 16%,transparent) 2px 4px,transparent 4px 8px) 12px 0/80% 100% no-repeat}
+.dce-thumb i b{flex:1;border-radius:5px}
+.dce-thumb .t-row3 b,.dce-thumb .t-row2 b{height:26px}
+.dce-thumb .t-row3 b:nth-child(1),.dce-thumb .t-grid6 b:nth-child(3n+1),.dce-thumb .t-row2 b:nth-child(1){background:#dbeafe}
+.dce-thumb .t-row3 b:nth-child(2),.dce-thumb .t-grid6 b:nth-child(3n+2),.dce-thumb .t-row2 b:nth-child(2){background:#dcfce7}
+.dce-thumb .t-row3 b:nth-child(3),.dce-thumb .t-grid6 b:nth-child(3n){background:#fef3c7}
+.dce-thumb .t-grid6{flex-wrap:wrap}
+.dce-thumb .t-grid6 b{flex:0 0 calc(33.33% - 4px);height:26px}
+.dce-tpl-ask{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:16px;padding:12px 14px;border-radius:14px;background:var(--brand-50);border:1px solid color-mix(in srgb,var(--brand) 25%,transparent)}
+html body .dce-tpl-ask p{margin:0!important;color:var(--ink-2)!important;font-size:13px!important}
+.dce-tpl-ask div{display:flex;gap:8px}
+
+@media (max-width:1100px){html body #content .builder.dce-builder{grid-template-columns:1fr!important}html body #content .builder.dce-builder>.dce-panel,html body #content .builder.dce-builder>.canvas-viewport{grid-column:1;grid-row:auto}.dce-panel{position:static;max-height:420px}}
+
+/* Date shortcut sits right under "How this step works" */
+html body.dc-s2 #content>.dc-shortcut{order:-1!important;margin:0 0 18px!important}
 </style><script id="datacodex-redesign-script">/* DataCodex redesign layer: a simpler, step-by-step shell over the existing engine. */
 (function(){
 'use strict';
@@ -2197,7 +2342,7 @@ const STEPS=[
  {name:'Build Excel',sub:'Lay out your workbook',title:'Build your Excel workbook',lead:'Place your insights onto worksheets exactly where you want them.',
   how:['Drag an insight or table from <b>From your Blueprint</b> onto any cell of the sheet.','Right-click a cell, row number or table for options: insert, colour rows, duplicate, remove.','Use the <b>Style</b> palette to set colours and fonts. Scroll to move around; Ctrl + scroll zooms.']},
  {name:'Write email',sub:'Compose your report',title:'Write your email report',lead:'Shape a report you can paste straight into an email. Numbers stay linked to your insights.',
-  how:['Click <b>Add report base</b> for a ready-made layout, or start from a blank page.','Click any text on the page to edit it. Use <b>+ Live variable</b> to drop in numbers from your insights.','Drag a block by its grip to move it. Fonts and page size are under <b>Page &amp; font settings</b>.']},
+  how:['Click <b>Templates</b> to start from a ready-made email that already uses your insights.','Drag live numbers from the <b>Data</b> panel into any text, or onto an empty spot to make a card.','Click any text to edit it. Drag a box by its grip to move it. Fonts and page size are under <b>Page &amp; font settings</b>.']},
  {name:'Export',sub:'Download and share',title:'Export and share',lead:'Take your results with you. Downloads are created on this device.',
   how:['Download your Excel workbook.','Copy the email and paste it into your mail app, or save it as an HTML file.','Save the project so you can reopen everything next time.']}
 ];
@@ -2370,6 +2515,14 @@ window.dcParse=(()=>{
 })();
 
 /* ---------- Excel download: big sheets are written in the background ---------- */
+function excelFileName(){
+ const clean=t=>String(t||'').replace(/[\\/:*?"<>|]+/g,' ').replace(/\s+/g,' ').trim().slice(0,100);
+ let title='';try{title=clean(S.reportTitle)}catch(e){}
+ if(/^(title your report|a shared story|data exploration report)$/i.test(title))title='';
+ const proj=clean(window.dcProj?.current()?.name);
+ return (title||proj||'DataCodex report')+'.xlsx';
+}
+window.dcExcelName=excelFileName;
 let exportLazy=false;const LAZY_ROWS=5000;
 window.dcLazySheet=(headers,rows)=>{if(!exportLazy||!rows||rows.length<=LAZY_ROWS)return null;return{'!ref':XLSX.utils.encode_range({s:{r:0,c:0},e:{r:rows.length,c:Math.max(0,headers.length-1)}}),'!dcLazy':{headers,rows}}};
 function planVisual(wb,big){
@@ -2405,7 +2558,7 @@ async function backgroundExcel(){
   try{wb=workbook();plan=planVisual(wb,big)}finally{exportLazy=false;restore.forEach(([it,l])=>it.limit=l)}
   const lazyIdx=wb.SheetNames.map((n,i)=>wb.Sheets[n]['!dcLazy']?i:-1).filter(i=>i>=0);
   const wk=dcParse.worker();
-  if(!wk||(!lazyIdx.length&&!big.length)){const bytes=visualWorkbookBytes(lazyIdx.length||big.length?workbook():wb);download(new Blob([bytes],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),'DataCodex-report.xlsx');return}
+  if(!wk||(!lazyIdx.length&&!big.length)){const bytes=visualWorkbookBytes(lazyIdx.length||big.length?workbook():wb);download(new Blob([bytes],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),excelFileName());return}
   const job=dcParse.job();
   const sheets=wb.SheetNames.map(n=>{const ws=wb.Sheets[n];if(ws['!dcLazy']){const props={};for(const k of Object.keys(ws))if(k.startsWith('!')&&k!=='!dcLazy')props[k]=ws[k];return{kind:'lazy',headers:ws['!dcLazy'].headers,props}}return{kind:'plain',ws}});
   wk.postMessage({op:'xb',step:'begin',id:job.id,names:wb.SheetNames,sheets,plan,big:big.map(b=>({sheet:b.sheet,r:b.r,c:b.c,cols:b.cols,total:b.total,evenId:b.evenId,oddId:b.oddId,rowIds:b.rowIds,paper:b.paper||null,filter:!!b.filter}))});
@@ -2416,7 +2569,7 @@ async function backgroundExcel(){
   busy.text(`Writing ${totalRowsToSend.toLocaleString()} rows to Excel… You can keep working.`);
   wk.postMessage({op:'xb',step:'end',id:job.id});
   const out=await job.promise;
-  download(out instanceof Blob?out:new Blob([out],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),'DataCodex-report.xlsx');
+  download(out instanceof Blob?out:new Blob([out],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),excelFileName());
  }catch(e){notice(e.message||String(e))}
  finally{if(Array.isArray(allSheets))S.extractionSheets=allSheets;xlsxRunning=false;busy.hide()}
 }
@@ -2587,6 +2740,7 @@ function decorateStage(){
    const prev=q('.preview',panel);if(prev&&!q('[data-dc-title="preview"]',content))prev.insertAdjacentHTML('beforebegin','<div class="dc-subhead" data-dc-title="preview"><span class="dc-num">5</span>Check the preview, then apply</div>');
   }
   const dates=q('#normalize-all-dates')?.closest('section.panel');if(dates&&!dates.dataset.dc){dates.dataset.dc='1';dates.classList.add('dc-shortcut');const h=dates.querySelector('h2');if(h)h.insertAdjacentHTML('afterbegin','<span class="dc-tag">Shortcut</span>');const b=q('#normalize-all-dates');if(b)b.lastChild.data='Fix all dates at once'}
+  if(dates&&content.firstElementChild!==dates)content.prepend(dates);
  }
  if(i===3){
   const add=q('#add-insight');
@@ -3056,6 +3210,35 @@ document.addEventListener('keydown',e=>{
 q('#next')?.setAttribute('title','Next step (Alt + →)');q('#back')?.setAttribute('title','Previous step (Alt + ←)');
 q('#save-project')?.setAttribute('title','Save your data, cleaning, insights and layouts to a file (Ctrl + S)');
 
+/* ---------- Combine two tables: a clear side-by-side comparison instead of a wall of column names ---------- */
+if(typeof combinePreview==='function'){
+ const colChips=list=>{
+  const out=[];let run=null;
+  const flush=()=>{if(!run)return;out.push(run.a===run.b?`<i>Column ${run.a}</i>`:`<i class="is-range" title="Columns with no name in the file">Column ${run.a}–${run.b} <small>(${run.b-run.a+1} unnamed)</small></i>`);run=null};
+  for(const hd of list){const m=/^Column (\d+)$/.exec(hd);if(m){const n=+m[1];if(run&&n===run.b+1){run.b=n;continue}flush();run={a:n,b:n};continue}flush();out.push(`<i>${esc(hd)}</i>`)}
+  flush();return out.join('');
+ };
+ const group=(cls,title,list,emptyText)=>`<section class="dc-cmb-group ${cls}"><header><span class="dc-cmb-dot" aria-hidden="true"></span><span class="dc-cmb-title">${title}</span><em>${list.length}</em></header><div class="dc-cmb-chips">${list.length?colChips(list):`<span class="dc-cmb-none">${emptyText}</span>`}</div></section>`;
+ combinePreview=function(a,b){
+  const d=familyDifference(a,b),ak=a.headers.map(normalize),shared=a.headers.filter((h,i)=>b.headers.some(x=>normalize(x)===ak[i]));
+  const total=(a.rows.length+b.rows.length).toLocaleString(),low=d.shared>0&&d.ratio<.5;
+  return `<div class="dc-cmb">
+   <div class="dc-cmb-stats">
+    <div class="dc-cmb-stat ${low?'is-low':'is-good'}"><b>${d.shared}</b><span>shared ${d.shared===1?'column':'columns'}</span></div>
+    <div class="dc-cmb-stat"><b>${d.columns}</b><span>columns after combining</span></div>
+    <div class="dc-cmb-stat"><b>${total}</b><span>records in total</span></div>
+    <div class="dc-cmb-stat"><b>${Math.round(d.ratio*100)}%</b><span>column overlap</span></div>
+   </div>
+   ${low?`<div class="dc-cmb-warn" role="note">${svg('bulb')}<div><b>These tables have little in common.</b> Only ${d.shared} of ${d.columns} columns are shared, so combining would stack two different kinds of records into one long table with mostly blank cells. To connect related records instead (for example, agents to their audits), use <b>Match</b> on the Find insights step.</div></div>`:''}
+   <div class="dc-cmb-cols">
+    ${group('is-shared','In both tables',shared,'No shared columns')}
+    ${group('is-a','Only in '+esc(a.name),d.onlyA,'Nothing extra')}
+    ${group('is-b','Only in '+esc(b.name),d.onlyB,'Nothing extra')}
+   </div>
+   <p class="dc-cmb-note">Records from <b>${esc(b.name)}</b> are added underneath <b>${esc(a.name)}</b>. Nothing is matched or removed, and columns a table doesn’t have are left blank. Links between these two tables are removed; other links move to the combined table.</p>
+  </div>`;
+ };
+}
 decorate();lastStage=stage();
 })();
 
@@ -3806,8 +3989,11 @@ function renderPal(){
   <label class="dcx-tog"><input type="checkbox" data-p="include" ${S.includeInsightSheets?'checked':''}><span>Also add a detail sheet for every insight</span></label>
   <div class="dcx-pact"><button data-p="summary">${I('layers')}Add a summary page</button></div>`;
  }
+ const keepScroll=q('.dcx-pbody',pal)?.scrollTop||0,keepTab=palTab,winY=window.scrollY;
  pal.innerHTML=`<div class="dcx-phead" title="Drag to move · double-click to dock"><b>${I('palette')}Style</b><button data-p="close" aria-label="Hide the style palette" title="Hide">${I('x')}</button></div>${seg}<div class="dcx-pbody">${body}</div>`;
- if(focused){const el=q(`[data-p="${CSS.escape(focused)}"]`,pal);el?.focus()}
+ const pb=q('.dcx-pbody',pal);if(pb&&keepTab===renderPal.lastTab)pb.scrollTop=keepScroll;renderPal.lastTab=palTab;
+ if(focused){const el=q(`[data-p="${CSS.escape(focused)}"]`,pal);el?.focus({preventScroll:true})}
+ if(Math.abs(window.scrollY-winY)>1)window.scrollTo(0,winY);
 }
 pal.addEventListener('pointerdown',e=>{e.stopPropagation();const hd=e.target.closest('.dcx-phead');if(!hd||e.target.closest('button')||e.button!==0)return;e.preventDefault();
  const sb=stage.getBoundingClientRect(),pb=pal.getBoundingClientRect(),ox=e.clientX-pb.left,oy=e.clientY-pb.top;pal.classList.add('is-drag');
@@ -4096,7 +4282,7 @@ async function seal(){
  P.ops=P.ops.filter(o=>r.fams.some(f=>f.id===o.family));
  P.sealed={at:now(),expect:expectation()};
  await saveLocal(true);if(handle)await saveToFile('seal');
- paintCard();paintFinish();say('Report finished and sealed. Next time, open the project and drop in the new client files.');
+ paintCard();paintFinish();say('Report finished and sealed. Next time, open the project and drop in the new data files.');
 }
 function unseal(){if(!P?.sealed)return;P.sealed=null;schedule();paintCard();paintFinish();say('The report is open for editing again. Finish it again when you are done.')}
 
@@ -4134,7 +4320,7 @@ function paintRun(){
  const exp=P.sealed.expect,byFam=new Map(exp.map(e=>[e.family,runTables.filter(t=>t.target===e.family)]));
  const ready=runTables.some(t=>t.target);
  runDlg.innerHTML=`<form method="dialog" class="dcp-run-form">
-  <div class="dcp-run-head"><span class="dcp-badge is-sealed">${ic('seal')}Finished report</span><h2>Run “${esc(P.name)}” on new data</h2><p>Drop in this period’s client files. DataCodex matches each file to the data this report expects, repeats your cleaning, and rebuilds every insight, the Excel workbook and the email.</p></div>
+  <div class="dcp-run-head"><span class="dcp-badge is-sealed">${ic('seal')}Finished report</span><h2>Run “${esc(P.name)}” on new data</h2><p>Drop in this period’s data files. DataCodex matches each file to the data this report expects, repeats your cleaning, and rebuilds every insight, the Excel workbook and the email.</p></div>
   <div class="dcp-expect"><h3>This report expects</h3><ul>${exp.map(e=>{const got=byFam.get(e.family)||[];return `<li class="${got.length?'is-ok':''}"><span class="dcp-tick">${got.length?ic('check'):ic('db')}</span><div><b>${esc(e.name)}</b><small>${e.baseLen} columns: ${esc(e.headers.slice(0,Math.min(5,e.baseLen)).join(', '))}${e.baseLen>5?'…':''}</small><small class="dcp-was">Last time: ${(e.inputs.map(i=>i.name).join(', ')||'—')} · ${(+e.rows||0).toLocaleString()} rows</small></div><em>${got.length?got.map(t=>esc(t.name)).join(', '):'No new file yet — keeps the saved data'}</em></li>`}).join('')}</ul></div>
   <label class="dcp-drop" tabindex="0">${ic('upload')}<b>Drop the new files here</b><span>or click to choose CSV or Excel files</span><input type="file" multiple accept=".csv,.xlsx,.txt" hidden></label>
   ${runTables.length?`<div class="dcp-map"><h3>Files you added</h3>${runTables.map((t,i)=>{const e=exp.find(x=>x.family===t.target),s=e?score(e,t):null;return `<div class="dcp-map-row"><div class="dcp-map-file">${ic('file')}<div><b>${esc(t.name)}</b><small>${t.rows.length.toLocaleString()} rows · ${t.headers.length} columns</small></div></div><span class="dcp-arrow">→</span><label class="dcp-map-to"><span class="dc-sr">Use as</span><select data-map="${i}"><option value="">Don’t use this file</option>${exp.map(x=>`<option value="${esc(x.family)}" ${x.family===t.target?'selected':''}>${esc(x.name)}</option>`).join('')}</select><small class="${!e?'':s.exact||!s.missing.length?'is-good':'is-warn'}">${!e?'Not matched':s.exact||!s.missing.length?'All columns match':`Missing: ${esc(s.missing.slice(0,4).join(', '))}${s.missing.length>4?'…':''} (left blank)`}</small></label><button type="button" class="dcp-x" data-drop-file="${i}" aria-label="Remove ${esc(t.name)}">${ic('x')}</button></div>`}).join('')}</div>`:''}
@@ -4210,7 +4396,7 @@ function paintFinish(){
  const run=lastRun?`<div class="dcp-ran">${ic('check')}<div><b>Rebuilt with new data</b>${lastRun.summary.map(s=>`<small>${esc(s.name)}: ${s.rows.toLocaleString()} rows (was ${(+s.was||0).toLocaleString()}) from ${esc(s.files.join(', '))}</small>`).join('')}${lastRun.warn.map(w=>`<small class="is-warn">${esc(w)}</small>`).join('')}</div></div>`:'';
  finishPage.innerHTML=`
  <div class="dcp-fhead"><div class="dc-kicker"><span>Step ${C.onSteps().length+1} of ${C.onSteps().length+1}</span></div><h1>${sealed?'Your report is finished':'Finish report'}</h1>
-  <p>${sealed?`Sealed ${esc(when(sealed.at))}. When new client data arrives, open this project and drop the files in. DataCodex matches them and rebuilds everything.`:'Seal this project as a reusable report. DataCodex records the data it expects and the cleaning you did, so next time it can match new client files and rebuild the insights, workbook and email automatically.'}</p></div>
+  <p>${sealed?`Sealed ${esc(when(sealed.at))}. When new data arrives, open this project and drop the files in. DataCodex matches them and rebuilds everything.`:'Seal this project as a reusable report. DataCodex records the data it expects and the cleaning you did, so next time it can match new data files and rebuild the insights, workbook and email automatically.'}</p></div>
  ${run}
  <div class="dcp-fgrid">
   <section class="dcp-card"><h2>${ic('db')}Data this report expects</h2><ul class="dcp-expect-list">${exp.map(e=>`<li><b>${esc(e.name)}</b><small>${e.baseLen} columns · ${(+e.rows||0).toLocaleString()} rows${e.inputs.length?` · from ${esc(e.inputs.map(i=>i.name).join(', '))}`:''}</small><span class="dcp-cols">${e.headers.slice(0,e.baseLen).slice(0,8).map(h=>`<i>${esc(h)}</i>`).join('')}${e.baseLen>8?`<i>+${e.baseLen-8}</i>`:''}</span></li>`).join('')||'<li><small>No data yet.</small></li>'}</ul></section>
@@ -4246,7 +4432,7 @@ const card=document.createElement('div');card.className='dcp-card-rail';
 function paintCard(){
  const rail=q('.dc-rail');if(!rail)return;if(card.parentElement!==rail)rail.prepend(card);
  if(!P){card.hidden=true;return}card.hidden=false;
- card.innerHTML=`<button type="button" class="dcp-proj" data-dcp="hub" title="Switch project or create a new one"><span class="dcp-proj-ic">${ic('folder')}</span><span class="dcp-proj-t"><b>${esc(P.name)}</b><small>${P.client?esc(P.client):'No client set'}</small></span>${ic('swap','dcp-swap')}</button>
+ card.innerHTML=`<button type="button" class="dcp-proj" data-dcp="hub" title="Switch project or create a new one"><span class="dcp-proj-ic">${ic('folder')}</span><span class="dcp-proj-t"><b>${esc(P.name)}</b><small>${P.client?esc(P.client):'No audience set'}</small></span>${ic('swap','dcp-swap')}</button>
  <div class="dcp-meta">${P.sealed?`<span class="dcp-badge is-sealed">${ic('seal')}Finished report</span>`:`<span class="dcp-badge">${ic('edit')}In progress</span>`}<button type="button" class="dc-link" data-dcp="rename">Rename</button></div>
  <p class="dcp-status" aria-live="polite"></p>
  <label class="dc-switch dcp-keep"><input type="checkbox" ${keepCopy()?'checked':''} data-dcp="keep"><span>Keep a copy in this browser</span></label>`;
@@ -4269,7 +4455,7 @@ function headerLabels(){const l=q('#load-project');if(l&&l.dataset.dcp!=='1'){l.
 /* ---------- Rename ---------- */
 const renDlg=document.createElement('dialog');renDlg.className='dc-dialog dcp-rename';document.body.append(renDlg);
 function openRename(){
- if(!P)return;renDlg.innerHTML=`<form method="dialog"><h2>Project details</h2><p>The name is used for the project file and in your recent projects.</p><label><span>Project name</span><input name="n" required maxlength="80" value="${esc(P.name)}"></label><label><span>Client <small>(optional)</small></span><input name="c" maxlength="80" value="${esc(P.client)}"></label><div class="dc-dlg-foot"><button type="button" data-x>Cancel</button><button class="primary" type="submit">Save</button></div></form>`;
+ if(!P)return;renDlg.innerHTML=`<form method="dialog"><h2>Project details</h2><p>The name is used for the project file and in your recent projects.</p><label><span>Project name</span><input name="n" required maxlength="80" value="${esc(P.name)}"></label><label><span>Audience <small>(optional · who the report is for)</small></span><input name="c" maxlength="80" value="${esc(P.client)}"></label><div class="dc-dlg-foot"><button type="button" data-x>Cancel</button><button class="primary" type="submit">Save</button></div></form>`;
  const f=q('form',renDlg);q('[data-x]',renDlg).onclick=()=>renDlg.close();
  f.onsubmit=e=>{e.preventDefault();const n=f.n.value.trim();if(!n)return;P.name=n.slice(0,80);P.client=f.c.value.trim().slice(0,80);renDlg.close();paintCard();schedule()};
  renDlg.showModal();f.n.select();
@@ -4291,7 +4477,7 @@ async function openHub(){
   <div class="dc-hub-grid">
    <section class="dc-hub-new"><h3>${ic('plus')}Create a new project</h3>
     <form data-h="create"><label><span>Project name</span><input name="n" required maxlength="80" placeholder="For example, Acme monthly SMS report" autocomplete="off"></label>
-    <label><span>Client <small>(optional)</small></span><input name="c" maxlength="80" placeholder="For example, Acme Ltd" autocomplete="off"></label>
+    <label><span>Audience <small>(optional · who the report is for)</small></span><input name="c" maxlength="80" placeholder="For example, Acme leadership team" autocomplete="off"></label>
     <p class="dc-hub-note">${FS?`${ic('save')}Next you’ll choose where to keep the project file. DataCodex saves it there at every step, and you can save by hand any time.`:`${ic('save')}This browser can’t save files automatically, so DataCodex keeps your work here as you go. Use <b>Save project</b> to download the file.`}</p>
     <button class="primary" type="submit">${ic('plus')}Create project</button></form>
    </section>
@@ -4370,5 +4556,275 @@ headerLabels();paintCard();ensureStepButton();
 if(!P&&typeof window.__dcTestProject==='string')adopt(blankMeta(window.__dcTestProject),{fresh:true});
 else if(!P){hubEl.innerHTML='<div class="dc-hub-in dc-hub-loading"><span class="dc-spin" aria-hidden="true"></span>Loading your projects…</div>';try{hubEl.showModal()}catch(e){}}
 (async()=>{try{if(!P&&typeof window.__dcTestProject!=='string')await openHub()}catch(e){console.warn('DataCodex projects:',e)}})();
+})();
+
+/* DataCodex email builder: a live data panel with drag-and-drop values, and ready-made templates built from your insights.
+   Everything is written into the engine's own model (S.blocks, S.textVariables), so preview, copy and export keep working. */
+(function(){
+'use strict';
+if(typeof render!=='function'||typeof metricValue!=='function')return;
+const C=window.dcCore||{};
+const q=(s,r=document)=>r.querySelector(s),qa=(s,r=document)=>[...r.querySelectorAll(s)];
+const h=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const say=m=>{try{notice(m)}catch(e){}};
+const num=v=>typeof v==='number'?v.toLocaleString(undefined,{maximumFractionDigits:2}):String(v??'');
+const stageNow=()=>{try{return +S.stage||0}catch(e){return 0}};
+const P={
+ table:'M3 5h18v14H3zM3 10h18M9 10v9M15 10v9',match:'M8 7a5 5 0 1 0 0 10M16 7a5 5 0 1 1 0 10M8 12h8',filter:'M4 5h16l-6 8v6l-4-2v-4z',sum:'M18 5H6l6 7-6 7h12',
+ search:'M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM20 20l-3.5-3.5',grip:'M9 6h.01M15 6h.01M9 12h.01M15 12h.01M9 18h.01M15 18h.01',layout:'M4 4h16v16H4zM4 9h16M10 9v11',
+ shapes:'M4 4h7v7H4zM17.5 4a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7zM4 14h7v7H4zM14 21l3.5-7 3.5 7z',db:'M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zM4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3',
+ x:'M6 6l12 12M18 6 6 18',check:'m5 12 4 4L19 6',spark:'M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6',plus:'M12 5v14M5 12h14',chev:'m9 6 6 6-6 6'
+};
+const ic=(n,c='')=>`<svg class="dce-i ${c}" viewBox="0 0 24 24" aria-hidden="true"><path d="${P[n]}"/></svg>`;
+
+/* ---------- Sources and values ---------- */
+let cache=new Map();
+function src(id){if(!cache.has(id)){let f=null;try{f=metricSource(id)}catch(e){}cache.set(id,f&&f.headers?f:null)}return cache.get(id)}
+function sources(){
+ let list=[];try{list=[...goodWorkflowSources()]}catch(e){}
+ const seen=new Set(),out=[];
+ for(const f of list){if(!f||seen.has(f.id))continue;seen.add(f.id);
+  let kind='filter';if(f.id.startsWith('raw:')){const fam=S.families.find(x=>'raw:'+x.id===f.id);if(String(fam?.key||'').startsWith('dc-derived:'))continue;kind='table'}else if(f.id.startsWith('join:'))kind='match';
+  out.push({id:f.id,name:f.name||'Untitled',kind})}
+ try{for(const n of S.insights.filter(n=>n.kind==='summary'&&(n.metrics||[]).length))out.push({id:'summary:'+n.id,name:n.name||'Summary',kind:'sum',metrics:n.metrics})}catch(e){}
+ return out.sort((a,b)=>(a.kind==='table')-(b.kind==='table'));
+}
+const KIND={table:['table','Table'],match:['match','Match'],filter:['filter','Filter'],sum:['sum','Summary']};
+function metricSpec(spec){const m={...freshMetric(),source:spec.source,op:spec.op||'rows',column:+spec.column||0};return m}
+function valueOf(spec){
+ try{
+  if(spec.summaryMetric){const n=S.insights.find(n=>'summary:'+n.id===spec.source),m=n?.metrics?.find(x=>x.id===spec.summaryMetric);return metricText(metricValue(m),m.relative)}
+  return metricText(metricValue(metricSpec(spec)),false);
+ }catch(e){return '—'}
+}
+function isNumericCol(f,c){let seen=0,ok=0;for(let i=0;i<f.rows.length&&seen<200;i++){const v=String(f.rows[i][c]??'').trim();if(!v)continue;seen++;if(/^-?[\d,]*\.?\d+%?$/.test(v.replace(/[$€£\s]/g,'')))ok++}return seen>=3&&ok/seen>.9}
+const OPS={rows:'Records',distinct:'Unique',total:'Total',average:'Average',nonempty:'Filled',matchedLeft:'Matched',matchedRight:'Matched'};
+function tokenFor(spec,label){
+ const vars=S.textVariables||(S.textVariables=[]);
+ const same=vars.find(v=>v.source===spec.source&&(spec.summaryMetric?v.summaryMetric===spec.summaryMetric:(!v.summaryMetric&&v.op===spec.op&&(+v.column||0)===(+spec.column||0)&&!v.relative)));
+ if(same)return same.token;
+ const used=new Set(vars.map(v=>v.token));let base=String(label).replace(/[{}<>]/g,'').trim().slice(0,90),t=base,i=2;while(used.has(t))t=`${base} (${i++})`;
+ if(spec.summaryMetric)vars.push({id:uid(),token:t,source:spec.source,summaryMetric:spec.summaryMetric});
+ else{const m=metricSpec(spec);vars.push({id:uid(),token:t,source:m.source,op:m.op,column:m.column,groupColumn:m.groupColumn,relative:false,denominator:{...m.denominator}})}
+ return t;
+}
+
+/* ---------- Panel ---------- */
+const panel=document.createElement('aside');panel.className='dce-panel';panel.setAttribute('aria-label','Report data and elements');
+let tab='data',filter='',openSrc=new Set();
+function paintPanel(){
+ const list=sources();if(!openSrc.size&&list[0])openSrc.add(list[0].id);
+ const f=filter.toLowerCase(),shown=list.filter(s=>!f||s.name.toLowerCase().includes(f));
+ panel.innerHTML=`<div class="dce-tabs" role="tablist"><button role="tab" data-tab="data" aria-selected="${tab==='data'}">${ic('db')}Data</button><button role="tab" data-tab="els" aria-selected="${tab==='els'}">${ic('shapes')}Elements</button></div>
+ <div class="dce-body" data-pane="data" ${tab==='data'?'':'hidden'}>
+  <p class="dce-lead">Drag a value into any text on the page, or onto an empty spot to make a card. Click a value to add it to the selected box.</p>
+  <label class="dce-search">${ic('search')}<input type="search" placeholder="Search your data" value="${h(filter)}" aria-label="Search your data"></label>
+  ${shown.length?shown.map(s=>`<details class="dce-src" data-src="${h(s.id)}" ${openSrc.has(s.id)?'open':''}><summary><span class="dce-kind k-${s.kind}">${ic(KIND[s.kind][0])}</span><span class="dce-src-t"><b>${h(s.name)}</b><small>${KIND[s.kind][1]}</small></span>${ic('chev','dce-chev')}</summary><div class="dce-vals" data-vals="${h(s.id)}"></div></details>`).join('')
+   :`<p class="dce-none">${list.length?'Nothing matches that search.':'Build an insight on the Find insights step, and its numbers show up here.'}</p>`}
+ </div>
+ <div class="dce-body dce-els" data-pane="els" ${tab==='els'?'':'hidden'}></div>`;
+ const engineAside=moveAside();if(engineAside)q('[data-pane="els"]',panel).append(engineAside);
+ qa('details.dce-src[open]',panel).forEach(fillValues);
+}
+function moveAside(){const a=q('#content .builder > aside.palette');if(a){a.classList.add('dce-engine-aside');return a}return q('.dce-engine-aside',panel)}
+function fillValues(d){
+ const id=d.dataset.src,box=q('.dce-vals',d);if(!box||box.dataset.done)return;box.dataset.done='1';
+ const s=sources().find(x=>x.id===id);if(!s){box.innerHTML='';return}
+ const chip=(spec,label,value,extra='')=>`<button type="button" class="dce-val ${extra}" data-spec='${h(JSON.stringify(spec))}' data-label="${h(label)}" title="Drag into the report, or click to add it to the selected box"><span class="dce-val-l">${h(spec.short||label)}</span><b>${h(value)}</b></button>`;
+ if(s.kind==='sum'){box.innerHTML=s.metrics.map(m=>chip({source:id,summaryMetric:m.id,short:m.label},`${s.name} · ${m.label}`,valueOf({source:id,summaryMetric:m.id}))).join('');return}
+ const f=src(id);if(!f){box.innerHTML='<p class="dce-none">This data is not available right now.</p>';return}
+ let html=`<div class="dce-main">${chip({source:id,op:'rows',short:'Records'},`${s.name} · Records`,valueOf({source:id,op:'rows'}),'is-main')}`;
+ if(s.kind==='match'){html+=chip({source:id,op:'matchedLeft',short:'Matched (first table)'},`${s.name} · Matched records`,valueOf({source:id,op:'matchedLeft'}))}
+ html+=`</div><button type="button" class="dce-tablechip" data-table="${h(id)}" title="Drag onto the page, or click to add a live table">${ic('table')}Add as a live table<small>${f.headers.length} columns</small></button><div class="dce-fields-h">Fields <small>${f.headers.length}</small></div><div class="dce-fields"></div>`;
+ box.innerHTML=html;
+ const fields=q('.dce-fields',box),cols=f.headers.map((hd,c)=>({hd,c}));let i=0;
+ const step=()=>{if(!fields.isConnected)return;const t=performance.now();
+  while(i<cols.length&&performance.now()-t<12){const {hd,c}=cols[i++],numeric=isNumericCol(f,c);
+   const row=document.createElement('div');row.className='dce-field';
+   row.innerHTML=`<span class="dce-field-n" title="${h(hd)}">${h(hd)}</span><span class="dce-field-v">${chip({source:id,op:'distinct',column:c,short:'Unique'},`${s.name} · Unique ${hd}`,valueOf({source:id,op:'distinct',column:c}),'is-sm')}${numeric?chip({source:id,op:'total',column:c,short:'Total'},`${s.name} · Total ${hd}`,valueOf({source:id,op:'total',column:c}),'is-sm')+chip({source:id,op:'average',column:c,short:'Average'},`${s.name} · Average ${hd}`,valueOf({source:id,op:'average',column:c}),'is-sm'):''}</span>`;
+   fields.append(row)}
+  if(i<cols.length)setTimeout(step,0)};
+ step();
+}
+panel.addEventListener('click',e=>{
+ const t=e.target.closest('[data-tab]');if(t){tab=t.dataset.tab;paintPanel();return}
+});
+panel.addEventListener('toggle',e=>{const d=e.target;if(!d.matches?.('details.dce-src'))return;if(d.open){openSrc.add(d.dataset.src);fillValues(d)}else openSrc.delete(d.dataset.src)},true);
+panel.addEventListener('input',e=>{if(e.target.type==='search'){filter=e.target.value;const pos=e.target.selectionStart;paintPanel();const inp=q('.dce-search input',panel);inp.focus();inp.setSelectionRange(pos,pos)}});
+
+/* ---------- Placing values ---------- */
+const canvasEl=()=>q('#reportcanvas');
+function canvasPoint(x,y){const c=canvasEl();if(!c)return null;const r=c.getBoundingClientRect(),k=r.width/(S.layout?.width||r.width)||1;return{x:(x-r.left)/k,y:(y-r.top)/k,inside:x>=r.left&&x<=r.right&&y>=r.top&&y<=r.bottom}}
+function textTarget(x,y){
+ const el=document.elementFromPoint(x,y),blk=el?.closest?.('#reportcanvas .float-block');if(!blk)return null;
+ const id=blk.dataset.block,b=S.blocks.find(b=>b.id===id),rich=q('.rich',blk);
+ if(!b||!rich||!(b.type==='text'||(b.type.startsWith('shape-')&&b.type!=='shape-line')))return null;return{b,blk,rich};
+}
+function insertToken(b,rich,token,range){
+ let text=document.createTextNode('{{'+token+'}}');
+ if(range&&rich.contains(range.startContainer)&&!range.startContainer.parentElement?.closest('[data-live-token]')){range.collapse(true);
+  const n=range.startContainer,o=range.startOffset,txt=n.nodeType===3?n.data:'',before=txt.slice(0,o),after=txt.slice(o);
+  if(n.nodeType===3&&/\S$/.test(before)&&!/\s$/.test(before)){/* snap to the end of the word under the pointer */const m=/^\S*/.exec(after)[0];range.setStart(n,o+m.length);range.collapse(true)}
+  const pre=n.nodeType===3&&/\S/.test(n.data.slice(range.startOffset-1,range.startOffset))?' ':'',post=n.nodeType===3&&/^\S/.test(n.data.slice(range.startOffset))?' ':'';
+  text=document.createTextNode(pre+'{{'+token+'}}'+post);range.insertNode(text)}
+ else{const last=rich.lastElementChild&&/^(P|DIV|H\d|LI)$/.test(rich.lastElementChild.tagName)?rich.lastElementChild:rich;last.append(document.createTextNode(' '),text)}
+ try{saveInlineText(rich,b)}catch(e){b.text=(b.text||'')+' {{'+token+'}}'}
+}
+function nextFreeY(){return S.blocks.length?Math.max(...S.blocks.map(b=>(b.y||0)+(b.height||0)))+28:38}
+function newBlock(o){
+ const b={id:uid(),type:'shape-rounded',title:o.title||'Card',hideTitle:true,family:o.family||'',insight:o.insight||'',column:0,metric:'rows',span:12,height:o.height||150,width:o.width||300,x:o.x??20,y:o.y??38,z:S.blocks.length+1,text:safeRich(o.html||''),font:S.email?.font||'Arial',fontSize:o.fontSize||14,titleSize:18,textColor:o.color||'#0e3764',background:o.background||'#ffffff',accent:'#d9e7f5',border:o.border??0,radius:o.radius??12,padding:o.padding??22,lineHeight:1.55,align:o.align||'left',page:0};
+ if(o.type)b.type=o.type;S.blocks.push(b);
+ const bottom=b.y+b.height+40;if(S.layout&&S.layout.height<bottom)S.layout.height=bottom;
+ return b;
+}
+function cardHTML(label,token,sub){return `<p style="font-size:11px;letter-spacing:0.6px;text-transform:uppercase">${h(label)}</p><h2>{{${token}}}</h2>${sub?`<p style="color:#617b99">${h(sub)}</p>`:''}`}
+function placeValue(spec,label,at){
+ const token=tokenFor(spec,label),W=S.layout?.width||1000;
+ if(at&&at.kind==='text'){insertToken(at.b,at.rich,token,at.range);S.selected=at.b.id;render();say('Live value added. It updates whenever the data changes.');return}
+ const x=at?Math.max(20,Math.min(W-300,at.x-150)):20,y=at?Math.max(38,at.y-40):nextFreeY();
+ const srcName=sources().find(s=>s.id===spec.source)?.name||'';
+ const b=newBlock({x,y,title:spec.short||'Value',html:cardHTML(spec.short||'Value',token,srcName),background:'#f4f9ff'});
+ S.selected=b.id;render();say('Value card added. Drag its grip to move it.');
+}
+function placeTable(id,at){
+ const f=src(id),W=S.layout?.width||1000;if(!f)return;
+ const w=Math.min(W-40,Math.max(420,f.headers.length*120)),x=at?Math.max(20,Math.min(W-w-20,at.x-w/2)):20,y=at?Math.max(38,at.y-30):nextFreeY();
+ const b={id:uid(),type:'table',title:sources().find(s=>s.id===id)?.name||'Table',family:id,insight:id.startsWith('join:')?id.slice(5):'',column:0,metric:'rows',span:12,width:w,height:300,x,y,z:S.blocks.length+1,text:'',font:S.email?.font||'Arial',fontSize:13,titleSize:16,textColor:'#0e3764',background:'#ffffff',accent:'#d9e7f5',border:1,radius:8,padding:16,lineHeight:1.4,align:'left',page:0};
+ S.blocks.push(b);if(S.layout&&S.layout.height<y+340)S.layout.height=y+340;S.selected=b.id;render();say('Live table added. It always shows the latest rows.');
+}
+function clickPlace(spec,label){
+ const b=S.blocks.find(x=>x.id===S.selected),blk=b&&q(`#reportcanvas [data-block="${b.id}"]`),rich=blk&&q('.rich',blk);
+ if(b&&rich&&(b.type==='text'||(b.type.startsWith('shape-')&&b.type!=='shape-line'))){let range=null;try{if(typeof inlineRange!=='undefined'&&inlineRange&&rich.contains(inlineRange.startContainer))range=inlineRange.cloneRange()}catch(e){}placeValue(spec,label,{kind:'text',b,rich,range});return}
+ placeValue(spec,label,null);
+}
+
+/* ---------- Drag from the panel ---------- */
+let ghost=null,hl=null;
+panel.addEventListener('pointerdown',e=>{
+ const v=e.target.closest('.dce-val,.dce-tablechip');if(!v||e.button!==0)return;
+ const isTable=v.classList.contains('dce-tablechip'),spec=isTable?null:JSON.parse(v.dataset.spec),label=v.dataset.label,sx=e.clientX,sy=e.clientY;let drag=false,target=null;
+ const clear=()=>{hl?.classList.remove('dce-drop-on');hl=null;q('.dce-drop-hint')?.remove()};
+ const mv=ev=>{
+  if(!drag){if(Math.hypot(ev.clientX-sx,ev.clientY-sy)<5)return;drag=true;ghost=document.createElement('div');ghost.className='dce-ghost';ghost.innerHTML=isTable?`${ic('table')}<span>Live table</span>`:`<span>${h(spec.short||label)}</span><b>${h(q('b',v)?.textContent||'')}</b>`;document.body.append(ghost);document.body.classList.add('dce-dragging')}
+  ghost.style.transform=`translate(${ev.clientX+12}px,${ev.clientY+10}px)`;
+  clear();target=null;
+  const tt=!isTable&&textTarget(ev.clientX,ev.clientY);
+  if(tt){hl=tt.blk;hl.classList.add('dce-drop-on');target={kind:'text',...tt,cx:ev.clientX,cy:ev.clientY};ghost.dataset.hint='Insert into this text'}
+  else{const p=canvasPoint(ev.clientX,ev.clientY);if(p?.inside){target={kind:'canvas',x:p.x,y:p.y};ghost.dataset.hint=isTable?'Drop to place the table':'Drop to make a value card';const c=canvasEl();c.classList.add('dce-drop-canvas');hl=c;hl.classList.add('dce-drop-on')}else ghost.dataset.hint=''}
+  ghost.classList.toggle('has-target',!!target);
+  autoScroll(ev);
+ };
+ const up=ev=>{
+  removeEventListener('pointermove',mv);removeEventListener('pointerup',up);removeEventListener('pointercancel',up);stopScroll();
+  ghost?.remove();ghost=null;document.body.classList.remove('dce-dragging');canvasEl()?.classList.remove('dce-drop-canvas');clear();
+  if(!drag){isTable?placeTable(v.dataset.table,null):clickPlace(spec,label);return}
+  if(!target||ev.type!=='pointerup')return;
+  if(isTable){const p=target.kind==='text'?canvasPoint(target.cx,target.cy):target;placeTable(v.dataset.table,p);return}
+  if(target.kind==='text'){let range=null;try{range=document.caretRangeFromPoint?document.caretRangeFromPoint(target.cx,target.cy):null;if(!range&&document.caretPositionFromPoint){const pos=document.caretPositionFromPoint(target.cx,target.cy);if(pos){range=document.createRange();range.setStart(pos.offsetNode,pos.offset)}}}catch(e){}target.range=range}
+  placeValue(spec,label,target);
+ };
+ addEventListener('pointermove',mv);addEventListener('pointerup',up);addEventListener('pointercancel',up);
+});
+let scrollRaf=0,scrollEv=null;
+function autoScroll(ev){scrollEv=ev;if(!scrollRaf)scrollRaf=requestAnimationFrame(tickScroll)}
+function stopScroll(){cancelAnimationFrame(scrollRaf);scrollRaf=0}
+function tickScroll(){scrollRaf=0;if(!ghost||!scrollEv)return;const m=60,y=scrollEv.clientY;let dy=0;if(y<m)dy=-(m-y);else if(y>innerHeight-m)dy=y-(innerHeight-m);
+ const sc=q('.inline-page-scroller');if(dy){window.scrollBy(0,dy*.4)}
+ if(sc){const r=sc.getBoundingClientRect(),x=scrollEv.clientX;if(x>r.right-50&&x<r.right+20)sc.scrollLeft+=12;else if(x<r.left+50&&x>r.left-20)sc.scrollLeft-=12}
+ if(dy||sc)scrollRaf=requestAnimationFrame(tickScroll)}
+
+/* ---------- Templates ---------- */
+function picks(){
+ const all=sources(),ins=all.filter(s=>s.kind!=='table'&&s.kind!=='sum'),tables=all.filter(s=>s.kind==='table');
+ const list=(ins.length?ins:tables).slice(0,6);
+ return list.map(s=>{const f=src(s.id),peopleCol=f?f.headers.findIndex(x=>/name|agent|client|contact|customer|user|email|id\b/i.test(x)):-1;
+  return{...s,rows:tokenFor({source:s.id,op:'rows'},`${s.name} · Records`),people:peopleCol>=0?{col:f.headers[peopleCol],token:tokenFor({source:s.id,op:'distinct',column:peopleCol},`${s.name} · Unique ${f.headers[peopleCol]}`)}:null}});
+}
+const T={
+ navy:'#0e3764',ink:'#0e3764',muted:'#617b99',tints:[['#f4f9ff','#0e3764'],['#f1faf5','#0b6b47'],['#fff9ed','#8a5a00'],['#f6f2ff','#4c2a8a'],['#fdf1f3','#8f1d3a'],['#f2f6f8','#24414f']]
+};
+const TEMPLATES=[
+ {id:'exec',name:'Executive summary',desc:'Header, key numbers from your insights, a short story and a live table.',thumb:['band','row3','lines','table']},
+ {id:'kpi',name:'KPI scorecard',desc:'A clean grid of live numbers, one card per insight.',thumb:['slim','grid6','lines']},
+ {id:'weekly',name:'Weekly update',desc:'At a glance list with live numbers, highlights and next steps.',thumb:['band','list','row2','lines']},
+ {id:'note',name:'Quick note',desc:'A short email with the numbers written into the sentences.',thumb:['lines','lines','lines']},
+ {id:'classic',name:'Classic layout',desc:'The original report base with placeholders to fill in.',thumb:['band','lines','row3','table','table']},
+ {id:'blank',name:'Blank page',desc:'Start from nothing and drag values in yourself.',thumb:[]}
+];
+function buildTemplate(id,startY){
+ const W=S.layout?.width||1000,M=20,w=W-M*2,ps=picks(),title=(S.reportTitle&&!/^(title your report|a shared story|data exploration report)$/i.test(S.reportTitle))?S.reportTitle:(window.dcProj?.current()?.name||'Report');
+ const aud=window.dcProj?.current()?.client;let y=startY;const add=o=>newBlock({x:M,width:w,y,...o});
+ const header=(h1,sub)=>{add({title:'Header',type:'shape-square',radius:0,html:`<p style="font-size:11px;letter-spacing:1px">${h((aud?aud+' · ':'')+'REPORT').toUpperCase()}</p><h1>${h(h1)}</h1><p>${h(sub)}</p>`,background:T.navy,color:'#ffffff',height:180,padding:30});y+=200};
+ const cards=(items,cols)=>{const gap=16,cw=(w-gap*(cols-1))/cols;items.forEach((it,i)=>{const [bg,fg]=T.tints[i%T.tints.length];newBlock({x:M+(i%cols)*(cw+gap),y:y+Math.floor(i/cols)*176,width:cw,height:156,title:it.label,html:cardHTML(it.label,it.token,it.sub),background:bg,color:fg})});y+=Math.ceil(items.length/cols)*176+14};
+ const kpis=ps.map(p=>({label:p.name,token:p.rows,sub:'records'}));
+ if(id==='classic'){try{createReportBase()}catch(e){say(e.message)}return}
+ if(id==='blank')return;
+ if(!ps.length&&id!=='note'){say('Build an insight first, so the template has numbers to show. Added the layout without numbers.')}
+ if(id==='exec'){
+  header(title,'Reporting period · add the dates');
+  const p0=ps[0],p1=ps[1];
+  add({title:'Summary',type:'shape-square',radius:0,height:150,html:`<h3>Summary</h3><p>This period we looked at ${p0?`<b>{{${p0.rows}}}</b> records in ${h(p0.name)}`:'your data'}${p0?.people?`, covering <b>{{${p0.people.token}}}</b> unique ${h(p0.people.col)}`:''}${p1?`, and <b>{{${p1.rows}}}</b> in ${h(p1.name)}`:''}. Add what stands out and why it matters.</p>`});y+=170;
+  if(kpis.length)cards(kpis.slice(0,3),Math.min(3,kpis.length));
+  if(p0){newBlock({type:'table',x:M,y,width:w,height:300,title:p0.name,family:p0.id,insight:p0.id.startsWith('join:')?p0.id.slice(5):'',radius:8,border:1,padding:16,fontSize:13});y+=320}
+  add({title:'Next steps',type:'shape-square',radius:0,height:130,html:'<h3>Next steps</h3><p>List the actions, owners and dates for the next period.</p>'});y+=150;
+ }
+ if(id==='kpi'){
+  add({title:'Header',type:'shape-square',radius:0,height:110,background:T.navy,color:'#ffffff',padding:26,html:`<h2>${h(title)}</h2><p>Key numbers · add the reporting period</p>`});y+=130;
+  const items=[...kpis];for(const p of ps)if(p.people&&items.length<6)items.push({label:`Unique ${p.people.col}`,token:p.people.token,sub:p.name});
+  if(items.length)cards(items.slice(0,6),3);
+  add({title:'Notes',type:'shape-square',radius:0,height:110,html:'<p style="color:#617b99">Numbers update automatically from your insights each time the data changes.</p>'});y+=130;
+ }
+ if(id==='weekly'){
+  header(title,'Weekly update');
+  add({title:'At a glance',type:'shape-square',radius:0,height:Math.max(140,80+ps.length*30),html:`<h3>At a glance</h3><ul>${ps.map(p=>`<li><b>{{${p.rows}}}</b> ${h(p.name)}${p.people?` · {{${p.people.token}}} unique ${h(p.people.col)}`:''}</li>`).join('')||'<li>Add your first number</li>'}</ul>`});y+=Math.max(160,100+ps.length*30);
+  const half=(w-16)/2;newBlock({x:M,y,width:half,height:170,title:'Highlights',html:'<h3>Highlights</h3><p>What went well this week.</p>',background:'#f1faf5',color:'#0b6b47'});newBlock({x:M+half+16,y,width:half,height:170,title:'Watch list',html:'<h3>Watch list</h3><p>What needs attention next week.</p>',background:'#fff9ed',color:'#8a5a00'});y+=190;
+  add({title:'Next steps',type:'shape-square',radius:0,height:120,html:'<h3>Next steps</h3><p>Who does what by when.</p>'});y+=140;
+ }
+ if(id==='note'){
+  const p0=ps[0],p1=ps[1];
+  add({title:'Message',type:'shape-square',radius:0,height:300,padding:30,html:`<p>Hello${aud?' '+h(aud):' team'},</p><p>Here is the latest on ${h(title)}.</p><p>${p0?`We have <b>{{${p0.rows}}}</b> records in ${h(p0.name)}${p0.people?` across <b>{{${p0.people.token}}}</b> unique ${h(p0.people.col)}`:''}.`:'Add your first number by dragging it in from the Data panel.'}${p1?` ${h(p1.name)} has <b>{{${p1.rows}}}</b> records.`:''}</p><p>Let me know if you have any questions.</p><p>Best regards,</p>`});y+=320;
+ }
+}
+const tplDlg=document.createElement('dialog');tplDlg.className='dc-dialog dce-tpl';document.body.append(tplDlg);
+function thumb(parts){return `<div class="dce-thumb">${parts.map(p=>`<i class="t-${p}">${p==='row3'?'<b></b><b></b><b></b>':p==='row2'?'<b></b><b></b>':p==='grid6'?'<b></b><b></b><b></b><b></b><b></b><b></b>':''}</i>`).join('')||'<em>Blank</em>'}</div>`}
+function openTemplates(){
+ const n=picks().length,has=S.blocks.length>0;let chosen=null;
+ const paint=()=>{tplDlg.innerHTML=`<div class="dce-tpl-in"><div class="dce-tpl-head"><div><h2>Choose a template</h2><p>${n?`Templates fill in live numbers from your ${n} ${n===1?'insight':'insights'}. You can edit every word afterwards.`:'Build an insight first to get live numbers in the templates.'}</p></div><button type="button" class="dce-x" data-close aria-label="Close">${ic('x')}</button></div>
+  <div class="dce-tpl-grid">${TEMPLATES.map(t=>`<button type="button" class="dce-tpl-card ${chosen===t.id?'is-on':''}" data-tpl="${t.id}">${thumb(t.thumb)}<b>${t.name}</b><small>${t.desc}</small></button>`).join('')}</div>
+  ${chosen&&has?`<div class="dce-tpl-ask"><p>Your page already has ${S.blocks.length} ${S.blocks.length===1?'box':'boxes'}. What should happen to them?</p><div><button type="button" data-apply="below">Add below what’s there</button><button type="button" class="primary" data-apply="replace">Replace the page</button></div></div>`:''}</div>`;
+  q('[data-close]',tplDlg).onclick=()=>tplDlg.close();
+  qa('[data-tpl]',tplDlg).forEach(b=>b.onclick=()=>{chosen=b.dataset.tpl;if(!has)apply(chosen,'replace');else paint()});
+  qa('[data-apply]',tplDlg).forEach(b=>b.onclick=()=>apply(chosen,b.dataset.apply));
+ };
+ const apply=(id,mode)=>{
+  if(mode==='replace'){S.blocks=[];S.selected=null;if(S.layout){S.layout.height=1000;if(id!=='classic'&&S.layout.width>800)S.layout.width=760}}
+  const start=mode==='replace'?38:nextFreeY()+20;
+  buildTemplate(id,start);
+  if(S.blocks.length&&!S.selected)S.selected=S.blocks.find(b=>b.y>=start)?.id||S.blocks[0].id;
+  S.reportBaseInitialized=true;tplDlg.close();render();
+  requestAnimationFrame(()=>q('#reportcanvas')?.scrollIntoView({behavior:'smooth',block:'start'}));
+  say(`${TEMPLATES.find(t=>t.id===id).name} added. Click any text to edit it.`);
+ };
+ paint();tplDlg.showModal();
+}
+
+/* ---------- Mount on the Write email step ---------- */
+let lastSt=-1;
+function mount(){
+ const st=stageNow(),entered=st===5&&lastSt!==5;lastSt=st;if(st!==5)return;
+ if(entered)cache=new Map();
+ const builder=q('#content .builder');if(!builder)return;
+ builder.classList.add('dce-builder');
+ if(panel.parentElement!==builder)builder.prepend(panel);
+ const sig=sources().map(x=>x.id+'|'+x.name).join(';')+'#'+tab;
+ if(sig!==panel.dataset.sig||entered){const body=q('.dce-body[data-pane="data"]',panel),top=body?body.scrollTop:0;panel.dataset.sig=sig;paintPanel();const nb=q('.dce-body[data-pane="data"]',panel);if(nb)nb.scrollTop=top}
+ else{const a=moveAside(),pane=q('[data-pane="els"]',panel);if(a&&pane&&a.parentElement!==pane){qa('.dce-engine-aside',pane).forEach(x=>x!==a&&x.remove());pane.append(a)}}
+ const tb=q('#report-title')?.closest('.toolbar,label')?.closest('.toolbar')||q('#starter')?.parentElement;
+ if(tb&&!q('[data-dce-templates]',tb)){const b=document.createElement('button');b.type='button';b.className='primary dce-tpl-btn';b.dataset.dceTemplates='';b.innerHTML=`${ic('layout')}Templates`;b.onclick=openTemplates;const st=q('#starter',tb);if(st)st.before(b);else tb.append(b)}
+}
+const baseRender=render;
+render=function(){const r=baseRender.apply(this,arguments);try{mount()}catch(e){console.warn('DataCodex email:',e)}return r};
+window.dcEmail={openTemplates,sources,placeValue,placeTable,tokenFor};
+if(stageNow()===5)mount();
 })();
 </script></body></html>
