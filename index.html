@@ -3715,15 +3715,28 @@ const serializer=(()=>{
    if(performance.now()-t>8){await yieldTask();if(sigOf(arr,h.holder,h.key)!==h.sig)throw new Changed();t=performance.now()}}
   parts.push('\n\t]');blobs.push(new Blob(parts));const blob=new Blob(blobs,{type:'application/json'});cache.set(arr,{sig:h.sig,blob});return blob;
  }
+ const sameCache=new WeakMap();
+ async function sameRows(a,b){
+  if(a.arr===b.arr)return true;if(a.arr.length!==b.arr.length)return false;
+  const key=a.sig+'~'+b.sig;let m=sameCache.get(a.arr);if(m?.has(key))return m.get(key);
+  const A=a.arr,B=b.arr;let ok=true,t=performance.now();
+  for(let i=0;i<A.length&&ok;i++){const x=A[i],y=B[i];if(x===y)continue;if(!Array.isArray(x)||!Array.isArray(y)||x.length!==y.length){ok=false;break}for(let k=0;k<x.length;k++)if(x[k]!==y[k]){ok=false;break}
+   if((i&4095)===0&&performance.now()-t>8){await yieldTask();t=performance.now()}}
+  if(!m){m=new Map();sameCache.set(a.arr,m)}if(m.size>40)m.clear();m.set(key,ok);return ok;
+ }
  async function build(){
   for(let attempt=0;attempt<4;attempt++){
    try{
     const heavy=[],nonce=Math.random().toString(36).slice(2),doc=saveProject();
     const light=JSON.stringify(doc,function(key,value){if((key==='rows'||key==='original')&&Array.isArray(value)&&value.length>200){heavy.push({arr:value,holder:this,key,sig:sigOf(value,this,key)});return `DCROWS#${heavy.length-1}#${nonce}`}return value});
-    const blobs=[];for(const h of heavy)blobs.push(await arrayBlob(h));
+    /* The same rows are often kept two or three times (the imported file, the table and its original
+       values). Write each set once and point the other copies at it; they are copied again on open. */
+    const region=new Array(heavy.length),refOf=new Array(heavy.length);let nReg=0;
+    for(let i=0;i<heavy.length;i++){for(let j=0;j<i;j++){if(refOf[j]===undefined&&await sameRows(heavy[j],heavy[i])){refOf[i]=j;break}}if(refOf[i]===undefined)region[i]=nReg++}
+    const blobs=[];for(let i=0;i<heavy.length;i++)blobs.push(refOf[i]===undefined?await arrayBlob(heavy[i]):null);
     if(heavy.some(h=>sigOf(h.arr,h.holder,h.key)!==h.sig))throw new Changed();
     const parts=[],re=new RegExp(`"DCROWS#(\\d+)#${nonce}"`,'g');let last=0,m;
-    while((m=re.exec(light))){parts.push(light.slice(last,m.index),blobs[+m[1]]);last=re.lastIndex}parts.push(light.slice(last));
+    while((m=re.exec(light))){const i=+m[1];parts.push(light.slice(last,m.index),refOf[i]===undefined?blobs[i]:`"@@DCREF${region[refOf[i]]}@@"`);last=re.lastIndex}parts.push(light.slice(last));
     return new Blob(parts,{type:'application/json'});
    }catch(e){if(!(e instanceof Changed))throw e;await new Promise(r=>setTimeout(r,400))}
   }
@@ -3731,22 +3744,40 @@ const serializer=(()=>{
  }
  return{build};
 })();
-/* Read a project back in slices: big row lists are written one row per line, so they can be parsed a piece at a time. */
-async function parseProjectText(text){
- const re=/"(rows|original)":\[\n\t/g,regions=[];let m;
- while((m=re.exec(text))){const open=re.lastIndex-3,start=re.lastIndex,end=text.indexOf('\n\t]',start);if(end<0)return JSON.parse(text);regions.push([open,start,end]);re.lastIndex=end+3}
- if(!regions.length)return JSON.parse(text);
- const tag=k=>'"@@DCROWS'+k+'@@"';let light='',last=0;regions.forEach(([open,,end],k)=>{light+=text.slice(last,open)+tag(k);last=end+3});light+=text.slice(last);
- const doc=JSON.parse(light),arrays=[];let t=performance.now();
- for(const [,start,end] of regions){const out=[];let pos=start;
-  while(pos<end){let cut=Math.min(end,pos+1500000);if(cut<end){const nx=text.indexOf(',\n\t',cut);cut=nx<0||nx>end?end:nx}
-   const part=JSON.parse('['+text.slice(pos,cut)+']');for(let i=0;i<part.length;i+=10000)out.push(...part.slice(i,i+10000));pos=cut<end?cut+3:end;
-   if(performance.now()-t>12){await yieldTask();t=performance.now()}}
-  arrays.push(out)}
- const fill=o=>{if(Array.isArray(o)){for(let i=0;i<o.length;i++){const v=o[i];if(typeof v==='string'&&v.startsWith('@@DCROWS'))o[i]=arrays[+v.slice(8,-2)];else if(v&&typeof v==='object')fill(v)}}else if(o&&typeof o==='object'){for(const k of Object.keys(o)){const v=o[k];if(typeof v==='string'&&v.startsWith('@@DCROWS')&&v.endsWith('@@'))o[k]=arrays[+v.slice(8,-2)];else if(v&&typeof v==='object')fill(v)}}};
+/* Read a project back in slices. Big row lists are written one row per line.
+   Files and saved copies are read straight from the Blob in pieces, never as one giant string:
+   browsers silently return an empty string for files over about 512 MB. */
+function fillProject(doc,arrays){
+ const val=v=>{if(typeof v!=='string'||!v.startsWith('@@DC'))return undefined;let m=/^@@DCROWS(\d+)@@$/.exec(v);if(m)return arrays[+m[1]];m=/^@@DCREF(\d+)@@$/.exec(v);if(m){const src=arrays[+m[1]]||[];return src.map(r=>Array.isArray(r)?r.slice():r)}return undefined};
+ const fill=o=>{if(Array.isArray(o)){for(let i=0;i<o.length;i++){const v=o[i],r=val(v);if(r!==undefined)o[i]=r;else if(v&&typeof v==='object')fill(v)}}else if(o&&typeof o==='object'){for(const k of Object.keys(o)){const v=o[k],r=val(v);if(r!==undefined)o[k]=r;else if(v&&typeof v==='object')fill(v)}}};
  fill(doc);return doc;
 }
-window.dcOpenProject=async f=>{busy.show('Opening your project…',true);try{await nextFrame();if(!f.size)throw Error(`“${f.name}” is empty (0 bytes). It was probably created but never finished saving. Choose another copy of the project.`);const text=await f.text();let doc;try{doc=await parseProjectText(text)}catch(e){throw Error(/end of JSON/i.test(e.message)?`“${f.name}” is incomplete: it ends early, so it was probably cut off while saving. Choose another copy of the project.`:`“${f.name}” is not a readable project file (${e.message}).`)}await nextFrame();loadProjectObject(doc)}finally{busy.hide()}};
+async function parseProjectBlob(blob){
+ const CH=16*1024*1024,dec=new TextDecoder();let off=0,buf='',mode='light',cur=null,t=performance.now();
+ const light=[],arrays=[],OPEN=/"(rows|original)":\[\n\t/;
+ const more=async()=>{if(off>=blob.size)return false;const end=Math.min(blob.size,off+CH);const ab=await blob.slice(off,end).arrayBuffer();off=end;buf+=dec.decode(ab,{stream:off<blob.size});if(performance.now()-t>12){await yieldTask();t=performance.now()}return true};
+ const rows=str=>{if(!str)return;const part=JSON.parse('['+str+']');for(let i=0;i<part.length;i++)cur.push(part[i])};
+ if(!blob.size)throw Error('Unexpected end of JSON input');
+ for(;;){
+  if(mode==='light'){
+   const m=OPEN.exec(buf);
+   if(m){light.push(buf.slice(0,m.index+m[0].length-3)+'"@@DCROWS'+arrays.length+'@@"');buf=buf.slice(m.index+m[0].length);cur=[];mode='rows';continue}
+   if(buf.length>64){light.push(buf.slice(0,buf.length-32));buf=buf.slice(buf.length-32)}
+   if(!(await more())){light.push(buf);buf='';break}
+  }else{
+   const end=buf.indexOf('\n\t]');
+   if(end>=0){rows(buf.slice(0,end));buf=buf.slice(end+3);arrays.push(cur);cur=null;mode='light';continue}
+   const last=buf.lastIndexOf(',\n\t');if(last>0){rows(buf.slice(0,last));buf=buf.slice(last+3)}
+   if(!(await more()))throw Error('Unexpected end of JSON input');
+  }
+ }
+ return fillProject(JSON.parse(light.join('')),arrays);
+}
+async function parseProjectText(text){
+ if(typeof Blob!=='undefined'&&text instanceof Blob)return parseProjectBlob(text);
+ return parseProjectBlob(new Blob([String(text??'')]));
+}
+window.dcOpenProject=async f=>{busy.show('Opening your project…',true);try{await nextFrame();if(!f.size)throw Error(`“${f.name}” is empty (0 bytes). It was probably created but never finished saving. Choose another copy of the project.`);let doc;try{doc=await parseProjectText(f)}catch(e){throw Error(/end of JSON/i.test(e.message)?`“${f.name}” is incomplete: it ends early, so it was probably cut off while saving. Choose another copy of the project.`:`“${f.name}” is not a readable project file (${e.message}).`)}await nextFrame();loadProjectObject(doc)}finally{busy.hide()}};
 /* Save project: build the file in slices, then download it. */
 document.addEventListener('click',e=>{
  if(!e.target.closest?.('#save-project'))return;e.preventDefault();e.stopImmediatePropagation();
@@ -4793,7 +4824,7 @@ async function saveLocal(force){
  if(state.saving){state.again=true;return}state.saving=true;
  try{
   let meta=listMeta();
-  if(keepCopy()){const blob=await serializer.build();if(!(await wholeProject(blob)))throw Error('The saved copy came out incomplete');meta=listMeta();try{await idb.put('proj:'+P.id,{meta,blob})}catch(err){await idb.put('proj:'+P.id,{meta,json:await blob.text()})}state.localAt=now()}
+  if(keepCopy()){const blob=await serializer.build();if(!(await wholeProject(blob)))throw Error('The saved copy came out incomplete');meta=listMeta();try{await idb.put('proj:'+P.id,{meta,blob})}catch(err){if(blob.size>400*1024*1024)throw err;const json=await blob.text();if(!json)throw err;await idb.put('proj:'+P.id,{meta,json})}state.localAt=now()}
   else await idb.del('proj:'+P.id);
   await upsertList(meta);
  }catch(e){console.warn('The Analysis Studio save:',e);state.error='Could not save in this browser'}
@@ -5133,10 +5164,10 @@ async function openStored(id){
  try{
   await nextFrame();const rec=await idb.get('proj:'+id);
   /* Try every copy we have and use the newest one that reads cleanly. */
-  const problems=[],readText=async(text,label)=>{if(!text||!String(text).trim()){problems.push(label+' is empty');return null}try{return await parseProjectText(text)}catch(e){problems.push(label+(/end of JSON/i.test(e.message)?' is incomplete (it was cut off while saving)':' could not be read ('+e.message+')'));return null}};
+  const problems=[],readText=async(text,label)=>{if(!text||(text instanceof Blob?!text.size:!String(text).trim())){problems.push(label+' is empty');return null}try{return await parseProjectText(text)}catch(e){problems.push(label+(/end of JSON/i.test(e.message)?' is incomplete (it was cut off while saving)':' could not be read ('+e.message+')'));return null}};
   let local=null,disk=null,diskAt=0,diskEmpty=false;const localAt=rec?.meta?.updated||0;
-  if(rec&&(rec.blob||rec.json)){let text='';try{text=rec.blob?await rec.blob.text():rec.json}catch(e){problems.push('The copy kept in this browser could not be read')}if(text)local=await readText(text,'The copy kept in this browser');else if(!problems.length)problems.push('The copy kept in this browser is empty')}
-  if(h&&p==='granted'){try{const file=await h.getFile();diskAt=file.lastModified;if(!file.size){diskEmpty=true;problems.push(`The project file “${file.name}” is empty (0 bytes)`)}else if(!local||diskAt>localAt+2000)disk=await readText(await file.text(),`The project file “${file.name}”`)}catch(e){problems.push('The project file could not be read')}}
+  if(rec&&(rec.blob||rec.json)){let text=rec.blob||rec.json||'';if(text)local=await readText(text,'The copy kept in this browser');else if(!problems.length)problems.push('The copy kept in this browser is empty')}
+  if(h&&p==='granted'){try{const file=await h.getFile();diskAt=file.lastModified;if(!file.size){diskEmpty=true;problems.push(`The project file “${file.name}” is empty (0 bytes)`)}else if(!local||diskAt>localAt+2000)disk=await readText(file,`The project file “${file.name}”`)}catch(e){problems.push('The project file could not be read')}}
   else if(h&&p!=='granted')problems.push('Permission to read the project file was not given');
   const doc=disk&&(!local||diskAt>localAt+2000)?disk:(local||disk);
   if(!doc){busy.hide();busyOpening=false;hubMessage(`This project could not be opened. ${problems.length?problems.join('. ')+'.':'It has no saved copy in this browser.'} If you have the project file saved somewhere, click “Open a project file…” and choose it.`,'error');return}
@@ -5164,7 +5195,7 @@ async function openFile(){
 document.addEventListener('change',e=>{if(e.target.matches?.('#project-file')&&e.target.files?.[0]&&!pendingAdopt)pendingAdopt={handle:null,fallbackName:e.target.files[0].name.replace(/\.datacodex\.json$|\.json$/i,'')}},true);
 async function recoverLegacy(rec){
  busy.show('Recovering your work…',true);
- try{await nextFrame();const text=rec.blob?await rec.blob.text():rec.json;const doc=await parseProjectText(text);doc.datacodex=blankMeta('Recovered work');quietRestore=true;pendingAdopt={handle:null};try{loadProjectObject(doc)}finally{quietRestore=false}await idb.del('last');say('Recovered your earlier work as “Recovered work”. Rename it from the sidebar.')}
+ try{await nextFrame();const doc=await parseProjectText(rec.blob||rec.json);doc.datacodex=blankMeta('Recovered work');quietRestore=true;pendingAdopt={handle:null};try{loadProjectObject(doc)}finally{quietRestore=false}await idb.del('last');say('Recovered your earlier work as “Recovered work”. Rename it from the sidebar.')}
  catch(e){say('Could not recover: '+e.message)}finally{busy.hide()}
 }
 
