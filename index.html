@@ -1475,6 +1475,7 @@ html body .dc-welcome{margin-top:0}
 .dc-node-err{padding:10px 12px;margin:0;font-size:12px;color:var(--warn)!important}
 .dc-busy.soft{place-items:end center;padding-bottom:96px;pointer-events:none!important;cursor:auto}
 .dc-busy.soft .dc-busy-card{pointer-events:auto}
+.dc-ready-src{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--success,#16a34a);font-weight:600}.dc-ready-src svg{width:16px;height:16px}
 
 /* =====================================================================
    The Analysis Studio design system v3: tokens + components
@@ -1528,7 +1529,7 @@ html body.light{
 html body{font-family:var(--font-ui);font-size:var(--fs-md);line-height:1.55;letter-spacing:-.006em;font-feature-settings:'cv11','ss01','ss03';background:var(--canvas);color:var(--ink);text-rendering:optimizeLegibility}
 html body.light{background:radial-gradient(1200px 400px at 70% -120px,rgba(74,108,247,.07),transparent 70%),var(--canvas) fixed}
 /* every piece of app chrome uses Inter; the report/email page keeps its own chosen fonts */
-html body :not(:is(.inline-page-scroller,.email-preview,.render-host,.reportblock) *):not(:is(.inline-page-scroller,.email-preview,.render-host,.reportblock)):not(svg *){font-family:var(--font-ui)!important}
+html body :not(:is(.inline-page-scroller,.email-preview,.render-host,.reportblock,.tas-paper,.tas-tpl-thumb) *):not(:is(.inline-page-scroller,.email-preview,.render-host,.reportblock,.tas-paper,.tas-tpl-thumb)):not(svg *){font-family:var(--font-ui)!important}
 html body :is(.dc-stephead h1,.dc-welcome h2,.dc-col-head h2,.dc-section-title h2,dialog.dc-dialog h2,.brand,.dropzone h2,.dc-how>summary,.panel>h2,dialog .dialog-head h2,dialog .dialog-head h3,.dc-icard h2,.match-count,.statline strong,.dc-istats b):not(:is(.inline-page-scroller,.email-preview) *){font-family:var(--font-display)!important}
 html body :is(.statline strong,.dc-istats b,.match-count,.dc-count,output,.dc-meter-count,td,.sheet-node-result strong,.dc-t-num,.dc-n,.dc-num,.dc-dot){font-variant-numeric:tabular-nums}
 html body p{color:var(--muted)}
@@ -2043,6 +2044,29 @@ html body .dcx-cf-del:hover{color:var(--danger,#dc2626)!important}
 html body .dcx-cf-add{width:100%!important;justify-content:center;gap:6px;display:inline-flex!important;align-items:center}
 .dcx-cf-add svg{width:14px;height:14px}
 
+/* ---------- Roomier Style panel ---------- */
+html body .dcx{--dcx-h:clamp(620px,calc(100vh - 150px),1200px)}
+.dcx-pal{width:380px;top:12px;max-height:calc(100% - 24px)}
+.dcx-pal.is-wide{width:min(520px,calc(100% - 24px))}
+.dcx-phead{gap:6px}
+.dcx-phead>b{margin-right:auto}
+html body .dcx-phead>button[data-p="size"]{width:28px!important;height:28px!important;min-height:0!important;padding:0!important;display:grid!important;place-items:center;border:0!important;background:transparent!important;box-shadow:none!important;color:var(--muted)!important;border-radius:8px!important}
+html body .dcx-phead>button[data-p="size"]:hover{background:color-mix(in srgb,var(--ink) 8%,transparent)!important;color:var(--ink)!important}
+.dcx-pal .dcx-pbody{overscroll-behavior:contain}
+/* Highlight rules get real room */
+.dcx-pal .dcx-cf-rule{padding:12px;gap:10px}
+html body .dcx-pal .dcx-cf-line select,html body .dcx-pal .dcx-cf-line input:not([type=checkbox]){height:36px!important;font-size:13px!important}
+html body .dcx-pal .dcx-cf-style button[data-cfsw]{width:26px!important;height:26px!important}
+.dcx-pal .dcx-cf-prev{width:40px;height:30px;font-size:13px}
+.dcx-pal.is-wide .dcx-cf-line:nth-child(2) select{flex:1.3 1 0}
+.dcx-pal.is-wide .dcx-cf-style{gap:7px}
+html body .dcx-pal.is-wide .dcx-cf-style button[data-cfsw]{width:30px!important;height:30px!important}
+.dcx-pal.is-wide .dcx-cf-help,.dcx-pal.is-wide .dcx-cf-count{font-size:12.5px!important}
+.dcx-pal.is-wide{font-size:13.5px}
+@media (max-width:1100px){.dcx-pal.is-wide{width:min(420px,calc(100% - 24px))}}
+@media (max-width:760px){.dcx-pal,.dcx-pal.is-wide{width:auto;top:auto;max-height:55%}}
+.dcx-pal .dcx-cf-b{height:30px;align-self:center}
+
 /* ===== The Analysis Studio projects: hub, sidebar card, Finish report step, run dialog ===== */
 .dcp-i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .dc-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -2381,6 +2405,26 @@ html body.dc-s2 #content>.dc-shortcut{order:-1!important;margin:0 0 18px!importa
 .dci-pass{margin:4px 0 0!important;padding:10px 12px;border-radius:10px;background:var(--brand-50);color:var(--ink-2)!important;font-size:13px!important}
 .dci-pass b{color:var(--brand-ink,var(--brand));font-variant-numeric:tabular-nums}
 .dci-note{margin:2px 0 0!important;font-size:12px!important;color:var(--muted)!important}
+/* Filter kinds, grouped */
+.filter-kind-choices .dci-kind-h{grid-column:1/-1;margin:6px 0 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+/* Filter one table: conditions */
+.dci-conds{border:1px solid var(--line);border-radius:14px;padding:14px;margin:14px 0;display:flex;flex-direction:column;gap:10px;background:var(--surface-2)}
+.dci-conds-h{display:flex;align-items:baseline;justify-content:space-between}
+.dci-conds-h h3{margin:0;font-size:15px}
+.dci-conds-h span{font-size:12.5px;color:var(--muted)}
+.dci-conds ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.dci-cond{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.dci-cond-n{width:24px;height:24px;border-radius:50%;background:var(--brand);color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center;flex:none}
+.dci-cond>div{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.dci-cond small{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+.dci-cond b{font-size:14px;font-weight:600;overflow-wrap:anywhere}
+.dci-conds-empty{display:flex;flex-direction:column;gap:4px;padding:16px;border:1.5px dashed var(--line);border-radius:12px;text-align:center;color:var(--muted);font-size:13px}
+.dci-conds-empty b{color:var(--ink);font-size:14px}
+html body .dci-add{align-self:flex-start}
+html body .filter-kind-choices>button{grid-column:auto!important}
+.single-dataset-dialog .config-grid{align-items:end}
+html body .single-dataset-dialog .config-grid select{height:44px!important}
+html body .single-dataset-dialog .single-dataset-actions{background:var(--surface)!important;padding-top:12px;border-top:1px solid var(--line);z-index:2}
 
 /* ===== Bulk cleaning ===== */
 html body.dc-s2 #content>.dcc-card{order:-2!important}
@@ -2672,7 +2716,7 @@ html body .tas-wide-btn{font-size:12.5px!important}
 .tas-paper{container-type:inline-size}
 .tas-paper .tas-b>table{table-layout:fixed;width:100%}
 .tas-paper .tas-tok{white-space:normal}
-@container (max-width:600px){
+@container (max-width:440px){
  .tas-b[data-type="kpis"] td[width]{display:block;width:auto!important}
  .tas-b[data-type="columns"] td[width]{display:block;width:auto!important;border-left:0!important;padding:0 0 10px!important}
 }
@@ -2697,6 +2741,49 @@ body:not(.light) .tas-mon-tabs em{background:color-mix(in srgb,#f59e0b 20%,trans
  .tas-right .tas-vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
  .tas-right .tas-vgrid .tas-val.is-open{grid-column:1/-1}
 }
+
+/* ===== Full-page workspace ===== */
+body.tas-on{overflow:hidden!important}
+body.tas-on>.dc-app,body.tas-on>main,body.tas-on>header{visibility:hidden}
+html body .tas-rb{position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;gap:0;background:var(--bg,var(--surface-2));--lp:316px;--rp:344px}
+html body .tas-rb .tas-top{position:relative;top:auto;flex:none;margin:0;border:0;border-bottom:1px solid var(--line);border-radius:0;box-shadow:none;padding:10px 14px;gap:14px;flex-wrap:nowrap;background:var(--surface);backdrop-filter:none}
+.tas-nav{display:flex;align-items:center;gap:10px;flex:none;min-width:0}
+.tas-where{display:flex;flex-direction:column;line-height:1.2;min-width:0}
+.tas-where b{font-size:14.5px;font-weight:700;color:var(--ink)}
+.tas-where small{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px}
+html body .tas-rb .tas-subject{min-width:200px;max-width:560px}
+html body .tas-rb .tas-top-btns{flex-wrap:nowrap;align-items:center;margin-left:auto}
+.tas-sep{width:1px;height:24px;background:var(--line);margin:0 2px;flex:none}
+html body .tas-rb .tas-next{gap:8px}
+/* The canvas fills the rest of the page; panels float inside it */
+html body .tas-rb .tas-grid{position:relative;flex:1;min-height:0;display:block;gap:0}
+html body .tas-rb .tas-stage{position:absolute;inset:0;overflow:auto;display:block;padding:28px calc(var(--rp) + 28px) 96px calc(var(--lp) + 28px);background:var(--canvas,var(--surface-2));background-image:radial-gradient(color-mix(in srgb,var(--ink) 10%,transparent) 1px,transparent 1px);background-size:20px 20px;transition:padding .18s ease}
+html body .tas-rb .tas-paper-wrap{padding:0;border:0;background:none;border-radius:0;overflow:visible;min-height:100%}
+html body .tas-rb .tas-paper{width:680px;max-width:none;margin:0 auto;padding:22px 20px 32px;min-height:calc(100vh - 220px)}
+html body .tas-rb .tas-left,html body .tas-rb .tas-right{position:absolute;top:14px;bottom:14px;max-height:none;min-height:0;z-index:4;box-shadow:0 12px 40px -18px rgba(15,23,42,.35),0 2px 6px rgba(15,23,42,.06);border-radius:16px;transition:transform .2s ease,opacity .2s ease}
+html body .tas-rb .tas-left{left:14px;width:calc(var(--lp) - 14px)}
+html body .tas-rb .tas-right{right:14px;width:calc(var(--rp) - 14px)}
+.tas-rb.no-left{--lp:0px}.tas-rb.no-right{--rp:0px}
+html body .tas-rb.no-left .tas-left{transform:translateX(calc(-100% - 20px));opacity:0;pointer-events:none}
+html body .tas-rb.no-right .tas-right{transform:translateX(calc(100% + 20px));opacity:0;pointer-events:none}
+html body .tas-rb.no-left .tas-left[style],html body .tas-rb.no-right .tas-right[style]{visibility:visible}
+/* Dock: panels and zoom */
+.tas-dock{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:5;display:flex;align-items:center;gap:4px;padding:5px;border:1px solid var(--line);border-radius:14px;background:var(--surface);box-shadow:0 10px 30px -12px rgba(15,23,42,.35)}
+html body .tas-dock .tas-ib{width:34px;height:34px;border:0!important;background:transparent!important;box-shadow:none!important;border-radius:9px!important;color:var(--ink-2)}
+html body .tas-dock .tas-ib:hover{background:var(--surface-2)!important}
+html body .tas-dock .tas-ib[aria-pressed=true]{color:var(--brand)!important;background:color-mix(in srgb,var(--brand) 10%,transparent)!important}
+html body .tas-zoomv{min-width:58px;height:34px!important;min-height:0!important;padding:0 6px!important;border:0!important;background:transparent!important;box-shadow:none!important;font-size:12.5px!important;font-weight:650;font-variant-numeric:tabular-nums;color:var(--ink)}
+/* the old outside layout pieces are not used */
+body.tas-on .tas-wide-btn{display:none!important}
+@media (max-width:1280px){html body .tas-rb{--lp:288px;--rp:316px}html body .tas-rb .tas-right{order:0}.tas-where small{display:none}html body .tas-rb .tas-top-btns button:not(.tas-ib):not(.primary):not(.tas-copy) span{display:none}html body .tas-rb .tas-top-btns button:not(.tas-ib):not(.primary):not(.tas-copy){width:38px;padding:0;justify-content:center}}
+@media (max-width:1100px){html body .tas-rb .tas-stage{padding-left:20px;padding-right:20px}html body .tas-rb .tas-paper{width:min(680px,100%)}}
+@media (max-width:760px){html body .tas-rb .tas-top{flex-wrap:wrap}html body .tas-rb .tas-subject{order:3;flex-basis:100%;max-width:none}html body .tas-rb .tas-left,html body .tas-rb .tas-right{width:auto;left:10px;right:10px;top:auto;height:56%}}
+.tas-rb .tas-confirm{position:sticky;top:0;z-index:6;max-width:680px;margin:0 auto 14px}
+/* KPI tile that still needs data */
+html body .tas-paper .tas-kpi-val.is-unset,html body .tas-paper .tas-kpi-val.is-empty{display:flex;flex-direction:column;gap:2px;font-size:26px!important;line-height:1.1;padding:4px 8px 6px;color:#9a5b00!important}
+.tas-kpi-val .tas-kpi-dash{font-weight:700;font-size:24px;line-height:1.1}
+.tas-kpi-val small{font-size:11px;font-weight:600;line-height:1.25;letter-spacing:0;text-transform:none;color:#9a5b00}
+html body .tas-rb .tas-paper{width:min(680px,100%)}
 
 /* ===== Full guide ===== */
 html body dialog.tag{width:min(960px,calc(100vw - 32px));height:min(720px,calc(100vh - 40px));padding:0;overflow:hidden}
@@ -2777,7 +2864,9 @@ function nameProblem(name,{except=null,unique=true}={}){
  if(unique){try{if(S.insights.some(n=>n.id!==except&&String(n.name||'').trim().toLowerCase()===t.toLowerCase()))return 'Another insight already has this name.'}catch(e){}}
  return '';
 }
-const unnamed=()=>{try{return S.insights.filter(n=>nameProblem(n.name,{except:n.id}))}catch(e){return[]}};
+const typedNames=new Set(),needName=new Set(),normName=t=>String(t||'').trim().toLowerCase();
+const needsName=n=>!!n&&(needName.has(n.id)||!!nameProblem(n.name,{except:n.id}));
+const unnamed=()=>{try{return S.insights.filter(needsName)}catch(e){return[]}};
 
 /* ---------- Big-data helpers ---------- */
 const totalRows=()=>{try{let n=0;for(const f of S.families)n+=f.rows.length;return n}catch(e){return 0}};
@@ -3239,7 +3328,7 @@ function insightCards(list){
    qa('button',bar).forEach(b=>{b.classList.add('small');const t=b.textContent.trim();if(/^Edit guided/.test(t))b.textContent='Edit';else if(/^Review/.test(t)){b.textContent='Use result';b.classList.add('primary')}else if(/^Remove/.test(t)){b.innerHTML=`<svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M3 6h18M9 6V3h6v3M6 6l1 15h10l1-15"/></svg>`;b.setAttribute('aria-label','Remove insight');b.title='Remove insight';b.classList.add('dc-icon-btn')}});
    if(q(`#studio [data-node="${id}"]`)){bar.insertAdjacentHTML('beforeend',`<button type="button" class="small dc-icon-btn" data-dc-locate="${id}" title="Show on blueprint" aria-label="Show on blueprint">${svg('pin')}</button>`)}
    bar.insertAdjacentHTML('afterbegin',`<button type="button" class="small dc-icon-btn" data-dc-rename="${id}" title="Rename insight" aria-label="Rename insight">${svg('pencil')}</button>`);
-   const nm=S.insights.find(x=>x.id===id);if(nm&&nameProblem(nm.name,{except:id})){card.classList.add('dc-needs-name');h?.insertAdjacentHTML('afterend',`<button type="button" class="dc-name-chip" data-dc-rename="${id}">${svg('pencil')}Needs a name. Click to name it</button>`)}
+   const nm=S.insights.find(x=>x.id===id);if(nm&&needsName(nm)){card.classList.add('dc-needs-name');h?.insertAdjacentHTML('afterend',`<button type="button" class="dc-name-chip" data-dc-rename="${id}">${svg('pencil')}Needs a name. Click to name it</button>`)}
    const src=sourceFor(id);
    if(src)bar.insertAdjacentHTML('beforeend',`<span class="dc-src-chip" title="Available as the table “${esc(src.name)}”">${svg('source')}<span>Source</span><button type="button" class="dc-link" title="Stop using this result as a data source" data-dc-unsource="${src.id}">Stop</button></span>`);
    else if(kind!=='draft'&&m)bar.insertAdjacentHTML('beforeend',`<button type="button" class="small dc-src-btn" data-dc-source="${id}" title="Make this result a table you can match or filter against">${svg('source')}Use as source</button>`);
@@ -3359,6 +3448,7 @@ function refreshSources(){
 function uniqueFamilyName(base){let name=base,k=2;while(S.families.some(f=>f.name===name))name=`${base} ${k++}`;return name}
 function makeSource(insId){
  const n=S.insights.find(x=>x.id===insId);if(!n)return null;
+ noSource.delete(insId);srcTried.delete(insId);
  const have=sourceFor(insId);if(have){notice(`“${have.name}” is already a data source.`);return have}
  let res;try{res=insightResult(n)}catch(e){notice('Finish this insight first: '+e.message);return null}
  if(!res||!Array.isArray(res.headers)||!res.headers.length){notice('Finish this insight before using it as a data source.');return null}
@@ -3369,6 +3459,31 @@ function makeSource(insId){
  render();notice(`“${f.name}” is now a data source. Choose it like any table when you start a new insight.`);
  requestAnimationFrame(()=>{if(stage()===3)locateNode(f.id)});return f;
 }
+/* Every named, working insight is also a data source, without a "Use as source" click.
+   The person can still stop one; that choice is saved with the project. */
+const noSource=new Set(),srcTried=new Map();
+function freeSpot(x,y){const taken=Object.entries(S.positions||{});let ty=y,k=0;while(k++<12&&taken.some(([,p])=>p&&Math.abs(p.x-x)<240&&Math.abs(p.y-ty)<170))ty+=190;return{x,y:ty}}
+function autoSources(){
+ let fams;try{fams=S.families;if(!Array.isArray(fams)||!Array.isArray(S.insights))return}catch(e){return}
+ /* results of removed insights go away unless something still uses them */
+ for(const f of derivedFamilies()){const id=derivedOf(f);if(!S.insights.some(n=>n.id===id)&&!usedBy(f.id)){S.families=S.families.filter(x=>x!==f);delete S.positions[f.id];try{delete S.nodeColumns[f.id]}catch(e){}registry.delete(id)}}
+ for(const n of S.insights){
+  if(noSource.has(n.id)||sourceFor(n.id)||needsName(n))continue;
+  if(!loadingProject&&knownIns&&!knownIns.has(n.id)&&!typedNames.has(normName(n.name)))continue; /* waits for its name */
+  let sig='';try{sig=JSON.stringify([n,sheetRecipe(n.id)?.merge||null,S.families.length])}catch(e){}
+  if(srcTried.get(n.id)===sig)continue;
+  let res;try{res=insightResult(n)}catch(e){srcTried.set(n.id,sig);continue}
+  if(!res||!Array.isArray(res.headers)||!res.headers.length){srcTried.set(n.id,sig);continue}
+  srcTried.delete(n.id);
+  const f={id:uid(),key:DERIVED+n.id,name:uniqueFamilyName(`${n.name} result`),headers:[],keys:[],files:[],rows:[],original:[]};
+  fillSource(f,res);S.families.push(f);registry.set(n.id,{id:f.id,name:f.name});
+  try{S.nodeColumns[f.id]=f.headers.map((_,i)=>i).slice(0,8)}catch(e){}
+  const p=S.positions?.[n.id];if(p)S.positions[f.id]=freeSpot(p.x+330,p.y);
+ }
+}
+window.dcSources={noSource,auto:autoSources};
+{const baseSaveS=saveProject;saveProject=function(){const d=baseSaveS.apply(this,arguments);try{if(noSource.size)d.dcNoSource=[...noSource];/* insight results are rebuilt when the project opens, so the file does not carry them twice */if(Array.isArray(d.state?.families))d.state={...d.state,families:d.state.families.map(f=>typeof f?.key==='string'&&f.key.startsWith(DERIVED)?{...f,rows:[],original:[]}:f)}}catch(e){}return d}}
+{const baseLoadS=loadProjectObject;loadProjectObject=function(doc){noSource.clear();srcTried.clear();try{(Array.isArray(doc?.dcNoSource)?doc.dcNoSource:[]).forEach(id=>typeof id==='string'&&noSource.add(id))}catch(e){}return baseLoadS.apply(this,arguments)}}
 function usedBy(fid){
  for(const c of S.connections)if(c.a?.family===fid||c.b?.family===fid)return c.name||'An insight';
  const raw=new RegExp(`(raw:|"family":")${fid}"`);
@@ -3379,9 +3494,10 @@ function usedBy(fid){
 function dropSource(fid){
  const f=S.families.find(x=>x.id===fid);if(!f)return;const who=usedBy(fid);
  if(who){notice(`${who} uses “${f.name}”. Edit or remove that first.`);return}
+ {const iid=derivedOf(f);if(iid)noSource.add(iid)}
  S.families=S.families.filter(x=>x.id!==fid);delete S.positions[fid];try{delete S.nodeColumns[fid]}catch(e){}
  try{S.hiddenFamilies=S.hiddenFamilies.filter(x=>x!==fid)}catch(e){}registry.delete(derivedOf(f));
- render();notice(`“${f.name}” is no longer a data source. The insight itself is unchanged.`);
+ render();notice(`“${f.name}” is no longer a data source. The insight itself is unchanged. Click Use as source on the insight to bring it back.`);
 }
 document.addEventListener('click',e=>{
  const a=e.target.closest('[data-dc-source]');if(a){e.preventDefault();makeSource(a.dataset.dcSource);return}
@@ -3395,8 +3511,8 @@ function readyDialogAction(){
   if(q('[data-dc-ready-source]',box))return;const d=box.closest('dialog'),name=q('h3',d)?.textContent.trim();
   const n=[...S.insights].reverse().find(x=>x.name===name);if(!n)return;
   const has=sourceFor(n.id);
-  box.insertAdjacentHTML('beforeend',`<button type="button" data-dc-ready-source="${n.id}" ${has?'disabled':''}>${svg('source')}${has?'Already a data source':'Use this result as a data source'}</button>`);
-  q('[data-dc-ready-source]',box).onclick=ev=>{const f=makeSource(n.id);if(f){ev.currentTarget.disabled=true;ev.currentTarget.lastChild.data='Added as a data source'}};
+  box.insertAdjacentHTML('beforeend',has?`<span class="dc-ready-src" data-dc-ready-source="${n.id}">${svg('source')}Also ready to use as the table “${esc(has.name)}” in other insights</span>`:`<button type="button" data-dc-ready-source="${n.id}">${svg('source')}Use this result as a data source</button>`);
+  q('button[data-dc-ready-source]',box)&&(q('button[data-dc-ready-source]',box).onclick=ev=>{const f=makeSource(n.id);if(f){ev.currentTarget.disabled=true;ev.currentTarget.lastChild.data='Added as a data source'}});
  });
 }
 /* Blueprint: link each insight to the source made from it */
@@ -3419,7 +3535,7 @@ function decorateNodes(){
   const f=S.families.find(x=>x.id===id),n=f?null:S.insights.find(x=>x.id===id);
   let sub='',cls='';
   if(f){const src=derivedOf(f);if(src){const ins=S.insights.find(x=>x.id===src);cls='dc-node-source';sub=`From ${ins?esc(ins.name):'a removed insight'} · ${f.rows.length.toLocaleString()} rows`}else{cls='dc-node-table';sub=`Table · ${f.rows.length.toLocaleString()} rows`}}
-  else if(n){const k=el.classList.contains('summary-node')||n.kind==='summary'?'summary':n.kind==='filter'?'filter':'match';cls='dc-node-'+k;sub={summary:'Summary',filter:'Filter insight',match:'Match insight'}[k]+(sourceFor(id)?' · used as a source':'');if(nameProblem(n.name,{except:id}))sub+=' · <b class="dc-warn-text">needs a name</b>'}
+  else if(n){const k=el.classList.contains('summary-node')||n.kind==='summary'?'summary':n.kind==='filter'?'filter':'match';cls='dc-node-'+k;sub={summary:'Summary',filter:'Filter insight',match:'Match insight'}[k]+(sourceFor(id)?' · used as a source':'');if(needsName(n))sub+=' · <b class="dc-warn-text">needs a name</b>'}
   if(cls)el.classList.add(cls);
   const old=q(':scope > .dc-node-sub',el);if(old){if(old.innerHTML!==sub)old.innerHTML=sub}else if(sub)head.insertAdjacentHTML('afterend',`<div class="dc-node-sub">${sub}</div>`);
  });
@@ -3461,15 +3577,16 @@ function uniqueSuggestion(base,except){if(!base)return '';let t=base,k=2;while(n
 const nameDlg=document.createElement('dialog');nameDlg.className='dc-dialog dc-name-dialog';document.body.append(nameDlg);
 nameDlg.addEventListener('cancel',e=>{if(nameDlg.dataset.required==='1')e.preventDefault()});
 function applyName(id,name){
- const n=S.insights.find(x=>x.id===id);if(!n)return;const old=n.name;n.name=name;
+ const n=S.insights.find(x=>x.id===id);if(!n)return;const old=n.name;n.name=name;needName.delete(id);typedNames.add(normName(name));
  S.connections.forEach(c=>{if(c.insightId===id)c.name=name});
  const src=sourceFor(id);if(src&&src.name===`${old} result`){src.name=uniqueFamilyName(`${name} result`);registry.set(id,{id:src.id,name:src.name})}
  qa(ANY_NAME).forEach(inp=>{if(inp.closest('dialog[open]')&&nameProblem(inp.value,{unique:false})){inp.value=name;inp.dispatchEvent(new Event('input',{bubbles:true}));inp.dispatchEvent(new Event('change',{bubbles:true}))}});
  render();notice(`Insight named “${name}”.`);
 }
-function openNameDialog(id,{reason='',required=true}={}){
+function openNameDialog(id,{reason='',required=true,fresh=false}={}){
  const n=S.insights.find(x=>x.id===id);if(!n)return;
- const cur=nameProblem(n.name,{except:id})?'':n.name,sug=uniqueSuggestion(suggestName(n),id);
+ fresh=fresh||needName.has(id);
+ const cur=fresh||nameProblem(n.name,{except:id})?'':n.name,auto=fresh&&!nameProblem(n.name,{except:id})?n.name:'',sug=uniqueSuggestion(auto||suggestName(n),id);
  nameDlg.dataset.required=required?'1':'0';nameDlg.dataset.id=id;
  nameDlg.innerHTML=`<form method="dialog" class="dc-name-form"><h2>${cur?'Rename this insight':'Name this insight'}</h2><p>${reason?`<b>${esc(reason)}</b> `:''}A clear name makes it easy to find in the blueprint, the Excel workbook and the email. Describe the data it holds.</p><label>Insight name<input name="n" autocomplete="off" maxlength="80" value="${esc(cur)}" placeholder="For example, SMS matched to contacts"></label><p class="dc-name-err" aria-live="polite"></p>${sug?`<button type="button" class="dc-suggest" data-sug="${esc(sug)}">${svg('bulb')}Use “${esc(sug)}”</button>`:''}<div class="dc-dlg-foot">${required?'':'<button type="button" value="cancel" data-dc-cancel>Cancel</button>'}<button class="primary" value="ok" type="submit">Save name</button></div></form>`;
  const f=q('form',nameDlg),inp=f.n,err=q('.dc-name-err',nameDlg),ok=q('button[type=submit]',nameDlg);
@@ -3484,8 +3601,12 @@ function askNewNames(){
  let ids=[];try{ids=S.insights.map(n=>n.id)}catch(e){return}
  if(knownIns===null){knownIns=new Set(ids);return}
  const fresh=ids.filter(id=>!knownIns.has(id));knownIns=new Set(ids);
- if(fresh.length!==1)return;const n=S.insights.find(x=>x.id===fresh[0]);
- if(n&&nameProblem(n.name,{except:n.id}))setTimeout(()=>{if(S.insights.some(x=>x.id===n.id)&&nameProblem(n.name,{except:n.id}))openNameDialog(n.id)},60);
+ if(loadingProject||fresh.length!==1)return;const n=S.insights.find(x=>x.id===fresh[0]);if(!n)return;
+ /* Every new insight is named by the person. A name they typed while creating it is kept;
+    anything the app filled in is only offered as a suggestion. */
+ if(!nameProblem(n.name,{except:n.id})&&typedNames.has(normName(n.name)))return;
+ needName.add(n.id);
+ setTimeout(()=>{if(S.insights.some(x=>x.id===n.id)&&needsName(n)&&!nameDlg.open)openNameDialog(n.id,{fresh:true})},60);
 }
 document.addEventListener('click',e=>{
  const r=e.target.closest('[data-dc-rename]');if(r){e.preventDefault();openNameDialog(r.dataset.dcRename,{required:false});return}
@@ -3550,12 +3671,14 @@ function welcome(){
  q('[data-dc-welcome-ok]',welcomeBox).onclick=()=>{settings.welcome=false;saveSettings();welcome()};
 }
 
-let knownIns=null,skips=0;
+let knownIns=null,skips=0,loadingProject=false;
+document.addEventListener('input',e=>{const t=e.target;if(t?.matches?.(ANY_NAME+',.dc-name-form input[name=n]'))typedNames.add(normName(t.value))},true);
+{const baseLoadN=loadProjectObject;loadProjectObject=function(){loadingProject=true;needName.clear();try{return baseLoadN.apply(this,arguments)}finally{loadingProject=false;try{knownIns=new Set(S.insights.map(n=>n.id))}catch(e){}}}}
 const baseNodeHTML=nodeHTML;
 nodeHTML=function(id,name){try{return baseNodeHTML.apply(this,arguments)}catch(e){console.warn('The Analysis Studio node:',e);const p=S.positions?.[id]||{x:40,y:40};return `<article class="node graph-node dc-node-error" data-node="${esc(id)}" style="left:${p.x}px;top:${p.y}px"><div class="node-head" data-node-handle="${esc(id)}"><strong>${esc(name||'Insight')}</strong></div><p class="dc-node-err">${esc(e.message)}</p></article>`}};
 function touchData(){try{for(const f of S.families){const r=trackedFamilies.get(f);if(r&&r.touch)r.touch()}}catch(e){}}
 render=function(){
- friendlyNames();if(stage()===1||stage()===2)touchData();refreshSources();compactPositions();
+ friendlyNames();if(stage()===1||stage()===2)touchData();refreshSources();try{autoSources()}catch(e){console.warn('Auto source:',e)}compactPositions();
  const y=window.scrollY,before=lastStage;
  const r=baseRender.apply(this,arguments);decorate();
  const now=stage();
@@ -3623,7 +3746,7 @@ async function parseProjectText(text){
  const fill=o=>{if(Array.isArray(o)){for(let i=0;i<o.length;i++){const v=o[i];if(typeof v==='string'&&v.startsWith('@@DCROWS'))o[i]=arrays[+v.slice(8,-2)];else if(v&&typeof v==='object')fill(v)}}else if(o&&typeof o==='object'){for(const k of Object.keys(o)){const v=o[k];if(typeof v==='string'&&v.startsWith('@@DCROWS')&&v.endsWith('@@'))o[k]=arrays[+v.slice(8,-2)];else if(v&&typeof v==='object')fill(v)}}};
  fill(doc);return doc;
 }
-window.dcOpenProject=async f=>{busy.show('Opening your project…',true);try{await nextFrame();const text=await f.text();const doc=await parseProjectText(text);await nextFrame();loadProjectObject(doc)}finally{busy.hide()}};
+window.dcOpenProject=async f=>{busy.show('Opening your project…',true);try{await nextFrame();if(!f.size)throw Error(`“${f.name}” is empty (0 bytes). It was probably created but never finished saving. Choose another copy of the project.`);const text=await f.text();let doc;try{doc=await parseProjectText(text)}catch(e){throw Error(/end of JSON/i.test(e.message)?`“${f.name}” is incomplete: it ends early, so it was probably cut off while saving. Choose another copy of the project.`:`“${f.name}” is not a readable project file (${e.message}).`)}await nextFrame();loadProjectObject(doc)}finally{busy.hide()}};
 /* Save project: build the file in slices, then download it. */
 document.addEventListener('click',e=>{
  if(!e.target.closest?.('#save-project'))return;e.preventDefault();e.stopImmediatePropagation();
@@ -3707,6 +3830,7 @@ const newId=()=>{try{return uid()}catch(e){return 'x'+Math.random().toString(36)
 
 /* ---------- Icons (stroke) ---------- */
 const P={
+ panelWide:'M4 5h16v14H4zM14 5v14M8 10l-2 2 2 2',panelNarrow:'M4 5h16v14H4zM14 5v14M6 10l2 2-2 2',
  table:'M3 5h18v14H3zM3 10h18M9 10v9M15 10v9',hash:'M5 9h14M5 15h14M10 4 8 20M16 4l-2 16',text:'M5 6V5h14v1M12 5v14M9 19h6',
  undo:'M9 14 4 9l5-5M4 9h10a6 6 0 0 1 0 12h-3',redo:'m15 14 5-5-5-5M20 9H10a6 6 0 0 0 0 12h3',
  hand:'M8 13V5.5a1.5 1.5 0 0 1 3 0V11M11 10.5v-6a1.5 1.5 0 0 1 3 0V11M14 10.5V6a1.5 1.5 0 0 1 3 0v7c0 4-2.5 7-6.5 7S5 17.5 4 15l-1.2-2.6a1.5 1.5 0 0 1 2.6-1.5L8 14',
@@ -3873,6 +3997,7 @@ const stage=q('.dcx-stage',root),canvas=q('canvas',root),ctx=canvas.getContext('
 const X=n=>q(`[data-x="${n}"]`,root);
 
 let trayOn=store.get('dcx-tray')!=='off'&&innerWidth>760,palOn=store.get('dcx-pal')!=='off'&&innerWidth>760;
+let palWide=store.get('dcx-pal-wide')==='1';pal.classList.toggle('is-wide',palWide);
 let palTab='sheet';
 function layoutToggles(){root.classList.toggle('no-tray',!trayOn);root.classList.toggle('no-pal',!palOn);X('toggle-tray').setAttribute('aria-pressed',trayOn);X('toggle-pal').setAttribute('aria-pressed',palOn);schedule()}
 
@@ -4454,7 +4579,7 @@ function renderPal(){
   <div class="dcx-quick"><b>Quick start: key numbers sheet</b><p>Adds a new worksheet with a title, the record count, unique IDs and a total for the insight you pick. You can edit or move everything afterwards.</p><button data-p="summary">${I('plus')}Add a key numbers sheet…</button></div>`;
  }
  const keepScroll=q('.dcx-pbody',pal)?.scrollTop||0,keepTab=palTab,winY=window.scrollY;
- pal.innerHTML=`<div class="dcx-phead" title="Drag to move · double-click to dock"><b>${I('palette')}Style</b><button data-p="close" aria-label="Hide the style palette" title="Hide">${I('x')}</button></div>${seg}<div class="dcx-pbody">${body}</div>`;
+ pal.innerHTML=`<div class="dcx-phead" title="Drag to move · double-click to dock"><b>${I('palette')}Style</b><button data-p="size" aria-pressed="${palWide}" aria-label="${palWide?'Make the style panel smaller':'Make the style panel larger'}" title="${palWide?'Smaller panel':'Larger panel'}">${I(palWide?'panelNarrow':'panelWide')}</button><button data-p="close" aria-label="Hide the style palette" title="Hide">${I('x')}</button></div>${seg}<div class="dcx-pbody">${body}</div>`;
  const pb=q('.dcx-pbody',pal);if(pb&&keepTab===renderPal.lastTab)pb.scrollTop=keepScroll;renderPal.lastTab=palTab;
  if(focused){const el=q(`[data-p="${CSS.escape(focused)}"]`,pal);el?.focus({preventScroll:true})}
  if(Math.abs(window.scrollY-winY)>1)window.scrollTo(0,winY);
@@ -4465,7 +4590,7 @@ pal.addEventListener('pointerdown',e=>{e.stopPropagation();const hd=e.target.clo
  const up=()=>{removeEventListener('pointermove',mv);removeEventListener('pointerup',up);pal.classList.remove('is-drag');store.set('dcx-pal-pos',JSON.stringify({l:parseFloat(pal.style.left),t:parseFloat(pal.style.top)}))};
  addEventListener('pointermove',mv);addEventListener('pointerup',up)});
 pal.addEventListener('dblclick',e=>{if(e.target.closest('.dcx-phead')&&!e.target.closest('button')){pal.style.left='';pal.style.top='';pal.style.right='';store.set('dcx-pal-pos','')}});
-function restorePalPos(){if(innerWidth<=760)return;try{const p=JSON.parse(store.get('dcx-pal-pos')||'null');if(!p)return;const sb=stage.getBoundingClientRect();if(!sb.width)return;Object.assign(pal.style,{left:clamp(p.l,4,Math.max(4,sb.width-300))+'px',top:clamp(p.t,30,Math.max(30,sb.height-80))+'px',right:'auto'})}catch(e){}}
+function restorePalPos(){if(innerWidth<=760)return;try{const p=JSON.parse(store.get('dcx-pal-pos')||'null');if(!p)return;const sb=stage.getBoundingClientRect();if(!sb.width)return;Object.assign(pal.style,{left:clamp(p.l,4,Math.max(4,sb.width-(pal.offsetWidth||360)))+'px',top:clamp(p.t,30,Math.max(30,sb.height-80))+'px',right:'auto'})}catch(e){}}
 pal.addEventListener('wheel',e=>e.stopPropagation(),{passive:true});
 pal.addEventListener('keydown',e=>e.stopPropagation());
 pal.addEventListener('click',e=>{
@@ -4478,6 +4603,7 @@ pal.addEventListener('click',e=>{
  const th=e.target.closest('[data-theme]');if(th&&it){applyTheme(it,th.dataset.theme);return}
  const sw=e.target.closest('[data-rowsw]');if(sw){const [f2,t2]=sw.dataset.rowsw.split('|');colorRows(f2,t2);return}
  const b=e.target.closest('button[data-p]');if(!b)return;const p=b.dataset.p;
+ if(p==='size'){palWide=!palWide;store.set('dcx-pal-wide',palWide?'1':'0');pal.classList.toggle('is-wide',palWide);renderPal();return}
  if(p==='close'){palOn=false;store.set('dcx-pal','off');layoutToggles();renderPal();return}
  if(p==='edit')editItem(it);if(p==='dup')duplicate(it);if(p==='remove')removeItem(it);
  if(p==='cols-all'||p==='cols-none'){e.preventDefault();const f=src(it.source);if(!f)return;setColumns(it,p==='cols-all'?f.headers.map((_,i)=>i):[])}
@@ -4494,7 +4620,7 @@ function cfSection(it,f){
  ${rules.map((r,i)=>{const arity=CF_OPS.find(o=>o[0]===r.op)?.[2]??1;return `<div class="dcx-cf-rule" data-cf="${i}" style="--f:${r.fill};--t:${r.text}">
   <div class="dcx-cf-line"><span class="dcx-cf-n">${i+1}</span><select data-cfk="column" aria-label="Column">${opts(cols,r.column)}</select></div>
   <div class="dcx-cf-line"><select data-cfk="op" aria-label="Condition">${opts(CF_OPS.map(o=>[o[0],o[1]]),r.op)}</select>${arity>0?`<input data-cfk="value" value="${h(r.value??'')}" placeholder="${['contains','notcontains','starts','eq','ne'].includes(r.op)?'Text or number':'Number'}" aria-label="Value">`:''}${arity>1?`<input data-cfk="value2" value="${h(r.value2??'')}" placeholder="and" aria-label="Second value">`:''}</div>
-  <div class="dcx-cf-line dcx-cf-style"><span class="dcx-cf-prev">Aa</span>${CF_SWATCHES.map(([fl,tx,l])=>`<button data-cfsw="${fl}|${tx}" title="${l}" aria-label="${l}" style="--f:${fl};--t:${tx}" aria-pressed="${fl===r.fill&&tx===r.text}"></button>`).join('')}<label class="dcx-cf-b" title="Bold"><input type="checkbox" data-cfk="bold" ${r.bold?'checked':''}><b>B</b></label><button class="dcx-cf-del" data-cfdel="${i}" title="Remove this rule" aria-label="Remove rule">${I('trash')}</button></div>
+  <div class="dcx-cf-line dcx-cf-style"><span class="dcx-cf-prev">Aa</span>${CF_SWATCHES.map(([fl,tx,l])=>`<button data-cfsw="${fl}|${tx}" title="${l}" aria-label="${l}" style="--f:${fl};--t:${tx}" aria-pressed="${fl===r.fill&&tx===r.text}"></button>`).join('')}<label class="dcx-cf-b" title="Bold"><input type="checkbox" data-cfk="bold" ${r.bold?"checked":""}><b>Bold</b></label><button class="dcx-cf-del" data-cfdel="${i}" title="Remove this rule" aria-label="Remove rule">${I('trash')}</button></div>
   <small class="dcx-cf-count">${cfCount(it,f,r)}</small></div>`}).join('')}
  <button data-p="cf-add" class="dcx-cf-add">${I('plus')}Add a rule</button></div></details>`;
 }
@@ -4661,12 +4787,13 @@ async function permission(h,ask){try{const o={mode:'readwrite'};let p=await h.qu
 
 /* ---------- Saving: browser copy as you go, file at every step ---------- */
 function schedule(){if(!P)return;clearTimeout(state.timer);state.timer=setTimeout(()=>{(window.requestIdleCallback||setTimeout)(()=>saveLocal(),{timeout:3000})},2000);state.dirtyFile=true}
+async function wholeProject(blob){try{if(!blob||!blob.size)return false;const tail=(await blob.slice(Math.max(0,blob.size-16)).text()).trim();return tail.endsWith('}')}catch(e){return false}}
 async function saveLocal(force){
  if(!P)return;clearTimeout(state.timer);state.timer=0;
  if(state.saving){state.again=true;return}state.saving=true;
  try{
   let meta=listMeta();
-  if(keepCopy()){const blob=await serializer.build();meta=listMeta();try{await idb.put('proj:'+P.id,{meta,blob})}catch(err){await idb.put('proj:'+P.id,{meta,json:await blob.text()})}state.localAt=now()}
+  if(keepCopy()){const blob=await serializer.build();if(!(await wholeProject(blob)))throw Error('The saved copy came out incomplete');meta=listMeta();try{await idb.put('proj:'+P.id,{meta,blob})}catch(err){await idb.put('proj:'+P.id,{meta,json:await blob.text()})}state.localAt=now()}
   else await idb.del('proj:'+P.id);
   await upsertList(meta);
  }catch(e){console.warn('The Analysis Studio save:',e);state.error='Could not save in this browser'}
@@ -4678,7 +4805,7 @@ async function saveToFile(reason){
  if(fileBusy){fileAgain=true;return false}
  if(perm!=='granted'){perm=await permission(handle,false);if(perm!=='granted'){paintStatus();return false}}
  fileBusy=true;const big=C.totalRows()>=C.BIG&&reason==='manual';if(big)busy.show('Saving your project file… You can keep working.',true,true);
- try{const blob=await serializer.build();const w=await handle.createWritable();await w.write(blob);await w.close();state.fileAt=now();state.dirtyFile=false;state.error='';P.fileName=handle.name;return true}
+ try{const blob=await serializer.build();if(!(await wholeProject(blob)))throw Error('The project file came out incomplete');const w=await handle.createWritable();await w.write(blob);await w.close();state.fileAt=now();state.dirtyFile=false;state.error='';P.fileName=handle.name;return true}
  catch(e){console.warn('The Analysis Studio file save:',e);state.error=e?.name==='NotAllowedError'?'':'Could not write the project file';if(e?.name==='NotAllowedError')perm='prompt';return false}
  finally{fileBusy=false;if(big)busy.hide();paintStatus();if(fileAgain){fileAgain=false;saveToFile(reason)}}
 }
@@ -5004,14 +5131,21 @@ async function openStored(id){
  const t0=Date.now();busyOpening=true;q('.dc-hub-msg',hubEl)?.remove();
  busy.show('Opening your project…',true);
  try{
-  await nextFrame();const rec=await idb.get('proj:'+id);let doc=null;
-  if(rec&&(rec.blob||rec.json)){const text=rec.blob?await rec.blob.text():rec.json;doc=await parseProjectText(text)}
-  if(h&&p==='granted'){try{const file=await h.getFile();if(!doc||file.lastModified>(rec?.meta?.updated||0)+2000){doc=await parseProjectText(await file.text())}}catch(e){console.warn(e)}}
-  if(!doc){busy.hide();busyOpening=false;hubMessage('This project has no saved copy in this browser, so it cannot open from here. Click “Open a project file…” and choose its file.','error');return}
+  await nextFrame();const rec=await idb.get('proj:'+id);
+  /* Try every copy we have and use the newest one that reads cleanly. */
+  const problems=[],readText=async(text,label)=>{if(!text||!String(text).trim()){problems.push(label+' is empty');return null}try{return await parseProjectText(text)}catch(e){problems.push(label+(/end of JSON/i.test(e.message)?' is incomplete (it was cut off while saving)':' could not be read ('+e.message+')'));return null}};
+  let local=null,disk=null,diskAt=0,diskEmpty=false;const localAt=rec?.meta?.updated||0;
+  if(rec&&(rec.blob||rec.json)){let text='';try{text=rec.blob?await rec.blob.text():rec.json}catch(e){problems.push('The copy kept in this browser could not be read')}if(text)local=await readText(text,'The copy kept in this browser');else if(!problems.length)problems.push('The copy kept in this browser is empty')}
+  if(h&&p==='granted'){try{const file=await h.getFile();diskAt=file.lastModified;if(!file.size){diskEmpty=true;problems.push(`The project file “${file.name}” is empty (0 bytes)`)}else if(!local||diskAt>localAt+2000)disk=await readText(await file.text(),`The project file “${file.name}”`)}catch(e){problems.push('The project file could not be read')}}
+  else if(h&&p!=='granted')problems.push('Permission to read the project file was not given');
+  const doc=disk&&(!local||diskAt>localAt+2000)?disk:(local||disk);
+  if(!doc){busy.hide();busyOpening=false;hubMessage(`This project could not be opened. ${problems.length?problems.join('. ')+'.':'It has no saved copy in this browser.'} If you have the project file saved somewhere, click “Open a project file…” and choose it.`,'error');return}
+  const note=doc===local&&(diskEmpty||problems.some(x=>/project file/.test(x)))?'Opened from the copy kept in this browser, because the project file was empty or unreadable. Click Save project to write the file again.':doc===disk&&problems.length?'Opened from the project file, because the copy in this browser was incomplete.':'';
   if(!doc.datacodex){const m=(await listProjects()).find(x=>x.id===id);doc.datacodex={...(m||{}),id}}
   await nextFrame();quietRestore=true;pendingAdopt={handle:h&&p==='granted'?h:(h||null)};
   try{loadProjectObject(doc)}finally{quietRestore=false}
-  if(h&&p!=='granted')say('Opened from this browser. Click Save project to keep saving to the file.');
+  if(note&&!hubEl.open)say(note);
+  else if(h&&p!=='granted')say('Opened from this browser. Click Save project to keep saving to the file.');
   else if(!hubEl.open)say(`Opened “${P.name}”.`);
   await settleOpen(t0,'The project could not be opened. Its saved copy in this browser may be damaged or from a newer version. Try “Open a project file…” and choose the file instead.');
  }catch(e){hubMessage('Could not open the project: '+(e?.message||e),'error');say('Could not open the project: '+(e?.message||e))}finally{busy.hide();busyOpening=false}
@@ -5114,10 +5248,6 @@ if(typeof oneInputPass==='function'){
   return baseOne.apply(this,arguments);
  };
 }
-if(typeof flowFilterTypes==='function'){
- const baseTypes=flowFilterTypes;
- flowFilterTypes=function(target){const list=baseTypes.apply(this,arguments);list.splice(1,0,['number','Compare numbers','Keep rows where a number is greater than, less than, between or equal to a value you choose.']);return list};
-}
 if(typeof newFilterDraft==='function'){
  const baseDraft=newFilterDraft;
  newFilterDraft=function(target,type){
@@ -5148,21 +5278,7 @@ if(typeof configureFlowHTML==='function'){
   <p class="dci-note">Commas, spaces, currency signs and % are ignored, so “$1,200” counts as 1200. Rows without a number in this field are left out.</p>`;
  };
 }
-if(typeof commitGuidedFilter==='function'){
- const baseCommit=commitGuidedFilter;
- commitGuidedFilter=function(){
-  const d=filterFlow?.draft;if(!d||d.type!=='number')return baseCommit.apply(this,arguments);
-  const err=q('[data-flow-error]',filterFlowDialog),a=String(d.numA).trim(),b=String(d.numB).trim();
-  if(a===''||!Number.isFinite(+a)||(d.numOp==='between'&&(b===''||!Number.isFinite(+b)))){if(err)err.textContent=d.numOp==='between'?'Enter both numbers for the range.':'Enter the number to compare with.';return}
-  const tok=makeToken(d.numOp,+a,+b);d.type='values';d.operator='equals';d.selectedValues=[tok];d.query=tok;
-  return baseCommit.apply(this,arguments);
- };
-}
 if(typeof paintValueChoices==='function'){const basePV=paintValueChoices;paintValueChoices=function(){if(filterFlow?.draft?.type==='number')return;return basePV.apply(this,arguments)}}
-if(typeof openGuidedFilterFlow==='function'){
- const baseOpen=openGuidedFilterFlow;
- openGuidedFilterFlow=function(){const r=baseOpen.apply(this,arguments);try{const d=filterFlow?.draft,tok=d&&(d.selectedValues?.[0]||d.query),p=parseToken(tok);if(p){d.type='number';d.numOp=p.op;d.numA=String(p.a);d.numB=p.b!==undefined?String(p.b):'';paintGuidedFilterFlow()}}catch(e){}return r};
-}
 /* The number inputs are typed as numbers by the engine; keep them as text so an empty box stays empty. */
 document.addEventListener('change',e=>{const el=e.target;if(el.matches?.('[data-flow-setting="numA"],[data-flow-setting="numB"]')&&filterFlow?.draft){setTimeout(()=>{filterFlow.draft[el.dataset.flowSetting]=el.value;paintGuidedFilterFlow()},0)}},true);
 /* Show number rules in words wherever the app describes a filter. */
@@ -5193,6 +5309,294 @@ if(typeof makeConnection==='function'){
   return baseMake.apply(this,arguments);
  };
 }
+})();
+
+/* The Analysis Studio: one set of filters everywhere.
+   "Filter one table", "Add a new filter" on a matched insight and on a filtered insight all
+   offer the same kinds: pick values (keep or remove), compare numbers, dates, search text
+   (contains or does not contain), empty or filled in, and time zones. Matched insights also
+   get the kinds that compare the two tables. */
+(function(){
+'use strict';
+if(typeof filterFlow==='undefined'||typeof openGuidedFilterFlow!=='function')return;
+const q=(s,r=document)=>r.querySelector(s),qa=(s,r=document)=>[...r.querySelectorAll(s)];
+const h=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const opts=(list,cur)=>list.map(([v,l])=>`<option value="${h(v)}" ${String(v)===String(cur)?'selected':''}>${h(l)}</option>`).join('');
+const NUM=window.dcNumToken||{parse:()=>null,describe:t=>t};
+
+/* ---------- Dates ----------
+   Stored like numbers, as one token in the accepted values, e.g. "[date]>=2026-01-01",
+   "[date]2026-01-01..2026-01-31" or "[date]last:7". Only the calendar day counts. */
+const DATE_OPS=[['on','is on','='],['before','is before','<'],['onbefore','is on or before','<='],['after','is after','>'],['onafter','is on or after','>='],['between','is between','..'],['last','is in the last … days','last:'],['noton','is not on','!=']];
+const MONTHS={jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,sept:9,oct:10,nov:11,dec:12};
+const dayNum=(y,m,d)=>{if(y<100)y+=2000;if(m<1||m>12||d<1||d>31)return null;const t=Date.UTC(y,m-1,d);const dt=new Date(t);return dt.getUTCMonth()===m-1?Math.round(t/864e5):null};
+function toDay(v){
+ const s=String(v??'').trim();if(!s)return null;let m;
+ if((m=/^(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})/.exec(s)))return dayNum(+m[1],+m[2],+m[3]);
+ if((m=/^(\d{1,2})[-/.](\d{1,2})[-/.](\d{2,4})/.exec(s))){let a=+m[1],b=+m[2];if(a>12&&b<=12)[a,b]=[b,a];return dayNum(+m[3],a,b)}
+ if((m=/^(\d{1,2})[\s-]+([a-z]{3,9})\.?[\s,-]+(\d{2,4})/i.exec(s))&&MONTHS[m[2].slice(0,4).toLowerCase()]||MONTHS[m?.[2]?.slice(0,3).toLowerCase()])return dayNum(+m[3],MONTHS[m[2].slice(0,4).toLowerCase()]||MONTHS[m[2].slice(0,3).toLowerCase()],+m[1]);
+ if((m=/^([a-z]{3,9})\.?\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(\d{2,4})/i.exec(s))&&MONTHS[m[1].slice(0,3).toLowerCase()])return dayNum(+m[3],MONTHS[m[1].slice(0,3).toLowerCase()],+m[2]);
+ if(/^\d{5}(\.\d+)?$/.test(s)){const n=+s;if(n>20000&&n<80000)return Math.floor(n)-25569}
+ return null;
+}
+const todayNum=()=>{const d=new Date();return Math.round(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5)};
+const isoOf=n=>new Date(n*864e5).toISOString().slice(0,10);
+const niceDay=n=>new Date(n*864e5).toLocaleDateString(undefined,{timeZone:'UTC',month:'short',day:'numeric',year:'numeric'});
+function parseDateToken(tok){
+ const t=String(tok||'').trim();if(!t.toLowerCase().startsWith('[date]'))return null;const b=t.slice(6);let m;
+ if((m=/^last:(\d{1,4})$/.exec(b)))return{op:'last',n:+m[1]};
+ if((m=/^(\d{4}-\d{2}-\d{2})\.\.(\d{4}-\d{2}-\d{2})$/.exec(b)))return{op:'between',a:toDay(m[1]),b:toDay(m[2])};
+ if((m=/^(>=|<=|!=|>|<|=)(\d{4}-\d{2}-\d{2})$/.exec(b)))return{op:{'=':'on','<':'before','<=':'onbefore','>':'after','>=':'onafter','!=':'noton'}[m[1]],a:toDay(m[2])};
+ return null;
+}
+function makeDateToken(op,a,b,n){if(op==='last')return `[date]last:${Math.max(1,Math.min(3650,Math.round(+n)||1))}`;if(op==='between'){const x=toDay(a),y=toDay(b);return `[date]${isoOf(Math.min(x,y))}..${isoOf(Math.max(x,y))}`}return `[date]${DATE_OPS.find(o=>o[0]===op)[2]}${isoOf(toDay(a))}`}
+function datePass(value,tok){const r=parseDateToken(tok);if(!r)return false;const v=toDay(value);if(v===null)return false;
+ switch(r.op){case 'on':return v===r.a;case 'noton':return v!==r.a;case 'before':return v<r.a;case 'onbefore':return v<=r.a;case 'after':return v>r.a;case 'onafter':return v>=r.a;case 'between':return v>=Math.min(r.a,r.b)&&v<=Math.max(r.a,r.b);case 'last':{const t=todayNum();return v<=t&&v>t-r.n}}return false}
+function describeDateToken(tok){const r=parseDateToken(tok);if(!r)return tok;if(r.op==='last')return `is in the last ${r.n} ${r.n===1?'day':'days'}`;if(r.op==='between')return `is between ${niceDay(r.a)} and ${niceDay(r.b)}`;return `${DATE_OPS.find(o=>o[0]===r.op)[1]} ${niceDay(r.a)}`}
+window.dcDateToken={parse:parseDateToken,make:makeDateToken,pass:datePass,describe:describeDateToken,toDay};
+
+/* ---------- Time zones (shared by every kind of insight) ---------- */
+function tzPass(value,values,sensitive){const text=String(value??'').trim(),norm=v=>sensitive?String(v):String(v).toLowerCase(),offset=text.match(/(?:[ T]\d{1,2}:\d{2}(?::\d{2})?)\s*(Z|[+-]\d{2}:?\d{2})$/i)?.[1];return values.some(v=>norm(text)===norm(v).trim()||offset&&norm(offset).replace(':','')===norm(v).trim().replace(':',''))}
+
+/* ---------- One pass test for every single-field condition ---------- */
+const OPS=['equals','not-equals','keywords','not-keywords','empty','not-empty','timezone'];
+{const baseOne=oneInputPass;
+ oneInputPass=function(value,operator,values,query,sensitive){
+  const list=values?.length?values:selectedFilterValues(query);
+  if(operator==='timezone')return tzPass(value,list,sensitive);
+  if(operator==='not-keywords'){if(!String(value??'').trim())return true;return !baseOne.call(this,value,'keywords',values,query,sensitive)}
+  const first=String(list[0]||'').trim().toLowerCase();
+  if(first.startsWith('[date]')){const pass=list.some(t=>datePass(value,t));return operator==='not-equals'?!pass:pass}
+  return baseOne.apply(this,arguments);
+ };}
+const opOf=r=>OPS.includes(r?.operator)?r.operator:r?.mode==='keywords'?'keywords':r?.mode==='timezone'?'timezone':'equals';
+const noValues=op=>op==='empty'||op==='not-empty';
+
+/* Filtered insights read the operator too (keep / remove, does not contain, empty, filled in). */
+filterData=(n,visiting=new Set())=>{
+ if(visiting.has(n.id))throw Error('Filter chain contains a cycle.');visiting.add(n.id);
+ const parent=filterNodeForSource(n.source),f=parent?filterData(parent,visiting):metricSource(n.source);
+ if(!f)throw Error('Choose an available source for '+n.name+'.');
+ const rules=[{column:n.column,mode:n.mode,operator:n.operator,query:n.query,selectedValues:n.selectedValues,caseSensitive:n.caseSensitive},...(n.extraFilters||[])];
+ for(const r of rules){if(!f.headers[r.column])throw Error('Choose a field for every filter.');if(!noValues(opOf(r))&&!r.selectedValues?.length&&!selectedFilterValues(r.query).length)throw Error('Choose accepted values or enter keywords for every filter.')}
+ const raw=n.source?.startsWith('raw:')?originalFamily(n.source.slice(4)):null,revision=raw?trackFamily(raw).revision:0,key=JSON.stringify([n.name,n.source,f.headers,rules,revision,rules.some(r=>/\[date\]last:/i.test(JSON.stringify(r)))?todayNum():0]),cached=guidedRawFilterCache.get(n);
+ if(cached?.rows===f.rows&&cached.key===key)return cached.value;
+ const indices=[];f.rows.forEach((row,i)=>{if(rules.every(r=>oneInputPass(row[r.column],opOf(r),r.selectedValues,r.query,r.caseSensitive)))indices.push(i)});
+ const rows=indices.map(i=>f.rows[i]),pairs=f.sourcePairs?indices.map(i=>f.sourcePairs[i]):undefined,value={...f,id:'join:'+n.id,name:n.name,rows,original:rows,sourcePairs:pairs,matched:pairs?new Set(pairs.map(p=>p[0])).size:rows.length,matchedRight:pairs?new Set(pairs.map(p=>p[1])).size:rows.length,filtered:true,parentSource:n.source};
+ guidedRawFilterCache.set(n,{key,rows:f.rows,value});return value;
+};
+
+/* ---------- Describing a condition in words ---------- */
+function listWords(vals,join='or'){const v=vals.map(x=>`“${x}”`);if(v.length<=1)return v[0]||'';if(v.length>4)return v.slice(0,4).join(', ')+` ${join} ${v.length-4} more`;return v.slice(0,-1).join(', ')+` ${join} `+v.at(-1)}
+function describeRule(field,r){
+ const op=opOf(r),vals=(r.selectedValues?.length?r.selectedValues:selectedFilterValues(r.query));
+ const first=String(vals[0]||'').toLowerCase();
+ let text;
+ if(first.startsWith('[num]'))text=vals.map(t=>NUM.describe(t)).join(' or ');
+ else if(first.startsWith('[date]'))text=vals.map(describeDateToken).join(' or ');
+ else text={equals:'is '+listWords(vals),'not-equals':'is not '+listWords(vals,'nor'),keywords:'contains '+listWords(vals),'not-keywords':'does not contain '+listWords(vals,'or'),empty:'is empty','not-empty':'is filled in',timezone:'time zone is '+listWords(vals)}[op];
+ if(op==='not-equals'&&(first.startsWith('[num]')||first.startsWith('[date]')))text='not ('+text+')';
+ return `${field} ${text}`;
+}
+window.dcDescribeRule=describeRule;
+
+/* ---------- The kinds of filter ---------- */
+const SINGLE=[
+ ['values','Pick values','Keep or remove rows by choosing values from a field, for example Direction is Inbound.'],
+ ['number','Compare numbers','Greater than, less than, between or equal to a number, for example Score is less than 80.'],
+ ['date','Dates','On, before, after or between dates, or in the last few days.'],
+ ['keywords','Search text','Keep rows whose text contains, or does not contain, words you list.'],
+ ['missing','Empty or filled in','Keep rows where a field is empty, or where it has a value.'],
+ ['timezone','Time zones','Keep rows recorded in particular time zones or offsets, without changing the clock.']];
+const PAIR_HELP={people:['Same or different IDs','Compare one field from each table, for example the same agent on both sides.'],time:['Compare times across tables','Same day, within a few minutes, or one before the other.'],'field-text':['Compare text across tables','One field contains the other, or search both for keywords.']};
+const baseTypes=flowFilterTypes;
+flowFilterTypes=function(target){
+ const list=SINGLE.map(x=>[...x]);
+ if(target?.kind==='match')for(const t of ['people','time','field-text'])list.push([t,...PAIR_HELP[t]]);
+ return list;
+};
+/* Drafts for the new kinds */
+const baseDraft=newFilterDraft;
+function bestDateColumn(f){if(!f)return -1;let best=-1,score=0;f.headers.forEach((hd,c)=>{let seen=0,ok=0;for(let i=0;i<f.rows.length&&seen<120;i++){const v=String(f.rows[i][c]??'').trim();if(!v)continue;seen++;if(toDay(v)!==null)ok++}const s=(seen?ok/seen:0)+(/date|time|created|sent|day|when/i.test(hd)?.15:0);if(s>score){score=s;best=c}});return score>=.6?best:-1}
+newFilterDraft=function(target,type){
+ if(type==='date'){const d=baseDraft.call(this,target,'values');Object.assign(d,{type:'date',dateOp:'onafter',dateA:'',dateB:'',dateN:'7'});try{const c=bestDateColumn(flowTargetSource(target,d.side));if(c>=0)d.column=c}catch(e){}return d}
+ if(type==='timezone'){const d=baseDraft.call(this,target,'timezone');d.type='timezone';d.operator='timezone';try{const f=flowTargetSource(target,d.side),c=f.headers.findIndex(x=>/zone|offset|tz/i.test(x));if(c>=0)d.column=c}catch(e){}return d}
+ const d=baseDraft.apply(this,arguments);
+ if(type==='missing')d.operator='not-empty';
+ return d;
+};
+
+/* ---------- Choosing and configuring ---------- */
+function dateInfo(f,c){let seen=0,ok=0,min=Infinity,max=-Infinity;for(let i=0;i<f.rows.length&&seen<3000;i++){const v=String(f.rows[i][c]??'').trim();if(!v)continue;seen++;const n=toDay(v);if(n!==null){ok++;if(n<min)min=n;if(n>max)max=n}}return{share:seen?ok/seen:0,min,max,seen}}
+const baseConfigure=configureFlowHTML;
+configureFlowHTML=function(){
+ const st=filterFlow,d=st.draft,target=st.target,c=target.kind==='match'?S.connections.find(x=>x.id===target.id):null;
+ if(d.type==='date'){
+  const f=flowTargetSource(target,d.side),info=f&&f.headers[d.column]!==undefined?dateInfo(f,d.column):null;
+  const hint=!info||!info.seen?'This field has no values yet.':info.share<.6?'Most values in this field are not dates, so few rows will pass. Pick a date field.':`Dates in this field run from ${niceDay(info.min)} to ${niceDay(info.max)}.`;
+  let pass='';try{const ready=d.dateOp==='last'?+d.dateN>0:toDay(d.dateA)!==null&&(d.dateOp!=='between'||toDay(d.dateB)!==null);if(f&&ready){const tok=makeDateToken(d.dateOp,d.dateA,d.dateB,d.dateN);let n=0;for(const r of f.rows)if(datePass(r[d.column],tok))n++;pass=`<p class="dci-pass"><b>${n.toLocaleString()}</b> of ${f.rows.length.toLocaleString()} rows pass this condition.</p>`}}catch(e){}
+  return `<div class="filter-scope-note">This condition reads only <strong>${h(f?.name||'')}</strong>.</div>
+  ${c?`<label>Filter this dataset<select data-flow-setting="side">${opts([['a',originalFamily(c.a.family).name],['b',originalFamily(c.b.family).name]],d.side)}</select></label>`:''}
+  <label>Date field<select data-flow-setting="column">${opts((f?.headers||[]).map((x,i)=>[i,x]),d.column)}</select></label>
+  <p class="selected-option-help">${h(hint)}</p>
+  <div class="dci-num-row"><label>Keep rows where the date<select data-flow-setting="dateOp">${opts(DATE_OPS.map(o=>[o[0],o[1]]),d.dateOp)}</select></label>
+  ${d.dateOp==='last'?`<label>Number of days<input type="number" min="1" max="3650" data-flow-setting="dateN" value="${h(d.dateN)}"></label>`:`<label>${d.dateOp==='between'?'From':'Date'}<input type="date" data-flow-setting="dateA" value="${h(d.dateA)}"></label>${d.dateOp==='between'?`<label>To<input type="date" data-flow-setting="dateB" value="${h(d.dateB)}"></label>`:''}`}</div>${pass}
+  <p class="dci-note">${d.dateOp==='last'?'Counts back from today, including today, so a report built next week moves with it. ':''}Times are ignored; only the calendar day counts. Dates like 03/04/2026 are read as month/day.</p>`;
+ }
+ let html=baseConfigure.apply(this,arguments);
+ if(['people','time','field-text','number'].includes(d.type))return html;
+ /* Same choices whether the insight matches two tables or filters one */
+ if(d.type==='values'&&!/data-flow-setting="operator"/.test(html))html=html.replace('<label>Find values from your data',`<label>Keep rows where the field<select data-flow-setting="operator">${opts([['equals','Is one of the selected values'],['not-equals','Is not any of the selected values']],d.operator)}</select></label><label>Find values from your data`);
+ if(d.type==='values')html=html.replace('Equals one of the selected values','Is one of the selected values').replace('Does not equal any selected value','Is not any of the selected values');
+ if(d.type==='keywords')html=html.replace('<label>Keywords / phrases',`<label>Keep rows where the text<select data-flow-setting="operator">${opts([['keywords','Contains any of these words'],['not-keywords','Does not contain any of these words']],d.operator==='not-keywords'?'not-keywords':'keywords')}</select></label><label>Keywords / phrases`).replace('Any listed keyword can pass this condition. Additional filters still mean AND.',d.operator==='not-keywords'?'Rows that mention any listed word are removed. Empty values are kept.':'A row passes when it contains any listed word or phrase.');
+ if(d.type==='missing')html=html.replace('>Not empty<','>Filled in (has a value)<').replace('>Empty<','>Empty (no value)<');
+ if(d.type==='timezone')html=html.replace(/<label>Keep rows where the field<select data-flow-setting="operator">[\s\S]*?<\/select><\/label>/,'').replace('Or enter accepted values, separated by commas','Or type zone labels or offsets, separated by commas').replace('e.g. Inbound, Received','e.g. EST, +05:00, Z')+'<p class="dci-note">Matches a recorded zone label, or the offset written at the end of a timestamp. The clock time is never changed.</p>';
+ return html;
+};
+{const basePV=paintValueChoices;paintValueChoices=function(){if(['number','date'].includes(filterFlow?.draft?.type))return;return basePV.apply(this,arguments)}}
+/* Type step: group the kinds so one-table filters and two-table comparisons are easy to tell apart */
+const basePaint=paintGuidedFilterFlow;
+paintGuidedFilterFlow=function(){
+ const r=basePaint.apply(this,arguments);
+ try{
+  const st=filterFlow,box=q('.filter-kind-choices',filterFlowDialog);
+  if(st.step==='type'&&box&&!box.dataset.dci){
+   box.dataset.dci='1';const head=q('.dialog-head p',filterFlowDialog);if(head)head.textContent='Choose what kind of condition to add. Every condition must pass for a row to stay.';
+   const pair=qa('[data-filter-kind="people"],[data-filter-kind="time"],[data-filter-kind="field-text"]',box);
+   box.insertAdjacentHTML('afterbegin','<h3 class="dci-kind-h">Filter one table</h3>');
+   if(pair.length){box.insertAdjacentHTML('beforeend','<h3 class="dci-kind-h">Compare the two tables</h3>');pair.forEach(b=>box.append(b))}
+  }
+  if(st.step==='configure'){const b=q('[data-flow-back]',filterFlowDialog);if(b)b.textContent='Choose another kind'}
+ }catch(e){console.warn(e)}
+ return r;
+};
+/* Keep date inputs as typed text */
+document.addEventListener('change',e=>{const el=e.target;if(el.matches?.('[data-flow-setting="dateA"],[data-flow-setting="dateB"],[data-flow-setting="dateN"]')&&filterFlow?.draft){setTimeout(()=>{filterFlow.draft[el.dataset.flowSetting]=el.value;paintGuidedFilterFlow()},0)}},true);
+
+/* ---------- Opening an existing condition ---------- */
+function ruleAt(target,index){
+ if(index===null||index===undefined)return null;
+ if(target.kind==='match'){const c=S.connections.find(x=>x.id===target.id);return c?initMerge(c).filters[index]:null}
+ if(target.kind==='draft')return singleDatasetDraft?.rules[index]||null;
+ const n=filterNodes().find(x=>x.id===target.id);return n?(index===-1?n:n.extraFilters?.[index]):null;
+}
+const baseOpen=openGuidedFilterFlow;
+openGuidedFilterFlow=function(target,index=null){
+ const res=baseOpen.apply(this,arguments);
+ try{
+  const r=ruleAt(target,index),d=filterFlow?.draft;if(!r||!d)return res;
+  const vals=r.selectedValues?.length?r.selectedValues:selectedFilterValues(r.query||'');const first=String(vals[0]||'');
+  const n=NUM.parse(first),dt=parseDateToken(first);
+  if(n){d.type='number';d.numOp=n.op;d.numA=String(n.a);d.numB=n.b!==undefined?String(n.b):''}
+  else if(dt){d.type='date';d.dateOp=dt.op;d.dateA=dt.a!=null?isoOf(dt.a):'';d.dateB=dt.b!=null?isoOf(dt.b):'';d.dateN=String(dt.n||7)}
+  else if(r.operator==='not-keywords'){d.type='keywords';d.operator='not-keywords'}
+  else if(r.operator==='timezone'||r.mode==='timezone'){d.type='timezone';d.operator='timezone'}
+  else if(noValues(r.operator)){d.type='missing';d.operator=r.operator}
+  if(n||dt){d.selectedValues=[];d.query=''}
+  paintGuidedFilterFlow();
+ }catch(e){console.warn(e)}
+ return res;
+};
+
+/* ---------- Saving a condition ---------- */
+const baseCommit=commitGuidedFilter;
+commitGuidedFilter=function(){
+ const st=filterFlow,{target,index}=st,d=st.draft,err=q('[data-flow-error]',filterFlowDialog);
+ const say=m=>{if(err)err.textContent=m};
+ if(d.type==='number'){const a=String(d.numA).trim(),b=String(d.numB).trim();if(a===''||!Number.isFinite(+a)||(d.numOp==='between'&&(b===''||!Number.isFinite(+b)))){say(d.numOp==='between'?'Enter both numbers for the range.':'Enter the number to compare with.');return}const tok=NUM.make(d.numOp,+a,+b);d.selectedValues=[tok];d.query=tok;d.operator='equals'}
+ else if(d.type==='date'){if(d.dateOp==='last'){if(!(+d.dateN>0)){say('Enter how many days to look back.');return}}else if(toDay(d.dateA)===null||(d.dateOp==='between'&&toDay(d.dateB)===null)){say(d.dateOp==='between'?'Choose both dates for the range.':'Choose a date.');return}const tok=makeDateToken(d.dateOp,d.dateA,d.dateB,d.dateN);d.selectedValues=[tok];d.query=tok;d.operator='equals'}
+ const pair=['people','time','field-text'].includes(d.type);
+ if(target.kind==='match'){
+  if(pair)return baseCommit.apply(this,arguments);
+  const kind=d.type;if(['number','date'].includes(kind))d.type='values';if(kind==='timezone')d.operator='timezone';if(kind==='keywords'&&d.operator!=='not-keywords')d.operator='keywords';
+  const r=baseCommit.apply(this,arguments);if(filterFlowDialog.open)d.type=kind;return r;
+ }
+ /* One table: build the condition here so the operator is kept */
+ const values=[...new Set([...(d.selectedValues||[]),...selectedFilterValues(d.query)])];
+ let op;if(d.type==='missing')op=d.operator==='empty'?'empty':'not-empty';else if(d.type==='keywords')op=d.operator==='not-keywords'?'not-keywords':'keywords';else if(d.type==='timezone')op='timezone';else op=d.operator==='not-equals'?'not-equals':'equals';
+ if(!noValues(op)&&!values.length){say(d.type==='keywords'?'Enter at least one word or phrase.':'Select at least one value, or type one, before adding this filter.');return}
+ const r={column:+d.column||0,mode:d.type==='keywords'?'keywords':d.type==='timezone'?'timezone':'exact',operator:op,query:noValues(op)?'':(values.join(',')),selectedValues:noValues(op)?[]:values,caseSensitive:!!d.caseSensitive};
+ if(target.kind==='draft'){if(index===null)singleDatasetDraft.rules.push(r);else singleDatasetDraft.rules[index]=r;filterFlowDialog.close();paintSingleDatasetInsight();return}
+ const n=filterNodes().find(x=>x.id===target.id);if(!n)return;
+ if(index===-1){Object.assign(n,r)}else{n.extraFilters??=[];if(index===null)n.extraFilters.push(r);else n.extraFilters[index]=r}
+ filterFlowDialog.close();render();openFilterEditor(n.id,index===null?n.extraFilters.length-1:index);
+};
+
+/* ---------- Matched insights: words for the new operators ---------- */
+{const baseDesc=describeGuidedRule;describeGuidedRule=function(c,r){
+ if(r?.mode==='single-source'){const f=originalFamily(c[r.sourceSide].family);return f.name+' · '+describeRule(f.headers[r[r.sourceSide+'Column']]||'Field',r)}
+ return baseDesc.apply(this,arguments)}}
+
+/* ---------- Filtered insight editor: words, and a safe "remove first filter" ---------- */
+{const baseEd=paintGuidedDatasetEditor;paintGuidedDatasetEditor=function(n){
+ const r=baseEd.apply(this,arguments);
+ try{const f=metricSource(n.source),rules=[n,...(n.extraFilters||[])];
+  qa('[data-dataset-condition]',pipelineDialog).forEach(card=>{const i=+card.dataset.datasetCondition,rule=rules[i+1],t=q('h3',card);if(rule&&t)t.textContent=describeRule(f?.headers[rule.column]||'Choose a field',rule)});
+  const rm=q('[data-guided-dataset-remove="-1"]',pipelineDialog);if(rm)rm.onclick=()=>{const next=n.extraFilters.shift();delete n.operator;delete n.selectedValues;Object.assign(n,next);render();paintGuidedDatasetEditor(n)};
+  const add=q('[data-guided-dataset-add]',pipelineDialog);if(add)add.textContent='+ Add a filter';
+ }catch(e){console.warn(e)}
+ return r}}
+
+/* ---------- "Filter one table" ---------- */
+singleDatasetRecipe=function(){const d=singleDatasetDraft,first=d.rules[0]||{column:0,mode:'exact',query:''};return{id:'preview-single-dataset',name:d.name.trim()||'Filtered table',kind:'filter',inputs:{},source:d.source,column:first.column,mode:first.mode,operator:first.operator,query:first.query,selectedValues:[...(first.selectedValues||[])],caseSensitive:!!first.caseSensitive,extraFilters:d.rules.slice(1).map(r=>({...r,selectedValues:[...(r.selectedValues||[])]}))}};
+openSingleDatasetInsight=function(source){
+ if(!S.families.length){notice('Import an Excel or CSV table first.');return}
+ const f=S.families.find(f=>'raw:'+f.id===source)||S.families.find(f=>!String(f.key||'').startsWith('dc-derived:'))||S.families[0];
+ singleDatasetDraft={source:'raw:'+f.id,name:'',rules:[]};paintSingleDatasetInsight();if(!singleDatasetDialog.open)singleDatasetDialog.showModal();
+ setTimeout(()=>q('[data-single-name]',singleDatasetDialog)?.focus(),40);
+};
+refreshSingleDatasetPreview=function(){
+ const out=q('[data-single-preview]',singleDatasetDialog);if(!out)return;const d=singleDatasetDraft,src=metricSource(d.source);
+ if(!d.rules.length){out.innerHTML=`<strong>${(src?.rows.length||0).toLocaleString()} rows in ${h(src?.name||'this table')}</strong><p>Add a condition to choose which rows to keep.</p>`;return}
+ try{const res=filterData(singleDatasetRecipe());out.innerHTML='<strong>'+res.rows.length.toLocaleString()+' of '+src.rows.length.toLocaleString()+' rows kept</strong><p>A row stays only when it passes every condition.</p>'+resultTable(res,5)}catch(e){out.innerHTML='<p>'+h(e.message)+'</p>'}
+};
+const sameName=t=>S.insights.some(n=>String(n.name||'').trim().toLowerCase()===t.toLowerCase());
+paintSingleDatasetInsight=function(){
+ const d=singleDatasetDraft,f=metricSource(d.source);
+ const tables=S.families.map(x=>['raw:'+x.id,String(x.key||'').startsWith('dc-derived:')?x.name+' (from an insight)':x.name]);
+ const conds=d.rules.map((r,i)=>`<li class="dci-cond"><span class="dci-cond-n">${i+1}</span><div><small>${i===0?'Keep rows where':'And'}</small><b>${h(describeRule(f?.headers[r.column]||'Choose a field',r))}</b></div><button type="button" data-dci-edit="${i}">Edit</button><button type="button" class="dci-cond-x" data-dci-remove="${i}" aria-label="Remove condition ${i+1}">Remove</button></li>`).join('');
+ singleDatasetDialog.innerHTML=`<div class="dialog-head"><div><h2>Filter one table</h2><p>Keep only the rows you need from one table. A row stays when it passes every condition you add.</p></div><button data-single-cancel>Cancel</button></div>
+ <div class="config-grid"><label>Table<select data-single-source>${opts(tables,d.source)}</select></label><label>Insight name<input data-single-name value="${h(d.name)}" placeholder="Describe the rows you keep, e.g. Inbound SMS" autocomplete="off"></label></div>
+ <section class="dci-conds" aria-label="Conditions"><div class="dci-conds-h"><h3>Conditions</h3><span>${d.rules.length?d.rules.length+' '+(d.rules.length===1?'condition':'conditions'):'None yet'}</span></div>
+ ${d.rules.length?`<ol>${conds}</ol>`:`<div class="dci-conds-empty"><b>No conditions yet</b><span>Add one to choose the rows to keep: values, numbers, dates, text, empty fields or time zones.</span></div>`}
+ <button type="button" class="dci-add" data-single-add>+ ${d.rules.length?'Add another condition':'Add the first condition'}</button></section>
+ <section class="single-dataset-preview" data-single-preview role="status"></section><p data-single-error role="alert"></p>
+ <div class="single-dataset-actions"><span>Your tables stay unchanged. The insight is also a table you can use in other insights, Excel sheets and reports.</span><button class="primary" data-single-create>Create insight</button></div>`;
+ const err=q('[data-single-error]',singleDatasetDialog);
+ q('[data-single-cancel]',singleDatasetDialog).onclick=()=>singleDatasetDialog.close();
+ q('[data-single-name]',singleDatasetDialog).oninput=e=>{d.name=e.target.value;err.textContent=''};
+ q('[data-single-source]',singleDatasetDialog).onchange=e=>{const next=metricSource(e.target.value);for(const r of d.rules){const name=f?.headers[r.column],col=next.headers.findIndex(x=>normalize(x)===normalize(name));r.column=col<0?0:col}d.source=e.target.value;paintSingleDatasetInsight()};
+ q('[data-single-add]',singleDatasetDialog).onclick=()=>openGuidedFilterFlow({kind:'draft'});
+ qa('[data-dci-edit]',singleDatasetDialog).forEach(b=>b.onclick=()=>openGuidedFilterFlow({kind:'draft'},+b.dataset.dciEdit));
+ qa('[data-dci-remove]',singleDatasetDialog).forEach(b=>b.onclick=()=>{d.rules.splice(+b.dataset.dciRemove,1);paintSingleDatasetInsight()});
+ q('[data-single-create]',singleDatasetDialog).onclick=()=>{
+  const name=d.name.trim();
+  if(name.length<3){err.textContent='Type a name for this insight (at least 3 characters).';q('[data-single-name]',singleDatasetDialog).focus();return}
+  if(sameName(name)){err.textContent='Another insight already has this name.';q('[data-single-name]',singleDatasetDialog).focus();return}
+  if(!d.rules.length){err.textContent='Add at least one condition.';return}
+  try{filterData(singleDatasetRecipe())}catch(e){err.textContent=e.message;return}
+  const n={...singleDatasetRecipe(),id:uid(),name};S.insights.push(n);try{placeInsight(n)}catch(e){}
+  singleDatasetDialog.close();S.stage=3;S.unlocked=Math.max(4,S.unlocked);render();showGuidedOutcome('join:'+n.id);
+ };
+ refreshSingleDatasetPreview();
+};
+
+/* ---------- Saving and reopening projects keeps the operators ---------- */
+{const baseValid=validateProject;validateProject=function(doc){
+ const extra=[];
+ let use=doc;
+ try{const cons=doc?.state?.connections;if(Array.isArray(cons)&&cons.some(c=>c?.merge?.filters?.some(r=>r?.mode==='single-source'&&['not-keywords','timezone'].includes(r.operator)))){
+  const copy=JSON.parse(JSON.stringify(cons));copy.forEach(c=>c?.merge?.filters?.forEach((r,i)=>{if(r?.mode==='single-source'&&['not-keywords','timezone'].includes(r.operator)){extra.push([c.id,i,r.operator]);r.operator='equals'}}));
+  use={...doc,state:{...doc.state,connections:copy}}}}catch(e){}
+ const valid=baseValid.call(this,use);
+ try{for(const [cid,i,op] of extra){const r=valid.state.connections.find(c=>c.id===cid)?.merge?.filters?.[i];if(r)r.operator=op}
+  for(const n of valid.state.insights.filter(n=>n.kind==='filter')){const raw=doc.state.insights.find(x=>x.id===n.id);if(!raw)continue;if(OPS.includes(raw.operator))n.operator=raw.operator;(n.extraFilters||[]).forEach((r,i)=>{const o=raw.extraFilters?.[i]?.operator;if(OPS.includes(o))r.operator=o})}}catch(e){console.warn('Filters:',e)}
+ return valid}}
+
+/* Date tokens read as words wherever they appear */
+const DATE_RE=/\[date\](?:last:\d+|\d{4}-\d{2}-\d{2}\.\.\d{4}-\d{2}-\d{2}|(?:>=|<=|!=|>|<|=)\d{4}-\d{2}-\d{2})/gi;
+function prettifyDates(root){const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.data.includes('[date]')&&!/^(SCRIPT|STYLE|TEXTAREA)$/.test(n.parentNode?.nodeName||'')?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP});const list=[];let n;while((n=w.nextNode()))list.push(n);for(const t of list){if(t.parentElement?.closest('input,textarea,[contenteditable="true"]'))continue;const next=t.data.replace(DATE_RE,m=>describeDateToken(m));if(next!==t.data)t.data=next}}
+let pend=false;new MutationObserver(()=>{if(pend)return;pend=true;queueMicrotask(()=>{pend=false;prettifyDates(document.body)})}).observe(document.body,{childList:true,subtree:true,characterData:true});
 })();
 
 /* The Analysis Studio: bulk cleaning. Pick fixes for many columns across all tables and apply them in one go. */
@@ -5339,10 +5743,12 @@ const P={
  palette:'M12 3a9 9 0 1 0 0 18c1.1 0 1.7-.9 1.4-1.9-.4-1.2.4-2.1 1.6-2.1H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10zM7.5 11.5h.01M10 7.5h.01M15 7.5h.01',gear:'M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.5-1 1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z',
  plus:'M12 5v14M5 12h14',x:'M6 6l12 12M18 6 6 18',link:'M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1',bold:'M7 5h6a3.5 3.5 0 0 1 0 7H7zM7 12h7a3.5 3.5 0 0 1 0 7H7z',italic:'M11 5h6M7 19h6M14 5l-4 14',under:'M7 4v7a5 5 0 0 0 10 0V4M5 20h14',hash:'M5 9h14M5 15h14M10 4 8 20M16 4l-2 16',eye:'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'
 };
+const P2={back:'M15 18l-6-6 6-6',next:'M5 12h14M13 6l6 6-6 6',help:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14M12 17h.01',minus:'M5 12h14',lpanel:'M4 5h16v14H4zM9 5v14',rpanel:'M4 5h16v14H4zM15 5v14'};for(const k in P2)if(!P[k])P[k]=P2[k];
 const I=(n,c='')=>`<svg class="tas-i ${c}" viewBox="0 0 24 24" aria-hidden="true"><path d="${P[n]}"/></svg>`;
 
 /* ---------- Styles (themes) ---------- */
-const FONTS={Arial:'Arial,Helvetica,sans-serif',Georgia:'Georgia,"Times New Roman",serif',Verdana:'Verdana,Geneva,sans-serif',Trebuchet:'"Trebuchet MS",Helvetica,sans-serif',Calibri:'Calibri,Carlito,Arial,sans-serif',Tahoma:'Tahoma,Geneva,sans-serif'};
+/* Font stacks use single quotes only: they sit inside style="…" attributes in the email. */
+const FONTS={Arial:'Arial,Helvetica,sans-serif',Georgia:"Georgia,'Times New Roman',Times,serif",Verdana:'Verdana,Geneva,sans-serif',Trebuchet:"'Trebuchet MS',Helvetica,Arial,sans-serif",Calibri:'Calibri,Carlito,Arial,sans-serif',Tahoma:'Tahoma,Geneva,sans-serif',Segoe:"'Segoe UI',Helvetica,Arial,sans-serif"};
 const THEMES={
  navy:{name:'Corporate navy',band:'#0e3764',bandText:'#ffffff',accent:'#2f5ce8',heading:'#0e3764',text:'#334155',muted:'#64748b',line:'#e2e8f0',kpiBg:'#f1f5fb',kpiText:'#0e3764',tHead:'#0e3764',tHeadText:'#ffffff',stripe:'#f8fafc',header:'band',font:'Arial'},
  teal:{name:'Fresh teal',band:'#0f766e',bandText:'#ffffff',accent:'#0d9488',heading:'#134e4a',text:'#334155',muted:'#5b6b70',line:'#dbe7e5',kpiBg:'#effaf8',kpiText:'#0f766e',tHead:'#115e59',tHeadText:'#ffffff',stripe:'#f6fbfa',header:'band',font:'Arial'},
@@ -5361,7 +5767,7 @@ const V=(id,label,format='auto')=>({id,label,format,spec:null});
 const B={
  header:(eyebrow,title,subtitle)=>({type:'header',eyebrow,title,subtitle}),
  heading:t=>({type:'heading',text:t}),text:html=>({type:'text',html}),
- kpis:items=>({type:'kpis',items:items.map(([value,label,note])=>({value,label,note:note||''}))}),
+ kpis:(items,cols)=>({type:'kpis',...(cols?{cols}:{}),items:items.map(([value,label,note])=>({value,label,note:note||''}))}),
  table:(title,note)=>({type:'table',title,note:note||'',source:null,columns:[],limit:10}),
  callout:(tone,html)=>({type:'callout',tone,html}),list:items=>({type:'list',items}),
  columns:(left,right)=>({type:'columns',left,right}),divider:(style='line')=>({type:'divider',style}),spacer:(size=24)=>({type:'spacer',size}),
@@ -5369,55 +5775,80 @@ const B={
 };
 const tk=id=>`{{v:${id}}}`;
 const FOOT='Prepared with The Analysis Studio. Figures update from the latest data each time this report is built.';
+const SIGN=(team='Quality team')=>B.text(`<p>Thanks,<br>${team}</p>`);
+const HELLO=body=>B.text(`<p>Hello team,</p><p>${body}</p>`);
 const TEMPLATES=[
  {id:'qa',name:'QA audit findings',tag:'CRM · Quality',theme:'navy',desc:'Audit volume, scores, pass rate, critical errors and what Quality follows up on next.',
-  values:[V('audits','Audits completed'),V('score','Average quality score'),V('pass','Pass rate','percent'),V('critical','Critical errors'),V('coach','Coaching sessions due')],
+  values:[V('audits','Audits completed','number'),V('score','Average quality score'),V('pass','Pass rate','percent'),V('critical','Critical errors','number'),V('coach','Coaching sessions due','number')],
   blocks:()=>[B.header('Quality assurance · CRM','QA audit findings','Reporting period: add the dates'),
-   B.text(`<p>This period the Quality team completed <b>${tk('audits')}</b> audits. The average quality score was <b>${tk('score')}</b> and <b>${tk('pass')}</b> of audits passed.</p>`),
-   B.kpis([['audits','Audits completed'],['score','Average score'],['pass','Pass rate'],['critical','Critical errors']]),
-   B.heading('Key findings'),B.list(['Most common miss: add the criterion and how often it happened.','Strongest area: add what agents did well.','Process gap: add anything outside the agents’ control.']),
-   B.table('Audit results by agent','The lowest scores are worth a second look.'),
-   B.callout('warning',`<p><b>Follow up:</b> ${tk('critical')} critical errors need a coaching conversation. ${tk('coach')} coaching sessions are due.</p>`),
-   B.heading('Next steps'),B.list(['Team leads: complete coaching for every critical error this week.','Quality: re-audit agents below target within 14 days.','Training: share the top finding in the next huddle.']),B.footer(FOOT)]},
- {id:'agent',name:'Agent performance scorecard',tag:'CRM · Quality',theme:'teal',desc:'A scorecard per agent with team averages, top performers and who needs support.',
-  values:[V('agents','Agents reviewed'),V('avg','Team average score'),V('top','Highest score'),V('below','Agents below target')],
-  blocks:()=>[B.header('Agent performance','Agent scorecard','Week of: add the date'),B.kpis([['agents','Agents reviewed'],['avg','Team average'],['top','Highest score'],['below','Below target']]),
-   B.table('Scorecard by agent'),B.columns('<p><b>Top performers</b></p><p>Name the agents to recognise and why.</p>','<p><b>Needs support</b></p><p>Name the agents who need coaching and on what.</p>'),
-   B.callout('info',`<p>The target score is set by your Quality lead. <b>${tk('below')}</b> agents are below it this week.</p>`),B.footer(FOOT)]},
- {id:'fin',name:'Financial findings',tag:'CRM · Finance',theme:'forest',desc:'Amounts reviewed, discrepancies, refunds or credits, accounts affected and the impact.',
-  values:[V('amount','Total amount reviewed','currency'),V('risk','Amount at risk','currency'),V('refunds','Refunds and credits','currency'),V('accounts','Accounts affected'),V('recovery','Recovery rate','percent')],
+   HELLO(`Here are this period’s audit results. We completed <b>${tk('audits')}</b> audits with an average quality score of <b>${tk('score')}</b>, and <b>${tk('pass')}</b> of them passed.`),
+   B.kpis([['audits','Audits'],['score','Average score'],['pass','Pass rate'],['critical','Critical errors']]),
+   B.heading('Key findings'),B.list(['Most common miss: name the criterion and how often it happened.','Strongest area: what agents did well.','Process gap: anything outside the agents’ control.']),
+   B.table('Audit results by agent','Lowest scores first are worth a second look.'),
+   B.callout('warning',`<p><b>Follow up:</b> ${tk('critical')} critical errors need a coaching conversation, and ${tk('coach')} coaching sessions are due.</p>`),
+   B.heading('Next steps'),B.list(['Team leads: coach every critical error this week.','Quality: re-audit agents below target within 14 days.','Training: share the top finding in the next huddle.']),
+   SIGN(),B.footer(FOOT)]},
+ {id:'agent',name:'Agent performance scorecard',tag:'CRM · Quality',theme:'teal',desc:'Team averages, top performers, who needs support and a scorecard per agent.',
+  values:[V('agents','Agents reviewed','number'),V('avg','Team average score'),V('top','Highest score'),V('below','Agents below target','number')],
+  blocks:()=>[B.header('Agent performance','Agent scorecard','Week of: add the date'),
+   HELLO(`This week we reviewed <b>${tk('agents')}</b> agents. The team average was <b>${tk('avg')}</b> and the highest score was <b>${tk('top')}</b>.`),
+   B.kpis([['agents','Agents reviewed'],['avg','Team average'],['top','Highest score'],['below','Below target']]),
+   B.heading('How the team did'),B.columns('<p><b>Top performers</b></p><p>Name the agents to recognise and why.</p>','<p><b>Needs support</b></p><p>Name the agents who need coaching and on what.</p>'),
+   B.table('Scorecard by agent'),
+   B.callout('info',`<p><b>${tk('below')}</b> agents are below the target score this week. Team leads will book coaching with each of them.</p>`),
+   SIGN(),B.footer(FOOT)]},
+ {id:'fin',name:'Financial findings',tag:'CRM · Finance',theme:'forest',desc:'Amounts reviewed, money at risk, refunds and credits, accounts affected and the impact.',
+  values:[V('amount','Total amount reviewed','currency'),V('risk','Amount at risk','currency'),V('refunds','Refunds and credits','currency'),V('accounts','Accounts affected','number'),V('recovery','Recovery rate','percent'),V('avgfind','Average per finding','currency')],
   blocks:()=>[B.header('Financial review','Financial findings','Reporting period: add the dates'),
-   B.text(`<p>We reviewed <b>${tk('amount')}</b> across <b>${tk('accounts')}</b> accounts. <b>${tk('risk')}</b> is at risk and <b>${tk('refunds')}</b> was issued in refunds and credits.</p>`),
-   B.kpis([['amount','Amount reviewed'],['risk','Amount at risk'],['refunds','Refunds and credits']]),B.kpis([['accounts','Accounts affected'],['recovery','Recovery rate']]),
-   B.table('Findings detail','Each row is one account or transaction with a finding.'),B.callout('danger',`<p><b>Financial impact:</b> explain what the at-risk amount means and who needs to act.</p>`),
-   B.heading('Recommendations'),B.list(['Correct the billing or posting issue at its source.','Confirm refunds with the finance team.','Re-check affected accounts next cycle.']),B.footer(FOOT)]},
- {id:'trend',name:'Trend analysis report',tag:'CRM · Dialer',theme:'plum',desc:'This period against last period, the change, and what is improving or declining.',
-  values:[V('now','This period'),V('prev','Last period'),V('change','Change','percent'),V('records','Records analysed')],
-  blocks:()=>[B.header('Trend analysis','Trend analysis report','Comparing this period with the last'),B.kpis([['now','This period'],['prev','Last period'],['change','Change']]),
-   B.text(`<p>Across <b>${tk('records')}</b> records, the result moved from <b>${tk('prev')}</b> to <b>${tk('now')}</b>, a change of <b>${tk('change')}</b>.</p>`),
-   B.table('Trend by week'),B.columns('<p><b>Improving</b></p><p>What moved in the right direction.</p>','<p><b>Declining</b></p><p>What moved the wrong way and why.</p>'),
-   B.heading('What we will watch'),B.list(['The metric to watch next period.','The team or campaign most affected.']),B.footer(FOOT)]},
- {id:'dialer',name:'Dialer campaign performance',tag:'Dialer',theme:'coral',desc:'Dials, connects, contact rates, handle time, abandon rate and dispositions.',
-  values:[V('dials','Total dials'),V('connects','Connects'),V('rate','Connect rate','percent'),V('rpc','Right-party contacts'),V('aht','Average handle time'),V('abandon','Abandon rate','percent')],
+   HELLO(`We reviewed <b>${tk('amount')}</b> across <b>${tk('accounts')}</b> accounts. <b>${tk('risk')}</b> is at risk, and <b>${tk('refunds')}</b> was issued in refunds and credits.`),
+   B.kpis([['amount','Amount reviewed'],['risk','Amount at risk'],['refunds','Refunds and credits']]),B.kpis([['accounts','Accounts affected'],['recovery','Recovery rate'],['avgfind','Average per finding']]),
+   B.callout('danger',`<p><b>Financial impact:</b> explain what the ${tk('risk')} at risk means and who needs to act.</p>`),
+   B.table('Findings detail','Each row is one account or transaction with a finding.'),
+   B.heading('Recommendations'),B.list(['Fix the billing or posting issue at its source.','Confirm every refund with the Finance team.','Re-check the affected accounts next cycle.']),
+   SIGN('Quality and Finance'),B.footer(FOOT)]},
+ {id:'trend',name:'Trend analysis report',tag:'CRM · Dialer',theme:'plum',desc:'This period against the last, the change, and what is improving or declining.',
+  values:[V('now','This period'),V('prev','Last period'),V('change','Change','percent'),V('records','Records analysed','number')],
+  blocks:()=>[B.header('Trend analysis','Trend analysis report','This period compared with the last'),
+   HELLO(`Across <b>${tk('records')}</b> records, the result moved from <b>${tk('prev')}</b> last period to <b>${tk('now')}</b> this period, a change of <b>${tk('change')}</b>.`),
+   B.kpis([['prev','Last period'],['now','This period'],['change','Change']]),
+   B.heading('What changed'),B.columns('<p><b>Improving</b></p><p>What moved in the right direction, and why.</p>','<p><b>Declining</b></p><p>What moved the wrong way, and why.</p>'),
+   B.table('Trend by week'),
+   B.heading('What we will watch'),B.list(['The measure to watch next period.','The team or campaign most affected.']),
+   SIGN(),B.footer(FOOT)]},
+ {id:'dialer',name:'Dialer campaign performance',tag:'Dialer',theme:'coral',desc:'Dials, connects, contact rate, handle time, abandon rate and results by disposition.',
+  values:[V('dials','Total dials','number'),V('connects','Connects','number'),V('rate','Connect rate','percent'),V('rpc','Right-party contacts','number'),V('aht','Average handle time','duration'),V('abandon','Abandon rate','percent')],
   blocks:()=>[B.header('Dialer · Campaign','Campaign performance','Campaign: add the name and dates'),
+   HELLO(`The campaign made <b>${tk('dials')}</b> dials and reached <b>${tk('connects')}</b> connects, a connect rate of <b>${tk('rate')}</b>.`),
    B.kpis([['dials','Total dials'],['connects','Connects'],['rate','Connect rate']]),B.kpis([['rpc','Right-party contacts'],['aht','Avg handle time'],['abandon','Abandon rate']]),
-   B.table('Results by disposition'),B.callout('warning',`<p><b>Compliance check:</b> the abandon rate is <b>${tk('abandon')}</b>. Keep it within your regulatory limit.</p>`),
-   B.heading('Next steps'),B.list(['Adjust calling windows for the lowest connect hours.','Review list quality for wrong-party contacts.']),B.footer(FOOT)]},
+   B.table('Results by disposition'),
+   B.callout('warning',`<p><b>Compliance check:</b> the abandon rate is <b>${tk('abandon')}</b>. Keep it within your regulatory limit.</p>`),
+   B.heading('Next steps'),B.list(['Move calling windows away from the lowest connect hours.','Review list quality for wrong-party contacts.','Share the best-performing script with the team.']),
+   SIGN('Dialer team'),B.footer(FOOT)]},
  {id:'comp',name:'Compliance and escalations',tag:'CRM · Dialer',theme:'crimson',desc:'Records checked, breaches, escalations, open disputes and SLA performance.',
-  values:[V('checked','Records checked'),V('breaches','Compliance breaches'),V('esc','Escalations raised'),V('disputes','Open disputes'),V('sla','Resolved within SLA','percent')],
-  blocks:()=>[B.header('Compliance','Compliance and escalations','Reporting period: add the dates'),B.kpis([['checked','Records checked'],['breaches','Breaches'],['esc','Escalations']]),B.kpis([['disputes','Open disputes'],['sla','Within SLA']]),
-   B.callout('danger',`<p><b>${tk('breaches')}</b> compliance breaches were found. Each one needs an owner and a fix date.</p>`),B.table('Breaches and escalations'),
-   B.heading('Actions'),B.list(['Assign every breach to a team lead.','Close open disputes before the SLA date.','Share the pattern with Training.']),B.footer(FOOT)]},
+  values:[V('checked','Records checked','number'),V('breaches','Compliance breaches','number'),V('esc','Escalations raised','number'),V('disputes','Open disputes','number'),V('sla','Resolved within SLA','percent'),V('repeat','Repeat breaches','number')],
+  blocks:()=>[B.header('Compliance','Compliance and escalations','Reporting period: add the dates'),
+   HELLO(`We checked <b>${tk('checked')}</b> records this period and found <b>${tk('breaches')}</b> compliance breaches. <b>${tk('sla')}</b> of escalations were resolved within SLA.`),
+   B.kpis([['checked','Records checked'],['breaches','Breaches'],['esc','Escalations']]),B.kpis([['disputes','Open disputes'],['sla','Within SLA'],['repeat','Repeat breaches']]),
+   B.callout('danger',`<p><b>Action needed:</b> every one of the ${tk('breaches')} breaches needs an owner and a fix date.</p>`),
+   B.table('Breaches and escalations'),
+   B.heading('Actions'),B.list(['Assign every breach to a team lead.','Close open disputes before the SLA date.','Share the pattern with Training.']),
+   SIGN('Compliance team'),B.footer(FOOT)]},
  {id:'coach',name:'Coaching follow-up',tag:'CRM · Quality',theme:'sky',desc:'Coaching due, completed and overdue, with the list of agents to follow up.',
-  values:[V('due','Coaching due'),V('done','Completed'),V('overdue','Overdue'),V('disputed','Disputed audits')],
-  blocks:()=>[B.header('Coaching','Coaching follow-up','Week of: add the date'),B.text(`<p>Hi team, here is where coaching stands. <b>${tk('done')}</b> of <b>${tk('due')}</b> sessions are complete and <b>${tk('overdue')}</b> are overdue.</p>`),
-   B.kpis([['due','Due'],['done','Completed'],['overdue','Overdue'],['disputed','Disputed']]),B.table('Coaching list','Agents with an open coaching action.'),
-   B.callout('warning','<p><b>Overdue coaching:</b> please complete these by Friday and log the outcome.</p>'),B.footer(FOOT)]},
+  values:[V('due','Coaching due','number'),V('done','Completed','number'),V('overdue','Overdue','number'),V('disputed','Disputed audits','number')],
+  blocks:()=>[B.header('Coaching','Coaching follow-up','Week of: add the date'),
+   HELLO(`Here is where coaching stands. <b>${tk('done')}</b> of <b>${tk('due')}</b> sessions are complete and <b>${tk('overdue')}</b> are overdue.`),
+   B.kpis([['due','Due'],['done','Completed'],['overdue','Overdue'],['disputed','Disputed']]),
+   B.callout('warning','<p><b>Overdue coaching:</b> please complete these sessions by Friday and log the outcome.</p>'),
+   B.table('Coaching list','Agents with an open coaching action.'),
+   SIGN(),B.footer(FOOT)]},
  {id:'exec',name:'Executive summary',tag:'General',theme:'graphite',desc:'A short, clean summary for leadership: three numbers, the story and one table.',
   values:[V('k1','Headline number'),V('k2','Second number'),V('k3','Third number')],
-  blocks:()=>[B.header('Summary','Executive summary','Reporting period: add the dates'),B.kpis([['k1','Headline'],['k2','Second'],['k3','Third']]),
-   B.text('<p>Write two or three sentences about what changed and why it matters.</p>'),B.heading('Highlights'),B.list(['First highlight.','Second highlight.','Third highlight.']),B.table('Detail'),B.footer(FOOT)]},
- {id:'blank',name:'Blank report',tag:'Start fresh',theme:'navy',desc:'An empty page. Add elements from the left and data from the Data tab.',values:[],blocks:()=>[B.header('Report','Your report title','Add a short subtitle')]}
+  blocks:()=>[B.header('Summary','Executive summary','Reporting period: add the dates'),
+   B.kpis([['k1','Headline'],['k2','Second'],['k3','Third']]),
+   B.text('<p>Write two or three sentences about what changed and why it matters.</p>'),
+   B.heading('Highlights'),B.list(['First highlight.','Second highlight.','Third highlight.']),
+   B.table('Detail'),SIGN('Your name'),B.footer(FOOT)]},
+ {id:'blank',name:'Blank report',tag:'Start fresh',theme:'navy',desc:'An empty page. Add elements from the left and data from the Data tab.',values:[],blocks:()=>[B.header('Report','Your report title','Add a short subtitle'),B.text('<p>Start writing here.</p>')]}
 ];
 
 /* ---------- State ---------- */
@@ -5520,16 +5951,18 @@ function blockHTML(b,edit){
  const R2=(key,style)=>edit?rich(b,key,true,T,style):`<div style="${style}">${emailRich(b[key]||'',T)}</div>`;
  switch(b.type){
   case 'header':{const line=T.header==='line';const box=`${R2('eyebrow',`font-family:${F};font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:${line?T.accent:T.bandText};opacity:${line?1:.85};font-weight:700`)}${R2('title',`font-family:${F};font-size:26px;line-height:1.25;font-weight:700;color:${line?T.heading:T.bandText};margin-top:6px`)}${R2('subtitle',`font-family:${F};font-size:14px;line-height:1.5;color:${line?T.muted:T.bandText};opacity:${line?1:.9};margin-top:6px`)}`;
-   return line?`<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse"><tr><td style="height:6px;background:${T.accent};font-size:1px;line-height:6px">&nbsp;</td></tr><tr><td style="padding:26px 32px 18px;border-bottom:1px solid ${T.line}">${box}</td></tr></table>`:wrapRow(box,'30px 32px',T.band)}
+   const gap=`<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="height:14px;font-size:1px;line-height:14px">&nbsp;</td></tr></table>`;
+   return (line?`<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse"><tr><td style="height:6px;background:${T.accent};font-size:1px;line-height:6px">&nbsp;</td></tr><tr><td style="padding:26px 32px 18px;border-bottom:1px solid ${T.line}">${box}</td></tr></table>`:wrapRow(box,'30px 32px',T.band))+gap}
   case 'heading':return wrapRow(R2('text',`font-family:${F};font-size:18px;line-height:1.3;font-weight:700;color:${T.heading};padding-bottom:6px;border-bottom:2px solid ${T.accent};display:inline-block`),'22px 32px 6px');
   case 'text':return wrapRow(edit?rich(b,'html',true,T,txt):`<div style="${txt}">${emailRich(b.html,T)}</div>`,'8px 32px');
-  case 'kpis':{const items=b.items||[],n=Math.max(1,items.length),w=Math.floor(100/n);
+  case 'kpis':{const items=b.items||[],n=Math.max(1,items.length,Math.min(4,+b.cols||0)),w=Math.floor(100/n);
    const cell=(it,i)=>{const t=it.value&&R.values[it.value]?valueText(it.value):'—',set=t!=='—',lab=R.values[it.value]?.label||'Drop a value here';
-    const val=edit?`<div class="tas-kpi-val ${it.value?'':'is-empty'} ${set?'':'is-unset'}" data-kpi="${i}" title="${h(lab)}">${h(set?t:(it.value?lab:'Drop a value'))}</div>`:`<div style="font-family:${F};font-size:26px;line-height:1.2;font-weight:700;color:${T.kpiText}">${h(t)}</div>`;
+    const val=edit?`<div class="tas-kpi-val ${it.value?'':'is-empty'} ${set?'':'is-unset'}" data-kpi="${i}" title="${h(lab)}">${set?h(t):`<span class="tas-kpi-dash">—</span><small>${it.value?'Not set · click to set up':'Drop a number here'}</small>`}</div>`:`<div style="font-family:${F};font-size:26px;line-height:1.2;font-weight:700;color:${T.kpiText}">${h(t)}</div>`;
     const lbl=edit?`<div class="tas-rich tas-kpi-lbl" contenteditable="true" data-edit="items.${i}.label" data-ph="Label" style="font-family:${F};font-size:11px;letter-spacing:.7px;text-transform:uppercase;color:${T.muted};font-weight:700">${tokensToEdit(it.label)}</div>`:`<div style="font-family:${F};font-size:11px;letter-spacing:.7px;text-transform:uppercase;color:${T.muted};font-weight:700">${tokensToEmail(it.label,T)}</div>`;
     const note=edit?`<div class="tas-rich" contenteditable="true" data-edit="items.${i}.note" data-ph="Optional note" style="font-family:${F};font-size:12px;color:${T.muted};margin-top:2px">${tokensToEdit(it.note)}</div>`:(it.note?`<div style="font-family:${F};font-size:12px;color:${T.muted};margin-top:2px">${tokensToEmail(it.note,T)}</div>`:'');
     return `<td width="${w}%" valign="top" style="padding:6px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;background:${T.kpiBg};border-radius:10px;border:1px solid ${T.line}"><tr><td style="padding:14px 16px">${lbl}<div style="margin-top:6px">${val}</div>${note}</td></tr></table></td>`};
-   return wrapRow(`<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse"><tr>${items.map(cell).join('')}</tr></table>`,'8px 26px')}
+   const pad=n>items.length?Array.from({length:n-items.length},()=>`<td width="${w}%" style="padding:6px">&nbsp;</td>`).join(''):'';
+   return wrapRow(`<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;table-layout:fixed"><tr>${items.map(cell).join('')}${pad}</tr></table>`,'8px 26px')}
   case 'table':{const f=b.source?src(b.source):null,cols=(b.columns?.length?b.columns:(f?f.headers.map((_,i)=>i).slice(0,6):[])).filter(c=>f&&f.headers[c]!==undefined),lim=Math.max(1,Math.min(200,+b.limit||10));
    const title=edit?`<div class="tas-rich" contenteditable="true" data-edit="title" data-ph="Table title" style="font-family:${F};font-size:15px;font-weight:700;color:${T.heading};margin-bottom:8px">${tokensToEdit(b.title)}</div>`:(b.title?`<div style="font-family:${F};font-size:15px;font-weight:700;color:${T.heading};margin-bottom:8px">${tokensToEmail(b.title,T)}</div>`:'');
    if(!f)return wrapRow(title+(edit?`<div class="tas-table-empty" data-table-drop="1">${I('table')}<b>Drop a table or insight here</b><span>or choose its data in <b>Report setup</b>.</span></div>`:''),'14px 32px');
@@ -5549,27 +5982,33 @@ function blockHTML(b,edit){
  }
  return '';
 }
-function emailInner(){const T=theme();return `<table role="presentation" width="640" cellpadding="0" cellspacing="0" border="0" align="center" style="width:640px;max-width:100%;border-collapse:collapse;background:#ffffff;margin:0 auto"><tr><td style="background:#ffffff">${R.blocks.map(b=>blockHTML(b,false)).join('')}</td></tr></table>`}
+const emailBlocks=()=>R.blocks.filter(b=>!(b.type==='table'&&!(b.source&&src(b.source))));
+function emailInner(){const T=theme();return `<table role="presentation" width="640" cellpadding="0" cellspacing="0" border="0" align="center" style="width:640px;max-width:100%;border-collapse:collapse;background:#ffffff;margin:0 auto"><tr><td style="background:#ffffff;padding:0 0 8px">${emailBlocks().map(b=>blockHTML(b,false)).join('')}</td></tr></table>`}
 function emailDocument(){const T=theme(),title=R.subject||window.dcProj?.current()?.name||'Report';
  return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light only"><title>${h(title)}</title></head><body style="margin:0;padding:0;background:#ffffff">${R.preheader?`<div style="display:none;max-height:0;overflow:hidden;opacity:0">${h(R.preheader)}</div>`:''}<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#ffffff"><tr><td align="center" style="padding:16px 8px;background:#ffffff">${emailInner()}</td></tr></table></body></html>`}
 function plainText(){const box=document.createElement('div');box.innerHTML=emailInner();qa('td,th',box).forEach(c=>c.append(' '));qa('tr,div,p,li',box).forEach(e=>e.append('\n'));return box.textContent.replace(/[ \t]+/g,' ').replace(/\n\s*\n\s*\n+/g,'\n\n').trim()}
 async function copyToEmail(){
- const unset=usedValueIds().filter(id=>valueText(id)==='—').length;
+ const unset=usedValueIds().filter(id=>valueText(id)==='—').length,noTable=R.blocks.filter(b=>b.type==='table'&&!(b.source&&src(b.source))).length;
  const html=`<div style="background:#ffffff">${emailInner()}</div>`,text=plainText();
  try{
   if(navigator.clipboard?.write&&window.ClipboardItem){await navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([text],{type:'text/plain'})})])}
   else throw Error('fallback');
  }catch(e){const box=document.createElement('div');box.setAttribute('contenteditable','true');box.style.cssText='position:fixed;left:-9999px;top:0;background:#fff';box.innerHTML=html;document.body.append(box);const rg=document.createRange();rg.selectNodeContents(box);const s=getSelection();s.removeAllRanges();s.addRange(rg);const ok=document.execCommand('copy');s.removeAllRanges();box.remove();if(!ok){say('Your browser blocked copying. Use Download HTML instead.');return false}}
- say(unset?`Copied. Paste it into a new email. ${unset} ${unset===1?'value is':'values are'} not set yet and show as “—”.`:'Copied. Paste it into a new email with Ctrl + V.');return true;
+ const miss=[unset?`${unset} ${unset===1?'value is':'values are'} not set yet and show as “—”`:'',noTable?`${noTable} ${noTable===1?'table has':'tables have'} no data yet and ${noTable===1?'was':'were'} left out`:''].filter(Boolean);
+ say(miss.length?`Copied. Paste it into a new email. Note: ${miss.join('; ')}.`:'Copied. Paste it into a new email with Ctrl + V.');return true;
 }
 function downloadHTML(){const name=(window.dcExcelName?window.dcExcelName():'Report.xlsx').replace(/\.xlsx$/,'.html');try{download(new Blob([emailDocument()],{type:'text/html'}),name)}catch(e){say(e.message)}}
 
 /* ---------- UI shell ---------- */
 const root=document.createElement('section');root.className='tas-rb';
-root.innerHTML=`<div class="tas-top"><label class="tas-subject"><span>Subject</span><input data-top="subject" placeholder="Email subject line, e.g. QA audit findings – week 46"></label>
- <div class="tas-top-btns"><button type="button" class="tas-ib" data-act="undo" title="Undo (Ctrl + Z)" aria-label="Undo">${I('undo')}</button><button type="button" class="tas-ib" data-act="redo" title="Redo (Ctrl + Y)" aria-label="Redo">${I('redo')}</button>
- <button type="button" data-act="wide" class="tas-wide-btn" aria-pressed="false" title="Hide or show the steps panel on the left to give the page more room"><span>Hide steps panel</span></button><button type="button" data-act="mine">${I('save')}<span>Save as my template</span></button><button type="button" data-act="preview">${I('eye')}<span>Preview</span></button><button type="button" class="primary" data-act="copy">${I('mail')}<span>Copy to email</span></button></div></div>
- <div class="tas-grid"><aside class="tas-left" aria-label="Templates, elements and data"></aside><div class="tas-stage"><div class="tas-paper-wrap"><div class="tas-paper" aria-label="Report"></div></div></div><aside class="tas-right" aria-label="Report setup"></aside></div>`;
+root.innerHTML=`<div class="tas-top">
+ <div class="tas-nav"><button type="button" class="tas-ib" data-act="back" title="Back to the previous step" aria-label="Back to the previous step">${I('back')}</button><div class="tas-where"><b>Build report</b><small data-where></small></div></div>
+ <label class="tas-subject"><span>Subject</span><input data-top="subject" placeholder="Email subject line, e.g. QA audit findings – week 46"></label>
+ <div class="tas-top-btns"><button type="button" class="tas-ib" data-act="undo" title="Undo (Ctrl + Z)" aria-label="Undo">${I('undo')}</button><button type="button" class="tas-ib" data-act="redo" title="Redo (Ctrl + Y)" aria-label="Redo">${I('redo')}</button><button type="button" class="tas-ib" data-act="help" title="How to build a report" aria-label="How to build a report">${I('help')}</button>
+ <span class="tas-sep" aria-hidden="true"></span>
+ <button type="button" data-act="mine">${I('save')}<span>Save as my template</span></button><button type="button" data-act="preview">${I('eye')}<span>Preview</span></button><button type="button" class="tas-copy" data-act="copy">${I('mail')}<span>Copy to email</span></button><button type="button" class="primary tas-next" data-act="next"><span>Continue to Export</span>${I('next')}</button></div></div>
+ <div class="tas-grid"><div class="tas-stage"><div class="tas-paper-wrap"><div class="tas-paper" aria-label="Report"></div></div></div><aside class="tas-left" aria-label="Templates, elements and data"></aside><aside class="tas-right" aria-label="Report setup"></aside>
+ <div class="tas-dock" role="toolbar" aria-label="View"><button type="button" class="tas-ib" data-act="lpanel" title="Show or hide the left panel" aria-label="Show or hide the left panel">${I('lpanel')}</button><span class="tas-sep" aria-hidden="true"></span><button type="button" class="tas-ib" data-act="zout" title="Zoom out" aria-label="Zoom out">${I('minus')}</button><button type="button" class="tas-zoomv" data-act="zfit" title="Back to 100%">100%</button><button type="button" class="tas-ib" data-act="zin" title="Zoom in" aria-label="Zoom in">${I('plus')}</button><span class="tas-sep" aria-hidden="true"></span><button type="button" class="tas-ib" data-act="rpanel" title="Show or hide Report setup" aria-label="Show or hide Report setup">${I('rpanel')}</button></div></div>`;
 const left=q('.tas-left',root),right=q('.tas-right',root),paper=q('.tas-paper',root);
 let leftTab=store.get('tas-left')||'templates',rightTab='setup',sel=null,filter='',openSrc=new Set(),editingVal=null;
 
@@ -5667,7 +6106,7 @@ function select(id,repaint=true){sel=id;qa('.tas-b',paper).forEach(x=>x.classLis
 /* Formatting toolbar */
 const fmt=document.createElement('div');fmt.className='tas-fmt';fmt.hidden=true;fmt.innerHTML=`<button type="button" data-cmd="bold" title="Bold (Ctrl + B)" aria-label="Bold">${I('bold')}</button><button type="button" data-cmd="italic" title="Italic" aria-label="Italic">${I('italic')}</button><button type="button" data-cmd="underline" title="Underline" aria-label="Underline">${I('under')}</button><button type="button" data-cmd="link" title="Add a link" aria-label="Add a link">${I('link')}</button><button type="button" data-cmd="insertUnorderedList" title="Bullets" aria-label="Bullets">${I('list')}</button><span class="tas-fmt-sep"></span><button type="button" data-cmd="value" class="tas-fmt-val" title="Insert a live value">${I('hash')}Insert value</button>`;
 document.body.append(fmt);let lastEdit=null,savedRange=null;
-function showFmt(ed){if(!ed?.isConnected){hideFmt();return}const r=ed.getBoundingClientRect();if(!r.width&&!r.height){hideFmt();return}fmt.hidden=false;const mon=right.isConnected?right.getBoundingClientRect().bottom:0,minTop=Math.max(70,mon+6),fh=fmt.offsetHeight||38;const off=r.bottom<minTop+4||r.top>innerHeight-90;fmt.style.visibility=off?'hidden':'visible';fmt.style.left=Math.max(8,Math.min(innerWidth-(fmt.offsetWidth||290)-8,r.left))+'px';let top=r.top-fh-8;if(top<minTop)top=Math.min(innerHeight-fh-90,r.bottom+8);fmt.style.top=top+'px'}
+function showFmt(ed){if(!ed?.isConnected){hideFmt();return}const r=ed.getBoundingClientRect();if(!r.width&&!r.height){hideFmt();return}fmt.hidden=false;const topBar=q('.tas-top',root),mon=topBar?.isConnected?topBar.getBoundingClientRect().bottom:0,minTop=Math.max(8,mon+6),fh=fmt.offsetHeight||38;const off=r.bottom<minTop+4||r.top>innerHeight-90;fmt.style.visibility=off?'hidden':'visible';fmt.style.left=Math.max(8,Math.min(innerWidth-(fmt.offsetWidth||290)-8,r.left))+'px';let top=r.top-fh-8;if(top<minTop)top=Math.min(innerHeight-fh-90,r.bottom+8);fmt.style.top=top+'px'}
 function hideFmt(){fmt.hidden=true;q('.tas-valpick')?.remove()}
 addEventListener('scroll',()=>{if(!fmt.hidden&&lastEdit?.isConnected)showFmt(lastEdit)},true);
 document.addEventListener('selectionchange',()=>{const s=getSelection();if(s.rangeCount&&lastEdit&&lastEdit.contains(s.anchorNode))savedRange=s.getRangeAt(0).cloneRange()});
@@ -5789,8 +6228,10 @@ function openValue(id){editingVal=id;rightTab='setup';store.set('tas-mon','open'
 /* Top bar */
 function paintTop(){const s=q('[data-top="subject"]',root);if(document.activeElement!==s)s.value=R.subject||'';q('[data-act="undo"]',root).disabled=!hist.past.length;q('[data-act="redo"]',root).disabled=!hist.future.length}
 q('[data-top="subject"]',root).addEventListener('input',e=>{hist.mark('subject');R.subject=e.target.value;autosave()});
-q('.tas-top',root).addEventListener('click',e=>{const a=e.target.closest('[data-act]')?.dataset.act;if(!a)return;
- if(a==='undo')hist.undo();if(a==='redo')hist.redo();if(a==='copy')copyToEmail();if(a==='preview')openPreview();if(a==='mine')openSaveTemplate();if(a==='wide'){store.set('tas-wide',document.body.classList.contains('tas-wide')?'off':'on');applyWide()}});
+root.addEventListener('click',e=>{const a=e.target.closest('[data-act]')?.dataset.act;if(!a)return;
+ if(a==='undo')hist.undo();if(a==='redo')hist.redo();if(a==='copy')copyToEmail();if(a==='preview')openPreview();if(a==='mine')openSaveTemplate();if(a==='back')q('#back')?.click();if(a==='next')q('#next')?.click();if(a==='help'){try{window.dcGuide?.open()}catch(e){}}
+ if(a==='lpanel'||a==='rpanel'){const k='tas-'+a;store.set(k,store.get(k)==='closed'?'open':'closed');applyView()}
+ if(a==='zin'||a==='zout'||a==='zfit'){const z=a==='zfit'?1:Math.max(.6,Math.min(1.6,Math.round((zoom()+(a==='zin'?.1:-.1))*10)/10));store.set('tas-zoom',String(z));applyView()}});
 root.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&!e.target.closest('input,select,textarea')){const k=e.key.toLowerCase();if(k==='z'&&!e.target.closest('[contenteditable="true"]')){e.preventDefault();e.shiftKey?hist.redo():hist.undo()}if(k==='y'&&!e.target.closest('[contenteditable="true"]')){e.preventDefault();hist.redo()}}});
 
 /* Preview */
@@ -5869,14 +6310,27 @@ function clickValue(spec,label){
 /* ---------- Mount ---------- */
 function paint(){if(!root.isConnected)return;srcCache=new Map();paintLeft();paintPaper();paintRight();paintTop()}
 let lastSt=-1;
-function applyWide(){const pref=store.get('tas-wide');const on=pref?pref==='on':innerWidth<1600;document.body.classList.toggle('tas-wide',on&&stageNow()===5);const b=q('[data-act="wide"]',root);if(b){b.setAttribute('aria-pressed',String(on));b.querySelector('span').textContent=on?'Show steps panel':'Hide steps panel'}}
-function mount(){
- const st=stageNow(),entered=st===5&&lastSt!==5;lastSt=st;const content=q('#content');
- document.body.classList.toggle('tas-on',st===5);applyWide();
- if(st!==5||!content){if(root.isConnected)root.remove();hideFmt();return}
- if(root.parentElement!==content)content.prepend(root);
- if(entered||!left.innerHTML)paint();
+const zoom=()=>{const z=+store.get('tas-zoom');return z>=.6&&z<=1.6?z:1};
+function applyView(){
+ const narrow=innerWidth<1100,lp=store.get('tas-lpanel')||(narrow?'closed':'open'),rp=store.get('tas-rpanel')||(narrow?'closed':'open');
+ root.classList.toggle('no-left',lp==='closed');root.classList.toggle('no-right',rp==='closed');
+ q('[data-act="lpanel"]',root)?.setAttribute('aria-pressed',String(lp!=='closed'));q('[data-act="rpanel"]',root)?.setAttribute('aria-pressed',String(rp!=='closed'));
+ const z=zoom();paper.style.zoom=z===1?'':String(z);const zv=q('.tas-zoomv',root);if(zv)zv.textContent=Math.round(z*100)+'%';
+ const w=q('[data-where]',root);if(w){const step=q('.dc-meter-count')?.textContent||'';const name=window.dcProj?.current?.()?.name||'';w.textContent=[step,name].filter(Boolean).join(' · ')}
+ const nx=q('#next');const nb=q('[data-act="next"]',root);if(nb&&nx){nb.disabled=!!nx.disabled;const t=(nx.textContent||'').trim();if(t)nb.querySelector('span').textContent=t}
 }
+function applyWide(){document.body.classList.remove('tas-wide')}
+function _oldWide(){const pref=store.get('tas-wide');const on=pref?pref==='on':innerWidth<1600;document.body.classList.toggle('tas-wide',on&&stageNow()===5);const b=q('[data-act="wide"]',root);if(b){b.setAttribute('aria-pressed',String(on));b.querySelector('span').textContent=on?'Show steps panel':'Hide steps panel'}}
+function mount(){
+ const st=stageNow(),entered=st===5&&lastSt!==5;lastSt=st;
+ document.body.classList.toggle('tas-on',st===5);applyWide();
+ if(st!==5){if(root.isConnected)root.remove();hideFmt();return}
+ /* The builder is a full-page workspace on top of the app */
+ if(root.parentElement!==document.body)document.body.append(root);
+ if(entered||!left.innerHTML)paint();
+ applyView();
+}
+addEventListener('resize',()=>{if(root.isConnected)applyView()});
 const baseRender=render;render=function(){const r=baseRender.apply(this,arguments);try{mount();exportHook()}catch(e){console.warn('Report builder:',e)}return r};
 
 /* ---------- Export step: copy the new report ---------- */
@@ -5896,7 +6350,7 @@ function fillPreview(){const pv=q('#email-preview');if(!pv)return;pv.classList.a
  if(!pvObs)pvObs=new MutationObserver(()=>{if(stageNow()!==6)return;if(!pv.querySelector('[data-tas-preview]')&&R.blocks.length){pvObs.disconnect();pv.innerHTML=`<div data-tas-preview="1">${emailInner()}</div>`;pvObs.observe(pv,{childList:true})}});
  pvObs.disconnect();pvObs.observe(pv,{childList:true});
 }
-window.tasReport={get:()=>R,set:r=>{R=validReport(r)||blankReport();paint()},count:()=>R.blocks.length,emailHTML:emailDocument,inner:emailInner,copy:copyToEmail,templates:TEMPLATES,applyTemplate:id=>applyTemplate(TEMPLATES.find(t=>t.id===id)),valueText,usedValueIds,plainText};
+window.tasReport={get:()=>R,set:r=>{R=validReport(r)||blankReport();paint()},count:()=>R.blocks.length,emailHTML:emailDocument,inner:emailInner,copy:copyToEmail,templates:TEMPLATES,applyTemplate:(id,force)=>{const t=TEMPLATES.find(t=>t.id===id);if(force)R.blocks=[];applyTemplate(t)},valueText,usedValueIds,plainText};
 if(stageNow()===5)mount();
 })();
 
