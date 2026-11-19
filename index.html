@@ -2067,6 +2067,78 @@ html body .dcx-pal.is-wide .dcx-cf-style button[data-cfsw]{width:30px!important;
 @media (max-width:760px){.dcx-pal,.dcx-pal.is-wide{width:auto;top:auto;max-height:55%}}
 .dcx-pal .dcx-cf-b{height:30px;align-self:center}
 
+/* ===== Full-page Excel workspace (mirrors the report builder) ===== */
+body.dcx-on{overflow:hidden!important}
+html body .dcx{position:fixed;inset:0;z-index:1000;height:auto;margin:0;border:0;border-radius:0;box-shadow:none;--lp:300px;--rp:392px;background:var(--bg,var(--surface-2))}
+html body .dcx.is-palwide{--rp:540px}
+html body .dcx.no-tray{--lp:0px}
+html body .dcx.no-pal{--rp:0px}
+/* top bar */
+html body .dcx .dcx-bar{flex-wrap:nowrap;gap:10px;padding:10px 14px;background:var(--surface)}
+.dcx-nav{display:flex;align-items:center;gap:10px;min-width:0;flex:none}
+.dcx-where{display:flex;flex-direction:column;line-height:1.2;min-width:0}
+.dcx-where b{font-size:14.5px;font-weight:700;color:var(--ink)}
+.dcx-where small{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px}
+.dcx-vsep{width:1px;height:22px;background:var(--line);flex:none;margin:0 2px}
+html body .dcx .dcx-bar>.dcx-b.dcx-next{gap:8px;background:var(--surface);border-color:var(--line);font-weight:600}
+html body .dcx .dcx-bar>.dcx-b,html body .dcx .dcx-bar .dcx-grp .dcx-b{height:34px;min-height:34px}
+html body .dcx .dcx-namebox input{height:34px!important}
+/* canvas area with floating panels */
+html body .dcx .dcx-body{display:block;position:relative;flex:1;min-height:0;background-color:var(--canvas,var(--surface-2));background-image:radial-gradient(color-mix(in srgb,var(--ink) 10%,transparent) 1px,transparent 1px);background-size:20px 20px}
+html body .dcx .dcx-tray{position:absolute;left:14px;top:14px;bottom:14px;width:calc(var(--lp) - 14px);z-index:4;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 12px 40px -18px rgba(15,23,42,.35),0 2px 6px rgba(15,23,42,.06);transition:transform .2s ease,opacity .2s ease}
+html body .dcx.no-tray .dcx-tray{display:flex;transform:translateX(calc(-100% - 20px));opacity:0;pointer-events:none}
+html body .dcx .dcx-stage{position:absolute;top:14px;bottom:76px;left:calc(var(--lp) + 14px);right:calc(var(--rp) + 14px);border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 30px -18px rgba(15,23,42,.3);transition:left .2s ease,right .2s ease}
+html body .dcx .dcx-pal{position:absolute;top:14px!important;bottom:14px;left:auto!important;right:14px!important;width:calc(var(--rp) - 14px)!important;max-height:none!important;z-index:4;display:flex;background:var(--surface);box-shadow:0 12px 40px -18px rgba(15,23,42,.35),0 2px 6px rgba(15,23,42,.06);transition:transform .2s ease,opacity .2s ease}
+html body .dcx.no-pal .dcx-pal{display:flex;transform:translateX(calc(100% + 20px));opacity:0;pointer-events:none}
+html body .dcx .dcx-phead{cursor:default}
+/* bottom bar: sheets, status, view controls */
+html body .dcx .dcx-foot{position:absolute;left:calc(var(--lp) + 14px);right:calc(var(--rp) + 14px);bottom:14px;height:50px;border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:0 6px 0 6px;gap:10px;box-shadow:0 10px 30px -18px rgba(15,23,42,.3);transition:left .2s ease,right .2s ease}
+.dcx-dock{display:flex;align-items:center;gap:2px;flex:none;padding-left:6px;border-left:1px solid var(--line)}
+html body .dcx .dcx-dock .dcx-b{height:34px;min-height:34px}
+html body .dcx .dcx-dock .dcx-ico{width:34px}
+html body .dcx .dcx-info{margin-left:auto}
+/* inspector */
+.dcx-isub{display:flex;gap:4px;padding:4px;margin:0 0 4px;border-radius:12px;background:var(--surface-2);border:1px solid color-mix(in srgb,var(--line) 70%,transparent)}
+html body .dcx-isub button{flex:1;height:32px!important;min-height:0!important;padding:0 8px!important;border:0!important;border-radius:9px!important;background:transparent!important;box-shadow:none!important;font-size:13px!important;font-weight:600;color:var(--muted)!important;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+html body .dcx-isub button[aria-selected=true]{background:var(--surface)!important;color:var(--ink)!important;box-shadow:var(--shadow-xs),0 0 0 1px var(--line)!important}
+.dcx-isub em{font-style:normal;font-size:10.5px;font-weight:700;min-width:18px;height:18px;padding:0 5px;border-radius:999px;display:inline-grid;place-items:center;background:var(--brand);color:#fff}
+.dcx-ibody{display:flex;flex-direction:column;gap:14px}
+.dcx-pact-sticky{position:sticky;bottom:-14px;margin:6px -14px -14px;padding:12px 14px;background:var(--surface);border-top:1px solid var(--line);z-index:2}
+.dcx-srcline{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2)}
+.dcx-srcline>div{flex:1;min-width:0;display:flex;flex-direction:column}
+.dcx-srcline small{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+.dcx-srcline b{font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dcx-srcline>span{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+/* column editor */
+.dcx-colwrap{display:flex;flex-direction:column;gap:10px}
+.dcx-colhead{display:flex;align-items:baseline;gap:8px}
+.dcx-colhead b{font-size:13px}
+.dcx-colhead small{font-size:12px;color:var(--muted);margin-right:auto}
+html body .dcx-colhead button{height:28px!important;min-height:0!important;padding:0 10px!important;font-size:12px!important;border-radius:8px!important}
+.dcx-colsel{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.dcx-colsel li{display:flex;align-items:center;gap:6px;padding:4px 4px 4px 8px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.dcx-coln{width:22px;height:22px;flex:none;border-radius:6px;display:grid;place-items:center;font-size:11px;font-weight:700;background:var(--brand-50);color:var(--brand)}
+.dcx-colname{flex:1;min-width:0;font-size:13px;font-weight:550;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html body .dcx-colsel button{width:28px!important;height:28px!important;min-height:0!important;padding:0!important;display:grid!important;place-items:center;border:0!important;background:transparent!important;box-shadow:none!important;border-radius:7px!important;color:var(--muted)!important}
+html body .dcx-colsel button:hover:not(:disabled){background:var(--surface-2)!important;color:var(--ink)!important}
+html body .dcx-colsel button[data-coldel]:hover:not(:disabled){color:var(--danger,#dc2626)!important}
+html body .dcx-colsel button:disabled{opacity:.3}
+.dcx-colsel .dcx-i{width:15px;height:15px}
+.dcx-coladd{display:flex;flex-direction:column;gap:8px;padding-top:4px}
+.dcx-coladd>b{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.dcx-colopts{display:flex;flex-wrap:wrap;gap:6px}
+html body .dcx-colopts button{height:30px!important;min-height:0!important;padding:0 10px 0 7px!important;border-radius:999px!important;font-size:12.5px!important;font-weight:550;display:inline-flex!important;align-items:center;gap:4px;max-width:100%}
+html body .dcx-colopts button span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dcx-colopts .dcx-i{width:13px;height:13px}
+.dcx-cf-flat{border:0;margin:0;background:none}
+.dcx-cf-flat>div{padding:0}
+/* sizes */
+@media (max-width:1280px){html body .dcx{--lp:268px;--rp:356px}html body .dcx.is-palwide{--rp:460px}.dcx-where small{display:none}html body .dcx .dcx-bar .dcx-grp .dcx-b span{display:none}html body .dcx .dcx-bar .dcx-grp .dcx-b{width:34px;padding:0;justify-content:center}html body .dcx .dcx-bar .dcx-grp .dcx-dd{display:none}}
+@media (max-width:1360px){html body .dcx .dcx-info{display:none}}
+@media (max-width:1100px){html body .dcx .dcx-bar>.dcx-primary span{display:none}}
+@media (max-width:760px){html body .dcx{--lp:0px;--rp:0px}html body .dcx .dcx-tray,html body .dcx .dcx-pal{left:10px!important;right:10px!important;width:auto!important;top:auto!important;height:56%}}
+.dcx [hidden],.tas-rb [hidden]{display:none!important}
+
 /* ===== The Analysis Studio projects: hub, sidebar card, Finish report step, run dialog ===== */
 .dcp-i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .dc-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -3885,6 +3957,7 @@ const newId=()=>{try{return uid()}catch(e){return 'x'+Math.random().toString(36)
 
 /* ---------- Icons (stroke) ---------- */
 const P={
+ back:'M15 18l-6-6 6-6',save:'M5 4h11l4 4v12H5zM8 4v5h7V4M8 20v-6h8v6',next:'M5 12h14M13 6l6 6-6 6',sliders:'M4 7h10M18 7h2M4 17h4M12 17h8M14 4v6M8 14v6',up:'M12 19V5M6 11l6-6 6 6',down:'M12 5v14M6 13l6 6 6-6',
  panelWide:'M4 5h16v14H4zM14 5v14M8 10l-2 2 2 2',panelNarrow:'M4 5h16v14H4zM14 5v14M6 10l2 2-2 2',
  table:'M3 5h18v14H3zM3 10h18M9 10v9M15 10v9',hash:'M5 9h14M5 15h14M10 4 8 20M16 4l-2 16',text:'M5 6V5h14v1M12 5v14M9 19h6',
  undo:'M9 14 4 9l5-5M4 9h10a6 6 0 0 1 0 12h-3',redo:'m15 14 5-5-5-5M20 9H10a6 6 0 0 0 0 12h3',
@@ -4001,6 +4074,7 @@ const undo={past:[],future:[],last:0,key:'',
 const root=document.createElement('section');root.className='dcx';root.setAttribute('aria-label','Worksheet designer');
 root.innerHTML=`
 <div class="dcx-bar" role="toolbar" aria-label="Worksheet tools">
+ <div class="dcx-nav"><button class="dcx-b dcx-ico" data-x="back" title="Back to the previous step" aria-label="Back to the previous step">${I('back')}</button><div class="dcx-where"><b>Build Excel</b><small data-x="where"></small></div></div>
  <label class="dcx-namebox" title="Type a cell (B4), a range (B4:D10) or a row number, then press Enter"><span class="dcx-sr">Go to cell</span><input data-x="name" spellcheck="false" autocomplete="off" value="A1"></label>
  <div class="dcx-grp" role="group" aria-label="Insert">
   <button class="dcx-b" data-x="ins-table" title="Insert a table at the selected cell">${I('table')}<span>Table</span>${I('chev','dcx-dd')}</button>
@@ -4011,20 +4085,12 @@ root.innerHTML=`
   <button class="dcx-b dcx-ico" data-x="undo" title="Undo (Ctrl + Z)" aria-label="Undo">${I('undo')}</button>
   <button class="dcx-b dcx-ico" data-x="redo" title="Redo (Ctrl + Y)" aria-label="Redo">${I('redo')}</button>
  </div>
- <div class="dcx-grp dcx-seg" role="group" aria-label="Pointer">
-  <button class="dcx-b dcx-ico" data-x="tool-select" aria-pressed="true" title="Select cells and items (V)" aria-label="Select tool">${I('cursor')}</button>
-  <button class="dcx-b dcx-ico" data-x="tool-pan" aria-pressed="false" title="Move around the sheet (H, or hold Space)" aria-label="Hand tool">${I('hand')}</button>
- </div>
  <span class="dcx-flex"></span>
- <div class="dcx-grp dcx-zoom" role="group" aria-label="Zoom">
-  <button class="dcx-b dcx-ico" data-x="zoom-out" title="Zoom out (Ctrl + −)" aria-label="Zoom out">${I('minus')}</button>
-  <button class="dcx-b dcx-pct" data-x="zoom-reset" title="Reset to 100%">100%</button>
-  <button class="dcx-b dcx-ico" data-x="zoom-in" title="Zoom in (Ctrl + +)" aria-label="Zoom in">${I('plus')}</button>
-  <button class="dcx-b dcx-ico" data-x="fit" title="Fit everything on this sheet (Shift + 1)" aria-label="Fit to content">${I('fit')}</button>
- </div>
- <button class="dcx-b" data-x="toggle-tray" aria-pressed="true" title="Show or hide your Blueprint data">${I('side')}<span>Data</span></button>
- <button class="dcx-b" data-x="toggle-pal" aria-pressed="true" title="Show or hide the style palette">${I('palette')}<span>Style</span></button>
+ <button class="dcx-b dcx-ico" data-x="help" title="Shortcuts and tips" aria-label="Shortcuts and tips">${I('help')}</button>
+ <button class="dcx-b dcx-ico" data-x="save" title="Save project (Ctrl + S)" aria-label="Save project">${I('save')}</button>
+ <span class="dcx-vsep" aria-hidden="true"></span>
  <button class="dcx-b dcx-primary" data-x="download" title="Download this workbook as an Excel file">${I('download')}<span>Download Excel</span></button>
+ <button class="dcx-b dcx-next" data-x="next" title="Go to the next step"><span>Continue</span>${I('next')}</button>
 </div>
 <div class="dcx-body">
  <aside class="dcx-tray" aria-label="Blueprint data">
@@ -4039,22 +4105,34 @@ root.innerHTML=`
   <div class="dcx-empty" hidden><div>${I('layers')}<b>Your sheet is empty</b><p>Drag an insight from the left onto any cell, or right-click a cell and choose <b>Insert table</b>.</p></div></div>
   <div class="dcx-tip" hidden></div>
   <input class="dcx-editor" hidden aria-label="Cell text">
-  <aside class="dcx-pal" aria-label="Style palette"></aside>
  </div>
-</div>
-<div class="dcx-foot">
- <nav class="dcx-tabs" aria-label="Worksheets" role="tablist"></nav>
- <span class="dcx-info" aria-live="polite"></span>
- <button class="dcx-b dcx-ico dcx-helpbtn" data-x="help" title="Shortcuts and tips" aria-label="Shortcuts and tips">${I('help')}</button>
+ <aside class="dcx-pal" aria-label="Inspector"></aside>
+ <div class="dcx-foot">
+  <nav class="dcx-tabs" aria-label="Worksheets" role="tablist"></nav>
+  <span class="dcx-info" aria-live="polite"></span>
+  <div class="dcx-dock" role="toolbar" aria-label="View">
+   <button class="dcx-b dcx-ico" data-x="toggle-tray" aria-pressed="true" title="Show or hide your data (left panel)" aria-label="Show or hide your data">${I('side')}</button>
+   <span class="dcx-vsep" aria-hidden="true"></span>
+   <button class="dcx-b dcx-ico" data-x="tool-select" aria-pressed="true" title="Select cells and items (V)" aria-label="Select tool">${I('cursor')}</button>
+   <button class="dcx-b dcx-ico" data-x="tool-pan" aria-pressed="false" title="Move around the sheet (H, or hold Space)" aria-label="Hand tool">${I('hand')}</button>
+   <span class="dcx-vsep" aria-hidden="true"></span>
+   <button class="dcx-b dcx-ico" data-x="zoom-out" title="Zoom out (Ctrl + −)" aria-label="Zoom out">${I('minus')}</button>
+   <button class="dcx-b dcx-pct" data-x="zoom-reset" title="Reset to 100%">100%</button>
+   <button class="dcx-b dcx-ico" data-x="zoom-in" title="Zoom in (Ctrl + +)" aria-label="Zoom in">${I('plus')}</button>
+   <button class="dcx-b dcx-ico" data-x="fit" title="Fit everything on this sheet (Shift + 1)" aria-label="Fit to content">${I('fit')}</button>
+   <span class="dcx-vsep" aria-hidden="true"></span>
+   <button class="dcx-b dcx-ico" data-x="toggle-pal" aria-pressed="true" title="Show or hide the inspector (right panel)" aria-label="Show or hide the inspector">${I('sliders')}</button>
+  </div>
+ </div>
 </div>`;
 const stage=q('.dcx-stage',root),canvas=q('canvas',root),ctx=canvas.getContext('2d'),pal=q('.dcx-pal',root),tabs=q('.dcx-tabs',root),info=q('.dcx-info',root),
  editor=q('.dcx-editor',root),tip=q('.dcx-tip',root),empty=q('.dcx-empty',root),sbV=q('.dcx-sb-v',root),sbH=q('.dcx-sb-h',root),nameBox=q('[data-x="name"]',root);
 const X=n=>q(`[data-x="${n}"]`,root);
 
-let trayOn=store.get('dcx-tray')!=='off'&&innerWidth>760,palOn=store.get('dcx-pal')!=='off'&&innerWidth>760;
+let trayOn=store.get('dcx-tray')?store.get('dcx-tray')==='on'&&innerWidth>760:innerWidth>=1360,palOn=store.get('dcx-pal')!=='off'&&innerWidth>760;
 let palWide=store.get('dcx-pal-wide')==='1';pal.classList.toggle('is-wide',palWide);
-let palTab='sheet';
-function layoutToggles(){root.classList.toggle('no-tray',!trayOn);root.classList.toggle('no-pal',!palOn);X('toggle-tray').setAttribute('aria-pressed',trayOn);X('toggle-pal').setAttribute('aria-pressed',palOn);schedule()}
+let palTab='sheet',itemTab='data';
+function layoutToggles(){root.classList.toggle('no-tray',!trayOn);root.classList.toggle('no-pal',!palOn);root.classList.toggle('is-palwide',palWide);X('toggle-tray').setAttribute('aria-pressed',trayOn);X('toggle-pal').setAttribute('aria-pressed',palOn);schedule()}
 
 /* ---------- Theme ---------- */
 function readTheme(){
@@ -4587,7 +4665,7 @@ function itemMenu(it){
   {label:'Duplicate',icon:'copy',kbd:'Ctrl D',run:()=>duplicate(it)},
   {label:'Copy',icon:'copy',kbd:'Ctrl C',run:()=>{clip=JSON.parse(JSON.stringify(it));say('Copied. Right-click a cell and choose Paste.')}},
   {label:'Colour these rows',icon:'paint',sub:()=>[{swatches:rowSwatches(),label:'Row colours',run:x=>colorRows(x.fill,x.text)},{label:'Clear row colour',icon:'eraser',disabled:!hasRowColor(),run:clearRows}]}];
- if(it.type==='table')list.splice(3,0,{label:'Highlight cells (conditional formatting)…',icon:'paint',run:()=>{palTab='item';cfOpen=true;openPal();setTimeout(()=>{const d=q('.dcx-cf',pal);if(d){d.open=true;d.scrollIntoView({block:'nearest'})}},30)}});
+ if(it.type==='table')list.splice(3,0,{label:'Highlight cells (conditional formatting)…',icon:'paint',run:()=>{palTab='item';cfOpen=true;itemTab='cf';openPal();setTimeout(()=>{const d=q('.dcx-cf',pal);if(d){d.open=true;d.scrollIntoView({block:'nearest'})}},30)}});
  if(it.type==='table')list.splice(3,0,{label:'Choose columns…',icon:'rows',run:()=>{palTab='item';openPal();setTimeout(()=>q('.dcx-cols',pal)?.scrollIntoView({block:'nearest'}),30)}});
  if(S.extractionSheets.length>1)list.push({label:'Move to worksheet',icon:'sheet',sub:()=>S.extractionSheets.filter(x=>x!==sheet).map(x=>({label:x.name,icon:'sheet',run:()=>moveToSheet(it,x)}))});
  list.push({sep:1},{label:'Remove',icon:'trash',kbd:'Del',danger:1,run:()=>removeItem(it)});
@@ -4603,21 +4681,30 @@ function renderPal(){
  const sheet=sheetNow();if(!sheet)return;const it=visualItemId&&sheet.items.find(i=>i.id===visualItemId);
  if(palTab==='item'&&!it)palTab='sheet';
  const focused=document.activeElement&&pal.contains(document.activeElement)?document.activeElement.dataset.p:null;
- const seg=`<div class="dcx-pseg" role="tablist" aria-label="Style">${[['item','Item',!it],['rows','Rows',false],['sheet','Sheet',false]].map(([k,l,dis])=>`<button role="tab" data-ptab="${k}" aria-selected="${palTab===k}" ${dis?'disabled title="Select an item on the sheet first"':''}>${l}</button>`).join('')}</div>`;
+ const seg=`<div class="dcx-pseg" role="tablist" aria-label="Style">${[['item','Selected',!it],['rows','Rows',false],['sheet','Worksheet',false]].map(([k,l,dis])=>`<button role="tab" data-ptab="${k}" aria-selected="${palTab===k}" ${dis?'disabled title="Select an item on the sheet first"':''}>${l}</button>`).join('')}</div>`;
  let body='';
  if(palTab==='item'&&it){
   const st=styleOf(it),s=size(it),f=it.type==='table'?src(it.source):null,cur=Object.keys(THEMES).find(k=>COLOR_KEYS.every(([c])=>String(THEMES[k][c]).toLowerCase()===String(st[c]).toLowerCase()));
+  const tabsI=[['data',it.type==='text'?'Content':'Data'],['design','Design'],...(it.type==='table'?[['cf','Highlight'+(it.cf?.length?` <em>${it.cf.length}</em>`:'')]]:[])];
+  if(!tabsI.some(t=>t[0]===itemTab))itemTab='data';
+  let inner='';
+  if(itemTab==='data'){
+   inner=`<label class="dcx-f"><span>${it.type==='text'?'Text':'Title shown above it'}</span><input data-p="label" value="${h(it.type==='text'?it.text:it.label)}"></label>
+   ${it.type==='text'?`<label class="dcx-f"><span>Width in columns</span><input type="number" min="1" max="26" data-p="span" value="${it.span||1}"></label>`:''}
+   ${it.type==='metric'?`<p class="dcx-pnote">This is a live number. Use <b>Change the number</b> below to pick a different calculation or source.</p>`:''}
+   ${it.type==='table'?`<div class="dcx-srcline">${I('layers')}<div><small>Data from</small><b>${h(f?f.name:'A source that is no longer available')}</b></div><span>${f?num(f.rows.length)+' rows':''}</span></div>
+   <label class="dcx-f"><span>Rows to include <small>${f?'0 = all '+num(f.rows.length):''}</small></span><input type="number" min="0" max="1000000" data-p="limit" value="${it.limit||0}"></label>
+   ${f?colEditor(it,f):''}`:''}`;
+  }else if(itemTab==='design'){
+   inner=`<div class="dcx-f"><span>Theme</span><div class="dcx-themes">${Object.keys(THEMES).map(k=>`<button data-theme="${k}" title="${THEME_NAMES[k]||k}" aria-label="${THEME_NAMES[k]||k} theme" aria-pressed="${k===cur}" style="--h:${THEMES[k].header};--s:${THEMES[k].stripe};--b:${THEMES[k].body};--l:${THEMES[k].border}"><i></i><i></i><i></i></button>`).join('')}</div></div>
+   <div class="dcx-f"><span>Colours</span><div class="dcx-colors">${COLOR_KEYS.map(([k,l])=>`<label title="${l}"><input type="color" data-p="c:${k}" value="${st[k]}"><span>${l}</span></label>`).join('')}</div></div>
+   <div class="dcx-two"><label class="dcx-f"><span>Font</span><select data-p="font">${FONTS.map(f2=>`<option ${f2===st.font?'selected':''}>${f2}</option>`).join('')}</select></label><label class="dcx-f dcx-size"><span>Size</span><input type="number" min="10" max="32" data-p="size" value="${st.size}"></label></div>
+   <label class="dcx-tog"><input type="checkbox" data-p="banded" ${st.banded?'checked':''}><span>Shade alternate rows</span></label>`;
+  }else if(itemTab==='cf'&&f){inner=cfSection(it,f)}
   body=`<div class="dcx-pinfo"><span class="dcx-kind k-${it.type==='table'?'table':it.type==='metric'?'sum':'text'}">${I(it.type==='table'?'table':it.type==='metric'?'hash':'text')}</span><div><b>${h(itemName(it))}</b><small>${kindName(it)} · ${range(it.r,it.c,it.r+s.rows-1,it.c+s.cols-1)}</small></div></div>
-  <label class="dcx-f"><span>${it.type==='text'?'Text':'Label'}</span><input data-p="label" value="${h(it.type==='text'?it.text:it.label)}"></label>
-  <div class="dcx-f"><span>Theme</span><div class="dcx-themes">${Object.keys(THEMES).map(k=>`<button data-theme="${k}" title="${THEME_NAMES[k]||k}" aria-label="${THEME_NAMES[k]||k} theme" aria-pressed="${k===cur}" style="--h:${THEMES[k].header};--s:${THEMES[k].stripe};--b:${THEMES[k].body};--l:${THEMES[k].border}"><i></i><i></i><i></i></button>`).join('')}</div></div>
-  <div class="dcx-f"><span>Colours</span><div class="dcx-colors">${COLOR_KEYS.map(([k,l])=>`<label title="${l}"><input type="color" data-p="c:${k}" value="${st[k]}"><span>${l}</span></label>`).join('')}</div></div>
-  <div class="dcx-two"><label class="dcx-f"><span>Font</span><select data-p="font">${FONTS.map(f2=>`<option ${f2===st.font?'selected':''}>${f2}</option>`).join('')}</select></label><label class="dcx-f dcx-size"><span>Size</span><input type="number" min="10" max="32" data-p="size" value="${st.size}"></label></div>
-  <label class="dcx-tog"><input type="checkbox" data-p="banded" ${st.banded?'checked':''}><span>Shade alternate rows</span></label>
-  ${it.type==='text'?`<label class="dcx-f"><span>Width in columns</span><input type="number" min="1" max="26" data-p="span" value="${it.span||1}"></label>`:''}
-  ${it.type==='table'?`<label class="dcx-f"><span>Rows to include <small>${f?num(f.rows.length)+' available · 0 = all':'source unavailable'}</small></span><input type="number" min="0" max="1000000" data-p="limit" value="${it.limit||0}"></label>
-  <details class="dcx-cols" open><summary>Columns <small>${it.columns.length} of ${f?.headers.length||0}</small><span><button data-p="cols-all">All</button><button data-p="cols-none">None</button></span></summary><div>${(f?.headers||[]).map((hd,c)=>`<label><input type="checkbox" data-col="${c}" ${it.columns.includes(c)?'checked':''}><span>${h(hd)}</span></label>`).join('')}</div></details>`:''}
-  ${it.type==='table'&&f?cfSection(it,f):''}
-  <div class="dcx-pact"><button data-p="edit">${I('edit')}${it.type==='text'?'Edit text':'Edit data'}</button><button data-p="dup">${I('copy')}Duplicate</button><button data-p="remove" class="is-danger">${I('trash')}Remove</button></div>`;
+  <div class="dcx-isub" role="tablist" aria-label="Settings for this item">${tabsI.map(([k,l])=>`<button role="tab" data-itab="${k}" aria-selected="${itemTab===k}">${l}</button>`).join('')}</div>
+  <div class="dcx-ibody">${inner}</div>
+  <div class="dcx-pact dcx-pact-sticky"><button data-p="edit">${I('edit')}${it.type==='text'?'Edit text':it.type==='metric'?'Change the number':'Edit data'}</button><button data-p="dup">${I('copy')}Duplicate</button><button data-p="remove" class="is-danger">${I('trash')}Remove</button></div>`;
  }else if(palTab==='rows'){
   const rows=selRows(),n=RR.count(rows),cur=n?(sheet.rowColors||{})[rows[0][0]]:null;
   body=n?`<p class="dcx-pnote"><b>${n===1?'Row '+(rows[0][0]+1):num(n)+' rows'}</b> ${n>1?'('+RR.label(rows)+')':''} — pick a colour to apply it right away. In Excel the colour fills the cells that hold data.</p>
@@ -4634,34 +4721,40 @@ function renderPal(){
   <div class="dcx-quick"><b>Quick start: key numbers sheet</b><p>Adds a new worksheet with a title, the record count, unique IDs and a total for the insight you pick. You can edit or move everything afterwards.</p><button data-p="summary">${I('plus')}Add a key numbers sheet…</button></div>`;
  }
  const keepScroll=q('.dcx-pbody',pal)?.scrollTop||0,keepTab=palTab,winY=window.scrollY;
- pal.innerHTML=`<div class="dcx-phead" title="Drag to move · double-click to dock"><b>${I('palette')}Style</b><button data-p="size" aria-pressed="${palWide}" aria-label="${palWide?'Make the style panel smaller':'Make the style panel larger'}" title="${palWide?'Smaller panel':'Larger panel'}">${I(palWide?'panelNarrow':'panelWide')}</button><button data-p="close" aria-label="Hide the style palette" title="Hide">${I('x')}</button></div>${seg}<div class="dcx-pbody">${body}</div>`;
+ pal.innerHTML=`<div class="dcx-phead" title="Drag to move · double-click to dock"><b>${I('sliders')}Inspector</b><button data-p="size" aria-pressed="${palWide}" aria-label="${palWide?'Make the style panel smaller':'Make the style panel larger'}" title="${palWide?'Smaller panel':'Larger panel'}">${I(palWide?'panelNarrow':'panelWide')}</button><button data-p="close" aria-label="Hide the style palette" title="Hide">${I('x')}</button></div>${seg}<div class="dcx-pbody">${body}</div>`;
  const pb=q('.dcx-pbody',pal);if(pb&&keepTab===renderPal.lastTab)pb.scrollTop=keepScroll;renderPal.lastTab=palTab;
  if(focused){const el=q(`[data-p="${CSS.escape(focused)}"]`,pal);el?.focus({preventScroll:true})}
  if(Math.abs(window.scrollY-winY)>1)window.scrollTo(0,winY);
 }
-pal.addEventListener('pointerdown',e=>{e.stopPropagation();const hd=e.target.closest('.dcx-phead');if(!hd||e.target.closest('button')||e.button!==0)return;e.preventDefault();
+pal.addEventListener('pointerdown',e=>{e.stopPropagation();const hd=e.target.closest('.dcx-phead');if(!hd||e.target.closest('button')||e.button!==0||true)return;e.preventDefault();
  const sb=stage.getBoundingClientRect(),pb=pal.getBoundingClientRect(),ox=e.clientX-pb.left,oy=e.clientY-pb.top;pal.classList.add('is-drag');
  const mv=ev=>{const x=clamp(ev.clientX-sb.left-ox,4,sb.width-pb.width-4),y=clamp(ev.clientY-sb.top-oy,30,sb.height-60);Object.assign(pal.style,{left:x+'px',top:y+'px',right:'auto'})};
  const up=()=>{removeEventListener('pointermove',mv);removeEventListener('pointerup',up);pal.classList.remove('is-drag');store.set('dcx-pal-pos',JSON.stringify({l:parseFloat(pal.style.left),t:parseFloat(pal.style.top)}))};
  addEventListener('pointermove',mv);addEventListener('pointerup',up)});
 pal.addEventListener('dblclick',e=>{if(e.target.closest('.dcx-phead')&&!e.target.closest('button')){pal.style.left='';pal.style.top='';pal.style.right='';store.set('dcx-pal-pos','')}});
-function restorePalPos(){if(innerWidth<=760)return;try{const p=JSON.parse(store.get('dcx-pal-pos')||'null');if(!p)return;const sb=stage.getBoundingClientRect();if(!sb.width)return;Object.assign(pal.style,{left:clamp(p.l,4,Math.max(4,sb.width-(pal.offsetWidth||360)))+'px',top:clamp(p.t,30,Math.max(30,sb.height-80))+'px',right:'auto'})}catch(e){}}
+function restorePalPos(){pal.style.left='';pal.style.top='';pal.style.right='';return;try{const p=JSON.parse(store.get('dcx-pal-pos')||'null');if(!p)return;const sb=stage.getBoundingClientRect();if(!sb.width)return;Object.assign(pal.style,{left:clamp(p.l,4,Math.max(4,sb.width-(pal.offsetWidth||360)))+'px',top:clamp(p.t,30,Math.max(30,sb.height-80))+'px',right:'auto'})}catch(e){}}
 pal.addEventListener('wheel',e=>e.stopPropagation(),{passive:true});
 pal.addEventListener('keydown',e=>e.stopPropagation());
 pal.addEventListener('click',e=>{
  {const sheet=sheetNow(),it=visualItemId&&sheet?.items.find(i=>i.id===visualItemId);
-  const add=e.target.closest('[data-p="cf-add"]');if(add&&it){e.preventDefault();const f=src(it.source);if(!f)return;const numCol=it.columns.find(c=>{let ok=0,seen=0;for(let i=0;i<f.rows.length&&seen<100;i++){const v=String(f.rows[i][c]??'').trim();if(!v)continue;seen++;if(cfNum(v)!==null)ok++}return seen&&ok/seen>.7});undo.mark();it.cf=[...(it.cf||[]),{id:newId(),column:numCol??it.columns[0],op:numCol!==undefined?'gt':'contains',value:'',value2:'',fill:'#dcfce7',text:'#14532d',bold:false}];cfOpen=true;commit();return}
+  const add=e.target.closest('[data-p="cf-add"]');if(add&&it){e.preventDefault();const f=src(it.source);if(!f)return;const numCol=it.columns.find(c=>{let ok=0,seen=0;for(let i=0;i<f.rows.length&&seen<100;i++){const v=String(f.rows[i][c]??'').trim();if(!v)continue;seen++;if(cfNum(v)!==null)ok++}return seen&&ok/seen>.7});undo.mark();it.cf=[...(it.cf||[]),{id:newId(),column:numCol??it.columns[0],op:numCol!==undefined?'gt':'contains',value:'',value2:'',fill:'#dcfce7',text:'#14532d',bold:false}];cfOpen=true;itemTab='cf';commit();return}
   const sw=e.target.closest('[data-cfsw]');if(sw&&it){const i=+sw.closest('[data-cf]').dataset.cf,[fl,tx]=sw.dataset.cfsw.split('|');undo.mark();it.cf[i]={...it.cf[i],fill:fl,text:tx};commit();return}
   const del=e.target.closest('[data-cfdel]');if(del&&it){undo.mark();it.cf=it.cf.filter((_,i)=>i!==+del.dataset.cfdel);commit();return}}
  const sheet=sheetNow();if(!sheet)return;const it=visualItemId&&sheet.items.find(i=>i.id===visualItemId);
  const t=e.target.closest('[data-ptab]');if(t){palTab=t.dataset.ptab;renderPal();q(`[data-ptab="${palTab}"]`,pal)?.focus();return}
+ const it2=e.target.closest('[data-itab]');if(it2){itemTab=it2.dataset.itab;renderPal();q(`[data-itab="${itemTab}"]`,pal)?.focus();return}
+ if(it&&it.type==='table'){
+  const mv=e.target.closest('[data-colmv]');if(mv){const [i,d]=mv.dataset.colmv.split('|').map(Number),cols=[...it.columns],j=i+d;if(j<0||j>=cols.length)return;[cols[i],cols[j]]=[cols[j],cols[i]];setColumns(it,cols);requestAnimationFrame(()=>q(`[data-colmv="${j}|${d}"]`,pal)?.focus());return}
+  const del=e.target.closest('[data-coldel]');if(del){setColumns(it,it.columns.filter(c=>c!==+del.dataset.coldel));return}
+  const add=e.target.closest('[data-coladd]');if(add){setColumns(it,[...it.columns,+add.dataset.coladd]);requestAnimationFrame(()=>q('[data-p="colfind"]',pal)?.focus());return}
+ }
  const th=e.target.closest('[data-theme]');if(th&&it){applyTheme(it,th.dataset.theme);return}
  const sw=e.target.closest('[data-rowsw]');if(sw){const [f2,t2]=sw.dataset.rowsw.split('|');colorRows(f2,t2);return}
  const b=e.target.closest('button[data-p]');if(!b)return;const p=b.dataset.p;
- if(p==='size'){palWide=!palWide;store.set('dcx-pal-wide',palWide?'1':'0');pal.classList.toggle('is-wide',palWide);renderPal();return}
+ if(p==='size'){palWide=!palWide;store.set('dcx-pal-wide',palWide?'1':'0');pal.classList.toggle('is-wide',palWide);layoutToggles();renderPal();return}
  if(p==='close'){palOn=false;store.set('dcx-pal','off');layoutToggles();renderPal();return}
  if(p==='edit')editItem(it);if(p==='dup')duplicate(it);if(p==='remove')removeItem(it);
- if(p==='cols-all'||p==='cols-none'){e.preventDefault();const f=src(it.source);if(!f)return;setColumns(it,p==='cols-all'?f.headers.map((_,i)=>i):[])}
+ if(p==='cols-all'||p==='cols-none'){e.preventDefault();const f=src(it.source);if(!f)return;setColumns(it,p==='cols-all'?[...it.columns,...f.headers.map((_,i)=>i).filter(c=>!it.columns.includes(c))]:it.columns.slice(0,1))}
  if(p==='rowapply')colorRows(q('[data-p="rowfill"]',pal).value,q('[data-p="rowtext"]',pal).value);
  if(p==='rowclear')clearRows();
  if(p==='summary'){const list=sourceList().filter(x=>x.kind!=='sum');if(!list.length){say('Build an insight first, then add a key numbers sheet.');return}const r=b.getBoundingClientRect();
@@ -4670,16 +4763,22 @@ pal.addEventListener('click',e=>{
 function cfSection(it,f){
  const rules=it.cf||[],opts=(list,cur)=>list.map(([v,l])=>`<option value="${h(v)}" ${String(v)===String(cur)?'selected':''}>${h(l)}</option>`).join('');
  const cols=it.columns.map(c=>[c,f.headers[c]]);
- return `<details class="dcx-cf" ${rules.length||palTab==='item'&&cfOpen?'open':''}><summary>Highlight cells <small>${rules.length?rules.length+' '+(rules.length===1?'rule':'rules'):'conditional formatting'}</small></summary><div>
+ return `<div class="dcx-cf dcx-cf-flat"><div>
  <p class="dcx-cf-help">Colour cells automatically when they meet a condition, for example scores below 80 in red. The rules stay live in Excel.</p>
  ${rules.map((r,i)=>{const arity=CF_OPS.find(o=>o[0]===r.op)?.[2]??1;return `<div class="dcx-cf-rule" data-cf="${i}" style="--f:${r.fill};--t:${r.text}">
   <div class="dcx-cf-line"><span class="dcx-cf-n">${i+1}</span><select data-cfk="column" aria-label="Column">${opts(cols,r.column)}</select></div>
   <div class="dcx-cf-line"><select data-cfk="op" aria-label="Condition">${opts(CF_OPS.map(o=>[o[0],o[1]]),r.op)}</select>${arity>0?`<input data-cfk="value" value="${h(r.value??'')}" placeholder="${['contains','notcontains','starts','eq','ne'].includes(r.op)?'Text or number':'Number'}" aria-label="Value">`:''}${arity>1?`<input data-cfk="value2" value="${h(r.value2??'')}" placeholder="and" aria-label="Second value">`:''}</div>
   <div class="dcx-cf-line dcx-cf-style"><span class="dcx-cf-prev">Aa</span>${CF_SWATCHES.map(([fl,tx,l])=>`<button data-cfsw="${fl}|${tx}" title="${l}" aria-label="${l}" style="--f:${fl};--t:${tx}" aria-pressed="${fl===r.fill&&tx===r.text}"></button>`).join('')}<label class="dcx-cf-b" title="Bold"><input type="checkbox" data-cfk="bold" ${r.bold?"checked":""}><b>Bold</b></label><button class="dcx-cf-del" data-cfdel="${i}" title="Remove this rule" aria-label="Remove rule">${I('trash')}</button></div>
   <small class="dcx-cf-count">${cfCount(it,f,r)}</small></div>`}).join('')}
- <button data-p="cf-add" class="dcx-cf-add">${I('plus')}Add a rule</button></div></details>`;
+ <button data-p="cf-add" class="dcx-cf-add">${I('plus')}Add a rule</button></div></div>`;
 }
 let cfOpen=false;
+function colEditor(it,f){
+ const chosen=it.columns.filter(c=>f.headers[c]!==undefined),rest=f.headers.map((_,i)=>i).filter(c=>!chosen.includes(c));
+ return `<div class="dcx-colwrap"><div class="dcx-colhead"><b>Columns, in order</b><small>${chosen.length} of ${f.headers.length}</small>${rest.length?`<button data-p="cols-all">Add all</button>`:''}</div>
+ <ol class="dcx-colsel">${chosen.map((c,i)=>{const n=h(f.headers[c]);return `<li><span class="dcx-coln">${i+1}</span><span class="dcx-colname" title="${n}">${n}</span><button data-colmv="${i}|-1" ${i?'':'disabled'} aria-label="Move ${n} left">${I('up')}</button><button data-colmv="${i}|1" ${i<chosen.length-1?'':'disabled'} aria-label="Move ${n} right">${I('down')}</button><button data-coldel="${c}" ${chosen.length>1?'':'disabled'} aria-label="Remove ${n} from the table">${I('x')}</button></li>`}).join('')}</ol>
+ ${rest.length?`<div class="dcx-coladd"><b>Add a column</b>${rest.length>8?`<label class="dcx-search">${I('search')}<input data-p="colfind" placeholder="Find a column" aria-label="Find a column to add"></label>`:''}<div class="dcx-colopts">${rest.map(c=>`<button data-coladd="${c}" data-name="${h(String(f.headers[c]).toLowerCase())}">${I('plus')}<span>${h(f.headers[c])}</span></button>`).join('')}</div></div>`:''}</div>`;
+}
 function cfCount(it,f,r){let n=0;const total=Math.min(it.limit||f.rows.length,f.rows.length),col=+r.column;for(let i=0;i<total;i++)if(cfMatch(r,f.rows[i][col]))n++;return `${n.toLocaleString()} of ${total.toLocaleString()} cells match`}
 function setColumns(it,cols){const sheet=sheetNow(),old=it.columns;if(!cols.length){say('Keep at least one column in the table.');renderPal();return}it.columns=cols;const msg=fits(sheet,it,it.r,it.c,it.id);if(msg){it.columns=old;say(msg+' Move the table first, or turn off another column.');renderPal();return}it.columns=old;undo.mark();it.columns=cols;commit()}
 pal.addEventListener('input',e=>{
@@ -4689,9 +4788,10 @@ pal.addEventListener('input',e=>{
  if((p==='columnWidth'||p==='rowHeight')){undo.mark(p+sheet.id);sheet.appearance={...sheetStyle(sheet),[p]:+el.value};const o=q(`[data-out="${p==='columnWidth'?'cw':'rh'}"]`,pal);if(o)o.textContent=el.value;clampCam();autosave();schedule();return}
  if(p==='label'&&it){undo.mark('label'+it.id);if(it.type==='text'){it.text=el.value;it.label=el.value.slice(0,60)}else it.label=el.value;autosave();schedule();updateInfo();markPlaced();return}
  if(p==='sheetname'){return}
+ if(p==='colfind'){const v=el.value.trim().toLowerCase();qa('[data-coladd]',pal).forEach(b=>b.hidden=!!v&&!b.dataset.name.includes(v));return}
 });
 pal.addEventListener('change',e=>{
- {const el=e.target,k=el.dataset.cfk;if(k==='value'||k==='value2')return;if(k){const sheet=sheetNow(),it=visualItemId&&sheet?.items.find(i=>i.id===visualItemId);if(!it)return;const i=+el.closest('[data-cf]').dataset.cf;undo.mark('cf'+i+k);const r={...it.cf[i]};r[k]=k==='bold'?el.checked:k==='column'?+el.value:el.value;it.cf[i]=r;cfOpen=true;commit();return}}
+ {const el=e.target,k=el.dataset.cfk;if(k==='value'||k==='value2')return;if(k){const sheet=sheetNow(),it=visualItemId&&sheet?.items.find(i=>i.id===visualItemId);if(!it)return;const i=+el.closest('[data-cf]').dataset.cf;undo.mark('cf'+i+k);const r={...it.cf[i]};r[k]=k==='bold'?el.checked:k==='column'?+el.value:el.value;it.cf[i]=r;cfOpen=true;itemTab='cf';commit();return}}
  const el=e.target,p=el.dataset.p,sheet=sheetNow();if(!sheet)return;const it=visualItemId&&sheet.items.find(i=>i.id===visualItemId);
  if(el.dataset.col!==undefined&&it){const c=+el.dataset.col,cols=el.checked?[...new Set([...it.columns,c])].sort((a,b)=>a-b):it.columns.filter(x=>x!==c);setColumns(it,cols);return}
  if(!p)return;
@@ -4710,8 +4810,8 @@ const bar={
  sync(){X('undo').disabled=!undo.past.length;X('redo').disabled=!undo.future.length;X('tool-select').setAttribute('aria-pressed',tool==='select');X('tool-pan').setAttribute('aria-pressed',tool==='pan');stage.classList.toggle('is-hand',tool==='pan');this.zoom()},
  zoom(){const s=sheetNow();if(s)X('zoom-reset').textContent=Math.round(camOf(s).z*100)+'%'}
 };
-q('.dcx-bar',root).addEventListener('click',e=>{
- const b=e.target.closest('[data-x]');if(!b)return;const a=active();
+root.addEventListener('click',e=>{
+ const b=e.target.closest('button[data-x]');if(!b||b.dataset.x==='help'||b.dataset.x==='add-sheet')return;const a=active();
  switch(b.dataset.x){
   case 'ins-table':{const r=b.getBoundingClientRect();menu.open(r.left,r.bottom+4,[{head:'Insert a table at '+addr(a.r,a.c)},...sourceSub(a.r,a.c)()]);break}
   case 'ins-metric':insertMetric(a.r,a.c);break;
@@ -4722,9 +4822,11 @@ q('.dcx-bar',root).addEventListener('click',e=>{
   case 'toggle-tray':trayOn=!trayOn;store.set('dcx-tray',trayOn?'on':'off');layoutToggles();break;
   case 'toggle-pal':palOn=!palOn;store.set('dcx-pal',palOn?'on':'off');layoutToggles();renderPal();break;
   case 'download':try{downloadExtraction()}catch(err){say(err.message)}break;
+  case 'save':q('#save-project')?.click();break;
+  case 'back':q('#back')?.click();break;case 'next':q('#next')?.click();break;
  }
 });
-X('help').addEventListener('click',e=>{const r=e.currentTarget.getBoundingClientRect();menu.open(r.right-300,r.top-330,[{head:'Moving around'},{note:'Scroll to move · Shift + scroll sideways · Ctrl + scroll or pinch to zoom · hold Space (or use the hand) and drag to pan · Ctrl + arrow jumps to the next table edge.'},{head:'Selecting'},{note:'Click a cell, then Shift + click for a range. Click row numbers to pick rows; Shift for a range, Ctrl to add more.'},{head:'Placing and editing'},{note:'Drag insights from the left onto a cell. Drag a placed item to move it (Alt + arrows nudges). Double-click to edit. Right-click anything for options. Ctrl + Z undoes.'}])});
+X('help').addEventListener('click',e=>{const r=e.currentTarget.getBoundingClientRect();menu.open(r.right-300,r.top>360?r.top-330:r.bottom+6,[{head:'Moving around'},{note:'Scroll to move · Shift + scroll sideways · Ctrl + scroll or pinch to zoom · hold Space (or use the hand) and drag to pan · Ctrl + arrow jumps to the next table edge.'},{head:'Selecting'},{note:'Click a cell, then Shift + click for a range. Click row numbers to pick rows; Shift for a range, Ctrl to add more.'},{head:'Placing and editing'},{note:'Drag insights from the left onto a cell. Drag a placed item to move it (Alt + arrows nudges). Double-click to edit. Right-click anything for options. Ctrl + Z undoes.'}])});
 nameBox.addEventListener('keydown',e=>{
  e.stopPropagation();if(e.key==='Escape'){updateInfo();stage.focus();return}if(e.key!=='Enter')return;e.preventDefault();
  const v=nameBox.value.trim().toUpperCase().replace(/\$/g,'');let m;
@@ -4746,11 +4848,18 @@ function refresh(){
 if(typeof validateProject==='function'){const baseValidate=validateProject;validateProject=function(doc){const v=baseValidate.apply(this,arguments);try{const raw=doc?.state?.extractionSheets||[],ok=c=>/^#[0-9a-f]{6}$/i.test(c);for(const sh of v.state.extractionSheets||[]){const rs=raw.find(x=>x.id===sh.id);if(!rs)continue;for(const it of sh.items||[]){const ri=(rs.items||[]).find(x=>x.id===it.id);if(ri&&Array.isArray(ri.cf))it.cf=ri.cf.filter(r=>r&&CF_OPS.some(o=>o[0]===r.op)&&Number.isInteger(+r.column)&&ok(r.fill)&&ok(r.text)).slice(0,20).map(r=>({id:String(r.id||newId()),column:+r.column,op:r.op,value:String(r.value??'').slice(0,200),value2:String(r.value2??'').slice(0,200),fill:r.fill,text:r.text,bold:!!r.bold}))}}}catch(e){console.warn('Highlight rules:',e)}return v}}
 const basePaint=paintExtractionCanvas;
 paintExtractionCanvas=function(){const out=basePaint.apply(this,arguments);try{mount()}catch(e){console.warn('The Analysis Studio sheet:',e)}return out};
+/* The designer is a full-page workspace on top of the app, like the report builder. */
 function mount(){
  const host=extractionDialog.parentElement;if(!host||host.id!=='excel-step-host')return;
- host.classList.add('dcx-host');if(root.parentElement!==host)host.prepend(root);
- invalidate();refresh();
+ host.classList.add('dcx-host');if(root.parentElement!==document.body)document.body.append(root);
+ document.body.classList.add('dcx-on');
+ invalidate();refresh();syncNav();
 }
+function syncNav(){
+ const w=X('where');if(w){const step=q('.dc-meter-count')?.textContent||'';const name=window.dcProj?.current?.()?.name||'';w.textContent=[step,name].filter(Boolean).join(' · ')}
+ const nx=q('#next'),nb=X('next');if(nx&&nb){nb.disabled=!!nx.disabled;const t=(nx.textContent||'').trim();if(t)nb.querySelector('span').textContent=t}
+}
+{const baseRenderX=render;render=function(){const out=baseRenderX.apply(this,arguments);try{if(S.stage!==4&&root.isConnected){root.remove();document.body.classList.remove('dcx-on');menu.close?.()}else if(root.isConnected)syncNav()}catch(e){}return out}}
 /* Reveal the page only once the redesign is fully applied (no flash of the old look). */
 (function reveal(){const d=document.documentElement;if(!d.classList.contains('dc-boot'))return;let done=false;
  const show=()=>{if(done)return;done=true;clearTimeout(window.__dcBootFailsafe);requestAnimationFrame(()=>{d.classList.remove('dc-boot');d.classList.add('dc-reveal');setTimeout(()=>d.classList.remove('dc-reveal'),300)})};
@@ -5798,7 +5907,7 @@ const P={
  palette:'M12 3a9 9 0 1 0 0 18c1.1 0 1.7-.9 1.4-1.9-.4-1.2.4-2.1 1.6-2.1H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10zM7.5 11.5h.01M10 7.5h.01M15 7.5h.01',gear:'M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.5-1 1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z',
  plus:'M12 5v14M5 12h14',x:'M6 6l12 12M18 6 6 18',link:'M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1',bold:'M7 5h6a3.5 3.5 0 0 1 0 7H7zM7 12h7a3.5 3.5 0 0 1 0 7H7z',italic:'M11 5h6M7 19h6M14 5l-4 14',under:'M7 4v7a5 5 0 0 0 10 0V4M5 20h14',hash:'M5 9h14M5 15h14M10 4 8 20M16 4l-2 16',eye:'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'
 };
-const P2={back:'M15 18l-6-6 6-6',next:'M5 12h14M13 6l6 6-6 6',help:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14M12 17h.01',minus:'M5 12h14',lpanel:'M4 5h16v14H4zM9 5v14',rpanel:'M4 5h16v14H4zM15 5v14'};for(const k in P2)if(!P[k])P[k]=P2[k];
+const P2={saveproj:'M5 4h11l4 4v12H5zM8 4v5h7V4M8 20v-6h8v6',back:'M15 18l-6-6 6-6',next:'M5 12h14M13 6l6 6-6 6',help:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14M12 17h.01',minus:'M5 12h14',lpanel:'M4 5h16v14H4zM9 5v14',rpanel:'M4 5h16v14H4zM15 5v14'};for(const k in P2)if(!P[k])P[k]=P2[k];
 const I=(n,c='')=>`<svg class="tas-i ${c}" viewBox="0 0 24 24" aria-hidden="true"><path d="${P[n]}"/></svg>`;
 
 /* ---------- Styles (themes) ---------- */
@@ -5833,15 +5942,16 @@ const FOOT='Prepared with The Analysis Studio. Figures update from the latest da
 const SIGN=(team='Quality team')=>B.text(`<p>Thanks,<br>${team}</p>`);
 const HELLO=body=>B.text(`<p>Hello team,</p><p>${body}</p>`);
 const TEMPLATES=[
- {id:'qa',name:'QA audit findings',tag:'CRM · Quality',theme:'navy',desc:'Audit volume, scores, pass rate, critical errors and what Quality follows up on next.',
-  values:[V('audits','Audits completed','number'),V('score','Average quality score'),V('pass','Pass rate','percent'),V('critical','Critical errors','number'),V('coach','Coaching sessions due','number')],
-  blocks:()=>[B.header('Quality assurance · CRM','QA audit findings','Reporting period: add the dates'),
-   HELLO(`Here are this period’s audit results. We completed <b>${tk('audits')}</b> audits with an average quality score of <b>${tk('score')}</b>, and <b>${tk('pass')}</b> of them passed.`),
-   B.kpis([['audits','Audits'],['score','Average score'],['pass','Pass rate'],['critical','Critical errors']]),
-   B.heading('Key findings'),B.list(['Most common miss: name the criterion and how often it happened.','Strongest area: what agents did well.','Process gap: anything outside the agents’ control.']),
-   B.table('Audit results by agent','Lowest scores first are worth a second look.'),
-   B.callout('warning',`<p><b>Follow up:</b> ${tk('critical')} critical errors need a coaching conversation, and ${tk('coach')} coaching sessions are due.</p>`),
-   B.heading('Next steps'),B.list(['Team leads: coach every critical error this week.','Quality: re-audit agents below target within 14 days.','Training: share the top finding in the next huddle.']),
+ {id:'review',name:'CRM breach review',tag:'CRM · Any review',theme:'navy',desc:'One layout for any CRM review: what was checked, potential breaches found, the rate, the detail and the follow-up.',
+  values:[V('checked','Records reviewed','number'),V('flagged','Potential breaches','number'),V('rate','Breach rate','percent'),V('confirmed','Confirmed breaches','number')],
+  blocks:()=>[B.header('CRM review','Review findings','Review period: add the dates'),
+   HELLO(`We reviewed <b>${tk('checked')}</b> records and found <b>${tk('flagged')}</b> potential breaches, a breach rate of <b>${tk('rate')}</b>. <b>${tk('confirmed')}</b> have been confirmed so far.`),
+   B.kpis([['checked','Records reviewed'],['flagged','Potential breaches'],['rate','Breach rate'],['confirmed','Confirmed']]),
+   B.heading('What we looked at'),B.text('<p>Describe the review: which CRM records, which rule or policy, and how records were selected.</p>'),
+   B.heading('Findings'),B.list(['Main finding: what happened and how often.','Where it happened: the team, campaign or process.','Why it matters: the risk to customers or the business.']),
+   B.table('Records with a potential breach','Each row is one record to check or follow up.'),
+   B.callout('warning',`<p><b>Follow-up:</b> ${tk('flagged')} records need an owner and a decision by the date you set.</p>`),
+   B.heading('Next steps'),B.list(['Confirm or clear every flagged record.','Fix the cause with the team or process owner.','Re-check a sample next period.']),
    SIGN(),B.footer(FOOT)]},
  {id:'agent',name:'Agent performance scorecard',tag:'CRM · Quality',theme:'teal',desc:'Team averages, top performers, who needs support and a scorecard per agent.',
   values:[V('agents','Agents reviewed','number'),V('avg','Team average score'),V('top','Highest score'),V('below','Agents below target','number')],
@@ -5888,14 +5998,6 @@ const TEMPLATES=[
    B.table('Breaches and escalations'),
    B.heading('Actions'),B.list(['Assign every breach to a team lead.','Close open disputes before the SLA date.','Share the pattern with Training.']),
    SIGN('Compliance team'),B.footer(FOOT)]},
- {id:'coach',name:'Coaching follow-up',tag:'CRM · Quality',theme:'sky',desc:'Coaching due, completed and overdue, with the list of agents to follow up.',
-  values:[V('due','Coaching due','number'),V('done','Completed','number'),V('overdue','Overdue','number'),V('disputed','Disputed audits','number')],
-  blocks:()=>[B.header('Coaching','Coaching follow-up','Week of: add the date'),
-   HELLO(`Here is where coaching stands. <b>${tk('done')}</b> of <b>${tk('due')}</b> sessions are complete and <b>${tk('overdue')}</b> are overdue.`),
-   B.kpis([['due','Due'],['done','Completed'],['overdue','Overdue'],['disputed','Disputed']]),
-   B.callout('warning','<p><b>Overdue coaching:</b> please complete these sessions by Friday and log the outcome.</p>'),
-   B.table('Coaching list','Agents with an open coaching action.'),
-   SIGN(),B.footer(FOOT)]},
  {id:'exec',name:'Executive summary',tag:'General',theme:'graphite',desc:'A short, clean summary for leadership: three numbers, the story and one table.',
   values:[V('k1','Headline number'),V('k2','Second number'),V('k3','Third number')],
   blocks:()=>[B.header('Summary','Executive summary','Reporting period: add the dates'),
@@ -6059,7 +6161,7 @@ const root=document.createElement('section');root.className='tas-rb';
 root.innerHTML=`<div class="tas-top">
  <div class="tas-nav"><button type="button" class="tas-ib" data-act="back" title="Back to the previous step" aria-label="Back to the previous step">${I('back')}</button><div class="tas-where"><b>Build report</b><small data-where></small></div></div>
  <label class="tas-subject"><span>Subject</span><input data-top="subject" placeholder="Email subject line, e.g. QA audit findings – week 46"></label>
- <div class="tas-top-btns"><button type="button" class="tas-ib" data-act="undo" title="Undo (Ctrl + Z)" aria-label="Undo">${I('undo')}</button><button type="button" class="tas-ib" data-act="redo" title="Redo (Ctrl + Y)" aria-label="Redo">${I('redo')}</button><button type="button" class="tas-ib" data-act="help" title="How to build a report" aria-label="How to build a report">${I('help')}</button>
+ <div class="tas-top-btns"><button type="button" class="tas-ib" data-act="undo" title="Undo (Ctrl + Z)" aria-label="Undo">${I('undo')}</button><button type="button" class="tas-ib" data-act="redo" title="Redo (Ctrl + Y)" aria-label="Redo">${I('redo')}</button><button type="button" class="tas-ib" data-act="help" title="How to build a report" aria-label="How to build a report">${I('help')}</button><button type="button" class="tas-ib" data-act="saveproj" title="Save project (Ctrl + S)" aria-label="Save project">${I('saveproj')}</button>
  <span class="tas-sep" aria-hidden="true"></span>
  <button type="button" data-act="mine">${I('save')}<span>Save as my template</span></button><button type="button" data-act="preview">${I('eye')}<span>Preview</span></button><button type="button" class="tas-copy" data-act="copy">${I('mail')}<span>Copy to email</span></button><button type="button" class="primary tas-next" data-act="next"><span>Continue to Export</span>${I('next')}</button></div></div>
  <div class="tas-grid"><div class="tas-stage"><div class="tas-paper-wrap"><div class="tas-paper" aria-label="Report"></div></div></div><aside class="tas-left" aria-label="Templates, elements and data"></aside><aside class="tas-right" aria-label="Report setup"></aside>
@@ -6125,7 +6227,10 @@ function applyTemplate(t){
   const unset=usedValueIds().filter(id=>valueText(id)==='—').length+R.blocks.filter(b=>b.type==='table'&&!b.source).length;
   say(unset?`${t.name} added. Now fill in the ${unset} highlighted ${unset===1?'item':'items'} in Report setup.`:`${t.name} added.`);
  };
- if(R.blocks.length>1&&!confirmReplace(go))return;
+ /* Only ask when the report already holds data. A report with nothing linked switches straight away
+    (Undo brings the previous one back), so templates can be cycled through quickly. */
+ const hasData=Object.values(R.values||{}).some(v=>v&&v.spec)||R.blocks.some(b=>b.type==='table'&&b.source);
+ if(R.blocks.length>1&&hasData&&!confirmReplace(go))return;
  go();
 }
 /* Replace confirmation shown inside the page (no browser pop-ups). */
@@ -6284,7 +6389,7 @@ function openValue(id){editingVal=id;rightTab='setup';store.set('tas-mon','open'
 function paintTop(){const s=q('[data-top="subject"]',root);if(document.activeElement!==s)s.value=R.subject||'';q('[data-act="undo"]',root).disabled=!hist.past.length;q('[data-act="redo"]',root).disabled=!hist.future.length}
 q('[data-top="subject"]',root).addEventListener('input',e=>{hist.mark('subject');R.subject=e.target.value;autosave()});
 root.addEventListener('click',e=>{const a=e.target.closest('[data-act]')?.dataset.act;if(!a)return;
- if(a==='undo')hist.undo();if(a==='redo')hist.redo();if(a==='copy')copyToEmail();if(a==='preview')openPreview();if(a==='mine')openSaveTemplate();if(a==='back')q('#back')?.click();if(a==='next')q('#next')?.click();if(a==='help'){try{window.dcGuide?.open()}catch(e){}}
+ if(a==='undo')hist.undo();if(a==='redo')hist.redo();if(a==='copy')copyToEmail();if(a==='preview')openPreview();if(a==='mine')openSaveTemplate();if(a==='saveproj')q('#save-project')?.click();if(a==='back')q('#back')?.click();if(a==='next')q('#next')?.click();if(a==='help'){try{window.dcGuide?.open()}catch(e){}}
  if(a==='lpanel'||a==='rpanel'){const k='tas-'+a;store.set(k,store.get(k)==='closed'?'open':'closed');applyView()}
  if(a==='zin'||a==='zout'||a==='zfit'){const z=a==='zfit'?1:Math.max(.6,Math.min(1.6,Math.round((zoom()+(a==='zin'?.1:-.1))*10)/10));store.set('tas-zoom',String(z));applyView()}});
 root.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&!e.target.closest('input,select,textarea')){const k=e.key.toLowerCase();if(k==='z'&&!e.target.closest('[contenteditable="true"]')){e.preventDefault();e.shiftKey?hist.redo():hist.undo()}if(k==='y'&&!e.target.closest('[contenteditable="true"]')){e.preventDefault();hist.redo()}}});
