@@ -3752,18 +3752,41 @@ function fillProject(doc,arrays){
  const fill=o=>{if(Array.isArray(o)){for(let i=0;i<o.length;i++){const v=o[i],r=val(v);if(r!==undefined)o[i]=r;else if(v&&typeof v==='object')fill(v)}}else if(o&&typeof o==='object'){for(const k of Object.keys(o)){const v=o[k],r=val(v);if(r!==undefined)o[k]=r;else if(v&&typeof v==='object')fill(v)}}};
  fill(doc);return doc;
 }
+/* Project files are gzip-compressed (plain JSON inside). Old uncompressed files still open. */
+const canGzip=typeof CompressionStream==='function'&&typeof DecompressionStream==='function';
+async function gzipBlob(blob){if(!canGzip)return blob;return await new Response(blob.stream().pipeThrough(new CompressionStream('gzip'))).blob()}
+async function isGzip(blob){if(!blob||blob.size<2)return false;const b=new Uint8Array(await blob.slice(0,2).arrayBuffer());return b[0]===0x1f&&b[1]===0x8b}
 async function parseProjectBlob(blob){
- const CH=16*1024*1024,dec=new TextDecoder();let off=0,buf='',mode='light',cur=null,t=performance.now();
- const light=[],arrays=[],OPEN=/"(rows|original)":\[\n\t/;
- const more=async()=>{if(off>=blob.size)return false;const end=Math.min(blob.size,off+CH);const ab=await blob.slice(off,end).arrayBuffer();off=end;buf+=dec.decode(ab,{stream:off<blob.size});if(performance.now()-t>12){await yieldTask();t=performance.now()}return true};
- const rows=str=>{if(!str)return;const part=JSON.parse('['+str+']');for(let i=0;i<part.length;i++)cur.push(part[i])};
- if(!blob.size)throw Error('Unexpected end of JSON input');
+ if(!blob||!blob.size)throw Error('Unexpected end of JSON input');
+ const gz=await isGzip(blob);
+ if(gz&&!canGzip)throw Error('This browser cannot open compressed projects. Use a current version of Chrome, Edge, Firefox or Safari.');
+ const reader=(gz?blob.stream().pipeThrough(new DecompressionStream('gzip')):blob.stream()).getReader();
+ const dec=new TextDecoder();let buf='',mode='light',cur=null,done=false,t=performance.now();
+ const light=[],arrays=[],OPEN=/"(rows|original)":\[\n\t/;let recent='';
+ /* Repeated values (agent names, teams, statuses…) share one string in memory instead of one per row. */
+ const pool=new Map();let colStats=[];
+ const intern=(v,k)=>{if(typeof v!=='string'||v.length>256)return v;let st=colStats[k];if(!st)st=colStats[k]={seen:0,hit:0,off:false};if(st.off)return v;st.seen++;const e=pool.get(v);if(e!==undefined){st.hit++;return e}if(pool.size<3000000)pool.set(v,v);if(st.seen===4000&&st.hit<800)st.off=true;return v};
+ const more=async()=>{if(done)return false;let got=0;const parts=[];
+  while(got<8*1024*1024){const r=await reader.read();if(r.done){done=true;break}parts.push(dec.decode(r.value,{stream:true}));got+=r.value.length}
+  if(done)parts.push(dec.decode());buf+=parts.join('');
+  if(performance.now()-t>12){await yieldTask();t=performance.now()}return got>0||parts.some(x=>x)};
+ /* Older files hold the same table two or three times. Equal cells reuse the earlier copy's string. */
+ let cand=null,candTried=false;
+ const pickCand=r=>{candTried=true;let best=null,score=0;for(const a of arrays){const c=a[0];if(!Array.isArray(c)||c.length!==r.length)continue;let same=0;for(let k=0;k<r.length;k++)if(c[k]===r[k])same++;if(same>score){score=same;best=a}}cand=score>=Math.max(1,r.length/2)?best:null};
+ const rows=str=>{if(!str)return;const part=JSON.parse('['+str+']');for(let i=0;i<part.length;i++){const r=part[i];if(Array.isArray(r)){if(!candTried)pickCand(r);const c=cand?cand[cur.length]:null;if(c&&c.length===r.length){for(let k=0;k<r.length;k++){const v=r[k];r[k]=c[k]===v?c[k]:intern(v,k)}}else for(let k=0;k<r.length;k++)r[k]=intern(r[k],k)}cur.push(r)}};
  for(;;){
   if(mode==='light'){
    const m=OPEN.exec(buf);
-   if(m){light.push(buf.slice(0,m.index+m[0].length-3)+'"@@DCROWS'+arrays.length+'@@"');buf=buf.slice(m.index+m[0].length);cur=[];mode='rows';continue}
-   if(buf.length>64){light.push(buf.slice(0,buf.length-32));buf=buf.slice(buf.length-32)}
+   if(m){const head=buf.slice(0,m.index+m[0].length-3);light.push(head+'"@@DCROWS'+arrays.length+'@@"');recent=(recent+head).slice(-200000);buf=buf.slice(m.index+m[0].length);cur=[];colStats=[];cand=null;candTried=false;
+    /* Insight results saved by older versions are rebuilt on open, so their rows are skipped, not loaded */
+    const at=recent.lastIndexOf('{"id":');mode=at>=0&&recent.indexOf('"key":"dc-derived:',at)>at?'skip':'rows';continue}
+   if(buf.length>64){const piece=buf.slice(0,buf.length-32);light.push(piece);recent=(recent+piece).slice(-200000);buf=buf.slice(buf.length-32)}
    if(!(await more())){light.push(buf);buf='';break}
+  }else if(mode==='skip'){
+   const end=buf.indexOf('\n\t]');
+   if(end>=0){buf=buf.slice(end+3);arrays.push([]);cur=null;mode='light';continue}
+   buf=buf.slice(Math.max(0,buf.length-8));
+   if(!(await more()))throw Error('Unexpected end of JSON input');
   }else{
    const end=buf.indexOf('\n\t]');
    if(end>=0){rows(buf.slice(0,end));buf=buf.slice(end+3);arrays.push(cur);cur=null;mode='light';continue}
@@ -3771,6 +3794,7 @@ async function parseProjectBlob(blob){
    if(!(await more()))throw Error('Unexpected end of JSON input');
   }
  }
+ pool.clear();
  return fillProject(JSON.parse(light.join('')),arrays);
 }
 async function parseProjectText(text){
@@ -3786,7 +3810,7 @@ document.addEventListener('click',e=>{
 },true);
 async function saveFile(){
  saveFile.running=true;const big=totalRows()>=BIG;if(big)busy.show('Preparing your project file… You can keep working.',true,true);
- try{const blob=await serializer.build();download(blob,((window.dcProj&&window.dcProj.current()?.name)||'The Analysis Studio project').replace(/[\\/:*?"<>|]+/g,' ').trim()+'.json')}
+ try{const blob=await gzipBlob(await serializer.build());download(blob,((window.dcProj&&window.dcProj.current()?.name)||'The Analysis Studio project').replace(/[\\/:*?"<>|]+/g,' ').trim()+'.json')}
  catch(e){notice('Could not save the project: '+e.message)}
  finally{saveFile.running=false;if(big)busy.hide()}
 }
@@ -3794,7 +3818,7 @@ async function saveFile(){
 /* ---------- Saving is handled by the project module (dc-project.js) ---------- */
 const autosave={schedule(){try{window.dcProj&&window.dcProj.schedule()}catch(e){}},save(){return window.dcProj&&window.dcProj.flush()},clear(){}};
 window.dcAutosave=()=>autosave.schedule();
-window.dcCore={busy,serializer,parseProjectText,nextFrame,yieldTask,svg,ICON,store,q,qa,stage,STEPS,onSteps,visNum,nextOn,totalRows,BIG,esc:typeof esc==='function'?esc:(t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])))};
+window.dcCore={busy,serializer,parseProjectText,gzipBlob,isGzip,nextFrame,yieldTask,svg,ICON,store,q,qa,stage,STEPS,onSteps,visNum,nextOn,totalRows,BIG,esc:typeof esc==='function'?esc:(t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])))};
 
 /* ---------- Keyboard shortcuts ---------- */
 document.addEventListener('keydown',e=>{
@@ -4836,7 +4860,7 @@ async function saveToFile(reason){
  if(fileBusy){fileAgain=true;return false}
  if(perm!=='granted'){perm=await permission(handle,false);if(perm!=='granted'){paintStatus();return false}}
  fileBusy=true;const big=C.totalRows()>=C.BIG&&reason==='manual';if(big)busy.show('Saving your project file… You can keep working.',true,true);
- try{const blob=await serializer.build();if(!(await wholeProject(blob)))throw Error('The project file came out incomplete');const w=await handle.createWritable();await w.write(blob);await w.close();state.fileAt=now();state.dirtyFile=false;state.error='';P.fileName=handle.name;return true}
+ try{const blob=await serializer.build();if(!(await wholeProject(blob)))throw Error('The project file came out incomplete');const packed=await C.gzipBlob(blob);const w=await handle.createWritable();await w.write(packed);await w.close();state.fileAt=now();state.dirtyFile=false;state.error='';P.fileName=handle.name;return true}
  catch(e){console.warn('The Analysis Studio file save:',e);state.error=e?.name==='NotAllowedError'?'':'Could not write the project file';if(e?.name==='NotAllowedError')perm='prompt';return false}
  finally{fileBusy=false;if(big)busy.hide();paintStatus();if(fileAgain){fileAgain=false;saveToFile(reason)}}
 }
@@ -4855,7 +4879,7 @@ async function manualSave(){
  }
  await saveLocal(true);
  const big=C.totalRows()>=C.BIG;if(big)busy.show('Preparing your project file… You can keep working.',true,true);
- try{const blob=await serializer.build();download(blob,slug(P.name)+'.json');state.fileAt=now();state.dirtyFile=false;paintStatus()}
+ try{const blob=await C.gzipBlob(await serializer.build());download(blob,slug(P.name)+'.json');state.fileAt=now();state.dirtyFile=false;paintStatus()}
  catch(e){say('Could not save the project: '+e.message)}finally{if(big)busy.hide()}
 }
 async function flush(){await saveLocal(true);if(handle&&state.dirtyFile)await saveToFile('flush')}
