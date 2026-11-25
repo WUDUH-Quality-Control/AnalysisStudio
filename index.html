@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>The Analysis Studio</title><style id="dc-boot">html.dc-boot body{visibility:hidden!important}html.dc-boot{background:#F4F5F8}html.dc-boot.dc-dark{background:#0B0E14}html.dc-boot::after{content:"";position:fixed;left:50%;top:50%;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;border:3px solid rgba(47,92,232,.18);border-top-color:#2F5CE8;opacity:0;animation:dcboot-in .2s .35s forwards,dcboot-spin .8s linear infinite}@keyframes dcboot-in{to{opacity:1}}@keyframes dcboot-spin{to{transform:rotate(360deg)}}html.dc-reveal body{animation:dcboot-fade .22s ease-out}@keyframes dcboot-fade{from{opacity:0}to{opacity:1}}@media (prefers-reduced-motion:reduce){html.dc-reveal body{animation:none}}</style><script id="dc-boot-script">(function(){var d=document.documentElement;d.classList.add("dc-boot");try{if(localStorage.getItem("dc-theme")==="dark")d.classList.add("dc-dark")}catch(e){}window.__dcBootFailsafe=setTimeout(function(){d.classList.remove("dc-boot")},8000)})();</script>
+<html lang="en"><head>
+<!-- The Analysis Studio v3.6.0 · built 2026-11-25 · see “What’s new” in the app for the change log -->
+<meta name="app-version" content="3.6.0"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>The Analysis Studio</title><style id="dc-boot">html.dc-boot body{visibility:hidden!important}html.dc-boot{background:#F4F5F8}html.dc-boot.dc-dark{background:#0B0E14}html.dc-boot::after{content:"";position:fixed;left:50%;top:50%;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;border:3px solid rgba(47,92,232,.18);border-top-color:#2F5CE8;opacity:0;animation:dcboot-in .2s .35s forwards,dcboot-spin .8s linear infinite}@keyframes dcboot-in{to{opacity:1}}@keyframes dcboot-spin{to{transform:rotate(360deg)}}html.dc-reveal body{animation:dcboot-fade .22s ease-out}@keyframes dcboot-fade{from{opacity:0}to{opacity:1}}@media (prefers-reduced-motion:reduce){html.dc-reveal body{animation:none}}</style><script id="dc-boot-script">(function(){var d=document.documentElement;d.classList.add("dc-boot");try{if(localStorage.getItem("dc-theme")==="dark")d.classList.add("dc-dark")}catch(e){}window.__dcBootFailsafe=setTimeout(function(){d.classList.remove("dc-boot")},8000)})();</script>
 <style>
 :root{color-scheme:dark;--bg:#0b1329;--surface:#131f3a;--panel:#0e1930;--border:rgba(56,189,248,.2);--accent:#2563eb;--cyan:#38bdf8;--text:#f8fafc;--muted:#a3b2c8;--grid:rgba(56,189,248,.08);--good:#6ee7b7;--warn:#fbbf24}body.light{color-scheme:light;--bg:#f0f4f9;--surface:#fff;--panel:#f5f8fc;--border:rgba(37,99,235,.15);--accent:#1d4ed8;--cyan:#0284c7;--text:#0f172a;--muted:#52647b;--grid:rgba(37,99,235,.06);--good:#047857;--warn:#92400e}*{box-sizing:border-box}body{margin:0;font:14px/1.55 system-ui,-apple-system,Segoe UI,sans-serif;color:var(--text);background:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),var(--bg);background-size:20px 20px}button,input,select,textarea{font:inherit}button{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);padding:10px 15px;border-radius:7px;cursor:pointer}button:hover{border-color:var(--cyan);background:var(--panel)}button:disabled{opacity:.45;cursor:not-allowed}button.primary{background:var(--accent);border-color:var(--accent);color:white}button.small{padding:6px 9px;font-size:12px}svg.icon{width:19px;height:19px;flex:none;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}input,select,textarea{color:var(--text);background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:10px;max-width:100%;min-width:0}input[type=range]{padding:0}label{display:grid;gap:6px;color:var(--muted);font-size:12px}label input,label select,label textarea{color:var(--text);font-size:14px}*:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}header{padding:22px 4%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:var(--bg)}.brand{display:flex;gap:12px;align-items:center;font-size:23px;font-weight:700;letter-spacing:-1px}.brandmark{background:var(--accent);padding:10px;border-radius:9px;display:flex;color:#fff}.brand small{display:block;font:10px/1.7 ui-monospace,monospace;letter-spacing:2px;color:var(--muted)}.header-actions{display:flex;gap:10px;align-items:center}.private{font-size:12px;color:var(--muted);display:flex;gap:7px;align-items:center}main{max-width:1500px;padding:28px 4% 60px;margin:auto}.eyebrow{font:11px ui-monospace,monospace;letter-spacing:2px;color:var(--cyan);text-transform:uppercase}h1{font-size:32px;line-height:1.2;letter-spacing:-1px;margin:10px 0}h2{font-size:18px;margin:0 0 12px;display:flex;align-items:center;gap:8px}h3{margin:0;font-size:15px}p{margin:7px 0;color:var(--muted)}.stepper{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:9px;overflow:hidden;margin:25px 0 32px}.stepper button{border:0;border-radius:0;display:flex;flex-direction:column;align-items:flex-start;padding:14px 12px;gap:8px;background:var(--panel);font-size:12px}.stepper button.active{background:var(--surface);box-shadow:inset 0 -3px var(--cyan);color:var(--cyan)}.step-num{display:flex;align-items:center;gap:8px;font:11px ui-monospace,monospace;color:var(--muted)}.topline{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:22px}.badge{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);padding:3px 8px;border-radius:4px;color:var(--cyan);font:11px ui-monospace,monospace}.badge.good{color:var(--good)}.panel{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:22px;min-width:0}.two{display:grid;grid-template-columns:minmax(0,2fr) minmax(240px,1fr);gap:20px}.stack{display:grid;gap:16px}.dropzone{border:1px dashed var(--cyan);background:var(--panel);border-radius:8px;min-height:260px;display:flex;align-items:center;justify-content:center;text-align:center;padding:30px;transition:.15s}.dropzone.over{background:rgba(56,189,248,.12);box-shadow:inset 0 0 0 2px var(--cyan)}.drop-icon{width:54px;height:54px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;border:1px solid var(--border);color:var(--cyan);border-radius:10px}.drop-icon .icon{width:27px;height:27px}.dropzone h2{display:block;font-size:21px}.filelist{display:grid;gap:10px;margin-top:20px}.filecard{display:flex;gap:12px;align-items:flex-start;background:var(--panel);border:1px solid var(--border);border-radius:7px;padding:14px}.filecard .details{flex:1;min-width:0}.filecard strong{overflow-wrap:anywhere}.filecard p{font-size:12px}.meta{display:flex;gap:12px;flex-wrap:wrap;font:11px ui-monospace,monospace;color:var(--muted)}.guide{counter-reset:guide}.guide p{display:flex;gap:12px;margin:18px 0}.guide p:before{counter-increment:guide;content:'0' counter(guide);font:12px ui-monospace,monospace;color:var(--cyan)}.footer{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:24px;padding-top:20px;border-top:1px solid var(--border)}.status{font-size:12px;color:var(--muted)}.family-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}.chips{display:flex;flex-wrap:wrap;gap:7px;margin:15px 0}.chip{background:var(--panel);border:1px solid var(--border);padding:5px 9px;font:12px ui-monospace,monospace;border-radius:4px}.toolbar{display:flex;gap:12px;align-items:end;flex-wrap:wrap;margin-bottom:18px}.toolbar label{flex:1;min-width:150px}.scroll{overflow:auto;max-height:450px;border:1px solid var(--border);border-radius:6px}table{border-collapse:collapse;width:100%;font-size:12px;text-align:left}th,td{padding:10px 13px;border-bottom:1px solid var(--border);white-space:nowrap;max-width:350px;overflow:hidden;text-overflow:ellipsis}th{position:sticky;top:0;background:var(--panel);color:var(--muted);font-weight:500;z-index:1}td.changed{background:rgba(56,189,248,.1);color:var(--cyan)}.preview{display:grid;grid-template-columns:1fr 1fr;gap:16px}.preview h3{margin-bottom:10px}.muted{color:var(--muted)}.statline{display:flex;gap:18px;flex-wrap:wrap;margin:16px 0}.statline strong{display:block;font-size:24px;font-weight:600;color:var(--text)}.statline span{font-size:12px;color:var(--muted)}.studio-wrap{overflow:auto;border:1px solid var(--border);border-radius:9px}.studio{position:relative;min-width:950px;min-height:580px;background:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),var(--panel);background-size:20px 20px}.wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}.wire{fill:none;stroke:var(--cyan);stroke-width:2;filter:drop-shadow(0 0 3px var(--cyan))}.node{position:absolute;width:245px;border:1px solid var(--border);background:var(--surface);border-radius:8px;box-shadow:0 8px 24px #0002}.node-head{display:flex;gap:8px;align-items:center;cursor:grab;padding:13px;border-bottom:1px solid var(--border);touch-action:none}.node-head strong{flex:1;overflow-wrap:anywhere}.terminal{display:flex;justify-content:space-between;align-items:center;padding:7px 12px;border-bottom:1px solid var(--border)}.terminal:last-child{border:0}.terminal button{padding:5px;min-height:30px;color:var(--cyan);touch-action:none}.terminal button.selected{background:var(--accent);color:white}.terminal span{overflow-wrap:anywhere;font-size:12px}.insight-list{margin-top:16px;display:grid;gap:10px}.insight-item{display:flex;gap:12px;align-items:center}.insight-item input{width:230px}.insight-item p{flex:1;font-size:12px}.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}.metric{border-top:1px solid var(--border);padding:12px 0}.metric p{font-size:12px}.warning{color:var(--warn);display:flex;align-items:center;gap:7px}.builder{display:grid;grid-template-columns:180px minmax(0,1fr) 230px;gap:16px}.palette button{width:100%;justify-content:flex-start;margin-bottom:8px;cursor:grab}.reportcanvas{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;align-content:start;min-height:550px;padding:18px;background:var(--panel);border:1px dashed var(--border);border-radius:8px}.reportblock{grid-column:span 6;min-width:0;position:relative;border:1px solid var(--border);background:var(--surface);border-radius:6px;padding:16px;min-height:170px;overflow:hidden}.reportblock.selected{outline:2px solid var(--cyan)}.blockhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;gap:6px;cursor:grab}.blockhead h3{display:flex;align-items:center;gap:7px;overflow-wrap:anywhere}.block-actions{display:flex;gap:3px}.block-actions button{padding:4px}.resize{position:absolute;right:2px;bottom:2px;cursor:nwse-resize;color:var(--muted);touch-action:none;width:24px;height:24px}.kpi{font-size:34px;letter-spacing:-1px;font-weight:600;color:var(--cyan)}.chart{width:100%;height:190px;overflow:visible}.chart text{fill:var(--muted);font:10px system-ui}.chart .axis{stroke:var(--border);fill:none}.chart-summary{font-size:11px}.settings label{margin-bottom:12px}.settings .empty{font-size:12px}.emptycanvas{grid-column:1/-1;align-self:center;text-align:center;padding:70px 10px;color:var(--muted)}.emptycanvas .icon{width:32px;height:32px}.rich{min-height:80px;white-space:pre-wrap}.rich[contenteditable]{outline:1px dashed var(--border);padding:8px}.export-options{display:grid;grid-template-columns:1fr 1fr;gap:20px}.export-options .icon.big{width:35px;height:35px;color:var(--cyan)}.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--cyan);padding:12px 20px;border-radius:7px;box-shadow:0 5px 30px #0005;z-index:10;max-width:90vw}.hidden{display:none!important}.skip{position:absolute;left:10px;top:-60px;z-index:20}.skip:focus{top:10px}a{color:var(--cyan)}@media(max-width:1050px){.builder{grid-template-columns:160px minmax(0,1fr)}.settings{grid-column:1/-1}.two{grid-template-columns:1fr}.stepper{overflow:auto;grid-template-columns:repeat(7,minmax(115px,1fr))}}@media(max-width:600px){header{padding:15px}.private{display:none}main{padding:22px 15px}.topline{flex-direction:column}h1{font-size:27px}.preview,.export-options{grid-template-columns:1fr}.builder{display:flex;flex-direction:column}.palette{display:flex;flex-wrap:wrap;gap:6px}.palette h2{width:100%}.palette button{width:auto}.reportblock{grid-column:1/-1!important}.insight-item{flex-wrap:wrap}.footer{align-items:flex-start}.panel{padding:16px}input,select,textarea{font-size:16px!important}.brand small{font-size:9px}}@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}@media print{header,.stepper,.footer,.palette,.settings,.block-actions,.resize{display:none!important}body{background:white;color:#111}.reportcanvas{display:block}.reportblock{break-inside:avoid;margin-bottom:15px}}
 </style><style id="refinement">:root{--bg:#101c21;--surface:#18292e;--panel:#122227;--border:#31454b;--accent:#bf6040;--cyan:#ead4aa;--text:#f4f0e7;--muted:#b2c0c0;--grid:transparent;--good:#a9c8b0;--warn:#efbf78}body.light{--bg:#f3f0e8;--surface:#fffdf7;--panel:#ebe8df;--border:#d8d4c9;--accent:#a84428;--cyan:#6f5038;--text:#233c40;--muted:#596b69;--grid:transparent;--good:#386344;--warn:#8d4c17}body{background:var(--bg);font-family:Arial,sans-serif}header{padding:23px 5%;background:transparent}.brand{font-family:Georgia,serif;font-size:30px;font-weight:400;letter-spacing:-1.5px}.brandmark{border-radius:50%;background:var(--cyan);color:var(--bg);transform:rotate(-12deg)}.brand small{font:9px Arial,sans-serif;letter-spacing:3px;margin-top:4px}main{padding:32px 5% 55px;max-width:1600px}.stepper{border-radius:0;background:transparent;border:0;border-bottom:1px solid var(--border);gap:12px;margin:0 0 44px}.stepper button{background:transparent;padding:12px 0 18px;flex-direction:row;align-items:center;font-size:11px;gap:8px}.stepper button.active{background:transparent;box-shadow:inset 0 -2px var(--cyan)}.step-num{font-size:10px}.step-num .icon{width:14px;height:14px}.eyebrow{font:10px Arial,sans-serif;letter-spacing:2.5px;color:var(--muted)}h1{font:normal clamp(38px,4.4vw,68px)/1.03 Georgia,serif;letter-spacing:-2px;max-width:800px;margin:18px 0}h2{font-size:16px;font-weight:500}.topline{margin-bottom:36px}.topline p{max-width:660px;font-size:15px;line-height:1.7}.panel{border-radius:3px;padding:25px}.two{grid-template-columns:minmax(0,1.65fr) minmax(280px,1fr);gap:28px}.dropzone{min-height:310px;border:1px solid var(--border);border-radius:2px;background:var(--panel);position:relative;overflow:hidden}.dropzone:before,.dropzone:after{content:'';position:absolute;pointer-events:none;border:1px solid var(--border);border-radius:50%;width:290px;height:290px;right:-130px;top:-150px}.dropzone:after{width:360px;height:360px;right:-160px;top:-185px}.drop-icon{border-radius:50%;width:65px;height:65px}.dropzone h2{font:28px Georgia,serif}.guide p{margin:23px 0}.badge{border-radius:0;font:10px Arial,sans-serif;letter-spacing:.7px}button{border-radius:3px;font-weight:500}button.primary{background:var(--accent);border-color:var(--accent)}input,select,textarea{border-radius:3px}.artnote{padding:25px 0;border-top:1px solid var(--border);display:flex;align-items:center;gap:20px}.artnote svg{width:105px;height:85px;flex:none}.artnote p{font:italic 21px/1.4 Georgia,serif;color:var(--text)}.studio{background:radial-gradient(var(--border) 1px,transparent 1px),var(--panel);background-size:24px 24px}.node{border-radius:4px}.wire{stroke:var(--cyan);filter:none}.node-head{background:var(--surface)}.insight-config{margin-top:18px;border-top:3px solid var(--accent)}.config-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin:18px 0}.field-list{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:20px 0}.field-row{display:flex;align-items:center;gap:8px;margin:8px 0}.field-row label{display:flex;align-items:center;flex:1;font-size:13px;color:var(--text)}.field-row input[type=text]{width:48%;font-size:12px;padding:7px}.match-count{font:42px Georgia,serif;color:var(--cyan)}.result-meta{display:flex;gap:28px;align-items:center;margin:15px 0}.result-meta p{font-size:12px}.result-preview{max-height:260px}.builder{grid-template-columns:180px minmax(0,1fr) 260px}.reportcanvas{background:#eeeae1;border:0;color:#253d40;gap:16px;min-height:620px}.reportblock{--surface:#fffdf7;--text:#253d40;--muted:#5d6d6b;--border:#d9d6cd;--panel:#f3f0e8;--cyan:#9e4d31;color:var(--text);border-radius:3px;background:var(--surface)}.reportblock .kpi{font:46px Georgia,serif}.reportblock .blockhead h3{font-size:15px}.reportblock .rich{color:inherit}.palette{padding:15px}.palette button{font-size:12px;padding:10px;justify-content:flex-start}.palette button .icon:last-child{margin-left:auto}.settings{padding:18px;max-height:1000px;overflow:auto}.settings label{font-size:11px}.settings .row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.settings .row label{min-width:0}.email-preview{background:#fff;color:#243b3d;padding:24px;overflow:auto;border-radius:3px;margin-top:20px}.email-preview table{white-space:normal}.email-preview td,.email-preview th{position:static;white-space:normal;max-width:none}.email-preview p{color:inherit}.font-controls{display:flex;align-items:end;gap:12px;flex-wrap:wrap;margin-bottom:18px}.font-controls label{min-width:160px;flex:1}.shape-demo{height:100%;min-height:80px;display:flex;align-items:center;justify-content:center;text-align:center;font:24px Georgia,serif;padding:15px}.quote-mark{font:65px Georgia,serif;line-height:.7;color:inherit}.copy-manual{width:100%;min-height:180px}.email-preview button{display:none}@media(max-width:1150px){.builder{grid-template-columns:160px minmax(0,1fr)}.settings{grid-column:1/-1;max-height:none}}@media(max-width:700px){.two,.config-grid,.field-list{grid-template-columns:1fr}.builder{display:flex;flex-direction:column}.stepper{gap:14px;grid-template-columns:repeat(7,minmax(130px,1fr));margin-bottom:28px}.palette{display:flex;flex-wrap:wrap}.palette button{width:auto}.topline h1{letter-spacing:-1px}main{padding:23px 18px}.panel{padding:18px}.reportcanvas{padding:12px}.font-controls{display:grid;grid-template-columns:1fr}.field-row input[type=text]{width:45%}.result-meta{flex-wrap:wrap;gap:12px}.header-actions .private{display:none}.brand{font-size:25px}}
@@ -3084,6 +3086,33 @@ html body .iws-create .iws-new{background:var(--brand)!important;color:#fff!impo
 .wz-prev-t .wz-t,.wz-prev-t>.wz-t{align-self:flex-start}
 html body dialog.wz .wz-foot button.wz-pri{background:var(--brand)!important;color:#fff!important;border-color:var(--brand)!important}
 html body dialog.wz .wz-foot button.wz-pri:disabled{opacity:.5}
+.wz-cards4{grid-template-columns:repeat(4,minmax(0,1fr))}
+html body .wz-card-sum{border-style:dashed!important}
+@media (max-width:1280px){.wz-cards4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.dcv-badge{display:inline-flex!important;align-items:center;gap:8px;height:auto!important;min-height:0!important;padding:6px 10px!important;border-radius:999px!important;border:1px solid var(--line)!important;background:var(--surface)!important;box-shadow:none!important;color:var(--muted)!important;font-size:12px!important;font-weight:600;cursor:pointer;white-space:nowrap}
+.dcv-badge span{color:var(--ink);font-variant-numeric:tabular-nums}
+.dcv-badge em{font-style:normal;color:var(--brand)}
+.dcv-badge:hover{border-color:var(--brand)!important}
+.dc-rail>.dcv-badge{margin:10px 14px 14px;align-self:flex-start}
+.dc-hub-head>.dcv-badge{margin-left:auto;align-self:flex-start}
+dialog.dcv-dlg{width:min(560px,calc(100vw - 32px));max-height:min(80vh,720px);padding:0;border:1px solid var(--line);border-radius:18px;background:var(--surface);color:var(--ink);overflow:hidden;box-shadow:0 30px 80px -30px rgba(15,23,42,.5)}
+dialog.dcv-dlg[open]{display:flex;flex-direction:column}
+dialog.dcv-dlg::backdrop{background:rgba(15,23,42,.45)}
+.dcv-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:18px 20px;border-bottom:1px solid var(--line)}
+.dcv-head div{display:flex;flex-direction:column;gap:3px}.dcv-head b{font-size:17px}.dcv-head span{font-size:13px;color:var(--muted)}
+html body .dcv-x{width:36px!important;height:36px!important;min-height:0!important;padding:0!important;border-radius:10px!important}
+.dcv-body{overflow:auto;padding:6px 20px 18px}
+.dcv-body section{padding:12px 0;border-bottom:1px solid var(--line)}.dcv-body section:last-child{border-bottom:0}
+.dcv-body h3{margin:0 0 6px;font-size:14.5px}.dcv-body h3 small{font-weight:500;color:var(--muted);font-size:12px;margin-left:6px}
+.dcv-body ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}.dcv-body li{font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+/* "No insights yet" stacks inside the narrow side panel */
+html body.iws-on .dc-ins-strip .dc-iempty{display:flex!important;flex-direction:column;align-items:flex-start;gap:12px;padding:16px!important;min-width:0;width:auto!important;text-align:left}
+html body.iws-on .dc-ins-strip .dc-iempty>div{min-width:0}
+html body.iws-on .dc-ins-strip .dc-iempty h2{font-size:15px!important;margin:0 0 4px!important}
+html body.iws-on .dc-ins-strip .dc-iempty p{font-size:13px!important;line-height:1.5;margin:0!important}
+html body.iws-on .dc-ins-strip .dc-iempty .dc-empty-slot,html body.iws-on .dc-ins-strip .dc-iempty .dc-empty-slot button{width:100%}
+html body.iws-on .dc-ins-strip .insight-list{overflow-x:hidden}
 </style><script id="datacodex-redesign-script">/* The Analysis Studio redesign layer: a simpler, step-by-step shell over the existing engine. */
 (function(){
 'use strict';
@@ -3617,7 +3646,7 @@ function insightWorkspace(add){
  const list=q('.insight-list',content),tools=q('.graph-tools',content),wrap=q('.studio-wrap',content);
  if(list)insightCards(list);
  const empty=list&&qa('.guided-result-list > section.panel',list).find(sec=>/Start with your question/.test(sec.textContent));
- if(empty&&!empty.dataset.dc){empty.dataset.dc='1';empty.classList.add('dc-iempty');empty.innerHTML=`<span class="dc-empty-icon">${svg('bulb')}</span><div><h2>No insights yet</h2><p>Start with a question, such as “Which SMS belong to which contacts?”. The guided window walks you through it.</p></div><span class="dc-empty-slot"></span>`}
+ if(empty&&!empty.dataset.dc){empty.dataset.dc='1';empty.classList.add('dc-iempty');empty.innerHTML=`<span class="dc-empty-icon">${svg('bulb')}</span><div><h2>No insights yet</h2><p>Start with a question about your data, such as “Which records in one table also appear in another?”. A few short steps walk you through it.</p></div><span class="dc-empty-slot"></span>`}
  if(!list||!tools||!wrap||q('.dc-workspace',content))return;
  let n=0,ready=0;try{n=S.insights.length;ready=S.insights.filter(x=>!nameProblem(x.name,{except:x.id})).length}catch(e){}
  const ws=document.createElement('div');ws.className='dc-workspace';
@@ -4337,7 +4366,7 @@ const X=n=>q(`[data-x="${n}"]`,root);
 
 let trayOn=store.get('dcx-tray')?store.get('dcx-tray')==='on'&&innerWidth>760:innerWidth>=1360,palOn=store.get('dcx-pal')!=='off'&&innerWidth>760;
 let palWide=store.get('dcx-pal-wide')==='1';pal.classList.toggle('is-wide',palWide);
-let palTab='sheet',itemTab='data';
+let palTab='sheet',itemTab='data',sheetTab='sheet';
 function layoutToggles(){root.classList.toggle('no-tray',!trayOn);root.classList.toggle('no-pal',!palOn);root.classList.toggle('is-palwide',palWide);X('toggle-tray').setAttribute('aria-pressed',trayOn);X('toggle-pal').setAttribute('aria-pressed',palOn);schedule()}
 
 /* ---------- Theme ---------- */
@@ -4563,7 +4592,8 @@ function insertText(r,c,text){
 function insertMetric(r,c,sourceId){
  extractionCell={r,c};undo.mark();try{openExtractionItem('metric');if(sourceId&&extractionDraft?.metric){extractionDraft.metric.source=sourceId;extractionDraft.metric.denominator.source=sourceId;paintExtractionItem()}}catch(e){say(e.message)}
 }
-function editItem(it){if(!it)return;if(it.type==='text'){openEditor(it.r,it.c,it);return}extractionCell={r:it.r,c:it.c};undo.mark();try{openExtractionItem(it.type,it.id)}catch(e){say(e.message)}}
+function editItem(it){if(!it)return;if(it.type==='text'){openEditor(it.r,it.c,it);return}
+ if(it.type==='table'){selectItem(it);palTab='item';itemTab='data';if(!palOn){palOn=true;store.set('dcx-pal','on');layoutToggles()}renderPal();setTimeout(()=>q('[data-p="source"]',pal)?.focus(),30);return}extractionCell={r:it.r,c:it.c};undo.mark();try{openExtractionItem(it.type,it.id)}catch(e){say(e.message)}}
 function removeItem(it){const sheet=sheetNow();if(!sheet||!it)return;undo.mark();sheet.items=sheet.items.filter(i=>i.id!==it.id);if(visualItemId===it.id)visualItemId=null;sel={mode:'cell',ar:it.r,ac:it.c,fr:it.r,fc:it.c,rows:[],cols:[it.c,it.c]};say('Removed '+itemName(it)+'. Press Ctrl + Z to undo.');changed();commit({tray:true})}
 function duplicate(it,r,c){
  const sheet=sheetNow();if(!sheet||!it)return;const copy=JSON.parse(JSON.stringify(it));copy.id=newId();if(copy.metric)copy.metric.id=newId();
@@ -4864,15 +4894,15 @@ function itemMenu(it){
  const s=size(it),sheet=sheetNow();
  const themes=Object.keys(THEMES).map(k=>({fill:THEMES[k].header,text:THEMES[k].headerText,title:THEME_NAMES[k]||k,key:k}));
  const list=[{head:itemName(it).slice(0,48),note:kindName(it)+' · '+range(it.r,it.c,it.r+s.rows-1,it.c+s.cols-1)},
-  {label:it.type==='text'?'Edit text':'Edit data and position…',icon:'edit',kbd:'Enter',run:()=>editItem(it)},
-  {label:'Style…',icon:'palette',run:()=>{palTab='item';openPal()}},
+  {label:it.type==='text'?'Edit text':it.type==='metric'?'Change the number…':'Change data and columns',icon:'edit',kbd:'Enter',run:()=>editItem(it)},
+  {label:'How it looks',icon:'palette',run:()=>{palTab='item';itemTab='design';openPal()}},
   {head:'Theme'},{swatches:themes,label:'Themes',run:t=>applyTheme(it,t.key)},
   {sep:1},
   {label:'Duplicate',icon:'copy',kbd:'Ctrl D',run:()=>duplicate(it)},
   {label:'Copy',icon:'copy',kbd:'Ctrl C',run:()=>{clip=JSON.parse(JSON.stringify(it));say('Copied. Right-click a cell and choose Paste.')}},
   {label:'Colour these rows',icon:'paint',sub:()=>[{swatches:rowSwatches(),label:'Row colours',run:x=>colorRows(x.fill,x.text)},{label:'Clear row colour',icon:'eraser',disabled:!hasRowColor(),run:clearRows}]}];
- if(it.type==='table')list.splice(3,0,{label:'Highlight cells (conditional formatting)…',icon:'paint',run:()=>{palTab='item';cfOpen=true;itemTab='cf';openPal();setTimeout(()=>{const d=q('.dcx-cf',pal);if(d){d.open=true;d.scrollIntoView({block:'nearest'})}},30)}});
- if(it.type==='table')list.splice(3,0,{label:'Choose columns…',icon:'rows',run:()=>{palTab='item';openPal();setTimeout(()=>q('.dcx-cols',pal)?.scrollIntoView({block:'nearest'}),30)}});
+ if(it.type==='table')list.splice(3,0,{label:'Make values stand out…',icon:'paint',run:()=>{palTab='item';cfOpen=true;itemTab='cf';openPal();setTimeout(()=>{const d=q('.dcx-cf',pal);if(d){d.open=true;d.scrollIntoView({block:'nearest'})}},30)}});
+ if(it.type==='table')list.splice(3,0,{label:'Choose columns…',icon:'rows',run:()=>{palTab='item';itemTab='data';openPal()}});
  if(S.extractionSheets.length>1)list.push({label:'Move to worksheet',icon:'sheet',sub:()=>S.extractionSheets.filter(x=>x!==sheet).map(x=>({label:x.name,icon:'sheet',run:()=>moveToSheet(it,x)}))});
  list.push({sep:1},{label:'Remove',icon:'trash',kbd:'Del',danger:1,run:()=>removeItem(it)});
  return list;
@@ -4887,7 +4917,7 @@ function renderPal(){
  const sheet=sheetNow();if(!sheet)return;const it=visualItemId&&sheet.items.find(i=>i.id===visualItemId);
  if(palTab==='item'&&!it)palTab='sheet';
  const focused=document.activeElement&&pal.contains(document.activeElement)?document.activeElement.dataset.p:null;
- const seg=`<div class="dcx-pseg" role="tablist" aria-label="Style">${[['item','Selected',!it],['rows','Rows',false],['sheet','Worksheet',false]].map(([k,l,dis])=>`<button role="tab" data-ptab="${k}" aria-selected="${palTab===k}" ${dis?'disabled title="Select an item on the sheet first"':''}>${l}</button>`).join('')}</div>`;
+ const seg='';if(it)palTab='item';else if(palTab==='item')palTab='sheet';
  let body='';
  if(palTab==='item'&&it){
   const st=styleOf(it),s=size(it),f=it.type==='table'?src(it.source):null,cur=Object.keys(THEMES).find(k=>COLOR_KEYS.every(([c])=>String(THEMES[k][c]).toLowerCase()===String(st[c]).toLowerCase()));
@@ -4898,7 +4928,7 @@ function renderPal(){
    inner=`<label class="dcx-f"><span>${it.type==='text'?'Text':'Title shown above it'}</span><input data-p="label" value="${h(it.type==='text'?it.text:it.label)}"></label>
    ${it.type==='text'?`<label class="dcx-f"><span>Width in columns</span><input type="number" min="1" max="26" data-p="span" value="${it.span||1}"></label>`:''}
    ${it.type==='metric'?`<p class="dcx-pnote">This is a live number. Use <b>Change the number</b> below to pick a different calculation or source.</p>`:''}
-   ${it.type==='table'?`<div class="dcx-srcline">${I('layers')}<div><small>Data from</small><b>${h(f?f.name:'A source that is no longer available')}</b></div><span>${f?num(f.rows.length)+' rows':''}</span></div>
+   ${it.type==='table'?`<label class="dcx-f"><span>Data from <small>${f?num(f.rows.length)+' rows':''}</small></span><select data-p="source">${f?'':'<option value="" selected>Choose an insight or table</option>'}${sourceList().filter(x=>x.kind!=='sum').map(x=>`<option value="${h(x.id)}" ${x.id===it.source?'selected':''}>${h(x.name)} · ${x.kind==='table'?'table':'insight'} · ${num(x.rows)} rows</option>`).join('')}</select></label>
    <label class="dcx-f"><span>Rows to include <small>${f?'0 = all '+num(f.rows.length):''}</small></span><input type="number" min="0" max="1000000" data-p="limit" value="${it.limit||0}"></label>
    ${f?colEditor(it,f):''}`:''}`;
   }else if(itemTab==='design'){
@@ -4913,21 +4943,25 @@ function renderPal(){
   body=`<div class="dcx-pinfo"><span class="dcx-kind k-${it.type==='table'?'table':it.type==='metric'?'sum':'text'}">${I(it.type==='table'?'table':it.type==='metric'?'hash':'text')}</span><div><b>${h(itemName(it))}</b><small>${kindName(it)} · ${range(it.r,it.c,it.r+s.rows-1,it.c+s.cols-1)}</small></div></div>
   <p class="dcx-flowhint">Work down the list. Each part opens when you click it.</p>
   <div class="dcx-flow">${tabsI.map(([k],i)=>{const on=itemTab===k;return `<section class="dcx-fsec ${on?'is-open':''}"><button type="button" class="dcx-fhead" data-itab="${k}" aria-expanded="${on}"><span class="dcx-fnum">${i+1}</span><span class="dcx-ftxt"><b>${titles[k]}</b><small>${sums[k]}</small></span><span class="dcx-fchev" aria-hidden="true">${on?'−':'+'}</span></button>${on?`<div class="dcx-fbody">${inner}</div>`:''}</section>`}).join('')}</div>
-  <div class="dcx-pact dcx-pact-sticky"><button data-p="edit">${I('edit')}${it.type==='text'?'Edit text':it.type==='metric'?'Change the number':'Edit data'}</button><button data-p="dup">${I('copy')}Duplicate</button><button data-p="remove" class="is-danger">${I('trash')}Remove</button></div>`;
- }else if(palTab==='rows'){
+  <div class="dcx-pact dcx-pact-sticky">${it.type==='metric'?`<button data-p="edit">${I('edit')}Change the number</button>`:it.type==='text'?`<button data-p="edit">${I('edit')}Edit text</button>`:''}<button data-p="dup">${I('copy')}Duplicate</button><button data-p="remove" class="is-danger">${I('trash')}Remove</button></div>`;
+ }else{
   const rows=selRows(),n=RR.count(rows),cur=n?(sheet.rowColors||{})[rows[0][0]]:null;
-  body=n?`<p class="dcx-pnote"><b>${n===1?'Row '+(rows[0][0]+1):num(n)+' rows'}</b> ${n>1?'('+RR.label(rows)+')':''} — pick a colour to apply it right away. In Excel the colour fills the cells that hold data.</p>
+  const rowsBody=n?`<p class="dcx-pnote"><b>${n===1?'Row '+(rows[0][0]+1):num(n)+' rows'}</b> ${n>1?'('+RR.label(rows)+')':''} — pick a colour to apply it right away. In Excel the colour fills the cells that hold data.</p>
   <div class="dcx-rowsw">${ROW_SWATCHES.map(([f2,t,l])=>`<button data-rowsw="${f2}|${t}" title="${l}" aria-label="${l}" style="--f:${f2};--t:${t}">Aa</button>`).join('')}</div>
   <div class="dcx-two"><label class="dcx-f"><span>Fill</span><input type="color" data-p="rowfill" value="${cur?.fill||'#fff0ba'}"></label><label class="dcx-f"><span>Text</span><input type="color" data-p="rowtext" value="${cur?.text||'#173859'}"></label></div>
   <div class="dcx-pact"><button data-p="rowapply" class="is-primary">${I('paint')}Apply</button><button data-p="rowclear" ${hasRowColor()?'':'disabled'}>${I('eraser')}Clear</button></div>`
   :`<p class="dcx-pnote">Click the row numbers on the left to choose rows. Hold <kbd>Shift</kbd> for a range or <kbd>Ctrl</kbd> to add more, then pick a colour here or right-click.</p>`;
- }else{
   const ap=sheetStyle(sheet);
-  body=`<label class="dcx-f"><span>Worksheet name</span><input data-p="sheetname" maxlength="31" value="${h(sheet.name)}"></label>
+  if(n)sheetTab='rows';
+  const sheetBody=`<label class="dcx-f"><span>Worksheet name</span><input data-p="sheetname" maxlength="31" value="${h(sheet.name)}"></label>
   <label class="dcx-f"><span>Column width <small data-out="cw">${ap.columnWidth}</small></span><input type="range" min="10" max="60" data-p="columnWidth" value="${ap.columnWidth}"></label>
   <label class="dcx-f"><span>Row height <small data-out="rh">${ap.rowHeight}</small></span><input type="range" min="20" max="80" data-p="rowHeight" value="${ap.rowHeight}"></label>
   <label class="dcx-tog"><input type="checkbox" data-p="include" ${S.includeInsightSheets?'checked':''}><span>Also add a detail sheet for every insight</span></label>
   <div class="dcx-quick"><b>Quick start: key numbers sheet</b><p>Adds a new worksheet with a title, the record count, unique IDs and a total for the insight you pick. You can edit or move everything afterwards.</p><button data-p="summary">${I('plus')}Add a key numbers sheet…</button></div>`;
+  const parts=[['sheet','This worksheet',`${h(sheet.name)} · columns ${ap.columnWidth} · rows ${ap.rowHeight}`,sheetBody],['rows','Row colours',n?(n===1?'Row '+(rows[0][0]+1)+' selected':num(n)+' rows selected'):'Select rows to colour them',rowsBody]];
+  body=`<div class="dcx-pinfo"><span class="dcx-kind k-text">${I('sheet')}</span><div><b>${h(sheet.name)}</b><small>${sheet.items.length} ${sheet.items.length===1?'item':'items'} on this sheet</small></div></div>
+  <p class="dcx-flowhint">Click a table or number on the sheet to style it. Or set up the worksheet here.</p>
+  <div class="dcx-flow">${parts.map(([k,t,sm,b],i)=>{const on=sheetTab===k;return `<section class="dcx-fsec ${on?'is-open':''}"><button type="button" class="dcx-fhead" data-stab="${k}" aria-expanded="${on}"><span class="dcx-fnum">${i+1}</span><span class="dcx-ftxt"><b>${t}</b><small>${sm}</small></span><span class="dcx-fchev" aria-hidden="true">${on?'−':'+'}</span></button>${on?`<div class="dcx-fbody">${b}</div>`:''}</section>`}).join('')}</div>`;
  }
  const keepScroll=q('.dcx-pbody',pal)?.scrollTop||0,keepTab=palTab,winY=window.scrollY;
  pal.innerHTML=`<div class="dcx-phead" title="Drag to move · double-click to dock"><b>${I('sliders')}Inspector</b><button data-p="size" aria-pressed="${palWide}" aria-label="${palWide?'Make the style panel smaller':'Make the style panel larger'}" title="${palWide?'Smaller panel':'Larger panel'}">${I(palWide?'panelNarrow':'panelWide')}</button><button data-p="close" aria-label="Hide the style palette" title="Hide">${I('x')}</button></div>${seg}<div class="dcx-pbody">${body}</div>`;
@@ -4951,6 +4985,7 @@ pal.addEventListener('click',e=>{
   const del=e.target.closest('[data-cfdel]');if(del&&it){undo.mark();it.cf=it.cf.filter((_,i)=>i!==+del.dataset.cfdel);commit();return}}
  const sheet=sheetNow();if(!sheet)return;const it=visualItemId&&sheet.items.find(i=>i.id===visualItemId);
  const t=e.target.closest('[data-ptab]');if(t){palTab=t.dataset.ptab;renderPal();q(`[data-ptab="${palTab}"]`,pal)?.focus();return}
+ const st2=e.target.closest('[data-stab]');if(st2){sheetTab=sheetTab===st2.dataset.stab?'':st2.dataset.stab;renderPal();q(`[data-stab="${st2.dataset.stab}"]`,pal)?.focus();return}
  const it2=e.target.closest('[data-itab]');if(it2){itemTab=itemTab===it2.dataset.itab&&it2.classList.contains('dcx-fhead')?'':it2.dataset.itab;renderPal();q(`[data-itab="${itemTab}"]`,pal)?.focus();return}
  if(it&&it.type==='table'){
   const mv=e.target.closest('[data-colmv]');if(mv){const [i,d]=mv.dataset.colmv.split('|').map(Number),cols=[...it.columns],j=i+d;if(j<0||j>=cols.length)return;[cols[i],cols[j]]=[cols[j],cols[i]];setColumns(it,cols);requestAnimationFrame(()=>q(`[data-colmv="${j}|${d}"]`,pal)?.focus());return}
@@ -4996,6 +5031,7 @@ pal.addEventListener('input',e=>{
  if(p.startsWith('c:')&&it){undo.mark(p+it.id);it.style={...styleOf(it),[p.slice(2)]:el.value};invalidateMetrics();autosave();schedule();qa('[data-theme]',pal).forEach(b=>b.setAttribute('aria-pressed','false'));return}
  if((p==='columnWidth'||p==='rowHeight')){undo.mark(p+sheet.id);sheet.appearance={...sheetStyle(sheet),[p]:+el.value};const o=q(`[data-out="${p==='columnWidth'?'cw':'rh'}"]`,pal);if(o)o.textContent=el.value;clampCam();autosave();schedule();return}
  if(p==='label'&&it){undo.mark('label'+it.id);if(it.type==='text'){it.text=el.value;it.label=el.value.slice(0,60)}else it.label=el.value;autosave();schedule();updateInfo();markPlaced();return}
+ if(p==='source'&&it&&it.type==='table'){const f=src(el.value);if(!f)return;const was=src(it.source);undo.mark();if(!it.label||it.label===was?.name)it.label=f.name;it.source=el.value;it.columns=[0];setColumns(it,f.headers.map((_,i)=>i).slice(0,12));say('Now showing '+f.name+'.');return}
  if(p==='sheetname'){return}
  if(p==='colfind'){const v=el.value.trim().toLowerCase();qa('[data-coladd]',pal).forEach(b=>b.hidden=!!v&&!b.dataset.name.includes(v));return}
 });
@@ -5065,7 +5101,7 @@ function mount(){
  invalidate();refresh();syncNav();
 }
 function syncNav(){
- const w=X('where');if(w){const step=q('.dc-meter-count')?.textContent||'';const name=window.dcProj?.current?.()?.name||'';w.textContent=[step,name].filter(Boolean).join(' · ')}
+ const w=X('where');if(w){const step=q('.dc-meter-count')?.textContent||'';const name=window.dcProj?.current?.()?.name||'';w.textContent=[step,name,window.dcVersion?.label].filter(Boolean).join(' · ')}
  const nx=q('#next'),nb=X('next');if(nx&&nb){nb.disabled=!!nx.disabled;const t=(nx.textContent||'').trim();if(t)nb.querySelector('span').textContent=t}
 }
 {const baseRenderX=render;render=function(){const out=baseRenderX.apply(this,arguments);try{if(S.stage!==4&&root.isConnected){root.remove();document.body.classList.remove('dcx-on');menu.close?.()}else if(root.isConnected)syncNav()}catch(e){}return out}}
@@ -6732,7 +6768,7 @@ function applyView(){
  root.classList.toggle('no-left',lp==='closed');root.classList.toggle('no-right',rp==='closed');
  q('[data-act="lpanel"]',root)?.setAttribute('aria-pressed',String(lp!=='closed'));q('[data-act="rpanel"]',root)?.setAttribute('aria-pressed',String(rp!=='closed'));
  const z=zoom();paper.style.zoom=z===1?'':String(z);const zv=q('.tas-zoomv',root);if(zv)zv.textContent=Math.round(z*100)+'%';
- const w=q('[data-where]',root);if(w){const step=q('.dc-meter-count')?.textContent||'';const name=window.dcProj?.current?.()?.name||'';w.textContent=[step,name].filter(Boolean).join(' · ')}
+ const w=q('[data-where]',root);if(w){const step=q('.dc-meter-count')?.textContent||'';const name=window.dcProj?.current?.()?.name||'';w.textContent=[step,name,window.dcVersion?.label].filter(Boolean).join(' · ')}
  const nx=q('#next');const nb=q('[data-act="next"]',root);if(nb&&nx){nb.disabled=!!nx.disabled;const t=(nx.textContent||'').trim();if(t)nb.querySelector('span').textContent=t}
 }
 function applyWide(){document.body.classList.remove('tas-wide')}
@@ -6830,6 +6866,44 @@ try{if(typeof openWorkflowGuide==='function')openWorkflowGuide=()=>open()}catch(
 window.dcGuide={open};
 })();
 
+/* The Analysis Studio: version number and change log.
+   Bump VERSION and add an entry to CHANGES with every release, so anyone can see which build is loaded. */
+(function(){
+'use strict';
+const VERSION='3.6.0',DATE='2026-11-25';
+const CHANGES=[
+ {v:'3.6.0',date:'2026-11-25',items:['Every insight is now made and edited in the guided steps. The older windows (match wizard, “Filter one table”, quick insight) are gone and open the steps instead.','Dragging between two columns on the Blueprint opens the steps at “Connect the tables”, already filled in.','“Edit in the steps” reopens an insight with its tables, links and conditions; it keeps its place in Excel sheets and reports.','The steps suggest the link fields that share the most values.','“Count or total” is a choice in step 1.','Excel inspector is one flow everywhere: the Selected / Rows / Worksheet tabs are gone.','Choose a table’s data source inside the inspector; the old “Edit data” window is gone.']},
+ {v:'3.5.1',date:'2026-11-25',items:['Version number and “What’s new” added, so you can see which build is loaded.','“No insights yet” panel fits the side panel, and its button opens the guided steps.']},
+ {v:'3.5.0',date:'2026-11-25',items:['New insight is now a guided set of steps: one, two or three tables, how they connect, which rows to keep, then a name.','Plain “ALL conditions” or “ANY condition” choice, plus “either / or” groups.','Find rows with no match in another table.','Every step shows the columns and first rows, so you see the data change.','Excel inspector works top to bottom in numbered parts with summaries.']},
+ {v:'3.4.0',date:'2026-11-20',items:['Insights step is a full-page workspace with an Inspector for the selected insight.','New “Starts or ends with” filter.']},
+ {v:'3.3.0',date:'2026-11-19',items:['Excel builder is a full-page workspace with an Inspector and a column editor.','CRM breach review template; templates switch instantly when no data is linked.','Save project button inside the full-page steps.']},
+ {v:'3.2.0',date:'2026-11-18',items:['Project files are compressed and keep one copy of each table (much smaller).','Very large projects open in pieces instead of running out of memory.','Clear messages when a project cannot open, shown inside the project window.']},
+ {v:'3.1.0',date:'2026-11-18',items:['Full-page report builder with rebuilt templates.','One set of filters everywhere; insights are usable as tables automatically; you name every insight.']},
+ {v:'3.0.0',date:'2026-11-18',items:['New report builder, Excel conditional formatting, number filters, bulk cleaning, connect two columns to make an insight, step-by-step guide.']}
+];
+window.dcVersion={version:VERSION,date:DATE,changes:CHANGES,label:'v'+VERSION};
+document.documentElement.dataset.version=VERSION;
+try{console.info(`The Analysis Studio v${VERSION} (${DATE})`)}catch(e){}
+const h=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const dlg=document.createElement('dialog');dlg.className='dcv-dlg';dlg.setAttribute('aria-label','What’s new');
+dlg.innerHTML=`<div class="dcv-head"><div><b>What’s new</b><span>You are using version ${VERSION}, built ${DATE}.</span></div><button type="button" class="dcv-x" aria-label="Close">✕</button></div>
+<div class="dcv-body">${CHANGES.map((c,i)=>`<section><h3>Version ${h(c.v)} <small>${h(c.date)}${i===0?' · this version':''}</small></h3><ul>${c.items.map(x=>`<li>${h(x)}</li>`).join('')}</ul></section>`).join('')}</div>`;
+document.body.append(dlg);
+dlg.querySelector('.dcv-x').onclick=()=>dlg.close();
+dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+const open=()=>{if(!dlg.open)dlg.showModal()};
+window.dcVersion.open=open;
+/* a small badge in the left menu and on the project window */
+const badge=()=>{const b=document.createElement('button');b.type='button';b.className='dcv-badge';b.title='See what changed in this version';b.innerHTML=`<span>v${VERSION}</span><em>What’s new</em>`;b.onclick=open;return b};
+function place(){
+ const rail=document.querySelector('.dc-rail');if(rail&&!rail.querySelector('.dcv-badge'))rail.append(badge());
+ const hub=document.querySelector('.dc-hub .dc-hub-head');if(hub&&!hub.querySelector('.dcv-badge'))hub.append(badge());
+}
+place();new MutationObserver(()=>place()).observe(document.body,{childList:true,subtree:true});
+/* first load of a new version: say so once */
+try{const seen=localStorage.getItem('tas-version');if(seen&&seen!==VERSION)setTimeout(()=>{try{notice(`Updated to version ${VERSION}. Click “What’s new” in the menu to see the changes.`)}catch(e){}},1200);localStorage.setItem('tas-version',VERSION)}catch(e){}
+})();
+
 /* The Analysis Studio: guided "New insight" steps.
    1. How many tables (1, 2 or 3) and which ones.  2. How they connect.  3. Which rows to keep
    (ALL / ANY, plus an either-or group).  4. Name it.  Every step shows the columns and a few rows,
@@ -6850,11 +6924,14 @@ const fam=id=>S.families.find(f=>f.id===id);
 const isDerived=f=>String(f?.key||'').startsWith('dc-derived:');
 
 /* ---------- choosing ---------- */
+/* Suggest the pair of fields that share the most values (names that look alike help a little). */
 function suggestLink(a,b,withScore){
- if(!a||!b)return withScore?{i:0,j:0,s:0}:[0,0];let best=null;
- a.headers.forEach((ha,i)=>b.headers.forEach((hb,j)=>{const s=(norm(ha)===norm(hb)?3:0)+(/id$|^id|email|phone|number|code|key/i.test(ha)&&/id$|^id|email|phone|number|code|key/i.test(hb)?1:0);if(s&&(!best||s>best.s))best={s,i,j}}));
- if(withScore)return best||{i:0,j:0,s:0};
- return best?[best.i,best.j]:[0,0];
+ const none=withScore?{i:0,j:0,s:0}:[0,0];if(!a||!b)return none;
+ const ac=a.headers.slice(0,40),bc=b.headers.slice(0,40),sets=bc.map((_,j)=>{const set=new Set();for(let k=0;k<b.rows.length&&k<20000;k++){const v=String(b.rows[k][j]??'').trim();if(v)set.add(v)}return set});
+ let best={i:0,j:0,s:0};
+ ac.forEach((ha,i)=>{const sample=[];for(let k=0;k<a.rows.length&&sample.length<300;k++){const v=String(a.rows[k][i]??'').trim();if(v)sample.push(v)}if(!sample.length)return;
+  bc.forEach((hb,j)=>{let hit=0;for(const v of sample)if(sets[j].has(v))hit++;const share=hit/sample.length;const nameBonus=norm(ha)===norm(hb)?.15:/id|email|phone|number|code|key/i.test(ha)&&/id|email|phone|number|code|key/i.test(hb)?.05:0;const sc=share+(share>0?nameBonus:nameBonus/10);if(sc>best.s)best={i,j,s:sc}})});
+ return withScore?best:[best.i,best.j];
 }
 function setCount(n){
  W.count=n;const list=fams().filter(f=>!isDerived(f)).concat(fams().filter(isDerived));
@@ -6938,7 +7015,7 @@ function body(){
  if(id==='tables'){
   const cards=[[1,'One table','Keep or count rows from a single table.','Find the rows in one list that need a follow-up.'],[2,'Two tables','Join rows that share a value, such as the same ID, email or phone.','Which records in one list also appear in another?'],[3,'Three tables','Chain them: table 1 links to 2, and 2 links to 3.','Bring three lists together, for example records, contacts and the people responsible.']];
   return `<div class="wz-intro"><h2>How many tables does your question need?</h2><p>Pick the one that sounds like your question. Nothing changes your tables; you can go back at any time.</p></div>
-  <div class="wz-cards">${cards.map(([n,t,d,ex])=>`<button type="button" class="wz-card ${W.count===n?'is-on':''}" data-wz="count|${n}" aria-pressed="${W.count===n}"><span class="wz-pic">${Array.from({length:n},(_,i)=>`<i class="c${i}">Table ${i+1}</i>`).join('<em></em>')}</span><b>${t}</b><span>${d}</span><small>For example: ${ex}</small></button>`).join('')}</div>
+  <div class="wz-cards wz-cards4">${cards.map(([n,t,d,ex])=>`<button type="button" class="wz-card ${W.count===n?'is-on':''}" data-wz="count|${n}" aria-pressed="${W.count===n}"><span class="wz-pic">${Array.from({length:n},(_,i)=>`<i class="c${i}">Table ${i+1}</i>`).join('<em></em>')}</span><b>${t}</b><span>${d}</span><small>For example: ${ex}</small></button>`).join('')}<button type="button" class="wz-card wz-card-sum" data-wz="summary"><span class="wz-pic"><i class="c0">Σ 1,234</i></span><b>Count or total</b><span>Counts, totals, averages and percentages for your report.</span><small>For example: how many records are in each table.</small></button></div>
   ${W.count?`<div class="wz-pick">${W.tables.map((tid,i)=>`<label><span>Table ${i+1}</span><select data-wz-k="t${i}" aria-label="Table ${i+1}">${fams().map(f=>`<option value="${f.id}" ${f.id===tid?'selected':''}>${h(f.name)}${isDerived(f)?' (from an insight)':''} · ${num(f.rows.length)} rows</option>`).join('')}</select></label>`).join('')}</div>`:''}`;
  }
  if(id==='link'){
@@ -6960,7 +7037,7 @@ function body(){
   <div class="wz-addrow"><button type="button" class="wz-add" data-wz="addc">+ Add a condition</button>${W.group.length?'':'<button type="button" class="wz-add" data-wz="addg">+ Add an “either / or” group</button>'}</div></div>
   <p class="wz-help">An “either / or” group keeps a row when at least one choice inside it is true, for example a status that is Escalated <b>or</b> Disputed.</p>`;
  }
- const taken=S.insights.some(n=>String(n.name).trim().toLowerCase()===W.name.trim().toLowerCase());
+ const taken=S.insights.some(n=>n.id!==W.editId&&String(n.name).trim().toLowerCase()===W.name.trim().toLowerCase());
  return `<div class="wz-intro"><h2>Name it and check the rows</h2><p>A good name says what the rows are, so anyone can tell what they are looking at.</p></div>
   <label class="wz-name"><span>Insight name</span><input data-wz-k="name" value="${h(W.name)}" placeholder="For example: Records that need a follow-up" autocomplete="off"></label>
   ${taken&&W.name.trim()?'<p class="wz-bad">Another insight already has this name.</p>':''}
@@ -6985,14 +7062,16 @@ function paint(){
  <footer class="wz-foot"><p class="wz-err" role="alert" data-wz-err></p><button type="button" data-wz="back" ${W.step===1?'disabled':''}>Back</button><button type="button" class="wz-pri primary" data-wz="next" ${W.count?'':'disabled'}>${last?'Create insight':'Continue'}</button></footer></div>`;
 }
 const I_EYE='<svg viewBox="0 0 24 24" aria-hidden="true" class="wz-i"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>';
-function canGo(i){return !!W.count&&i<=W.step}
+function canGo(i){return !!W.count&&(!!W.editId||i<=W.step)}
 function err(m){const e=q('[data-wz-err]',dlg);if(e)e.textContent=m||''}
 
 /* ---------- making the insight ---------- */
 function create(){
  const name=W.name.trim();
  if(name.length<3){W.step=stepNames().length;paint();err('Type a name for this insight (at least 3 characters).');q('[data-wz-k="name"]',dlg)?.focus();return}
- if(S.insights.some(n=>String(n.name).trim().toLowerCase()===name.toLowerCase())){err('Another insight already has this name.');return}
+ if(S.insights.some(n=>n.id!==W.editId&&String(n.name).trim().toLowerCase()===name.toLowerCase())){err('Another insight already has this name.');return}
+ const editing=W.editId?S.insights.find(n=>n.id===W.editId):null,snap={count:W.count,tables:[...W.tables],links:JSON.parse(JSON.stringify(W.links)),keep:W.keep,mode:W.mode,conds:JSON.parse(JSON.stringify(W.conds)),group:JSON.parse(JSON.stringify(W.group))};
+ if(editing)retire(editing,W.count===2&&W.keep==='both');
  const d=data(),T=W.tables.map(fam),ready=W.conds.filter(LG().condReady),readyG=W.group.filter(LG().condReady);
  window.dcSources?.typed?.(name);
  let made;
@@ -7003,34 +7082,36 @@ function create(){
   if(W.count===2)rules.unshift({column:W.keep==='aonly'?l.a:l.b,mode:'exact',operator:'not-equals',query:`[in]${other.id}|${W.keep==='aonly'?l.b:l.a}`,selectedValues:[`[in]${other.id}|${W.keep==='aonly'?l.b:l.a}`],caseSensitive:false});
   if(!rules.length){W.step=stepNames().findIndex(s=>s[0]==='rows')+1;paint();err('Add at least one condition, so the insight knows which rows to keep.');return}
   const [first,...rest]=rules;
-  made={id:uid(),name,kind:'filter',inputs:{},source:'raw:'+base.id,...first,extraFilters:rest,...(W.mode==='any'?{logic:'any'}:{})};
+  made={id:editing?editing.id:uid(),name,kind:'filter',inputs:{},source:'raw:'+base.id,...first,extraFilters:rest,...(W.mode==='any'?{logic:'any'}:{})};
   if(W.count===2&&W.mode==='any'&&rules.length>1){/* the "no match" rule always applies; the person's conditions are the ANY part */made.logic=undefined;rest.forEach(r=>r.grp=1)}
-  S.insights.push(made);try{placeInsight(made)}catch(e){}
+  if(editing){const i=S.insights.indexOf(editing);S.insights[i]=made}else{S.insights.push(made);try{placeInsight(made)}catch(e){}}
  }else{
-  const link=(X,xc,Y,yc,nm)=>{const n={id:uid(),name:nm,inputs:{a:{type:'column',family:X.id,column:xc},b:{type:'column',family:Y.id,column:yc}},preset:'id'};const c={id:uid(),name:nm,insightId:n.id,a:{...n.inputs.a},b:{...n.inputs.b}};S.insights.push(n);S.connections.push(c);initMerge(c);try{placeInsight(n)}catch(e){}return{n,c}};
+  const link=(X,xc,Y,yc,nm,keepId)=>{const old=keepId?S.insights.find(x=>x.id===keepId):null,oldC=old?S.connections.find(c=>c.insightId===keepId):null;const n={id:old?old.id:uid(),name:nm,inputs:{a:{type:'column',family:X.id,column:xc},b:{type:'column',family:Y.id,column:yc}},preset:'id'};const c={id:oldC?oldC.id:uid(),name:nm,insightId:n.id,a:{...n.inputs.a},b:{...n.inputs.b}};if(old){S.insights[S.insights.indexOf(old)]=n;if(oldC)S.connections[S.connections.indexOf(oldC)]=c;else S.connections.push(c)}else{S.insights.push(n);S.connections.push(c);try{placeInsight(n)}catch(e){}}initMerge(c);if(oldC?.merge?.filters?.length&&oldC.a?.family===c.a.family&&oldC.b?.family===c.b.family)c.merge.filters=oldC.merge.filters;return{n,c}};
   let labels=d.headers.slice(),target;
-  if(W.count===2){target=link(T[0],W.links[0].a,T[1],W.links[0].b,name)}
+  if(W.count===2){target=link(T[0],W.links[0].a,T[1],W.links[0].b,name,editing?.id)}
   else{
    const firstName=`${name} – ${T[0].name} with ${T[1].name}`;window.dcSources?.typed?.(firstName);
    const one=link(T[0],W.links[0].a,T[1],W.links[0].b,firstName);render();
    const src=window.dcSources?.now?.(one.n.id);if(!src){err('The first link could not be prepared. Check the fields in step 2.');return}
    const F=T[W.links[1].from??1],leftCol=src.headers.indexOf(`${F.name} · ${F.headers[W.links[1].a]}`);
-   target=link(src,Math.max(0,leftCol),T[2],W.links[1].b,name);
+   target=link(src,Math.max(0,leftCol),T[2],W.links[1].b,name,editing?.id);snap.helperId=one.n.id;
    const n1=src.headers.length;labels=d.headers.map((x,i)=>i<n1?`${src.name} · ${x}`:x);
   }
   const lab=c=>({...c,label:labels[c.ci]});
   if(ready.length||readyG.length)target.c.merge.dcLogic=LG().clean({mode:W.mode,conds:ready.map(lab),group:readyG.map(lab)});
   made=target.n;
  }
+ made.dcWizard=snap;
  close();S.stage=3;S.unlocked=Math.max(S.unlocked,4);render();
  setTimeout(()=>{try{window.dcInsights?.select(made.id)}catch(e){}},50);
- notice(`“${name}” is ready. It is also available as a table for other insights.`);
+ notice(editing?`“${name}” is updated.`:`“${name}” is ready. It is also available as a table for other insights.`);
 }
 
 /* ---------- events ---------- */
 function act(a,v){
  switch(a){
   case 'close':close();return;
+  case 'summary':close();summaryEditor();return;
   case 'count':setCount(+v);break;
   case 'go':W.step=+v;break;
   case 'back':W.step=Math.max(1,W.step-1);break;
@@ -7061,15 +7142,57 @@ dlg.addEventListener('change',e=>{if(!W)return;const el=e.target.closest('[data-
 dlg.addEventListener('input',e=>{if(!W)return;const el=e.target.closest('[data-wz-k]');if(!el||el.tagName==='SELECT')return;setting(el,true);clearTimeout(tmr);tmr=setTimeout(refreshLive,250)});
 function refreshLive(){if(!W)return;const p=q('.wz-prev',dlg);if(p){const t=q('.wz-prev-title',p).outerHTML;p.innerHTML=t+preview()}const s=q('.wz-sumside p',dlg);if(s&&W.count)s.innerHTML=sentence();const sm=q('.wz-sum',dlg);if(sm)sm.innerHTML=sentence()}
 
+function stateFrom(n){
+ const snap=n.dcWizard;if(snap&&snap.count&&snap.tables?.every(id=>fam(id)))return{...JSON.parse(JSON.stringify(snap)),name:n.name,editId:n.id,step:1};
+ const c=S.connections.find(c=>c.insightId===n.id);
+ if(c&&fam(c.a.family)&&fam(c.b.family)){const d=c.merge?.dcLogic,back=x=>{const st={count:2,tables:[c.a.family,c.b.family],links:[{a:c.a.column,b:c.b.column},{a:0,b:0}],keep:'both'};return x};
+  const st={count:2,tables:[c.a.family,c.b.family],links:[{a:+c.a.column,b:+c.b.column},{a:0,b:0}],keep:'both',mode:d?.mode||'all',conds:[],group:[],labels:d||null};return{...st,name:n.name,editId:n.id,step:1}}
+ if(n.kind==='filter'&&String(n.source||'').startsWith('raw:')&&fam(n.source.slice(4))){
+  const f=fam(n.source.slice(4)),rules=[n,...(n.extraFilters||[])],conds=[],group=[];let keep='both',other=null;
+  const back={equals:'is','not-equals':'isnot',keywords:'contains','not-keywords':'notcontains',starts:'starts',ends:'ends','not-starts':'notstarts','not-ends':'notends',empty:'empty','not-empty':'filled'};
+  for(const r of rules){const vals=r.selectedValues?.length?r.selectedValues:String(r.query||'').split(',').map(x=>x.trim()).filter(Boolean);const first=String(vals[0]||'');const op=r.operator||(r.mode==='keywords'?'keywords':'equals');
+   if(first.startsWith('[in]')){const [fid,col]=first.slice(4).split('|');if(fam(fid)){other={fid,col:+col};keep='aonly'}continue}
+   let c={ci:+r.column,op:back[op]||'is',vals};const nt=window.dcNumToken?.parse(first),dt=window.dcDateToken?.parse(first);
+   if(nt)c={ci:+r.column,op:nt.op,a:String(nt.a),b:nt.b!=null?String(nt.b):'',vals:[]};
+   else if(dt)c={ci:+r.column,op:{on:'don',before:'dbefore',after:'dafter',between:'dbetween',last:'dlast',onbefore:'dbefore',onafter:'dafter',noton:'don'}[dt.op],a:dt.a!=null?new Date(dt.a*864e5).toISOString().slice(0,10):'',b:dt.b!=null?new Date(dt.b*864e5).toISOString().slice(0,10):'',n:String(dt.n||7),vals:[]};
+   (r.grp?group:conds).push(c)}
+  if(other)return{count:2,tables:[f.id,other.fid],links:[{a:+n.column,b:other.col},{a:0,b:0}],keep,mode:n.logic==='any'?'any':'all',conds,group,name:n.name,editId:n.id,step:1};
+  return{count:1,tables:[f.id],links:[{a:0,b:0},{a:0,b:0}],keep:'both',mode:n.logic==='any'?'any':'all',conds,group,name:n.name,editId:n.id,step:1}}
+ return null;
+}
 function open(opts={}){
  if(!fams().length){notice('Import a table first, then come back to make an insight.');return}
  W={step:1,count:0,tables:[],links:[{a:0,b:0},{a:0,b:0}],keep:'both',mode:'all',conds:[],group:[],name:'',cache:null};
+ if(opts.edit){const n=S.insights.find(x=>x.id===opts.edit);const st=n&&stateFrom(n);if(!st){notice('This insight is a count or total. Change it from its own editor.');return}Object.assign(W,st,{cache:null});
+  if(W.labels){const d=data();const fromLabel=c=>({...c,ci:Math.max(0,d.headers.indexOf(c.label))});W.conds=(W.labels.conds||[]).map(fromLabel);W.group=(W.labels.group||[]).map(fromLabel);delete W.labels}
+  paint();if(!dlg.open)dlg.showModal();return}
  if(opts.count)setCount(Math.min(3,Math.max(1,opts.count)));
+ if(opts.tables?.length){opts.tables.forEach((id,i)=>{if(fam(id)&&i<W.count)W.tables[i]=id});relink();if(opts.links)opts.links.forEach((l,i)=>{if(l&&W.links[i])W.links[i]={...W.links[i],...l}});W.cache=null}
+ if(opts.step)W.step=Math.min(stepNames().length,opts.step);
  if(opts.count===3&&fams().length<3)setCount(fams().length);
  paint();if(!dlg.open)dlg.showModal();
 }
 function close(){if(dlg.open)dlg.close();W=null;tmpConn=null}
-window.dcWizard={open,close};
+/* Clears what an insight was before it is rebuilt by these steps. Its id stays the same,
+   so Excel sheets and reports that use it keep working. */
+function retire(n,keepConn){
+ const helper=n.dcWizard?.helperId;
+ if(!keepConn){const c=S.connections.find(c=>c.insightId===n.id);if(c)S.connections=S.connections.filter(x=>x!==c)}
+ if(helper&&helper!==n.id){const hc=S.connections.find(c=>c.insightId===helper);S.connections=S.connections.filter(x=>x!==hc);S.insights=S.insights.filter(x=>x.id!==helper)}
+}
+function summaryEditor(){const b=q('#add-summary-sheet');if(b){b.dataset.wzPass='1';b.click();delete b.dataset.wzPass}else notice('Counts and totals are not available here.')}
+window.dcWizard={open,close,edit:id=>open({edit:id}),summary:summaryEditor};
+/* One way to make an insight: these steps. The older windows open them instead. */
+for(const fn of ['startMatchWizard','openGuidedInsight','addSheetInsight']){try{if(typeof window[fn]==='function'||eval('typeof '+fn)==='function')eval(fn+'=function(){window.dcWizard.open()}')}catch(e){}}
+try{openSingleDatasetInsight=function(source){const id=String(source||'').startsWith('raw:')?source.slice(4):null;window.dcWizard.open({count:1,tables:id?[id]:[]})}}catch(e){}
+try{addFilterInsight=function(source){const id=String(source||'').startsWith('raw:')?source.slice(4):null;window.dcWizard.open({count:1,tables:id?[id]:[]})}}catch(e){}
+{const baseMake=makeConnection;makeConnection=function(a,b){
+ if(a&&b&&a.type==='column'&&b.type==='column'&&a.family!==b.family){try{picked=null}catch(e){}render();window.dcWizard.open({count:2,tables:[a.family,b.family],links:[{a:+a.column,b:+b.column}],step:2});return}
+ return baseMake.apply(this,arguments)}}
+document.addEventListener('click',e=>{
+ const add=e.target.closest('#add-insight');if(add){e.preventDefault();e.stopImmediatePropagation();window.dcWizard.open();return}
+ const ed=e.target.closest('[data-guided-edit]');if(ed){const n=S.insights.find(x=>x.id===ed.dataset.guidedEdit);if(n&&n.kind!=='summary'&&stateFrom(n)){e.preventDefault();e.stopImmediatePropagation();window.dcWizard.edit(n.id)}}
+},true);
 })();
 
 /* The Analysis Studio: Insights workspace.
@@ -7090,7 +7213,7 @@ const top=document.createElement('header');top.className='iws-top';top.setAttrib
 top.innerHTML=`<div class="iws-nav"><button type="button" class="iws-ib" data-iw="back" title="Back to the previous step" aria-label="Back to the previous step">${I('back')}</button><div class="iws-where"><b>Find insights</b><small data-iw-where></small></div></div>
  <div class="iws-create" role="group" aria-label="Create an insight">
   <button type="button" class="iws-new" data-iw="new">${I('plus')}<span>New insight</span></button>
-  <button type="button" data-iw="summary">${I('sum')}<span>Count or total</span></button></div>
+</div>
  <span class="iws-flex"></span>
  <button type="button" class="iws-ib" data-iw="help" title="How insights work" aria-label="How insights work">${I('help')}</button>
  <button type="button" class="iws-ib" data-iw="save" title="Save project (Ctrl + S)" aria-label="Save project">${I('save')}</button>
@@ -7139,7 +7262,7 @@ function paintInsp(){
  <div class="iws-body">
   <div class="iws-head"><span class="iws-kind k-${k}">${KIND[k][0]}</span><h3>${h(n.name)}</h3><p>${KIND[k][1]}</p>
    <div class="iws-stats"><div><b>${res?num(res.rows.length):'—'}</b><span>rows</span></div><div><b>${res?num(res.headers.length):'—'}</b><span>fields</span></div><div><b>${cond.list.length}</b><span>${cond.list.length===1?'filter':'filters'}</span></div></div></div>
-  <div class="iws-acts"><button type="button" data-iw="edit">${I('edit')}${k==='match'?'Edit the match':k==='summary'?'Edit numbers':'Edit'}</button><button type="button" data-iw="rename">${I('edit')}Rename</button><button type="button" data-iw="locate">${I('pin')}Show</button></div>
+  <div class="iws-acts"><button type="button" data-iw="edit">${I('edit')}${k==='summary'?'Edit numbers':'Edit in the steps'}</button><button type="button" data-iw="rename">${I('edit')}Rename</button><button type="button" data-iw="locate">${I('pin')}Show</button></div>
   ${cond.target?`<section class="iws-sec"><div class="iws-sech"><h4>Filters</h4><span>${cond.list.length?(cond.mode==='any'?'Any one is enough':'Every one must pass'):'None yet'}</span></div>
    ${cond.list.length?`<ol class="iws-conds">${cond.list.map((c,j)=>`<li><span class="iws-n">${j+1}</span><p>${h(c.text)}</p>${c.fixed?'':`<button type="button" data-iw-cedit="${c.i}" aria-label="Edit filter ${j+1}">${I('edit')}</button>`}${k==='filter'&&cond.list.length===1?'':`<button type="button" data-iw-cdel="${c.i}" aria-label="Remove filter ${j+1}">${I('x')}</button>`}</li>`).join('')}</ol>`:''}
    <button type="button" class="iws-add" data-iw="addfilter">${I('plus')}Add a filter</button></section>`:''}
@@ -7153,7 +7276,7 @@ function view(){
  const narrow=innerWidth<1180,lp=store.get('iws-l')||(narrow?'closed':'open'),rp=store.get('iws-r')||'open';
  root.classList.toggle('iws-no-left',lp==='closed');root.classList.toggle('iws-no-right',rp==='closed');
  const z=q('#graph-zoom');if(z)q('.iws-zoom',dock).textContent=z.textContent;
- const w=q('[data-iw-where]',top);if(w){const step=q('.dc-meter-count')?.textContent||'';const name=window.dcProj?.current?.()?.name||'';w.textContent=[step,name].filter(Boolean).join(' · ')}
+ const w=q('[data-iw-where]',top);if(w){const step=q('.dc-meter-count')?.textContent||'';const name=window.dcProj?.current?.()?.name||'';w.textContent=[step,name,window.dcVersion?.label].filter(Boolean).join(' · ')}
  const nx=q('#next'),nb=q('[data-iw="next"]',top);if(nx&&nb){nb.disabled=!!nx.disabled;const t=(nx.textContent||'').trim();if(t)nb.querySelector('span').textContent=t}
 }
 function act(a,el){
@@ -7164,12 +7287,12 @@ function act(a,el){
   case 'new':window.dcWizard?.open();break;
   case 'match':window.dcWizard?.open({count:2});break;case 'match3':window.dcWizard?.open({count:3});break;
   case 'filter':window.dcWizard?.open({count:1});break;
-  case 'summary':{const b=q('#add-summary-sheet');if(b)b.click();else q('#add-insight')?.click();break}
+  case 'summary':window.dcWizard?.summary();break;
   case 'lpanel':case 'rpanel':{const k=a==='lpanel'?'iws-l':'iws-r',cls=a==='lpanel'?'iws-no-left':'iws-no-right';store.set(k,root.classList.contains(cls)?'open':'closed');view();break}
   case 'zin':q('#graph-plus')?.click();setTimeout(view,30);break;case 'zout':q('#graph-minus')?.click();setTimeout(view,30);break;
   case 'fit':q('#graph-fit')?.click();setTimeout(view,30);break;case 'tidy':q('#graph-arrange')?.click();setTimeout(view,60);break;
   case 'deselect':select(null);break;
-  case 'edit':if(n){const b=q(`.dc-icard[data-dc-insight="${n.id}"] [data-guided-edit]`);if(b)b.click()}break;
+  case 'edit':if(n){if(kindOf(n)==='summary'){const b=q(`.dc-icard[data-dc-insight="${n.id}"] [data-guided-edit]`);if(b)b.click()}else window.dcWizard?.edit(n.id)}break;
   case 'rename':if(n)q(`.dc-icard[data-dc-insight="${n.id}"] [data-dc-rename]`)?.click();break;
   case 'locate':if(n)q(`.dc-icard[data-dc-insight="${n.id}"] [data-dc-locate]`)?.click();break;
   case 'remove':if(n)q(`.dc-icard[data-dc-insight="${n.id}"] [data-guided-delete]`)?.click();break;
@@ -7179,6 +7302,7 @@ function act(a,el){
 }
 document.addEventListener('click',e=>{
  if(!root.classList.contains('iws-on'))return;
+ if(e.target.closest('#add-insight')&&window.dcWizard){e.preventDefault();e.stopPropagation();window.dcWizard.open();return}
  const b=e.target.closest('[data-iw]');if(b&&(top.contains(b)||insp.contains(b)||dock.contains(b))){e.preventDefault();act(b.dataset.iw,b);return}
  const ce=e.target.closest('[data-iw-cedit]');if(ce&&insp.contains(ce)){const n=S.insights.find(x=>x.id===sel),t=n&&conditions(n).target;if(t)openGuidedFilterFlow(t,+ce.dataset.iwCedit);return}
  const cd=e.target.closest('[data-iw-cdel]');if(cd&&insp.contains(cd)){const n=S.insights.find(x=>x.id===sel);if(!n)return;const i=+cd.dataset.iwCdel;
