@@ -2138,6 +2138,21 @@ html body .dcx-colopts button span{white-space:nowrap;overflow:hidden;text-overf
 @media (max-width:1100px){html body .dcx .dcx-bar>.dcx-primary span{display:none}}
 @media (max-width:760px){html body .dcx{--lp:0px;--rp:0px}html body .dcx .dcx-tray,html body .dcx .dcx-pal{left:10px!important;right:10px!important;width:auto!important;top:auto!important;height:56%}}
 .dcx [hidden],.tas-rb [hidden]{display:none!important}
+/* Inspector: one flowing list of numbered parts */
+.dcx-flowhint{margin:0 0 2px;font-size:12.5px;color:var(--muted)}
+.dcx-flow{display:flex;flex-direction:column;gap:10px}
+.dcx-fsec{border:1px solid var(--line);border-radius:14px;background:var(--surface);transition:border-color .15s,box-shadow .15s}
+.dcx-fsec.is-open{border-color:color-mix(in srgb,var(--brand) 55%,var(--line));box-shadow:0 0 0 3px color-mix(in srgb,var(--brand) 10%,transparent)}
+html body .dcx-fhead{width:100%!important;display:flex!important;align-items:center;gap:12px;height:auto!important;min-height:0!important;padding:12px 14px!important;border:0!important;background:transparent!important;box-shadow:none!important;text-align:left;color:var(--ink)!important;border-radius:14px!important;justify-content:flex-start!important}
+.dcx-fnum{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:12.5px;font-weight:700;background:var(--surface-2);color:var(--ink-2);border:1px solid var(--line)}
+.dcx-fsec.is-open .dcx-fnum{background:var(--brand);color:#fff;border-color:var(--brand)}
+.dcx-ftxt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.dcx-ftxt b{font-size:14px}
+.dcx-ftxt small{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dcx-fchev{font-size:18px;color:var(--muted);width:20px;text-align:center}
+.dcx-fbody{padding:2px 14px 16px;display:flex;flex-direction:column;gap:14px;animation:dcx-fin .16s ease-out}
+@keyframes dcx-fin{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.dcx-fbody{animation:none}}
 
 /* ===== The Analysis Studio projects: hub, sidebar card, Finish report step, run dialog ===== */
 .dcp-i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
@@ -2883,6 +2898,192 @@ html body .tag-ok p{margin:4px 0 0!important;font-size:14px!important;color:var(
 html body .tag-faq p{margin:0!important;padding:0 14px 12px;font-size:13.5px!important;color:var(--ink-2)!important}
 .tag-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:24px;padding-top:16px;border-top:1px solid var(--line)}
 @media (max-width:760px){.tag-in{grid-template-columns:1fr}.tag-nav{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line)}.tag-brand{display:none}html body .tag-nav button{white-space:nowrap}.tag-body{padding:20px}}
+
+/* ===== Insights workspace (full page, like Excel and Build report) ===== */
+body.iws-on{overflow:hidden!important;--iws-lp:330px;--iws-rp:372px}
+body.iws-on.iws-no-left{--iws-lp:0px}
+body.iws-on.iws-no-right{--iws-rp:0px}
+.iws-top{position:fixed;top:0;left:0;right:0;height:60px;z-index:1001;display:flex;align-items:center;gap:10px;padding:0 14px;background:var(--surface);border-bottom:1px solid var(--line)}
+.iws-nav{display:flex;align-items:center;gap:10px;flex:none}
+.iws-where{display:flex;flex-direction:column;line-height:1.2}
+.iws-where b{font-size:14.5px;font-weight:700;color:var(--ink)}
+.iws-where small{font-size:12px;color:var(--muted);white-space:nowrap;max-width:220px;overflow:hidden;text-overflow:ellipsis}
+.iws-create{display:flex;align-items:center;gap:6px;margin-left:14px;padding:4px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2)}
+.iws-create>span{font-size:12px;font-weight:650;color:var(--muted);padding:0 6px 0 8px;white-space:nowrap}
+html body .iws-create button{height:32px!important;min-height:0!important;padding:0 12px!important;border-radius:9px!important;font-size:13px!important;font-weight:600;display:inline-flex!important;align-items:center;gap:7px;background:var(--surface)!important;border:1px solid var(--line)!important;box-shadow:none!important;color:var(--ink)!important}
+html body .iws-create button:hover{border-color:var(--brand)!important;color:var(--brand)!important}
+.iws-flex{flex:1}
+.iws-sep{width:1px;height:22px;background:var(--line);flex:none;margin:0 2px}
+.iws-i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+html body .iws-ib{width:36px!important;height:36px!important;min-height:0!important;padding:0!important;display:inline-grid!important;place-items:center;border-radius:10px!important;font-size:17px!important;font-weight:600}
+html body .iws-next{height:38px!important;min-height:0!important;padding:0 16px!important;display:inline-flex!important;align-items:center;gap:8px;font-weight:650!important;border-radius:11px!important;background:var(--brand)!important;color:#fff!important;border:0!important}
+html body .iws-next:disabled{opacity:.5}
+/* the Blueprint fills the page between the panels */
+html body.iws-on .dc-workspace{position:fixed;top:60px;left:0;right:0;bottom:0;z-index:1000;margin:0;padding:0;max-width:none;display:block;gap:0;background-color:var(--canvas,var(--surface-2));background-image:radial-gradient(color-mix(in srgb,var(--ink) 10%,transparent) 1px,transparent 1px);background-size:20px 20px}
+html body.iws-on .dc-map-col{position:absolute;width:auto!important;height:auto!important;max-width:none!important;top:14px;bottom:14px;left:calc(var(--iws-lp) + 14px);right:calc(var(--iws-rp) + 14px);margin:0;padding:0;display:block;transition:left .2s ease,right .2s ease}
+html body.iws-on .dc-map-col>.dc-sec-head,html body.iws-on .dc-map-col>.dc-map-help,html body.iws-on .dc-map-col>.graph-tools{display:none!important}
+html body.iws-on .dc-map-col .studio-wrap,html body.iws-on .dc-map-col .studio-wrap.infinite-viewport:not(.expanded){position:absolute!important;inset:0!important;width:auto!important;height:auto!important;min-height:0!important;max-height:none!important;margin:0!important;border:1px solid var(--line)!important;border-radius:16px!important;box-shadow:0 10px 30px -18px rgba(15,23,42,.3)}
+html body.iws-on .dc-canvas-ctl{display:none!important}
+.iws-dock{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:6;display:flex;align-items:center;gap:4px;padding:5px;border:1px solid var(--line);border-radius:14px;background:var(--surface);box-shadow:0 10px 30px -12px rgba(15,23,42,.35)}
+html body .iws-dock button{height:34px!important;min-height:0!important;border:0!important;background:transparent!important;box-shadow:none!important;border-radius:9px!important;color:var(--ink-2)!important;font-size:13px!important;font-weight:600;padding:0 10px!important}
+html body .iws-dock .iws-ib{width:34px!important;padding:0!important}
+html body .iws-dock button:hover{background:var(--surface-2)!important}
+.iws-zoom{min-width:48px;text-align:center;font-size:12.5px;font-weight:650;font-variant-numeric:tabular-nums;color:var(--ink)}
+/* left panel: your insights */
+html body.iws-on .dc-ins-strip{position:absolute;left:14px;top:14px;bottom:14px;width:calc(var(--iws-lp) - 14px);margin:0;padding:0;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 40px -18px rgba(15,23,42,.35),0 2px 6px rgba(15,23,42,.06);overflow:hidden;z-index:4;transition:transform .2s ease,opacity .2s ease}
+html body.iws-on.iws-no-left .dc-ins-strip{transform:translateX(calc(-100% - 20px));opacity:0;pointer-events:none}
+html body.iws-on .dc-ins-strip>.dc-sec-head{flex:none;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:14px 14px 10px;margin:0;border-bottom:1px solid var(--line)}
+.iws-lh{margin:0;font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
+.iws-lh small{font-size:11.5px;font-weight:700;padding:1px 8px;border-radius:999px;background:var(--surface-2);color:var(--muted)}
+html body.iws-on .dc-ins-strip .dc-sec-actions{display:none}
+html body.iws-on .dc-ins-strip .insight-list{flex:1;min-height:0;overflow:auto;padding:12px;margin:0}
+html body.iws-on .dc-ins-strip .guided-result-list{display:flex!important;flex-direction:column;gap:10px;grid-template-columns:none!important}
+html body.iws-on .dc-icard{width:auto!important;min-width:0!important;margin:0!important;padding:14px!important;cursor:pointer;border-radius:14px!important;transition:border-color .15s,box-shadow .15s}
+html body.iws-on .dc-icard:hover{border-color:color-mix(in srgb,var(--brand) 45%,var(--line))!important}
+html body.iws-on .dc-icard.iws-sel{border-color:var(--brand)!important;box-shadow:0 0 0 3px color-mix(in srgb,var(--brand) 18%,transparent)!important}
+html body.iws-on .dc-icard h2{font-size:15px!important;margin:6px 0 2px!important}
+html body.iws-on .dc-icard .dc-istats{margin:8px 0!important}
+html body.iws-on .dc-icard .dc-istats b{font-size:18px!important}
+html body.iws-on .dc-icard .dc-iactions{flex-wrap:wrap;gap:6px!important;padding-top:10px!important}
+html body.iws-on #studio .node.iws-sel{outline:3px solid color-mix(in srgb,var(--brand) 55%,transparent);outline-offset:3px}
+/* right panel: Inspector */
+.iws-insp{position:fixed;top:74px;right:14px;bottom:14px;width:calc(var(--iws-rp) - 14px);z-index:1002;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 40px -18px rgba(15,23,42,.35),0 2px 6px rgba(15,23,42,.06);overflow:hidden;transition:transform .2s ease,opacity .2s ease}
+body.iws-no-right .iws-insp{transform:translateX(calc(100% + 20px));opacity:0;pointer-events:none}
+.iws-ph{display:flex;align-items:center;justify-content:space-between;padding:12px 12px 10px 16px;border-bottom:1px solid var(--line)}
+.iws-ph b{font-size:14px;font-weight:700}
+html body .iws-ph .iws-ib{width:30px!important;height:30px!important;border:0!important;background:transparent!important;box-shadow:none!important;color:var(--muted)!important}
+.iws-body{flex:1;min-height:0;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:14px}
+.iws-hello h3{margin:0 0 4px;font-size:17px}
+.iws-hello p,.iws-muted{margin:0;font-size:13px;color:var(--muted);line-height:1.5}
+html body .iws-choice{display:flex!important;align-items:flex-start;gap:12px;text-align:left;width:100%;height:auto!important;min-height:0!important;padding:14px!important;border:1px solid var(--line)!important;border-radius:14px!important;background:var(--surface)!important;box-shadow:none!important;color:var(--ink)!important;white-space:normal}
+html body .iws-choice:hover{border-color:var(--brand)!important;background:color-mix(in srgb,var(--brand) 4%,var(--surface))!important}
+.iws-choice>.iws-i{width:22px;height:22px;padding:7px;box-sizing:content-box;border-radius:10px;background:var(--brand-50,#eef2ff);color:var(--brand)}
+.iws-choice div{display:flex;flex-direction:column;gap:3px}
+.iws-choice b{font-size:14px}
+.iws-choice span{font-size:12.5px;line-height:1.45;color:var(--muted);font-weight:400}
+.iws-tip{display:flex;gap:10px;padding:12px;border-radius:12px;background:var(--surface-2);font-size:12.5px;line-height:1.5;color:var(--ink-2)}
+.iws-tip p{margin:0}
+.iws-head h3{margin:8px 0 2px;font-size:18px;overflow-wrap:anywhere}
+.iws-head p{margin:0;font-size:13px;color:var(--muted)}
+.iws-kind{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:var(--brand-50,#eef2ff);color:var(--brand)}
+.iws-kind.k-filter{background:color-mix(in srgb,#0d9488 14%,transparent);color:#0f766e}
+.iws-kind.k-summary{background:color-mix(in srgb,#16a34a 14%,transparent);color:#15803d}
+.iws-kind.k-draft{background:color-mix(in srgb,#f59e0b 16%,transparent);color:#b45309}
+.iws-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.iws-stats div{padding:10px;border:1px solid var(--line);border-radius:12px;display:flex;flex-direction:column}
+.iws-stats b{font-size:19px;font-weight:700;font-variant-numeric:tabular-nums}
+.iws-stats span{font-size:12px;color:var(--muted)}
+.iws-acts{display:flex;flex-wrap:wrap;gap:6px}
+html body .iws-acts button{height:34px!important;min-height:0!important;padding:0 12px!important;display:inline-flex!important;align-items:center;gap:6px;font-size:13px!important;border-radius:10px!important}
+html body .iws-acts .iws-primary{background:var(--brand)!important;color:#fff!important;border-color:var(--brand)!important}
+html body .iws-acts .iws-danger{margin-left:auto;color:var(--danger,#dc2626)!important}
+.iws-acts-end{padding-top:12px;border-top:1px solid var(--line)}
+.iws-sec{display:flex;flex-direction:column;gap:8px}
+.iws-sech{display:flex;align-items:baseline;justify-content:space-between}
+.iws-sech h4{margin:0;font-size:13.5px}
+.iws-sech span{font-size:12px;color:var(--muted)}
+.iws-conds{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.iws-conds li{display:flex;align-items:center;gap:8px;padding:8px 6px 8px 10px;border:1px solid var(--line);border-radius:12px}
+.iws-n{width:22px;height:22px;flex:none;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700;background:var(--brand);color:#fff}
+.iws-conds p{margin:0;flex:1;min-width:0;font-size:13px;line-height:1.4;overflow-wrap:anywhere}
+html body .iws-conds button{width:28px!important;height:28px!important;min-height:0!important;padding:0!important;display:grid!important;place-items:center;border:0!important;background:transparent!important;box-shadow:none!important;color:var(--muted)!important;border-radius:8px!important}
+html body .iws-conds button:hover{background:var(--surface-2)!important;color:var(--ink)!important}
+html body .iws-add{height:36px!important;min-height:0!important;display:inline-flex!important;align-items:center;justify-content:center;gap:6px;border-style:dashed!important;border-radius:11px!important;font-size:13px!important}
+.iws-prev{overflow:auto;border:1px solid var(--line);border-radius:12px;max-height:240px}
+.iws-prev table{border-collapse:collapse;width:100%;font-size:12px}
+html body .iws-prev th,html body .iws-prev td{padding:6px 8px!important;border-bottom:1px solid var(--line)!important;text-align:left;white-space:nowrap;max-width:130px;overflow:hidden;text-overflow:ellipsis}
+html body .iws-prev th{position:sticky;top:0;background:var(--surface-2)!important;font-weight:650;font-size:11.5px}
+@media (max-width:1280px){body.iws-on{--iws-lp:290px;--iws-rp:340px}.iws-create>span{display:none}.iws-where small{display:none}}
+@media (max-width:1100px){.iws-create button span{display:none}}
+
+/* ===== Guided "New insight" steps ===== */
+dialog.wz{position:fixed;inset:16px;width:auto;height:auto;max-width:none;max-height:none;margin:0;padding:0;border:1px solid var(--line);border-radius:20px;background:var(--surface);color:var(--ink);box-shadow:0 30px 80px -30px rgba(15,23,42,.5);overflow:hidden}
+dialog.wz::backdrop{background:rgba(15,23,42,.45);backdrop-filter:blur(2px)}
+.wz-shell{display:flex;flex-direction:column;height:100%}
+.wz-top{flex:none;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--line)}
+.wz-top div{display:flex;flex-direction:column;line-height:1.25}.wz-top b{font-size:16px}.wz-top span{font-size:12.5px;color:var(--muted)}
+html body .wz-close{width:38px!important;height:38px!important;min-height:0!important;padding:0!important;border-radius:10px!important;font-size:15px!important}
+.wz-main{flex:1;min-height:0;display:flex}
+.wz-steps{flex:0 0 260px;border-right:1px solid var(--line);padding:16px 12px;display:flex;flex-direction:column;gap:4px;overflow:auto;background:var(--surface-2)}
+html body .wz-steps>button{display:flex!important;align-items:center;gap:10px;height:auto!important;min-height:44px!important;padding:8px 10px!important;border:0!important;border-radius:12px!important;background:transparent!important;box-shadow:none!important;text-align:left;font-size:14px!important;font-weight:600;color:var(--ink-2)!important;justify-content:flex-start!important}
+.wz-steps>button>span{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:12.5px;font-weight:700;background:var(--line);color:var(--ink-2)}
+html body .wz-steps>button.is-on{background:var(--surface)!important;color:var(--ink)!important;box-shadow:0 0 0 1px var(--line)!important}
+.wz-steps>button.is-on>span{background:var(--brand);color:#fff}
+.wz-steps>button.is-done>span{background:#047857;color:#fff}
+html body .wz-steps>button:disabled{opacity:.45}
+.wz-sumside{margin-top:auto;padding:14px;border-radius:14px;background:var(--surface);border:1px solid var(--line)}
+.wz-sumside b{font-size:13px}.wz-sumside p{margin:6px 0 0;font-size:13px;line-height:1.55;color:var(--ink-2)}
+.wz-body{flex:1;min-width:0;overflow:auto;display:flex;flex-direction:column}
+.wz-step{padding:24px 28px;display:flex;flex-direction:column;gap:18px}
+.wz-intro h2{margin:0 0 4px;font-size:24px;font-family:var(--font-display,inherit)}
+.wz-intro p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.5}
+.wz-cards,.wz-keeps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.wz-modes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+html body .wz-card{display:flex!important;flex-direction:column;align-items:stretch;gap:8px;height:auto!important;min-height:0!important;padding:16px!important;text-align:left;white-space:normal;border:2px solid var(--line)!important;border-radius:16px!important;background:var(--surface)!important;color:var(--ink)!important;box-shadow:none!important;font-weight:400}
+html body .wz-card:hover{border-color:color-mix(in srgb,var(--brand) 50%,var(--line))!important}
+html body .wz-card.is-on{border-color:var(--brand)!important;box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 16%,transparent)!important}
+html body .wz-card.is-any.is-on{border-color:#d97706!important;box-shadow:0 0 0 4px color-mix(in srgb,#f59e0b 20%,transparent)!important}
+.wz-card b{font-size:16px}.wz-card span{font-size:13.5px;line-height:1.45;color:var(--ink-2)}.wz-card small{font-size:12.5px;line-height:1.45;color:var(--muted);border-top:1px solid var(--line);padding-top:8px}
+.wz-pic{height:86px;border-radius:12px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;gap:6px}
+.wz-pic i{font-style:normal;font-size:11.5px;font-weight:700;padding:7px 9px;border-radius:8px;background:var(--surface);border:2px solid}
+.wz-pic em{width:16px;height:2px;background:var(--muted)}
+.c0{border-color:#2f54eb!important}.c1{border-color:#0d9488!important}.c2{border-color:#c2410c!important}
+.wz-pick{display:flex;flex-wrap:wrap;gap:12px}
+.wz-pick label{flex:1 1 240px;display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:650}
+.wz-pick select,.wz-link select,.wz-cond select,.wz-cond input,.wz-name input{height:42px;min-width:0}
+.wz-link{border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.wz-link-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.wz-link-row strong{color:var(--brand);font-size:14px}
+.wz-link-row select{flex:1 1 180px}
+.wz-t{display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:8px;border:2px solid;font-size:12.5px;font-weight:700;background:var(--surface)}
+.wz-ok,.wz-warn,.wz-bad{margin:0;font-size:13px;line-height:1.45}.wz-ok{color:#047857}.wz-warn{color:#b45309}.wz-bad{color:#b91c1c}
+body:not(.light) .wz-ok{color:#34d399}body:not(.light) .wz-warn{color:#fbbf24}body:not(.light) .wz-bad{color:#f87171}
+.wz-sub{display:flex;flex-direction:column;gap:10px}.wz-sub>b{font-size:15px}
+.wz-keep svg{width:64px;height:40px}
+.wz-keep svg circle{fill:transparent;stroke:var(--muted);stroke-width:1.5}.wz-keep svg path.m{fill:transparent}
+.v-b path.m{fill:var(--brand)!important}.v-l circle.l{fill:var(--brand)}.v-l path.m{fill:var(--surface)!important}.v-r circle.r{fill:var(--brand)}.v-r path.m{fill:var(--surface)!important}
+.wz-note,.wz-help{margin:0;font-size:13px;color:var(--muted);line-height:1.5}
+.wz-conds{display:flex;flex-direction:column;gap:8px}
+.wz-cond{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.wz-cond>select{flex:1 1 200px}
+.wz-vals{flex:2 1 260px;display:flex;align-items:center;gap:8px;min-width:0}.wz-vals input{flex:1;min-width:0}.wz-vals span{font-size:13px;color:var(--muted)}
+html body .wz-x{width:42px!important;height:42px!important;min-height:0!important;padding:0!important;border-radius:10px!important}
+.wz-join{align-self:flex-start;margin-left:16px;height:24px;padding:0 10px;border-radius:999px;font-size:11.5px;font-weight:800;letter-spacing:.06em;display:inline-flex;align-items:center;background:color-mix(in srgb,var(--brand) 14%,transparent);color:var(--brand)}
+.wz-join.is-or{background:#fde68a;color:#78350f}
+.wz-group{border:2px dashed #f59e0b;border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:8px;background:color-mix(in srgb,#f59e0b 7%,var(--surface))}
+.wz-group>b{font-size:13.5px;color:#92400e}body:not(.light) .wz-group>b{color:#fbbf24}
+.wz-addrow{display:flex;flex-wrap:wrap;gap:8px}
+html body .wz-add{border-style:dashed!important;height:40px!important;min-height:0!important;align-self:flex-start}
+.wz-name{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:650}.wz-name input{height:48px!important;font-size:15px!important}
+.wz-sum{padding:14px 16px;border-radius:14px;background:var(--surface-2);font-size:14px;line-height:1.6}
+.wz-prev{margin:0 28px 24px;padding:16px;border:1px solid var(--line);border-radius:16px;background:var(--surface-2);display:flex;flex-direction:column;gap:10px}
+.wz-prev-title{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.wz-prev-title b{font-size:14px}.wz-prev-title span{font-size:12.5px;color:var(--muted)}
+.wz-i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.wz-prev-t{display:flex;flex-direction:column;gap:8px}.wz-prev-t+.wz-prev-t{margin-top:8px}
+.wz-prev-h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}.wz-prev-h b{font-size:15px}.wz-prev-h span{font-size:12.5px;color:var(--muted)}
+.wz-tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.wz-tbl table{border-collapse:collapse;width:100%;font-size:12.5px}
+html body .wz-tbl th,html body .wz-tbl td{padding:7px 10px!important;text-align:left;white-space:nowrap;max-width:200px;overflow:hidden;text-overflow:ellipsis;border-bottom:1px solid var(--line)!important}
+html body .wz-tbl th{background:var(--surface-2)!important;font-weight:650;font-size:12px;position:static}
+html body .wz-tbl .is-mark{background:color-mix(in srgb,var(--brand) 10%,transparent)!important}
+.wz-tbl td i{color:var(--muted)}
+.wz-none{color:var(--muted);font-size:13px;text-align:center;padding:16px!important}
+.wz-foot{flex:none;display:flex;align-items:center;gap:10px;padding:12px 20px;border-top:1px solid var(--line)}
+.wz-foot .wz-err{flex:1;margin:0;font-size:13px;color:#b91c1c}
+body:not(.light) .wz-foot .wz-err{color:#f87171}
+html body .wz-foot button{height:44px!important;min-height:0!important;padding:0 20px!important;border-radius:12px!important;font-weight:650!important}
+html body .wz-foot .wz-pri{background:var(--brand)!important;color:#fff!important;border-color:var(--brand)!important}
+html body .iws-create .iws-new{background:var(--brand)!important;color:#fff!important;border-color:var(--brand)!important}
+@media (max-width:1100px){.wz-steps{flex-basis:200px}.wz-sumside{display:none}.wz-cards,.wz-keeps{grid-template-columns:1fr}}
+@media (max-width:760px){.wz-main{flex-direction:column}.wz-steps{flex:none;flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line)}.wz-modes{grid-template-columns:1fr}}
+.wz-from{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600}.wz-from select{height:38px;min-width:0}
+/* keep the data in view on every step */
+.wz-body{display:grid;grid-template-rows:minmax(0,1fr) auto;overflow:hidden}
+.wz-step{overflow:auto;min-height:0}
+.wz-prev{margin:0;border-radius:0;border:0;border-top:1px solid var(--line);max-height:min(40vh,340px);overflow:auto;padding:14px 28px 16px;box-shadow:0 -8px 20px -16px rgba(15,23,42,.35)}
+.wz-prev-t .wz-t,.wz-prev-t>.wz-t{align-self:flex-start}
+html body dialog.wz .wz-foot button.wz-pri{background:var(--brand)!important;color:#fff!important;border-color:var(--brand)!important}
+html body dialog.wz .wz-foot button.wz-pri:disabled{opacity:.5}
 </style><script id="datacodex-redesign-script">/* The Analysis Studio redesign layer: a simpler, step-by-step shell over the existing engine. */
 (function(){
 'use strict';
@@ -3553,7 +3754,12 @@ function autoSources(){
   const p=S.positions?.[n.id];if(p)S.positions[f.id]=freeSpot(p.x+330,p.y);
  }
 }
-window.dcSources={noSource,auto:autoSources};
+function sourceNow(id){const n=S.insights.find(x=>x.id===id);if(!n)return null;const have=sourceFor(id);if(have)return S.families.find(f=>f.id===have.id)||null;
+ const res=insightResult(n);if(!res||!res.headers?.length)return null;
+ const f={id:uid(),key:DERIVED+n.id,name:uniqueFamilyName(`${n.name} result`),headers:[],keys:[],files:[],rows:[],original:[]};
+ fillSource(f,res);S.families.push(f);registry.set(n.id,{id:f.id,name:f.name});try{S.nodeColumns[f.id]=f.headers.map((_,i)=>i).slice(0,8)}catch(e){}
+ const p=S.positions?.[n.id];if(p)S.positions[f.id]=freeSpot(p.x+330,p.y);return f}
+window.dcSources={noSource,auto:autoSources,now:sourceNow,typed:t=>typedNames.add(normName(t))};
 {const baseSaveS=saveProject;saveProject=function(){const d=baseSaveS.apply(this,arguments);try{if(noSource.size)d.dcNoSource=[...noSource];/* insight results are rebuilt when the project opens, so the file does not carry them twice */if(Array.isArray(d.state?.families))d.state={...d.state,families:d.state.families.map(f=>typeof f?.key==='string'&&f.key.startsWith(DERIVED)?{...f,rows:[],original:[]}:f)}}catch(e){}return d}}
 {const baseLoadS=loadProjectObject;loadProjectObject=function(doc){noSource.clear();srcTried.clear();try{(Array.isArray(doc?.dcNoSource)?doc.dcNoSource:[]).forEach(id=>typeof id==='string'&&noSource.add(id))}catch(e){}return baseLoadS.apply(this,arguments)}}
 function usedBy(fid){
@@ -4686,7 +4892,7 @@ function renderPal(){
  if(palTab==='item'&&it){
   const st=styleOf(it),s=size(it),f=it.type==='table'?src(it.source):null,cur=Object.keys(THEMES).find(k=>COLOR_KEYS.every(([c])=>String(THEMES[k][c]).toLowerCase()===String(st[c]).toLowerCase()));
   const tabsI=[['data',it.type==='text'?'Content':'Data'],['design','Design'],...(it.type==='table'?[['cf','Highlight'+(it.cf?.length?` <em>${it.cf.length}</em>`:'')]]:[])];
-  if(!tabsI.some(t=>t[0]===itemTab))itemTab='data';
+  if(itemTab&&!tabsI.some(t=>t[0]===itemTab))itemTab='data';
   let inner='';
   if(itemTab==='data'){
    inner=`<label class="dcx-f"><span>${it.type==='text'?'Text':'Title shown above it'}</span><input data-p="label" value="${h(it.type==='text'?it.text:it.label)}"></label>
@@ -4701,9 +4907,12 @@ function renderPal(){
    <div class="dcx-two"><label class="dcx-f"><span>Font</span><select data-p="font">${FONTS.map(f2=>`<option ${f2===st.font?'selected':''}>${f2}</option>`).join('')}</select></label><label class="dcx-f dcx-size"><span>Size</span><input type="number" min="10" max="32" data-p="size" value="${st.size}"></label></div>
    <label class="dcx-tog"><input type="checkbox" data-p="banded" ${st.banded?'checked':''}><span>Shade alternate rows</span></label>`;
   }else if(itemTab==='cf'&&f){inner=cfSection(it,f)}
+  const themeName=cur?(THEME_NAMES[cur]||cur):'Custom colours';
+  const sums={data:it.type==='table'?`${h(it.label||'No title')} · ${it.columns.length} ${it.columns.length===1?'column':'columns'} · ${it.limit?num(it.limit)+' rows':'all rows'}`:it.type==='text'?'The words and their width':'The number and its label',design:`${h(themeName)} · ${h(st.font)} ${st.size}${st.banded?' · shaded rows':''}`,cf:it.cf?.length?`${it.cf.length} ${it.cf.length===1?'rule':'rules'}`:'No rules yet'};
+  const titles={data:it.type==='table'?'What is in the table':it.type==='text'?'The text':'The number',design:'How it looks',cf:'Make values stand out'};
   body=`<div class="dcx-pinfo"><span class="dcx-kind k-${it.type==='table'?'table':it.type==='metric'?'sum':'text'}">${I(it.type==='table'?'table':it.type==='metric'?'hash':'text')}</span><div><b>${h(itemName(it))}</b><small>${kindName(it)} · ${range(it.r,it.c,it.r+s.rows-1,it.c+s.cols-1)}</small></div></div>
-  <div class="dcx-isub" role="tablist" aria-label="Settings for this item">${tabsI.map(([k,l])=>`<button role="tab" data-itab="${k}" aria-selected="${itemTab===k}">${l}</button>`).join('')}</div>
-  <div class="dcx-ibody">${inner}</div>
+  <p class="dcx-flowhint">Work down the list. Each part opens when you click it.</p>
+  <div class="dcx-flow">${tabsI.map(([k],i)=>{const on=itemTab===k;return `<section class="dcx-fsec ${on?'is-open':''}"><button type="button" class="dcx-fhead" data-itab="${k}" aria-expanded="${on}"><span class="dcx-fnum">${i+1}</span><span class="dcx-ftxt"><b>${titles[k]}</b><small>${sums[k]}</small></span><span class="dcx-fchev" aria-hidden="true">${on?'−':'+'}</span></button>${on?`<div class="dcx-fbody">${inner}</div>`:''}</section>`}).join('')}</div>
   <div class="dcx-pact dcx-pact-sticky"><button data-p="edit">${I('edit')}${it.type==='text'?'Edit text':it.type==='metric'?'Change the number':'Edit data'}</button><button data-p="dup">${I('copy')}Duplicate</button><button data-p="remove" class="is-danger">${I('trash')}Remove</button></div>`;
  }else if(palTab==='rows'){
   const rows=selRows(),n=RR.count(rows),cur=n?(sheet.rowColors||{})[rows[0][0]]:null;
@@ -4742,7 +4951,7 @@ pal.addEventListener('click',e=>{
   const del=e.target.closest('[data-cfdel]');if(del&&it){undo.mark();it.cf=it.cf.filter((_,i)=>i!==+del.dataset.cfdel);commit();return}}
  const sheet=sheetNow();if(!sheet)return;const it=visualItemId&&sheet.items.find(i=>i.id===visualItemId);
  const t=e.target.closest('[data-ptab]');if(t){palTab=t.dataset.ptab;renderPal();q(`[data-ptab="${palTab}"]`,pal)?.focus();return}
- const it2=e.target.closest('[data-itab]');if(it2){itemTab=it2.dataset.itab;renderPal();q(`[data-itab="${itemTab}"]`,pal)?.focus();return}
+ const it2=e.target.closest('[data-itab]');if(it2){itemTab=itemTab===it2.dataset.itab&&it2.classList.contains('dcx-fhead')?'':it2.dataset.itab;renderPal();q(`[data-itab="${itemTab}"]`,pal)?.focus();return}
  if(it&&it.type==='table'){
   const mv=e.target.closest('[data-colmv]');if(mv){const [i,d]=mv.dataset.colmv.split('|').map(Number),cols=[...it.columns],j=i+d;if(j<0||j>=cols.length)return;[cols[i],cols[j]]=[cols[j],cols[i]];setColumns(it,cols);requestAnimationFrame(()=>q(`[data-colmv="${j}|${d}"]`,pal)?.focus());return}
   const del=e.target.closest('[data-coldel]');if(del){setColumns(it,it.columns.filter(c=>c!==+del.dataset.coldel));return}
@@ -5523,16 +5732,23 @@ window.dcDateToken={parse:parseDateToken,make:makeDateToken,pass:datePass,descri
 function tzPass(value,values,sensitive){const text=String(value??'').trim(),norm=v=>sensitive?String(v):String(v).toLowerCase(),offset=text.match(/(?:[ T]\d{1,2}:\d{2}(?::\d{2})?)\s*(Z|[+-]\d{2}:?\d{2})$/i)?.[1];return values.some(v=>norm(text)===norm(v).trim()||offset&&norm(offset).replace(':','')===norm(v).trim().replace(':',''))}
 
 /* ---------- One pass test for every single-field condition ---------- */
-const OPS=['equals','not-equals','keywords','not-keywords','empty','not-empty','timezone'];
+const TEXTM=['starts','ends','not-starts','not-ends'];
+const OPS=['equals','not-equals','keywords','not-keywords','empty','not-empty','timezone',...TEXTM];
 {const baseOne=oneInputPass;
  oneInputPass=function(value,operator,values,query,sensitive){
   const list=values?.length?values:selectedFilterValues(query);
   if(operator==='timezone')return tzPass(value,list,sensitive);
+  if(TEXTM.includes(operator)){const nv=x=>sensitive?String(x??'').trim():String(x??'').trim().toLowerCase(),v=nv(value),ws=list.map(nv).filter(Boolean),neg=operator.startsWith('not-'),kind=operator.replace('not-','');if(!v)return neg;const hit=ws.some(w=>kind==='starts'?v.startsWith(w):v.endsWith(w));return neg?!hit:hit}
   if(operator==='not-keywords'){if(!String(value??'').trim())return true;return !baseOne.call(this,value,'keywords',values,query,sensitive)}
   const first=String(list[0]||'').trim().toLowerCase();
+  if(first.startsWith('[in]')){const set=lookupSet(String(list[0]).trim().slice(4));const hit=!!set&&set.has(String(value??'').trim());return operator==='not-equals'?!hit:hit}
   if(first.startsWith('[date]')){const pass=list.some(t=>datePass(value,t));return operator==='not-equals'?!pass:pass}
   return baseOne.apply(this,arguments);
  };}
+/* "[in]familyId|column": the value appears in that column of another table */
+const lookupCache=new Map();
+function lookupSet(spec){const [fid,col]=String(spec).split('|');const f=S.families.find(x=>x.id===fid);if(!f)return null;const c=+col;const k=fid+'|'+c;const hit=lookupCache.get(k);if(hit&&hit.rows===f.rows&&hit.len===f.rows.length)return hit.set;const set=new Set();for(const r of f.rows){const v=String(r[c]??'').trim();if(v)set.add(v)}lookupCache.set(k,{rows:f.rows,len:f.rows.length,set});return set}
+function describeLookup(tok){const [fid,col]=String(tok).trim().slice(4).split('|');const f=S.families.find(x=>x.id===fid);return `has a match in ${f?f.name:'another table'} · ${f?.headers[+col]||'a field'}`}
 const opOf=r=>OPS.includes(r?.operator)?r.operator:r?.mode==='keywords'?'keywords':r?.mode==='timezone'?'timezone':'equals';
 const noValues=op=>op==='empty'||op==='not-empty';
 
@@ -5541,11 +5757,14 @@ filterData=(n,visiting=new Set())=>{
  if(visiting.has(n.id))throw Error('Filter chain contains a cycle.');visiting.add(n.id);
  const parent=filterNodeForSource(n.source),f=parent?filterData(parent,visiting):metricSource(n.source);
  if(!f)throw Error('Choose an available source for '+n.name+'.');
- const rules=[{column:n.column,mode:n.mode,operator:n.operator,query:n.query,selectedValues:n.selectedValues,caseSensitive:n.caseSensitive},...(n.extraFilters||[])];
+ const rules=[{column:n.column,mode:n.mode,operator:n.operator,query:n.query,selectedValues:n.selectedValues,caseSensitive:n.caseSensitive,grp:n.grp},...(n.extraFilters||[])];
  for(const r of rules){if(!f.headers[r.column])throw Error('Choose a field for every filter.');if(!noValues(opOf(r))&&!r.selectedValues?.length&&!selectedFilterValues(r.query).length)throw Error('Choose accepted values or enter keywords for every filter.')}
- const raw=n.source?.startsWith('raw:')?originalFamily(n.source.slice(4)):null,revision=raw?trackFamily(raw).revision:0,key=JSON.stringify([n.name,n.source,f.headers,rules,revision,rules.some(r=>/\[date\]last:/i.test(JSON.stringify(r)))?todayNum():0]),cached=guidedRawFilterCache.get(n);
+ const raw=n.source?.startsWith('raw:')?originalFamily(n.source.slice(4)):null,revision=raw?trackFamily(raw).revision:0,key=JSON.stringify([n.name,n.source,f.headers,rules,n.logic||'all',revision,rules.some(r=>/\[date\]last:/i.test(JSON.stringify(r)))?todayNum():0]),cached=guidedRawFilterCache.get(n);
  if(cached?.rows===f.rows&&cached.key===key)return cached.value;
- const indices=[];f.rows.forEach((row,i)=>{if(rules.every(r=>oneInputPass(row[r.column],opOf(r),r.selectedValues,r.query,r.caseSensitive)))indices.push(i)});
+ const pass=(row,r)=>oneInputPass(row[r.column],opOf(r),r.selectedValues,r.query,r.caseSensitive);
+ const main=rules.filter(r=>!r.grp),grp=rules.filter(r=>r.grp),any=n.logic==='any';
+ const keep=row=>any?(main.some(r=>pass(row,r))||grp.some(r=>pass(row,r))):(main.every(r=>pass(row,r))&&(!grp.length||grp.some(r=>pass(row,r))));
+ const indices=[];f.rows.forEach((row,i)=>{if(keep(row))indices.push(i)});
  const rows=indices.map(i=>f.rows[i]),pairs=f.sourcePairs?indices.map(i=>f.sourcePairs[i]):undefined,value={...f,id:'join:'+n.id,name:n.name,rows,original:rows,sourcePairs:pairs,matched:pairs?new Set(pairs.map(p=>p[0])).size:rows.length,matchedRight:pairs?new Set(pairs.map(p=>p[1])).size:rows.length,filtered:true,parentSource:n.source};
  guidedRawFilterCache.set(n,{key,rows:f.rows,value});return value;
 };
@@ -5556,9 +5775,10 @@ function describeRule(field,r){
  const op=opOf(r),vals=(r.selectedValues?.length?r.selectedValues:selectedFilterValues(r.query));
  const first=String(vals[0]||'').toLowerCase();
  let text;
- if(first.startsWith('[num]'))text=vals.map(t=>NUM.describe(t)).join(' or ');
+ if(first.startsWith('[in]'))text=op==='not-equals'?describeLookup(vals[0]).replace('has a match','has no match'):describeLookup(vals[0]);
+ else if(first.startsWith('[num]'))text=vals.map(t=>NUM.describe(t)).join(' or ');
  else if(first.startsWith('[date]'))text=vals.map(describeDateToken).join(' or ');
- else text={equals:'is '+listWords(vals),'not-equals':'is not '+listWords(vals,'nor'),keywords:'contains '+listWords(vals),'not-keywords':'does not contain '+listWords(vals,'or'),empty:'is empty','not-empty':'is filled in',timezone:'time zone is '+listWords(vals)}[op];
+ else text={equals:'is '+listWords(vals),'not-equals':'is not '+listWords(vals,'nor'),keywords:'contains '+listWords(vals),'not-keywords':'does not contain '+listWords(vals,'or'),empty:'is empty','not-empty':'is filled in',timezone:'time zone is '+listWords(vals),starts:'starts with '+listWords(vals),ends:'ends with '+listWords(vals),'not-starts':'does not start with '+listWords(vals,'or'),'not-ends':'does not end with '+listWords(vals,'or')}[op];
  if(op==='not-equals'&&(first.startsWith('[num]')||first.startsWith('[date]')))text='not ('+text+')';
  return `${field} ${text}`;
 }
@@ -5570,6 +5790,7 @@ const SINGLE=[
  ['number','Compare numbers','Greater than, less than, between or equal to a number, for example Score is less than 80.'],
  ['date','Dates','On, before, after or between dates, or in the last few days.'],
  ['keywords','Search text','Keep rows whose text contains, or does not contain, words you list.'],
+ ['textmatch','Starts or ends with','Keep rows whose text starts or ends with what you type, for example IDs starting with “CRM-” or emails ending with a domain.'],
  ['missing','Empty or filled in','Keep rows where a field is empty, or where it has a value.'],
  ['timezone','Time zones','Keep rows recorded in particular time zones or offsets, without changing the clock.']];
 const PAIR_HELP={people:['Same or different IDs','Compare one field from each table, for example the same agent on both sides.'],time:['Compare times across tables','Same day, within a few minutes, or one before the other.'],'field-text':['Compare text across tables','One field contains the other, or search both for keywords.']};
@@ -5584,6 +5805,7 @@ const baseDraft=newFilterDraft;
 function bestDateColumn(f){if(!f)return -1;let best=-1,score=0;f.headers.forEach((hd,c)=>{let seen=0,ok=0;for(let i=0;i<f.rows.length&&seen<120;i++){const v=String(f.rows[i][c]??'').trim();if(!v)continue;seen++;if(toDay(v)!==null)ok++}const s=(seen?ok/seen:0)+(/date|time|created|sent|day|when/i.test(hd)?.15:0);if(s>score){score=s;best=c}});return score>=.6?best:-1}
 newFilterDraft=function(target,type){
  if(type==='date'){const d=baseDraft.call(this,target,'values');Object.assign(d,{type:'date',dateOp:'onafter',dateA:'',dateB:'',dateN:'7'});try{const c=bestDateColumn(flowTargetSource(target,d.side));if(c>=0)d.column=c}catch(e){}return d}
+ if(type==='textmatch'){const d=baseDraft.call(this,target,'keywords');d.type='textmatch';d.operator='starts';return d}
  if(type==='timezone'){const d=baseDraft.call(this,target,'timezone');d.type='timezone';d.operator='timezone';try{const f=flowTargetSource(target,d.side),c=f.headers.findIndex(x=>/zone|offset|tz/i.test(x));if(c>=0)d.column=c}catch(e){}return d}
  const d=baseDraft.apply(this,arguments);
  if(type==='missing')d.operator='not-empty';
@@ -5607,6 +5829,8 @@ configureFlowHTML=function(){
   ${d.dateOp==='last'?`<label>Number of days<input type="number" min="1" max="3650" data-flow-setting="dateN" value="${h(d.dateN)}"></label>`:`<label>${d.dateOp==='between'?'From':'Date'}<input type="date" data-flow-setting="dateA" value="${h(d.dateA)}"></label>${d.dateOp==='between'?`<label>To<input type="date" data-flow-setting="dateB" value="${h(d.dateB)}"></label>`:''}`}</div>${pass}
   <p class="dci-note">${d.dateOp==='last'?'Counts back from today, including today, so a report built next week moves with it. ':''}Times are ignored; only the calendar day counts. Dates like 03/04/2026 are read as month/day.</p>`;
  }
+ if(d.type==='textmatch'){d.type='keywords';let x;try{x=baseConfigure.apply(this,arguments)}finally{d.type='textmatch'}
+  return x.replace('<label>Keywords / phrases',`<label>Keep rows where the text<select data-flow-setting="operator">${opts([['starts','Starts with'],['ends','Ends with'],['not-starts','Does not start with'],['not-ends','Does not end with']],TEXTM.includes(d.operator)?d.operator:'starts')}</select></label><label>Text to look for`).replace('Any listed keyword can pass this condition. Additional filters still mean AND.','Separate several options with commas. Capital letters are ignored unless you tick Match case.')}
  let html=baseConfigure.apply(this,arguments);
  if(['people','time','field-text','number'].includes(d.type))return html;
  /* Same choices whether the insight matches two tables or filters one */
@@ -5654,6 +5878,7 @@ openGuidedFilterFlow=function(target,index=null){
   if(n){d.type='number';d.numOp=n.op;d.numA=String(n.a);d.numB=n.b!==undefined?String(n.b):''}
   else if(dt){d.type='date';d.dateOp=dt.op;d.dateA=dt.a!=null?isoOf(dt.a):'';d.dateB=dt.b!=null?isoOf(dt.b):'';d.dateN=String(dt.n||7)}
   else if(r.operator==='not-keywords'){d.type='keywords';d.operator='not-keywords'}
+  else if(TEXTM.includes(r.operator)){d.type='textmatch';d.operator=r.operator}
   else if(r.operator==='timezone'||r.mode==='timezone'){d.type='timezone';d.operator='timezone'}
   else if(noValues(r.operator)){d.type='missing';d.operator=r.operator}
   if(n||dt){d.selectedValues=[];d.query=''}
@@ -5672,12 +5897,12 @@ commitGuidedFilter=function(){
  const pair=['people','time','field-text'].includes(d.type);
  if(target.kind==='match'){
   if(pair)return baseCommit.apply(this,arguments);
-  const kind=d.type;if(['number','date'].includes(kind))d.type='values';if(kind==='timezone')d.operator='timezone';if(kind==='keywords'&&d.operator!=='not-keywords')d.operator='keywords';
+  const kind=d.type;if(['number','date'].includes(kind))d.type='values';if(kind==='textmatch'){d.type='keywords';if(!TEXTM.includes(d.operator))d.operator='starts'}if(kind==='timezone')d.operator='timezone';if(kind==='keywords'&&d.operator!=='not-keywords')d.operator='keywords';
   const r=baseCommit.apply(this,arguments);if(filterFlowDialog.open)d.type=kind;return r;
  }
  /* One table: build the condition here so the operator is kept */
  const values=[...new Set([...(d.selectedValues||[]),...selectedFilterValues(d.query)])];
- let op;if(d.type==='missing')op=d.operator==='empty'?'empty':'not-empty';else if(d.type==='keywords')op=d.operator==='not-keywords'?'not-keywords':'keywords';else if(d.type==='timezone')op='timezone';else op=d.operator==='not-equals'?'not-equals':'equals';
+ let op;if(d.type==='textmatch')op=TEXTM.includes(d.operator)?d.operator:'starts';else if(d.type==='missing')op=d.operator==='empty'?'empty':'not-empty';else if(d.type==='keywords')op=d.operator==='not-keywords'?'not-keywords':'keywords';else if(d.type==='timezone')op='timezone';else op=d.operator==='not-equals'?'not-equals':'equals';
  if(!noValues(op)&&!values.length){say(d.type==='keywords'?'Enter at least one word or phrase.':'Select at least one value, or type one, before adding this filter.');return}
  const r={column:+d.column||0,mode:d.type==='keywords'?'keywords':d.type==='timezone'?'timezone':'exact',operator:op,query:noValues(op)?'':(values.join(',')),selectedValues:noValues(op)?[]:values,caseSensitive:!!d.caseSensitive};
  if(target.kind==='draft'){if(index===null)singleDatasetDraft.rules.push(r);else singleDatasetDraft.rules[index]=r;filterFlowDialog.close();paintSingleDatasetInsight();return}
@@ -5685,6 +5910,36 @@ commitGuidedFilter=function(){
  if(index===-1){Object.assign(n,r)}else{n.extraFilters??=[];if(index===null)n.extraFilters.push(r);else n.extraFilters[index]=r}
  filterFlowDialog.close();render();openFilterEditor(n.id,index===null?n.extraFilters.length-1:index);
 };
+
+/* ---------- Conditions written in the guided builder ----------
+   {label, op, vals, a, b, n}; label = the column's name in the result. */
+const COND_OPS=['is','isnot','contains','notcontains','starts','ends','notstarts','notends','empty','filled','gt','gte','lt','lte','between','don','dbefore','dafter','dbetween','dlast'];
+function condRule(c){const v=(c.vals||[]).map(String).filter(x=>x.trim());switch(c.op){
+ case 'is':return{operator:'equals',values:v};case 'isnot':return{operator:'not-equals',values:v};
+ case 'contains':return{operator:'keywords',values:v};case 'notcontains':return{operator:'not-keywords',values:v};
+ case 'starts':case 'ends':return{operator:c.op,values:v};case 'notstarts':return{operator:'not-starts',values:v};case 'notends':return{operator:'not-ends',values:v};
+ case 'empty':return{operator:'empty',values:[]};case 'filled':return{operator:'not-empty',values:[]};
+ case 'gt':case 'gte':case 'lt':case 'lte':case 'between':return{operator:'equals',values:[NUM.make(c.op,+c.a,+c.b)]};
+ case 'don':case 'dbefore':case 'dafter':case 'dbetween':case 'dlast':return{operator:'equals',values:[makeDateToken({don:'on',dbefore:'before',dafter:'after',dbetween:'between',dlast:'last'}[c.op],c.a,c.b,c.n)]};
+ }return{operator:'equals',values:v}}
+function condReady(c){if(['empty','filled'].includes(c.op))return true;if(['gt','gte','lt','lte'].includes(c.op))return String(c.a??'').trim()!==''&&Number.isFinite(+c.a);if(c.op==='between')return Number.isFinite(+c.a)&&Number.isFinite(+c.b)&&String(c.a??'').trim()!==''&&String(c.b??'').trim()!=='';if(c.op==='dlast')return +c.n>0;if(['don','dbefore','dafter'].includes(c.op))return toDay(c.a)!==null;if(c.op==='dbetween')return toDay(c.a)!==null&&toDay(c.b)!==null;return (c.vals||[]).some(x=>String(x).trim())}
+function condPass(value,c){const r=condRule(c);return oneInputPass(value,r.operator,r.values,'',false)}
+function logicKeep(lg,get){const ok=c=>{if(!condReady(c))return true;const v=get(c);return v===undefined?true:condPass(v,c)};const main=(lg.conds||[]).filter(condReady),grp=(lg.group||[]).filter(condReady);
+ if(lg.mode==='any'){const all=[...main,...grp];return !all.length||all.some(ok)}return main.every(ok)&&(!grp.length||grp.some(ok))}
+function cleanLogic(lg){const cl=c=>({label:String(c.label||''),op:COND_OPS.includes(c.op)?c.op:'is',vals:(Array.isArray(c.vals)?c.vals:[]).map(String).slice(0,500),a:c.a==null?'':String(c.a),b:c.b==null?'':String(c.b),n:c.n==null?'':String(c.n)});return{mode:lg.mode==='any'?'any':'all',conds:(lg.conds||[]).slice(0,50).map(cl),group:(lg.group||[]).slice(0,50).map(cl)}}
+function describeCond(c){const r=condRule(c),vals=r.values;const first=String(vals[0]||'').toLowerCase();let t;
+ if(first.startsWith('[num]'))t=NUM.describe(vals[0]);else if(first.startsWith('[date]'))t=describeDateToken(vals[0]);
+ else t={equals:'is '+listWords(vals),'not-equals':'is not '+listWords(vals,'nor'),keywords:'contains '+listWords(vals),'not-keywords':'does not contain '+listWords(vals,'or'),empty:'is empty','not-empty':'is filled in',starts:'starts with '+listWords(vals),ends:'ends with '+listWords(vals),'not-starts':'does not start with '+listWords(vals,'or'),'not-ends':'does not end with '+listWords(vals,'or')}[r.operator]||'';
+ return `${c.label} ${t}`}
+window.dcLogic={condRule,condReady,condPass,keep:logicKeep,clean:cleanLogic,describe:describeCond,OPS:COND_OPS};
+{const baseMerged=mergedData;const cache=new WeakMap();
+ mergedData=function(c){const v=baseMerged.apply(this,arguments);const lg=c?.merge?.dcLogic;if(!lg||!((lg.conds||[]).length||(lg.group||[]).length)||!v?.rows)return v;
+  const key=JSON.stringify(lg)+'|'+v.headers.join('\u0001')+'|'+(lg.conds.concat(lg.group||[]).some(x=>x.op==='dlast')?todayNum():0);const hit=cache.get(v.rows);if(hit&&hit.key===key)return hit.value;
+  const idx=new Map(v.headers.map((h,i)=>[h,i]));const keepIdx=[];
+  v.rows.forEach((row,i)=>{if(logicKeep(lg,c2=>{const k=idx.get(c2.label);return k===undefined?undefined:row[k]}))keepIdx.push(i)});
+  const rows=keepIdx.map(i=>v.rows[i]),pairs=v.sourcePairs?keepIdx.map(i=>v.sourcePairs[i]):undefined;
+  const value={...v,rows,original:rows,sourcePairs:pairs,matched:pairs?new Set(pairs.map(p=>p[0])).size:rows.length,matchedRight:pairs?new Set(pairs.map(p=>p[1])).size:rows.length};
+  cache.set(v.rows,{key,value});return value}}
 
 /* ---------- Matched insights: words for the new operators ---------- */
 {const baseDesc=describeGuidedRule;describeGuidedRule=function(c,r){
@@ -5749,12 +6004,13 @@ paintSingleDatasetInsight=function(){
 {const baseValid=validateProject;validateProject=function(doc){
  const extra=[];
  let use=doc;
- try{const cons=doc?.state?.connections;if(Array.isArray(cons)&&cons.some(c=>c?.merge?.filters?.some(r=>r?.mode==='single-source'&&['not-keywords','timezone'].includes(r.operator)))){
-  const copy=JSON.parse(JSON.stringify(cons));copy.forEach(c=>c?.merge?.filters?.forEach((r,i)=>{if(r?.mode==='single-source'&&['not-keywords','timezone'].includes(r.operator)){extra.push([c.id,i,r.operator]);r.operator='equals'}}));
+ try{const cons=doc?.state?.connections;if(Array.isArray(cons)&&cons.some(c=>c?.merge?.filters?.some(r=>r?.mode==='single-source'&&['not-keywords','timezone',...TEXTM].includes(r.operator)))){
+  const copy=JSON.parse(JSON.stringify(cons));copy.forEach(c=>c?.merge?.filters?.forEach((r,i)=>{if(r?.mode==='single-source'&&['not-keywords','timezone',...TEXTM].includes(r.operator)){extra.push([c.id,i,r.operator]);r.operator='equals'}}));
   use={...doc,state:{...doc.state,connections:copy}}}}catch(e){}
  const valid=baseValid.call(this,use);
  try{for(const [cid,i,op] of extra){const r=valid.state.connections.find(c=>c.id===cid)?.merge?.filters?.[i];if(r)r.operator=op}
-  for(const n of valid.state.insights.filter(n=>n.kind==='filter')){const raw=doc.state.insights.find(x=>x.id===n.id);if(!raw)continue;if(OPS.includes(raw.operator))n.operator=raw.operator;(n.extraFilters||[]).forEach((r,i)=>{const o=raw.extraFilters?.[i]?.operator;if(OPS.includes(o))r.operator=o})}}catch(e){console.warn('Filters:',e)}
+  for(const n of valid.state.insights.filter(n=>n.kind==='filter')){const raw=doc.state.insights.find(x=>x.id===n.id);if(!raw)continue;if(OPS.includes(raw.operator))n.operator=raw.operator;if(raw.logic==='any')n.logic='any';if(raw.grp)n.grp=1;(n.extraFilters||[]).forEach((r,i)=>{const o=raw.extraFilters?.[i]?.operator;if(OPS.includes(o))r.operator=o;if(raw.extraFilters?.[i]?.grp)r.grp=1})}
+  for(const c of valid.state.connections||[]){const raw=doc.state.connections.find(x=>x.id===c.id);const lg=raw?.merge?.dcLogic;if(lg&&Array.isArray(lg.conds)&&c.merge){c.merge.dcLogic=cleanLogic(lg)}}}catch(e){console.warn('Filters:',e)}
  return valid}}
 
 /* Date tokens read as words wherever they appear */
@@ -6572,5 +6828,388 @@ dlg.addEventListener('click',e=>{const b=e.target.closest('[data-g]');if(b){cur=
 function open(section){let st=0;try{st=S.stage||0}catch(e){}cur=section||GUIDE.find(g=>g.step===st)?.id||'start';paint();if(!dlg.open)dlg.showModal()}
 try{if(typeof openWorkflowGuide==='function')openWorkflowGuide=()=>open()}catch(e){}
 window.dcGuide={open};
+})();
+
+/* The Analysis Studio: guided "New insight" steps.
+   1. How many tables (1, 2 or 3) and which ones.  2. How they connect.  3. Which rows to keep
+   (ALL / ANY, plus an either-or group).  4. Name it.  Every step shows the columns and a few rows,
+   so people see their data change as they go. Works with any kind of table. */
+(function(){
+'use strict';
+if(typeof S==='undefined'||typeof render!=='function')return;
+const q=(s,r=document)=>r.querySelector(s),qa=(s,r=document)=>[...r.querySelectorAll(s)];
+const h=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const num=n=>Number(n||0).toLocaleString();
+const norm=s=>String(s??'').toLowerCase().replace(/[^a-z0-9]/g,'');
+const LG=()=>window.dcLogic;
+const dlg=document.createElement('dialog');dlg.className='wz';dlg.setAttribute('aria-label','New insight');document.body.append(dlg);
+dlg.addEventListener('cancel',e=>{e.preventDefault();close()});
+let W=null;
+const fams=()=>S.families.filter(f=>Array.isArray(f.headers)&&f.headers.length);
+const fam=id=>S.families.find(f=>f.id===id);
+const isDerived=f=>String(f?.key||'').startsWith('dc-derived:');
+
+/* ---------- choosing ---------- */
+function suggestLink(a,b,withScore){
+ if(!a||!b)return withScore?{i:0,j:0,s:0}:[0,0];let best=null;
+ a.headers.forEach((ha,i)=>b.headers.forEach((hb,j)=>{const s=(norm(ha)===norm(hb)?3:0)+(/id$|^id|email|phone|number|code|key/i.test(ha)&&/id$|^id|email|phone|number|code|key/i.test(hb)?1:0);if(s&&(!best||s>best.s))best={s,i,j}}));
+ if(withScore)return best||{i:0,j:0,s:0};
+ return best?[best.i,best.j]:[0,0];
+}
+function setCount(n){
+ W.count=n;const list=fams().filter(f=>!isDerived(f)).concat(fams().filter(isDerived));
+ while(W.tables.length<n){const next=list.find(f=>!W.tables.includes(f.id));W.tables.push(next?next.id:list[0]?.id)}
+ W.tables.length=n;relink();
+}
+function relink(){
+ const [A,B,C]=W.tables.map(fam);
+ if(B){const [i,j]=suggestLink(A,B);W.links[0]={a:i,b:j}}
+ if(C){const x=suggestLink(A,C,true),y=suggestLink(B,C,true);W.links[1]=y.s>=x.s?{from:1,a:y.i,b:y.j}:{from:0,a:x.i,b:x.j}}
+ W.conds=[];W.group=[];W.cache=null;
+}
+
+/* ---------- the data at each step ---------- */
+let tmpConn=null;
+function joined(){
+ const [A,B,C]=W.tables.map(fam);
+ if(W.count===1||!B)return{headers:A.headers.slice(),rows:A.rows,cols:A.headers.map((_,i)=>({t:0,c:i}))};
+ const l0=W.links[0];
+ if(W.count===2&&W.keep!=='both'){
+  const [X,Y,xc,yc]=W.keep==='aonly'?[A,B,l0.a,l0.b]:[B,A,l0.b,l0.a];const set=new Set();for(const r of Y.rows){const v=String(r[yc]??'').trim();if(v)set.add(v)}
+  return{headers:X.headers.slice(),rows:X.rows.filter(r=>{const v=String(r[xc]??'').trim();return !v||!set.has(v)}),cols:X.headers.map((_,i)=>({t:W.keep==='aonly'?0:1,c:i})),side:W.keep}}
+ if(!tmpConn)tmpConn={id:'dc-wizard-preview',name:'Preview'};
+ tmpConn.a={type:'column',family:A.id,column:l0.a};tmpConn.b={type:'column',family:B.id,column:l0.b};tmpConn.merge=undefined;
+ let res;try{res=mergedData(tmpConn)}catch(e){return{headers:[],rows:[],cols:[],error:e.message}}
+ const cols1=[...A.headers.map((_,i)=>({t:0,c:i})),...B.headers.map((_,i)=>({t:1,c:i}))];
+ if(W.count===2)return{headers:res.headers,rows:res.rows,cols:cols1};
+ /* third table: join it on to the first result */
+ const l1=W.links[1],F=W.tables.map(fam)[l1.from??1],left=res.headers.indexOf(`${F.name} · ${F.headers[l1.a]}`),map=new Map();
+ for(const r of C.rows){const v=String(r[l1.b]??'').trim();if(!v)continue;if(!map.has(v))map.set(v,[]);map.get(v).push(r)}
+ const rows=[];for(const r of res.rows){const m=map.get(String(r[left]??'').trim());if(m)for(const x of m)rows.push(r.concat(x))}
+ return{headers:res.headers.concat(C.headers.map(x=>`${C.name} · ${x}`)),rows,cols:cols1.concat(C.headers.map((_,i)=>({t:2,c:i})))};
+}
+function data(){
+ const key=JSON.stringify([W.count,W.tables,W.links,W.keep]);
+ if(!W.cache||W.cache.key!==key)W.cache={key,base:joined()};
+ return W.cache.base;
+}
+function filtered(){
+ const d=data();const all=[...W.conds,...W.group];if(!all.length)return d;
+ const lg={mode:W.mode,conds:W.conds.map(c=>({...c,label:d.headers[c.ci]})),group:W.group.map(c=>({...c,label:d.headers[c.ci]}))};
+ const idx=new Map(d.headers.map((x,i)=>[x,i]));
+ return{...d,rows:d.rows.filter(r=>LG().keep(lg,c=>{const k=idx.get(c.label);return k===undefined?undefined:r[k]}))};
+}
+function table(d,{mark=[],note=''}={}){
+ if(d.error)return `<p class="wz-err">${h(d.error)}</p>`;
+ const show=d.headers.slice(0,8),rows=d.rows.slice(0,5),more=d.headers.length-show.length;
+ return `<div class="wz-prev-h"><b>${num(d.rows.length)} ${d.rows.length===1?'row':'rows'}</b><span>${d.headers.length} columns${more>0?` · showing the first ${show.length}`:''}${note?' · '+h(note):''}</span></div>
+ <div class="wz-tbl"><table><thead><tr>${show.map((c,i)=>`<th class="${mark.includes(i)?'is-mark':''}" title="${h(c)}">${h(c)}</th>`).join('')}</tr></thead>
+ <tbody>${rows.length?rows.map(r=>`<tr>${show.map((_,i)=>`<td class="${mark.includes(i)?'is-mark':''}" title="${h(r[i])}">${h(r[i])||'<i>empty</i>'}</td>`).join('')}</tr>`).join(''):`<tr><td colspan="${show.length||1}" class="wz-none">No rows here yet. Try a different choice above.</td></tr>`}</tbody></table></div>`;
+}
+
+/* ---------- steps ---------- */
+const stepNames=()=>W.count===1?[['tables','Choose your table'],['rows','Which rows to keep'],['name','Name and check']]:[['tables','Choose your tables'],['link','Connect the tables'],['rows','Which rows to keep'],['name','Name and check']];
+const OPS=[['Text',[['is','is one of'],['isnot','is not any of'],['contains','contains'],['notcontains','does not contain'],['starts','starts with'],['ends','ends with']]],['Numbers',[['gt','is more than'],['gte','is at least'],['lt','is less than'],['lte','is at most'],['between','is between']]],['Dates',[['dafter','is after'],['dbefore','is before'],['don','is on'],['dbetween','is between dates'],['dlast','is in the last … days']]],['Anything',[['empty','is empty'],['filled','is filled in']]]];
+const opName=o=>OPS.flatMap(g=>g[1]).find(x=>x[0]===o)?.[1]||o;
+function topValues(ci){const d=data(),m=new Map();for(let i=0;i<d.rows.length&&i<20000;i++){const v=String(d.rows[i][ci]??'').trim();if(v)m.set(v,(m.get(v)||0)+1)}return [...m.entries()].sort((a,b)=>b[1]-a[1]).slice(0,40).map(x=>x[0])}
+function condRow(c,i,grp){
+ const d=data(),key=(grp?'g':'c')+i;
+ const valueBox=['empty','filled'].includes(c.op)?'':['gt','gte','lt','lte'].includes(c.op)?`<input type="number" data-wz-k="${key}|a" value="${h(c.a)}" placeholder="Number" aria-label="Number">`
+  :c.op==='between'?`<input type="number" data-wz-k="${key}|a" value="${h(c.a)}" placeholder="From" aria-label="From"><span>and</span><input type="number" data-wz-k="${key}|b" value="${h(c.b)}" placeholder="To" aria-label="To">`
+  :['dafter','dbefore','don'].includes(c.op)?`<input type="date" data-wz-k="${key}|a" value="${h(c.a)}" aria-label="Date">`
+  :c.op==='dbetween'?`<input type="date" data-wz-k="${key}|a" value="${h(c.a)}" aria-label="From date"><span>and</span><input type="date" data-wz-k="${key}|b" value="${h(c.b)}" aria-label="To date">`
+  :c.op==='dlast'?`<input type="number" min="1" data-wz-k="${key}|n" value="${h(c.n||7)}" aria-label="Number of days"><span>days</span>`
+  :`<input list="wz-dl-${key}" data-wz-k="${key}|vals" value="${h((c.vals||[]).join(', '))}" placeholder="${c.op.includes('contain')||c.op.includes('start')||c.op.includes('end')?'Words, separated by commas':'Pick or type values, separated by commas'}" aria-label="Values"><datalist id="wz-dl-${key}">${topValues(c.ci).map(v=>`<option value="${h(v)}"></option>`).join('')}</datalist>`;
+ return `<div class="wz-cond"><select data-wz-k="${key}|ci" aria-label="Column">${d.headers.map((x,j)=>`<option value="${j}" ${j===c.ci?'selected':''}>${h(x)}</option>`).join('')}</select>
+  <select data-wz-k="${key}|op" aria-label="Rule">${OPS.map(([g,l])=>`<optgroup label="${g}">${l.map(([v,t])=>`<option value="${v}" ${v===c.op?'selected':''}>${t}</option>`).join('')}</optgroup>`).join('')}</select>
+  <div class="wz-vals">${valueBox}</div><button type="button" class="wz-x" data-wz="del|${key}" aria-label="Remove this condition">✕</button></div>`;
+}
+function sentence(){
+ const d=data(),T=W.tables.map(fam),parts=[];
+ const what=W.count===1?`rows from ${T[0].name}`:W.count===2?(W.keep==='both'?`rows found in both ${T[0].name} and ${T[1].name}`:W.keep==='aonly'?`rows in ${T[0].name} with no match in ${T[1].name}`:`rows in ${T[1].name} with no match in ${T[0].name}`):`rows found in ${T[0].name}, ${T[1].name} and ${T[2].name}`;
+ const ready=c=>LG().condReady(c),desc=c=>LG().describe({...c,label:d.headers[c.ci]});
+ const main=W.conds.filter(ready).map(desc),grp=W.group.filter(ready).map(desc);
+ if(main.length)parts.push(main.join(W.mode==='any'?' OR ':' AND '));
+ if(grp.length)parts.push((parts.length?(W.mode==='any'?'OR ':'AND '):'')+'at least one of: '+grp.join(' / '));
+ return `Keep ${h(what)}${parts.length?` where <b>${h(parts.join(' '))}</b>`:''}.`;
+}
+function body(){
+ const id=stepNames()[W.step-1][0],T=W.tables.map(fam);
+ if(id==='tables'){
+  const cards=[[1,'One table','Keep or count rows from a single table.','Find the rows in one list that need a follow-up.'],[2,'Two tables','Join rows that share a value, such as the same ID, email or phone.','Which records in one list also appear in another?'],[3,'Three tables','Chain them: table 1 links to 2, and 2 links to 3.','Bring three lists together, for example records, contacts and the people responsible.']];
+  return `<div class="wz-intro"><h2>How many tables does your question need?</h2><p>Pick the one that sounds like your question. Nothing changes your tables; you can go back at any time.</p></div>
+  <div class="wz-cards">${cards.map(([n,t,d,ex])=>`<button type="button" class="wz-card ${W.count===n?'is-on':''}" data-wz="count|${n}" aria-pressed="${W.count===n}"><span class="wz-pic">${Array.from({length:n},(_,i)=>`<i class="c${i}">Table ${i+1}</i>`).join('<em></em>')}</span><b>${t}</b><span>${d}</span><small>For example: ${ex}</small></button>`).join('')}</div>
+  ${W.count?`<div class="wz-pick">${W.tables.map((tid,i)=>`<label><span>Table ${i+1}</span><select data-wz-k="t${i}" aria-label="Table ${i+1}">${fams().map(f=>`<option value="${f.id}" ${f.id===tid?'selected':''}>${h(f.name)}${isDerived(f)?' (from an insight)':''} · ${num(f.rows.length)} rows</option>`).join('')}</select></label>`).join('')}</div>`:''}`;
+ }
+ if(id==='link'){
+  const L=(i,X,Y)=>{const l=W.links[i];const set=new Set();for(let k=0;k<Y.rows.length;k++){const v=String(Y.rows[k][l.b]??'').trim();if(v)set.add(v)}let seen=0,hit=0;for(let k=0;k<X.rows.length&&seen<5000;k++){const v=String(X.rows[k][l.a]??'').trim();if(!v)continue;seen++;if(set.has(v))hit++}const pct=seen?Math.round(hit/seen*100):0;
+   const fromPick=i===1?`<label class="wz-from">Connect table 3 to<select data-wz-k="l1f" aria-label="Which table connects to table 3">${[0,1].map(t=>`<option value="${t}" ${(W.links[1].from??1)===t?'selected':''}>Table ${t+1}: ${h(T[t].name)}</option>`).join('')}</select></label>`:'';
+   return `<div class="wz-link"><b>${W.count===3?`Link ${i+1}`:'How they connect'}</b>${fromPick}<div class="wz-link-row"><span class="wz-t c${i===1?(W.links[1].from??1):0}">${h(X.name)}</span><select data-wz-k="l${i}a" aria-label="Field in ${h(X.name)}">${X.headers.map((x,j)=>`<option value="${j}" ${j===l.a?'selected':''}>${h(x)}</option>`).join('')}</select><strong>is the same as</strong><span class="wz-t c${i+1}">${h(Y.name)}</span><select data-wz-k="l${i}b" aria-label="Field in ${h(Y.name)}">${Y.headers.map((x,j)=>`<option value="${j}" ${j===l.b?'selected':''}>${h(x)}</option>`).join('')}</select></div>
+   <p class="${pct>=50?'wz-ok':pct>0?'wz-warn':'wz-bad'}">${seen?`${pct}% of the ${h(X.headers[l.a])} values in ${h(X.name)} are also in ${h(Y.name)}.`:'This field is empty.'} ${pct>=50?'This link looks right.':pct>0?'Only some match. Check that these two fields hold the same kind of value.':'Nothing matches. Pick fields that hold the same values, like the same ID.'}</p></div>`};
+  const keeps=[['both','Only rows found in both',`Keeps rows that match, with the columns of both tables.`,'b'],['aonly',`Rows in ${T[0].name} with no match`,`Find what is missing from ${T[1].name}.`,'l'],['bonly',`Rows in ${T[1].name} with no match`,`Find what is missing from ${T[0].name}.`,'r']];
+  return `<div class="wz-intro"><h2>Connect the tables</h2><p>Rows connect when a field holds the same value in both tables, such as the same ID, email or phone number.</p></div>
+  ${L(0,T[0],T[1])}${W.count===3?L(1,T[W.links[1].from??1],T[2]):''}
+  ${W.count===2?`<div class="wz-sub"><b>Which rows should the result keep?</b><div class="wz-keeps">${keeps.map(([k,t,d,v])=>`<button type="button" class="wz-card wz-keep ${W.keep===k?'is-on':''}" data-wz="keep|${k}" aria-pressed="${W.keep===k}"><svg viewBox="0 0 64 40" aria-hidden="true" class="v-${v}"><circle cx="24" cy="20" r="15" class="l"/><circle cx="40" cy="20" r="15" class="r"/><path d="M32 7.3a15 15 0 0 1 0 25.4a15 15 0 0 1 0-25.4z" class="m"/></svg><b>${h(t)}</b><span>${h(d)}</span></button>`).join('')}</div></div>`:'<p class="wz-note">With three tables, the result keeps rows that connect all the way through.</p>'}`;
+ }
+ if(id==='rows'){
+  const all=W.mode!=='any',joinW=all?'AND':'OR';
+  return `<div class="wz-intro"><h2>Which rows do you want to keep?</h2><p>Add conditions in plain words. Leave this empty to keep every row${W.count===1?' (a one-table insight needs at least one)':''}.</p></div>
+  <div class="wz-modes"><button type="button" class="wz-card ${all?'is-on':''}" data-wz="mode|all" aria-pressed="${all}"><b>Keep a row only when ALL conditions are true</b><span>Stricter: every condition must pass, so you get fewer rows.</span></button><button type="button" class="wz-card is-any ${!all?'is-on':''}" data-wz="mode|any" aria-pressed="${!all}"><b>Keep a row when ANY condition is true</b><span>Looser: one passing condition is enough, so you get more rows.</span></button></div>
+  <div class="wz-conds">${W.conds.map((c,i)=>(i?`<span class="wz-join ${all?'':'is-or'}">${joinW}</span>`:'')+condRow(c,i,false)).join('')}
+  ${W.group.length?`${W.conds.length?`<span class="wz-join ${all?'':'is-or'}">${joinW}</span>`:''}<div class="wz-group"><b>At least ONE of these is true</b>${W.group.map((c,i)=>(i?'<span class="wz-join is-or">OR</span>':'')+condRow(c,i,true)).join('')}<button type="button" class="wz-add" data-wz="addg">+ Add another choice</button></div>`:''}
+  <div class="wz-addrow"><button type="button" class="wz-add" data-wz="addc">+ Add a condition</button>${W.group.length?'':'<button type="button" class="wz-add" data-wz="addg">+ Add an “either / or” group</button>'}</div></div>
+  <p class="wz-help">An “either / or” group keeps a row when at least one choice inside it is true, for example a status that is Escalated <b>or</b> Disputed.</p>`;
+ }
+ const taken=S.insights.some(n=>String(n.name).trim().toLowerCase()===W.name.trim().toLowerCase());
+ return `<div class="wz-intro"><h2>Name it and check the rows</h2><p>A good name says what the rows are, so anyone can tell what they are looking at.</p></div>
+  <label class="wz-name"><span>Insight name</span><input data-wz-k="name" value="${h(W.name)}" placeholder="For example: Records that need a follow-up" autocomplete="off"></label>
+  ${taken&&W.name.trim()?'<p class="wz-bad">Another insight already has this name.</p>':''}
+  <div class="wz-sum">${sentence()}</div>`;
+}
+function preview(){
+ const id=stepNames()[W.step-1][0];
+ if(id==='tables'){if(!W.count)return '<p class="wz-none">Pick how many tables to see them here.</p>';return W.tables.map((tid,i)=>{const f=fam(tid);return `<div class="wz-prev-t"><span class="wz-t c${i}">Table ${i+1}: ${h(f.name)}</span>${table({headers:f.headers,rows:f.rows})}</div>`}).join('')}
+ const d=data();
+ if(id==='link'){const T=W.tables.map(fam),mark=[];if(W.keep==='both'||W.count===3){mark.push(d.headers.indexOf(`${T[0].name} · ${T[0].headers[W.links[0].a]}`),d.headers.indexOf(`${T[1].name} · ${T[1].headers[W.links[0].b]}`))}else{const l=W.links[0];mark.push(W.keep==='aonly'?l.a:l.b)}
+  return table(d,{mark:mark.filter(x=>x>=0),note:W.keep==='both'||W.count===3?'highlighted columns connect the tables':'only the first table’s columns'})}
+ const f=filtered();
+ return table(f,{note:id==='rows'&&f.rows.length!==d.rows.length?`${num(d.rows.length-f.rows.length)} rows left out by your conditions`:''});
+}
+function paint(){
+ const steps=stepNames(),last=W.step===steps.length;
+ dlg.innerHTML=`<div class="wz-shell"><header class="wz-top"><div><b>New insight</b><span>Step ${W.step} of ${steps.length}</span></div><button type="button" class="wz-close" data-wz="close" aria-label="Close without saving">✕</button></header>
+ <div class="wz-main"><nav class="wz-steps" aria-label="Steps">${steps.map(([k,t],i)=>`<button type="button" data-wz="go|${i+1}" class="${i+1===W.step?'is-on':i+1<W.step?'is-done':''}" ${i+1>W.step&&!canGo(i)?'disabled':''}><span>${i+1<W.step?'✓':i+1}</span>${t}</button>`).join('')}
+  <div class="wz-sumside"><b>Your insight so far</b><p>${W.count?sentence():'Start by choosing how many tables you need.'}</p></div></nav>
+  <section class="wz-body"><div class="wz-step">${body()}</div>
+   <div class="wz-prev"><div class="wz-prev-title">${I_EYE}<b>${W.step===1?'Your tables':'Your data at this step'}</b><span>Columns and the first few rows. This updates as you change anything.</span></div>${preview()}</div></section></div>
+ <footer class="wz-foot"><p class="wz-err" role="alert" data-wz-err></p><button type="button" data-wz="back" ${W.step===1?'disabled':''}>Back</button><button type="button" class="wz-pri primary" data-wz="next" ${W.count?'':'disabled'}>${last?'Create insight':'Continue'}</button></footer></div>`;
+}
+const I_EYE='<svg viewBox="0 0 24 24" aria-hidden="true" class="wz-i"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>';
+function canGo(i){return !!W.count&&i<=W.step}
+function err(m){const e=q('[data-wz-err]',dlg);if(e)e.textContent=m||''}
+
+/* ---------- making the insight ---------- */
+function create(){
+ const name=W.name.trim();
+ if(name.length<3){W.step=stepNames().length;paint();err('Type a name for this insight (at least 3 characters).');q('[data-wz-k="name"]',dlg)?.focus();return}
+ if(S.insights.some(n=>String(n.name).trim().toLowerCase()===name.toLowerCase())){err('Another insight already has this name.');return}
+ const d=data(),T=W.tables.map(fam),ready=W.conds.filter(LG().condReady),readyG=W.group.filter(LG().condReady);
+ window.dcSources?.typed?.(name);
+ let made;
+ const asRule=(c,grp)=>{const r=LG().condRule(c);const col=d.cols[c.ci]?.c??c.ci;return{column:col,mode:r.operator==='keywords'||r.operator==='not-keywords'?'keywords':'exact',operator:r.operator,query:r.values.join(','),selectedValues:r.values,caseSensitive:false,...(grp?{grp:1}:{})}};
+ if(W.count===1||W.count===2&&W.keep!=='both'){
+  const base=W.count===1?T[0]:W.keep==='aonly'?T[0]:T[1],other=W.keep==='aonly'?T[1]:T[0],l=W.links[0];
+  const rules=[...ready.map(c=>asRule(c,false)),...readyG.map(c=>asRule(c,true))];
+  if(W.count===2)rules.unshift({column:W.keep==='aonly'?l.a:l.b,mode:'exact',operator:'not-equals',query:`[in]${other.id}|${W.keep==='aonly'?l.b:l.a}`,selectedValues:[`[in]${other.id}|${W.keep==='aonly'?l.b:l.a}`],caseSensitive:false});
+  if(!rules.length){W.step=stepNames().findIndex(s=>s[0]==='rows')+1;paint();err('Add at least one condition, so the insight knows which rows to keep.');return}
+  const [first,...rest]=rules;
+  made={id:uid(),name,kind:'filter',inputs:{},source:'raw:'+base.id,...first,extraFilters:rest,...(W.mode==='any'?{logic:'any'}:{})};
+  if(W.count===2&&W.mode==='any'&&rules.length>1){/* the "no match" rule always applies; the person's conditions are the ANY part */made.logic=undefined;rest.forEach(r=>r.grp=1)}
+  S.insights.push(made);try{placeInsight(made)}catch(e){}
+ }else{
+  const link=(X,xc,Y,yc,nm)=>{const n={id:uid(),name:nm,inputs:{a:{type:'column',family:X.id,column:xc},b:{type:'column',family:Y.id,column:yc}},preset:'id'};const c={id:uid(),name:nm,insightId:n.id,a:{...n.inputs.a},b:{...n.inputs.b}};S.insights.push(n);S.connections.push(c);initMerge(c);try{placeInsight(n)}catch(e){}return{n,c}};
+  let labels=d.headers.slice(),target;
+  if(W.count===2){target=link(T[0],W.links[0].a,T[1],W.links[0].b,name)}
+  else{
+   const firstName=`${name} – ${T[0].name} with ${T[1].name}`;window.dcSources?.typed?.(firstName);
+   const one=link(T[0],W.links[0].a,T[1],W.links[0].b,firstName);render();
+   const src=window.dcSources?.now?.(one.n.id);if(!src){err('The first link could not be prepared. Check the fields in step 2.');return}
+   const F=T[W.links[1].from??1],leftCol=src.headers.indexOf(`${F.name} · ${F.headers[W.links[1].a]}`);
+   target=link(src,Math.max(0,leftCol),T[2],W.links[1].b,name);
+   const n1=src.headers.length;labels=d.headers.map((x,i)=>i<n1?`${src.name} · ${x}`:x);
+  }
+  const lab=c=>({...c,label:labels[c.ci]});
+  if(ready.length||readyG.length)target.c.merge.dcLogic=LG().clean({mode:W.mode,conds:ready.map(lab),group:readyG.map(lab)});
+  made=target.n;
+ }
+ close();S.stage=3;S.unlocked=Math.max(S.unlocked,4);render();
+ setTimeout(()=>{try{window.dcInsights?.select(made.id)}catch(e){}},50);
+ notice(`“${name}” is ready. It is also available as a table for other insights.`);
+}
+
+/* ---------- events ---------- */
+function act(a,v){
+ switch(a){
+  case 'close':close();return;
+  case 'count':setCount(+v);break;
+  case 'go':W.step=+v;break;
+  case 'back':W.step=Math.max(1,W.step-1);break;
+  case 'next':{if(W.step===stepNames().length){create();return}W.step++;break}
+  case 'keep':W.keep=v;W.conds=[];W.group=[];break;
+  case 'mode':W.mode=v;break;
+  case 'addc':W.conds.push({ci:0,op:'is',vals:[]});break;
+  case 'addg':W.group.push({ci:0,op:'is',vals:[]});if(W.group.length===1)W.group.push({ci:0,op:'is',vals:[]});break;
+  case 'del':{const g=v[0]==='g',i=+v.slice(1);(g?W.group:W.conds).splice(i,1);break}
+ }
+ paint();
+}
+dlg.addEventListener('click',e=>{if(!W)return;const b=e.target.closest('[data-wz]');if(!b||b.disabled)return;const [a,...rest]=b.dataset.wz.split('|');act(a,rest.join('|'))});
+function setting(el,live){
+ const [k,f]=el.dataset.wzK.split('|');
+ if(k==='name'){W.name=el.value;return false}
+ if(/^t\d$/.test(k)){W.tables[+k[1]]=el.value;relink();return true}
+ if(k==='l1f'){const T=W.tables.map(fam),F=T[+el.value],x=suggestLink(F,T[2],true);W.links[1]={from:+el.value,a:x.i,b:x.j};W.conds=[];W.group=[];return true}
+ if(/^l\d[ab]$/.test(k)){W.links[+k[1]][k[2]]=+el.value;W.conds=[];W.group=[];return true}
+ const g=k[0]==='g',c=(g?W.group:W.conds)[+k.slice(1)];if(!c)return false;
+ if(f==='ci'){c.ci=+el.value;c.vals=[];return true}
+ if(f==='op'){c.op=el.value;return true}
+ if(f==='vals'){c.vals=el.value.split(',').map(x=>x.trim()).filter(Boolean);return !live}
+ c[f]=el.value;return !live;
+}
+let tmr=0;
+dlg.addEventListener('change',e=>{if(!W)return;const el=e.target.closest('[data-wz-k]');if(!el)return;if(setting(el,false)){const id=el.dataset.wzK;paint();requestAnimationFrame(()=>q(`[data-wz-k="${id}"]`,dlg)?.focus())}else refreshLive()});
+dlg.addEventListener('input',e=>{if(!W)return;const el=e.target.closest('[data-wz-k]');if(!el||el.tagName==='SELECT')return;setting(el,true);clearTimeout(tmr);tmr=setTimeout(refreshLive,250)});
+function refreshLive(){if(!W)return;const p=q('.wz-prev',dlg);if(p){const t=q('.wz-prev-title',p).outerHTML;p.innerHTML=t+preview()}const s=q('.wz-sumside p',dlg);if(s&&W.count)s.innerHTML=sentence();const sm=q('.wz-sum',dlg);if(sm)sm.innerHTML=sentence()}
+
+function open(opts={}){
+ if(!fams().length){notice('Import a table first, then come back to make an insight.');return}
+ W={step:1,count:0,tables:[],links:[{a:0,b:0},{a:0,b:0}],keep:'both',mode:'all',conds:[],group:[],name:'',cache:null};
+ if(opts.count)setCount(Math.min(3,Math.max(1,opts.count)));
+ if(opts.count===3&&fams().length<3)setCount(fams().length);
+ paint();if(!dlg.open)dlg.showModal();
+}
+function close(){if(dlg.open)dlg.close();W=null;tmpConn=null}
+window.dcWizard={open,close};
+})();
+
+/* The Analysis Studio: Insights workspace.
+   The Insights step becomes a full-page workspace like the Excel and report builders:
+   the Blueprint fills the page, your insights float on the left, and an Inspector on the
+   right explains the selected insight in plain words, with its filters and a preview. */
+(function(){
+'use strict';
+if(typeof S==='undefined'||typeof render!=='function')return;
+const q=(s,r=document)=>r.querySelector(s),qa=(s,r=document)=>[...r.querySelectorAll(s)];
+const h=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const P={back:'M15 18l-6-6 6-6',next:'M5 12h14M13 6l6 6-6 6',help:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14M12 17h.01',save:'M5 4h11l4 4v12H5zM8 4v5h7V4M8 20v-6h8v6',match:'M8 7h8M8 17h8M4 7a1 1 0 1 0 0 .01M4 17a1 1 0 1 0 0 .01M20 7a1 1 0 1 0 0 .01M20 17a1 1 0 1 0 0 .01M12 7v10',filter:'M4 5h16l-6 8v6l-4-2v-4z',sum:'M18 5H7l6 7-6 7h11',plus:'M12 5v14M5 12h14',edit:'M4 20h4L19 9l-4-4L4 16zM14 6l4 4',trash:'M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13',pin:'M12 21s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12zM12 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4z',x:'M6 6l12 12M18 6 6 18',table:'M4 5h16v14H4zM4 10h16M10 10v9',excel:'M4 4h16v16H4zM8 8l8 8M16 8l-8 8',lpanel:'M4 5h16v14H4zM9 5v14',rpanel:'M4 5h16v14H4zM15 5v14',drag:'M7 12h10M13 8l4 4-4 4M4 12h.01'};
+const I=(n,c='')=>`<svg class="iws-i ${c}" viewBox="0 0 24 24" aria-hidden="true"><path d="${P[n]||''}"/></svg>`;
+const store={get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
+const num=n=>Number(n||0).toLocaleString();
+
+const top=document.createElement('header');top.className='iws-top';top.setAttribute('role','toolbar');top.setAttribute('aria-label','Insights');
+top.innerHTML=`<div class="iws-nav"><button type="button" class="iws-ib" data-iw="back" title="Back to the previous step" aria-label="Back to the previous step">${I('back')}</button><div class="iws-where"><b>Find insights</b><small data-iw-where></small></div></div>
+ <div class="iws-create" role="group" aria-label="Create an insight">
+  <button type="button" class="iws-new" data-iw="new">${I('plus')}<span>New insight</span></button>
+  <button type="button" data-iw="summary">${I('sum')}<span>Count or total</span></button></div>
+ <span class="iws-flex"></span>
+ <button type="button" class="iws-ib" data-iw="help" title="How insights work" aria-label="How insights work">${I('help')}</button>
+ <button type="button" class="iws-ib" data-iw="save" title="Save project (Ctrl + S)" aria-label="Save project">${I('save')}</button>
+ <span class="iws-sep" aria-hidden="true"></span>
+ <button type="button" class="iws-next" data-iw="next"><span>Continue</span>${I('next')}</button>`;
+const insp=document.createElement('aside');insp.className='iws-insp';insp.setAttribute('aria-label','Inspector');
+const dock=document.createElement('div');dock.className='iws-dock';dock.setAttribute('role','toolbar');dock.setAttribute('aria-label','View');
+dock.innerHTML=`<button type="button" class="iws-ib" data-iw="lpanel" title="Show or hide your insights" aria-label="Show or hide your insights">${I('lpanel')}</button><span class="iws-sep"></span>
+ <button type="button" class="iws-ib" data-iw="zout" title="Zoom out" aria-label="Zoom out">−</button><output class="iws-zoom" aria-live="polite">100%</output><button type="button" class="iws-ib" data-iw="zin" title="Zoom in" aria-label="Zoom in">+</button>
+ <button type="button" data-iw="fit" title="Show everything">Fit</button><button type="button" data-iw="tidy" title="Line everything up neatly">Tidy up</button><span class="iws-sep"></span>
+ <button type="button" class="iws-ib" data-iw="rpanel" title="Show or hide the inspector" aria-label="Show or hide the inspector">${I('rpanel')}</button>`;
+
+let sel=null,entered=false;
+const kindOf=n=>!n?'':n.kind==='summary'?'summary':n.kind==='filter'?'filter':S.connections.some(c=>c.insightId===n.id)?'match':'draft';
+const KIND={match:['Match','Rows from two tables joined on a shared field'],filter:['Filter','Rows kept from one table'],summary:['Summary','Counts, totals and percentages'],draft:['Draft','Not finished yet']};
+const resultOf=n=>{const c=S.connections.find(c=>c.insightId===n.id);try{return metricSource('join:'+(c?c.id:n.id))||metricSource('join:'+n.id)}catch(e){return null}};
+function conditions(n){
+ const k=kindOf(n);
+ if(k==='match'){const c=S.connections.find(c=>c.insightId===n.id);if(!c)return{target:null,list:[]};let fl=[];try{fl=initMerge(c).filters||[]}catch(e){}
+  const lg=c.merge?.dcLogic,L=window.dcLogic;const extra=lg&&L?[...(lg.conds||[]).map((x,i)=>({i:'L'+i,text:L.describe(x),fixed:true})),...(lg.group||[]).map((x,i)=>({i:'G'+i,text:'Either/or · '+L.describe(x),fixed:true}))]:[];
+  return{target:{kind:'match',id:c.id},mode:lg?.mode||'all',list:fl.map((r,i)=>{let t='';try{t=describeGuidedRule(c,r)}catch(e){t='Condition '+(i+1)}return{i,text:t}}).concat(extra)}}
+ if(k==='filter'){const f=(()=>{try{return metricSource(n.source)}catch(e){return null}})(),rules=[n,...(n.extraFilters||[])];
+  return{target:{kind:'filter',id:n.id},mode:n.logic||'all',list:rules.map((r,i)=>({i:i-1,text:(r.grp?'Either/or · ':'')+window.dcDescribeRule?window.dcDescribeRule(f?.headers[r.column]||'Field',r):(f?.headers[r.column]||'Field')}))}}
+ return{target:null,list:[]};
+}
+function preview(res){
+ if(!res||!res.headers?.length)return '<p class="iws-muted">No rows yet. Finish setting this insight up to see its rows.</p>';
+ const cols=res.headers.slice(0,6),rows=res.rows.slice(0,6);
+ return `<div class="iws-prev"><table><thead><tr>${cols.map(c=>`<th title="${h(c)}">${h(c)}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${cols.map((_,i)=>`<td title="${h(r[i])}">${h(r[i])}</td>`).join('')}</tr>`).join('')}</tbody></table></div>${res.headers.length>6?`<p class="iws-muted">Showing 6 of ${res.headers.length} fields.</p>`:''}`;
+}
+function paintInsp(){
+ const n=S.insights.find(x=>x.id===sel);
+ if(!n){
+  const count=S.insights.length;
+  insp.innerHTML=`<div class="iws-ph"><b>Inspector</b><button type="button" class="iws-ib" data-iw="rpanel" aria-label="Hide the inspector">${I('x')}</button></div>
+  <div class="iws-body"><div class="iws-hello"><h3>${count?'Pick an insight to see it here':'Make your first insight'}</h3><p>An insight answers one question about your data. A few short steps guide you, and you see your rows change as you go.</p></div>
+  <button type="button" class="iws-choice" data-iw="filter">${I('filter')}<div><b>Look inside one table</b><span>Keep only the rows you need: values, numbers, dates, text or empty fields.</span></div></button>
+  <button type="button" class="iws-choice" data-iw="match">${I('match')}<div><b>Connect two tables</b><span>Join rows that share a value, such as the same ID, email or phone. Or find what is missing from one of them.</span></div></button>
+  <button type="button" class="iws-choice" data-iw="match3">${I('match')}<div><b>Connect three tables</b><span>Chain them together: table 1 links to 2, and 2 links to 3.</span></div></button>
+  <button type="button" class="iws-choice" data-iw="summary">${I('sum')}<div><b>Count or total</b><span>Counts, totals, averages and percentages for your report.</span></div></button>
+  <div class="iws-tip">${I('drag')}<p><b>Shortcut:</b> on the Blueprint, drag from the dot next to a column to a column in another table. A match is made for you and you name it.</p></div></div>`;
+  return;
+ }
+ const k=kindOf(n),res=resultOf(n),cond=conditions(n);
+ insp.innerHTML=`<div class="iws-ph"><b>Inspector</b><button type="button" class="iws-ib" data-iw="deselect" aria-label="Close this insight">${I('x')}</button></div>
+ <div class="iws-body">
+  <div class="iws-head"><span class="iws-kind k-${k}">${KIND[k][0]}</span><h3>${h(n.name)}</h3><p>${KIND[k][1]}</p>
+   <div class="iws-stats"><div><b>${res?num(res.rows.length):'—'}</b><span>rows</span></div><div><b>${res?num(res.headers.length):'—'}</b><span>fields</span></div><div><b>${cond.list.length}</b><span>${cond.list.length===1?'filter':'filters'}</span></div></div></div>
+  <div class="iws-acts"><button type="button" data-iw="edit">${I('edit')}${k==='match'?'Edit the match':k==='summary'?'Edit numbers':'Edit'}</button><button type="button" data-iw="rename">${I('edit')}Rename</button><button type="button" data-iw="locate">${I('pin')}Show</button></div>
+  ${cond.target?`<section class="iws-sec"><div class="iws-sech"><h4>Filters</h4><span>${cond.list.length?(cond.mode==='any'?'Any one is enough':'Every one must pass'):'None yet'}</span></div>
+   ${cond.list.length?`<ol class="iws-conds">${cond.list.map((c,j)=>`<li><span class="iws-n">${j+1}</span><p>${h(c.text)}</p>${c.fixed?'':`<button type="button" data-iw-cedit="${c.i}" aria-label="Edit filter ${j+1}">${I('edit')}</button>`}${k==='filter'&&cond.list.length===1?'':`<button type="button" data-iw-cdel="${c.i}" aria-label="Remove filter ${j+1}">${I('x')}</button>`}</li>`).join('')}</ol>`:''}
+   <button type="button" class="iws-add" data-iw="addfilter">${I('plus')}Add a filter</button></section>`:''}
+  <section class="iws-sec"><div class="iws-sech"><h4>Preview</h4><span>${res?'First rows of the result':''}</span></div>${preview(res)}</section>
+  <div class="iws-acts iws-acts-end"><button type="button" class="iws-primary" data-iw="excel">${I('excel')}Use in Excel</button><button type="button" class="iws-danger" data-iw="remove">${I('trash')}Remove</button></div>
+ </div>`;
+}
+function select(id){sel=id;qa('.dc-icard').forEach(c=>c.classList.toggle('iws-sel',c.dataset.dcInsight===id));qa('#studio .node').forEach(x=>x.classList.toggle('iws-sel',x.dataset.node===id));if(id)root.classList.remove('iws-no-right');paintInsp()}
+const root=document.body;
+function view(){
+ const narrow=innerWidth<1180,lp=store.get('iws-l')||(narrow?'closed':'open'),rp=store.get('iws-r')||'open';
+ root.classList.toggle('iws-no-left',lp==='closed');root.classList.toggle('iws-no-right',rp==='closed');
+ const z=q('#graph-zoom');if(z)q('.iws-zoom',dock).textContent=z.textContent;
+ const w=q('[data-iw-where]',top);if(w){const step=q('.dc-meter-count')?.textContent||'';const name=window.dcProj?.current?.()?.name||'';w.textContent=[step,name].filter(Boolean).join(' · ')}
+ const nx=q('#next'),nb=q('[data-iw="next"]',top);if(nx&&nb){nb.disabled=!!nx.disabled;const t=(nx.textContent||'').trim();if(t)nb.querySelector('span').textContent=t}
+}
+function act(a,el){
+ const n=S.insights.find(x=>x.id===sel);
+ switch(a){
+  case 'back':q('#back')?.click();break;case 'next':q('#next')?.click();break;case 'save':q('#save-project')?.click();break;
+  case 'help':try{window.dcGuide?.open()}catch(e){}break;
+  case 'new':window.dcWizard?.open();break;
+  case 'match':window.dcWizard?.open({count:2});break;case 'match3':window.dcWizard?.open({count:3});break;
+  case 'filter':window.dcWizard?.open({count:1});break;
+  case 'summary':{const b=q('#add-summary-sheet');if(b)b.click();else q('#add-insight')?.click();break}
+  case 'lpanel':case 'rpanel':{const k=a==='lpanel'?'iws-l':'iws-r',cls=a==='lpanel'?'iws-no-left':'iws-no-right';store.set(k,root.classList.contains(cls)?'open':'closed');view();break}
+  case 'zin':q('#graph-plus')?.click();setTimeout(view,30);break;case 'zout':q('#graph-minus')?.click();setTimeout(view,30);break;
+  case 'fit':q('#graph-fit')?.click();setTimeout(view,30);break;case 'tidy':q('#graph-arrange')?.click();setTimeout(view,60);break;
+  case 'deselect':select(null);break;
+  case 'edit':if(n){const b=q(`.dc-icard[data-dc-insight="${n.id}"] [data-guided-edit]`);if(b)b.click()}break;
+  case 'rename':if(n)q(`.dc-icard[data-dc-insight="${n.id}"] [data-dc-rename]`)?.click();break;
+  case 'locate':if(n)q(`.dc-icard[data-dc-insight="${n.id}"] [data-dc-locate]`)?.click();break;
+  case 'remove':if(n)q(`.dc-icard[data-dc-insight="${n.id}"] [data-guided-delete]`)?.click();break;
+  case 'excel':S.unlocked=Math.max(S.unlocked,4);q('#next')?.click();break;
+  case 'addfilter':if(n){const t=conditions(n).target;if(t)openGuidedFilterFlow(t)}break;
+ }
+}
+document.addEventListener('click',e=>{
+ if(!root.classList.contains('iws-on'))return;
+ const b=e.target.closest('[data-iw]');if(b&&(top.contains(b)||insp.contains(b)||dock.contains(b))){e.preventDefault();act(b.dataset.iw,b);return}
+ const ce=e.target.closest('[data-iw-cedit]');if(ce&&insp.contains(ce)){const n=S.insights.find(x=>x.id===sel),t=n&&conditions(n).target;if(t)openGuidedFilterFlow(t,+ce.dataset.iwCedit);return}
+ const cd=e.target.closest('[data-iw-cdel]');if(cd&&insp.contains(cd)){const n=S.insights.find(x=>x.id===sel);if(!n)return;const i=+cd.dataset.iwCdel;
+  const raw=cd.dataset.iwCdel;
+  if(kindOf(n)==='match'){const c=S.connections.find(c=>c.insightId===n.id);if(c){if(/^[LG]/.test(raw)){const lg=c.merge.dcLogic;(raw[0]==='L'?lg.conds:lg.group).splice(+raw.slice(1),1);c.merge={...c.merge};render();return}initMerge(c).filters.splice(i,1);render()}}
+  else if(kindOf(n)==='filter'){if(i===-1){const next=n.extraFilters.shift();delete n.operator;delete n.selectedValues;Object.assign(n,next)}else n.extraFilters.splice(i,1);render()}
+  return}
+ /* selecting: an insight card on the left or an insight on the Blueprint */
+ const card=e.target.closest('.dc-icard');if(card&&!e.target.closest('button,a,input,select')){select(card.dataset.dcInsight);return}
+ const node=e.target.closest('#studio .node');if(node&&S.insights.some(x=>x.id===node.dataset.node)&&!e.target.closest('button,input,select,a')){select(node.dataset.node)}
+},true);
+
+function sync(){
+ const on=S.stage===3&&!!q('.dc-workspace');
+ root.classList.toggle('iws-on',on);
+ if(!on){top.remove();insp.remove();dock.remove();entered=false;return}
+ if(!top.isConnected)document.body.append(top);if(!insp.isConnected)document.body.append(insp);
+ const wrap=q('.dc-map-col');if(wrap&&dock.parentElement!==wrap)wrap.append(dock);
+ if(sel&&!S.insights.some(x=>x.id===sel))sel=null;
+ qa('.dc-icard').forEach(c=>c.classList.toggle('iws-sel',c.dataset.dcInsight===sel));qa('#studio .node').forEach(x=>x.classList.toggle('iws-sel',x.dataset.node===sel));
+ const head=q('.dc-ins-strip .dc-sec-head');if(head&&!head.dataset.iws){head.dataset.iws='1';const t=q('div',head);if(t)t.innerHTML=`<h2 class="iws-lh">Your insights <small>${S.insights.length}</small></h2>`}
+ else if(head){const sm=q('.iws-lh small',head);if(sm)sm.textContent=S.insights.length}
+ paintInsp();view();
+ if(!entered){entered=true;setTimeout(()=>{q('#graph-fit')?.click();setTimeout(view,40)},420)}
+}
+const baseRender=render;render=function(){const r=baseRender.apply(this,arguments);try{sync()}catch(e){console.warn('Insights workspace:',e)}return r};
+addEventListener('resize',()=>{if(root.classList.contains('iws-on'))view()});
+/* Newly made insights open in the Inspector */
+let known=new Set();
+{const baseR2=render;render=function(){const before=new Set(S.insights.map(n=>n.id));const r=baseR2.apply(this,arguments);try{if(S.stage===3){const fresh=S.insights.filter(n=>!known.has(n.id));if(known.size&&fresh.length===1)select(fresh[0].id);known=new Set(S.insights.map(n=>n.id))}else known=new Set(S.insights.map(n=>n.id))}catch(e){}return r}}
+window.dcInsights={select,view};
+try{sync()}catch(e){}
 })();
 </script></body></html>
